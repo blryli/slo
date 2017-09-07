@@ -65,7 +65,7 @@
     </div>
     <div class="row m-t-40">
       <div class="col-sm-12 text-center">
-        <button type="button" class="btn btn-ff5a00 btn-lg">查询价格</button>
+        <button type="button" class="btn btn-df303f btn-lg">查询价格</button>
       </div>
     </div>
   </form>
