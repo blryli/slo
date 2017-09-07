@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="banner">
-      <div class="banner-bg"></div>
+      <div class="banner-bg" :style="loansBanner"></div>
     </div>
     <div class="container m-t-20">
       <div class="gt-content row  height-560">
@@ -65,7 +65,7 @@
             </li>
           </ul>
         </div>
-        <div class="gt-advertising visible-lg-block col-lg-5"></div>
+        <div class="gt-advertising visible-lg-block col-lg-5" :style="advertising"></div>
       </div>
     </div>
     <!-- 价格专区 -->
@@ -121,14 +121,16 @@ import moneySearch from '@/components/core/moneySearch'
         orderSearch: {
           order: ''
         },
+        loansBanner: {backgroundImage: "url(" + require('../../../static/img/banner.png') + ")"},
+        advertising: {backgroundImage: "url(" + require('../../../static/img/advertising.png') + ")"},
         priceSearch: {
           startAddress: '广东,深圳',
           endAddress: '',
           long: '1.00',
           breadth: '1.00',
           high: '1.00',
-          weight: '1.00',
-          quantity: '0.50',
+          weight: '0.50',
+          quantity: '1.00',
           Special: 'living'
         },
         loansSearch: {
@@ -232,7 +234,6 @@ import moneySearch from '@/components/core/moneySearch'
   background-color: #ff5a00;
   color: #fff;
   padding: 10px 30px;
-  font-size: 16px;
   &:hover{
     background-color: #FF762B;
   }
@@ -240,7 +241,6 @@ import moneySearch from '@/components/core/moneySearch'
 .banner{
   .banner-bg{
     height: 500px;
-    background-image: url(../../../static/img/banner.png);
     background-repeat: no-repeat;
     background-position: center center;
   }
@@ -299,7 +299,6 @@ import moneySearch from '@/components/core/moneySearch'
       margin-top: 50px;
       label{
         color: #323232;
-        font-size: 16px;
         font-weight: normal;
       }
       .form-horizontal{
@@ -309,14 +308,10 @@ import moneySearch from '@/components/core/moneySearch'
         label{
           min-width: 64px;
         }
-        .form-control{
-          font-size: 14px;
-        }
       }
       .form-inline{
         label{
           color: #323232;
-          font-size: 16px;
           font-weight: normal;
         }
         .form-group{
@@ -340,7 +335,6 @@ import moneySearch from '@/components/core/moneySearch'
   }
   .gt-advertising{
     height: 560px;
-    background-image: url(../../../static/img/advertising.png);
     background-repeat: no-repeat;
     background-position: center center;
   }

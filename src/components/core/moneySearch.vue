@@ -84,8 +84,8 @@
             long: '1.00',
             breadth: '1.00',
             high: '1.00',
-            weight: '1.00',
-            quantity: '0.50',
+            weight: '0.50',
+            quantity: '1.00',
             Special: 'living'
           }
         }
