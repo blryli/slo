@@ -1,0 +1,362 @@
+<template>
+  <div>
+    <div class="banner">
+      <div class="banner-bg"></div>
+    </div>
+    <div class="container m-t-20">
+      <div class="gt-content row  height-560">
+        <div class="search-box col-md-12 col-lg-7">
+          <ul class="search-menu">
+            <li v-for="(item, index) in searchArr" :class="{activeColor:item.active == true}" @click="searchActive(index)">{{item.value}}</li>
+          </ul>
+          <ul class="search-content">
+            <!-- 单号查询 -->
+            <li v-show="searchArr[0].active == true">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control input-lg" v-model="orderSearch.order" placeholder="请输入你的单号">
+                  </div>
+                </div>
+                <div class="form-group m-t-40">
+                  <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-ff5a00 btn-lg">查询单号</button>
+                  </div>
+                </div>
+              </form>
+            </li>
+            <!-- 价格查询 -->
+            <li v-show="searchArr[1].active == true">
+              <money-search :price-search="priceSearch"></money-search>
+            </li>
+            <!-- 贷款查询 -->
+            <li v-show="searchArr[2].active == true">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">我是:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control input-lg" v-model="loansSearch.seller" placeholder="请输入你的平台">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">姓名:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control input-lg" v-model="loansSearch.name" placeholder="请输入你的姓名">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">电话:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control input-lg" v-model="loansSearch.phone" placeholder="请输入你的电话">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">月收入:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control input-lg" v-model="loansSearch.revenue" placeholder="请输入月收入金额，单位为元">
+                  </div>
+                </div>
+                <div class="form-group m-t-40">
+                  <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-ff5a00 btn-lg">查询额度</button>
+                  </div>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <div class="gt-advertising visible-lg-block col-lg-5"></div>
+      </div>
+    </div>
+    <!-- 价格专区 -->
+    <div class="container m-t-20">
+      <div class="gt-content row">
+        <div class="gt-header">
+          <h1>价格专区</h1>
+          <a href="#" class="more price-more">更多优惠>></a>
+        </div>
+        <Price-list :price-arr="priceArr"></Price-list>
+        <div class="gt-footer"></div>
+      </div>
+    </div>
+    <!-- 贷款专区 -->
+    <div class="container m-t-20">
+      <div class="gt-content row">
+        <div class="gt-header">
+          <h1>贷款专区</h1>
+          <a href="#" class="more price-more">更多贷款>></a>
+        </div>
+        <loans-list :loans-arr="loansArr"></loans-list>
+        <div class="gt-footer"></div>
+      </div>
+    </div>
+    <!-- 海外仓专区 -->
+    <div class="container m-t-20">
+      <div class="gt-content row">
+        <div class="gt-header">
+          <h1>海外仓专区</h1>
+          <a href="#" class="more price-more">更多仓库>></a>
+        </div>
+        <warehouse :warehouse-arr="warehouseArr"></warehouse>
+        <div class="gt-footer"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import PriceList from '@/components/core/priceList'
+import loansList from '@/components/core/loansList'
+import warehouse from '@/components/core/warehouse'
+import moneySearch from '@/components/core/moneySearch'
+  export default {
+    data () {
+      return {
+        searchArr:[ 
+          {'value': '单号查询', 'active': true},
+          {'value': '价格查询', 'active': false},
+          {'value': '贷款查询', 'active': false},
+          // {'value': '海外仓查询', 'active': false},
+        ],
+        orderSearch: {
+          order: ''
+        },
+        priceSearch: {
+          startAddress: '广东,深圳',
+          endAddress: '',
+          long: '1.00',
+          breadth: '1.00',
+          high: '1.00',
+          weight: '1.00',
+          quantity: '0.50',
+          Special: 'living'
+        },
+        loansSearch: {
+          seller: '',
+          name: '',
+          phone: '',
+          revenue: ''
+        },
+        loansArr: [
+          {
+            money: '500',
+            seller: 'ebay卖家'
+          },
+          {
+            money: '500',
+            seller: 'ebay卖家'
+          },
+          {
+            money: '500',
+            seller: 'ebay卖家'
+          },
+          {
+            money: '500',
+            seller: 'ebay卖家'
+          }
+        ],
+        warehouseArr: [
+          {
+            warehouse: '美国',
+            text: '涵盖美系、美东在内的100个仓库',
+            money: '30'
+          },
+          {
+            warehouse: '美国',
+            text: '涵盖美系、美东在内的100个仓库',
+            money: '30'
+          },
+          {
+            warehouse: '美国',
+            text: '涵盖美系、美东在内的100个仓库',
+            money: '30'
+          },
+          {
+            warehouse: '美国',
+            text: '涵盖美系、美东在内的100个仓库',
+            money: '30'
+          }
+        ],
+        priceArr: [
+          {
+            startAddress: '深圳',
+            endAddress: '俄罗斯',
+            data: '2017.09.06',
+            time: '48小时',
+            price: '10',
+          },
+          {
+            startAddress: '深圳',
+            endAddress: '俄罗斯',
+            data: '2017.09.06',
+            time: '48小时',
+            price: '10',
+          },
+          {
+            startAddress: '深圳',
+            endAddress: '俄罗斯',
+            data: '2017.09.06',
+            time: '48小时',
+            price: '10',
+          },
+          {
+            startAddress: '深圳',
+            endAddress: '俄罗斯',
+            data: '2017.09.06',
+            time: '48小时',
+            price: '10',
+          }
+        ]
+    }
+    },
+    components: {
+      PriceList, loansList ,warehouse, moneySearch
+    },
+    methods: {
+      searchActive(index) {
+        this.searchArr.forEach((d, i) =>{
+          d.active = false
+        })
+        this.searchArr[index].active = true
+      }
+    }
+  }
+</script>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+
+.height-560{
+  height: 560px;
+}
+.m-t-40{
+  margin-top: 40px;
+}
+.btn-ff5a00{
+  background-color: #ff5a00;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  &:hover{
+    background-color: #FF762B;
+  }
+}
+.banner{
+  .banner-bg{
+    height: 500px;
+    background-image: url(../../assets/img/banner.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+.m-t-20{
+  margin-top: 20px;
+}
+.gt-content{
+  background-color: #fff;
+  border-radius: 10px;
+  .gt-header{
+    padding: 0 20px;
+    border-bottom: 1px solid #dcdcdc;
+    overflow: hidden;
+    & *{
+      height: 60px;
+      line-height: 60px;
+      font-size: 18px;
+    }
+    h1{
+      color: #323232;
+      float: left;
+    }
+    .more{
+      float: right;
+    }
+    .price-more{
+      color: #df303f;
+    }
+  }
+  .gt-footer{
+    height: 40px;
+  }
+  .search-box{
+    padding: 40px;
+    //搜索菜单
+    .search-menu{
+      overflow: hidden;
+      >li{
+        float: left;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 0 4px 20px;
+        border-bottom: 2px solid #fff;
+        &.activeColor, &:hover{
+          color: #f55520;
+          border-color: #f55520;
+        }
+        &+li{
+          margin-left: 10%;
+        }
+      }
+    }
+    //搜索内容
+    .search-content{
+      margin-top: 50px;
+      label{
+        color: #323232;
+        font-size: 16px;
+        font-weight: normal;
+      }
+      .form-horizontal{
+        .form-group{
+          width: 100%;
+        }
+        label{
+          min-width: 64px;
+        }
+        .form-control{
+          font-size: 14px;
+        }
+      }
+      .form-inline{
+        label{
+          color: #323232;
+          font-size: 16px;
+          font-weight: normal;
+        }
+        .form-group{
+        }
+        .input-group{
+          padding-left: 26px;
+          &.p-l-42{
+            padding-left: 42px;
+          }
+          .ab-label{
+            position: absolute;
+            left: 0;
+            top: 10px;
+          }
+        }
+        .input-group-addon{
+          padding: 0 2px;
+        }
+      }
+    }
+  }
+  .gt-advertising{
+    height: 560px;
+    background-image: url(../../assets/img/advertising.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+@media (min-width: 768px) { 
+    
+ }
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200) {
+
+}
+</style>

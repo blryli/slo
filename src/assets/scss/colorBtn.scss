@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+//--------配色--------
+// 主色
+$mainColor: #ff5a00;
+$mainColorCg: #FF762B;
+$mainColorBg: #FEF4EF;
+// 物流配色 logistics
+$logisticsColor: #df303f;
+$logisticsColorCg: #EE4856;
+// 金融配色 loans
+$loansColor: #f86515;
+$loansColorCg: #f86515;
+// 海外仓配色
+$warehouseColor: #e62260;
+$warehouseColorCg: #F44B80;
+
+//--------按钮--------
+// 搜索按钮
+.btn-ff5a00{
+  background-color: $mainColor;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  &:hover{
+    background-color: $mainColorCg;
+    color: #fff;
+  }
+}
+//价格专区按钮 -- 物流
+.btn-df303f{
+  background-color: $logisticsColor;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  &:hover{
+    background-color: $logisticsColorCg;
+    color: #fff;
+  }
+}
+//贷款专区按钮 -- 金融
+.btn-f86515{
+  background-color: #fff;
+  border-color: $loansColor;
+  color: $loansColor;
+  padding: 10px 30px;
+  font-size: 16px;
+  &:hover{
+    background-color: $loansColor;
+    color: #fff;
+  }
+}
+// 海外仓专区按钮
+.btn-e62260{
+  background-color: $warehouseColor;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  &:hover{
+    background-color: $warehouseColorCg;
+    color: #fff;
+  }
+}

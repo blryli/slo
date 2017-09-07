@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import "colorBtn";
+
+body, div, li, a, span, i, p, nav, h1, h2, h3, h4, h5, h6, th, td, button, input, option, label, select, textarea, legend{
+  font-size: 16px;
+}
+.m-b-20{
+  margin-bottom: 20px;
+}
+.table{
+	thead{
+		tr{
+			td{}
+		}
+	}
+	tbody{
+		tr{
+			td{
+				p{
+					margin-bottom: 4px;
+				}
+			}
+		}
+	}
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: $mainColorBg;
+}
