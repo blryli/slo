@@ -1,7 +1,18 @@
 <template>
 	<div>
 	  <div class="container box m-t-20">
-	  	<h4>查询地点：美国加州</h4>
+	  	<div class="row">
+		  	<h4 class="col-sm-6 text-left">查询地点：<strong>美国加州</strong></h4>
+		  	<div class="col-sm-6">
+			  	<div class="input-group text-left">
+		            <input type="text" class="form-control input-lg" placeholder="请输入查询地点">
+		            <span class="input-group-btn">
+			            <button type="button" class="btn btn-e62260">搜索
+					    </button>
+				    </span>
+		        </div>
+	        </div>
+        </div>
 	  </div>
 	  <div class="container m-t-20">
 		<table class="table table-striped table-striped">
@@ -15,19 +26,12 @@
 		  	</tr>
 		  </thead>
 		  <tbody>
-		  	<tr>
-			  	<td>井空仓</td>
-			  	<td>美国加州</td>
-			  	<td>1个月</td>
-			  	<td>$10.00</td>
-			  	<td><a href="#">查看详情</a></td>
-		  	</tr>
-		  	<tr>
-			  	<td>井空仓</td>
-			  	<td>美国加州</td>
-			  	<td>1个月</td>
-			  	<td>$10.00</td>
-			  	<td><a href="#">查看详情</a></td>
+		  	<tr v-for="(item, index) in warehouseArr">
+			  	<td>{{item.name}}</td>
+			  	<td>{{item.address}}</td>
+			  	<td>{{item.name}}</td>
+			  	<td>{{item.time}}</td>
+			  	<td>{{item.laons}}<a href="#"></a></td>
 		  	</tr>
 		  </tbody>
 		</table>
@@ -41,6 +45,22 @@ import moneySearch from '@/components/core/moneySearch'
     props: {},
     data () {
       return {
+      	warehouseArr: [
+      		{
+      			name: '井空仓',
+	      		address:  '美国加州',
+	      		time: '1个月',
+	      		menoy: '$10.00',
+	      		laons: '查看详情'
+      		},
+      		{
+      			name: '井空仓',
+	      		address:  '美国加州',
+	      		time: '1个月',
+	      		menoy: '$10.00',
+	      		laons: '查看详情'
+      		}
+      	]
       }
   	},
     components: {
