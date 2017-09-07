@@ -228,9 +228,6 @@ import moneySearch from '@/components/core/moneySearch'
 .height-560{
   height: 560px;
 }
-.m-t-40{
-  margin-top: 40px;
-}
 .btn-ff5a00{
   background-color: #ff5a00;
   color: #fff;
@@ -243,7 +240,7 @@ import moneySearch from '@/components/core/moneySearch'
 .banner{
   .banner-bg{
     height: 500px;
-    background-image: url(../../assets/img/banner.png);
+    background-image: url(../../../static/img/banner.png);
     background-repeat: no-repeat;
     background-position: center center;
   }
@@ -343,7 +340,7 @@ import moneySearch from '@/components/core/moneySearch'
   }
   .gt-advertising{
     height: 560px;
-    background-image: url(../../assets/img/advertising.png);
+    background-image: url(../../../static/img/advertising.png);
     background-repeat: no-repeat;
     background-position: center center;
   }

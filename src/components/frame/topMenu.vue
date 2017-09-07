@@ -1,6 +1,6 @@
 <template>
   <ul class="nav navbar-nav topnav">
-    <li v-for="(menu,index) in topMenu.menus">
+    <li v-for="(menu,index) in topMenu.menus" @click="toActive(menu,index)">
       <a v-if="menu.url == undefined">
         <span class="menu-text">{{menu.menu_name}}</span>
         <b class="caret" v-if="menu.url==undefined"></b>
@@ -28,6 +28,14 @@
     data () {
       return {
       }
+    },
+    methods: {
+      toActive(menu,index) {
+        menu.forEach((d, i) =>{
+          d.active = false
+        })
+        this.topMenu[index].active = true
+      }
     }
   }
 
@@ -49,7 +57,7 @@
       &:hover{
         color: #f55520;
       }
-      &.router-link-active{
+      &.router-link-exact-active.active{
         color: #f55520;
       }
     }
