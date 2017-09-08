@@ -1,7 +1,12 @@
 <template>
 	<div>
 	  <div class="container box m-t-20">
-		<money-search></money-search>
+		<money-search :price-search="priceLogistics"></money-search>
+		<div class="row m-t-40">
+		  <div class="col-sm-12 text-center">
+		    <button type="button" class="btn btn-df303f btn-lg">查询价格</button>
+		  </div>
+		</div>
 	  </div>
 	  <div class="container m-t-20">
 		<table class="table table-striped table-striped">
@@ -50,14 +55,30 @@
 <script>
 import moneySearch from '@/components/core/moneySearch'
   export default {
-    props: {},
     data () {
       return {
+      	priceLogistics: {
+      		startAddress: '广东,深圳',
+      		endAddress: '',
+      		long: '1.00',
+      		breadth: '1.00',
+      		high: '1.00',
+      		weight: '0.50',
+      		quantity: '1.00',
+      		Special: 'living'
+      	}
       }
   	},
     components: {
     	moneySearch
-    }
+    },
+    created() {
+    	if(this.$route.query.long){
+			this.priceLogistics = this.$route.query;
+    	}
+    },
+    methods: {
+    },
   }
 
 </script>

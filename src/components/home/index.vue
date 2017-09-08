@@ -14,13 +14,14 @@
             <li v-show="searchArr[0].active == true">
               <form class="form-horizontal">
                 <div class="form-group">
-                  <div class="col-sm-12">
+                  <div class="col-sm-12 Verify-box">
                     <input type="text" class="form-control input-lg" v-model="orderSearch.order" placeholder="请输入你的单号">
+                    <div class="Verify">{{orderVerify}}</div>
                   </div>
                 </div>
                 <div class="form-group m-t-40">
                   <div class="col-sm-12 text-center">
-                    <button type="button" class="btn btn-ff5a00 btn-lg">查询单号</button>
+                    <button type="button" class="btn btn-ff5a00 btn-lg" @click="numbarSubmit">查询单号</button>
                   </div>
                 </div>
               </form>
@@ -28,6 +29,14 @@
             <!-- 价格查询 -->
             <li v-show="searchArr[1].active == true">
               <money-search :price-search="priceSearch"></money-search>
+              <div class="col-sm-12 Verify-box">
+                <div class="Verify">{{logisticsVerify}}</div>
+              </div>
+              <div class="row m-t-40">
+                <div class="col-sm-12 text-center">
+                  <button type="button" class="btn btn-df303f btn-lg" @click="logisticsSubmit">查询价格</button>
+                </div>
+              </div>
             </li>
             <!-- 贷款查询 -->
             <li v-show="searchArr[2].active == true">
@@ -112,6 +121,8 @@ import moneySearch from '@/components/core/moneySearch'
   export default {
     data () {
       return {
+        orderVerify: '',
+        logisticsVerify: '',
         searchArr:[ 
           {'value': '单号查询', 'active': true},
           {'value': '价格查询', 'active': false},
@@ -220,6 +231,17 @@ import moneySearch from '@/components/core/moneySearch'
           d.active = false
         })
         this.searchArr[index].active = true
+      },
+      numbarSubmit() {
+        if(this.orderSearch.order == ''){
+          this.orderVerify = '单号不能为空！'
+        }
+        else if(isNaN(this.orderSearch.order)){
+          this.orderVerify = '请输入正确的单号！'
+        }
+      },
+      logisticsSubmit() {
+          this.$router.push({ path: '/logistics', query: this.priceSearch })
       }
     }
   }

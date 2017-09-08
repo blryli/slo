@@ -9,6 +9,10 @@ import fbaPage from '@/components/fbaPage/fbaPage'
 import warehousePage from '@/components/warehousePage/warehousePage'
 import distribution from '@/components/distribution/distribution'
 import transshipment from '@/components/transshipment/transshipment'
+import finance from '@/components/finance/finance'
+import offLine from '@/components/offLine/offLine'
+import help from '@/components/help/help'
+import cooperation from '@/components/cooperation/cooperation'
 
 Vue.use(VueRouter)
 
@@ -27,6 +31,10 @@ const router = new VueRouter({
         { path: '/warehouse', name: '仓库', component: warehousePage },
         { path: '/distribution', name: '分销', component: distribution },
         { path: '/transshipment', name: '转运', component: transshipment },
+        { path: '/finance', name: '金融', component: finance },
+        { path: '/offLine', name: '线下门店', component: offLine },
+        { path: '/help', name: '帮助中心', component: help },
+        { path: '/cooperation', name: '渠道合作', component: cooperation }
       ]
     }
   ]

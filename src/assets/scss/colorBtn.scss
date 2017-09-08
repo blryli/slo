@@ -27,6 +27,15 @@ $warehouseColorCg: #F44B80;
     color: #fff;
   }
 }
+.mainColor{
+  color: $mainColor;
+  &:hover{
+    color: $mainColor;
+  }
+}
+.mainColorBg{
+  background-color: $mainColor;
+}
 //价格专区按钮 -- 物流
 .btn-df303f{
   background-color: $logisticsColor;
@@ -37,6 +46,15 @@ $warehouseColorCg: #F44B80;
     background-color: $logisticsColorCg;
     color: #fff;
   }
+}
+.logisticsColor{
+  color: $logisticsColor;
+  &:hover{
+    color: $logisticsColor;
+  }
+}
+.logisticsColorBg{
+  background-color: $logisticsColor;
 }
 //贷款专区按钮 -- 金融
 .btn-f86515{
@@ -50,6 +68,15 @@ $warehouseColorCg: #F44B80;
     color: #fff;
   }
 }
+.loansColor{
+  color: $loansColor;
+  &:hover{
+    color: $loansColor;
+  }
+}
+.loansColorBg{
+  background-color: $loansColor;
+}
 // 海外仓专区按钮
 .btn-e62260{
   background-color: $warehouseColor;
@@ -60,4 +87,13 @@ $warehouseColorCg: #F44B80;
     background-color: $warehouseColorCg;
     color: #fff;
   }
+}
+.warehouseColor{
+  color: $warehouseColor;
+  &:hover{
+    color: $warehouseColor;
+  }
+}
+.warehouseColorBg{
+  background-color: $warehouseColor;
 }

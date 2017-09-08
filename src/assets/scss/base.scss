@@ -10,6 +10,9 @@ body{
 .m-t-40{
   margin-top: 40px;
 }
+.p-t-40{
+  padding-top: 40px;
+}
 .input-lg{
 	height: 44px;
 	font-size: 16px;
@@ -26,9 +29,9 @@ body{
 	tbody{
 		tr{
 			td{
+				vertical-align: middle;
 				p{
 					margin-bottom: 4px;
-					vertical-align: middle;
 				}
 			}
 		}
@@ -36,4 +39,15 @@ body{
 }
 .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: $mainColorBg;
+}
+
+//验证提示信息
+.Verify-box{
+	position: relative;
+	.Verify{
+		position: absolute;
+		color: red;
+		left: 20px;
+		bottom: -26px;
+	}
 }

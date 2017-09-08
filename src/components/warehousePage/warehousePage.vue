@@ -15,7 +15,7 @@
         </div>
 	  </div>
 	  <div class="container m-t-20">
-		<table class="table table-striped table-striped">
+		<table class="table table-striped table-striped table-hover">
 		  <thead>
 		  	<tr>
 			  	<td>仓库名称</td>
@@ -31,7 +31,7 @@
 			  	<td>{{item.address}}</td>
 			  	<td>{{item.name}}</td>
 			  	<td>{{item.time}}</td>
-			  	<td>{{item.laons}}<a href="#"></a></td>
+			  	<td><a href="#" class="warehouseColor">{{item.laons}}</a></td>
 		  	</tr>
 		  </tbody>
 		</table>

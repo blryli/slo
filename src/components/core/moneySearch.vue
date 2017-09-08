@@ -1,7 +1,7 @@
 <template>
   <form class="form-inline">
     <div class="row m-b-20">
-      <div class="form-group col-sm-12">
+      <div class="form-group col-sm-12"  :class="{'has-error':priceSearch.startAddress == null}">
         <label>始发地:</label>
         <input type="text" class="form-control input-lg" style="width: 89%" v-model="priceSearch.startAddress">
       </div>
@@ -63,16 +63,10 @@
         <input type="radio" v-model="priceSearch.Special" id="prohibited" value="prohibited"> 违禁品
       </label>
     </div>
-    <div class="row m-t-40">
-      <div class="col-sm-12 text-center">
-        <button type="button" class="btn btn-df303f btn-lg">查询价格</button>
-      </div>
-    </div>
   </form>
 </template>
 
 <script>
-  import Home from '@/components/home/index'
   export default {
     props: {
       priceSearch: {

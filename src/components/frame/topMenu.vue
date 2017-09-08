@@ -1,18 +1,21 @@
 <template>
   <ul class="nav navbar-nav topnav">
-    <li v-for="(menu,index) in topMenu.menus" @click="toActive(menu,index)">
+    <li v-for="(menu, index) in topMenu.menus">
       <a v-if="menu.url == undefined">
         <span class="menu-text">{{menu.menu_name}}</span>
         <b class="caret" v-if="menu.url==undefined"></b>
       </a>
+      <router-link v-if="menu.url == '/'" :to="menu.url" exact>
+        <span class="menu-text">{{menu.menu_name}}</span>
+      </router-link>
       <router-link v-else :to="menu.url">
         <span class="menu-text">{{menu.menu_name}}</span>
       </router-link>
-      <ul class="submenu" v-if="menu.url==undefined">
+      <!-- <ul class="submenu" v-if="menu.url==undefined">
         <li v-for="sub in menu.sub_menus">
           <router-link :to="sub.url">{{sub.sub_name}}</router-link>
         </li>
-      </ul>
+      </ul> -->
     </li>
   </ul>
 </template>
@@ -30,12 +33,12 @@
       }
     },
     methods: {
-      toActive(menu,index) {
-        menu.forEach((d, i) =>{
-          d.active = false
-        })
-        this.topMenu[index].active = true
-      }
+      // toActive(menu,index) {
+      //   menu.forEach((d, i) =>{
+      //     d.active = false
+      //   })
+      //   menu[index].active = true
+      // }
     }
   }
 
@@ -57,7 +60,7 @@
       &:hover{
         color: #f55520;
       }
-      &.router-link-exact-active.active{
+      &.active{
         color: #f55520;
       }
     }
