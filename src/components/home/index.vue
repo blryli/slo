@@ -14,10 +14,11 @@
             <li v-show="searchArr[0].active == true">
               <form class="form-horizontal">
                 <div class="form-group">
-                  <div class="col-sm-12 Verify-box">
-                    <input type="text" class="form-control input-lg" v-model="orderSearch.order" placeholder="请输入你的单号">
-                    <div class="Verify">{{orderVerify}}</div>
+                  <div class="col-sm-12" :class="{ 'form-group--error': $v.orderSearch.order.$error }">
+                    <input type="text" class="form-control input-lg" v-model="orderSearch.order" placeholder="请输入你的单号" @input="$v.orderSearch.order.$touch()">
                   </div>
+                  <span class="form-group__message" style="left: 15px;" v-if="!$v.orderSearch.order.required">单号不能为空</span>
+                  <span class="form-group__message" style="left: 15px;" v-if="!$v.orderSearch.order.minLength">请输入正确的单号</span>
                 </div>
                 <div class="form-group m-t-40">
                   <div class="col-sm-12 text-center">
@@ -29,8 +30,7 @@
             <!-- 价格查询 -->
             <li v-show="searchArr[1].active == true">
               <money-search :price-search="priceSearch"></money-search>
-              <div class="col-sm-12 Verify-box">
-                <div class="Verify">{{logisticsVerify}}</div>
+              <div class="col-sm-12">
               </div>
               <div class="row m-t-40">
                 <div class="col-sm-12 text-center">
@@ -42,30 +42,31 @@
             <li v-show="searchArr[2].active == true">
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">我是:</label>
+                  <label class="col-sm-2 control-label"><span class="font_red">*</span>平台:</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control input-lg" v-model="loansSearch.seller" placeholder="请输入你的平台">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">姓名:</label>
+                <div class="form-group m-t-20">
+                  <label class="col-sm-2 control-label"><span class="font_red">*</span>姓名:</label>
+                  <div class="col-sm-10" :class="{ 'form-group--error': $v.loansSearch.name.$error }">
+                    <input type="text" class="form-control input-lg" v-model="loansSearch.name" placeholder="请输入你的姓名" @input="$v.loansSearch.name.$touch()">
+                  </div>
+                  <span class="form-group__message" style="left: 19%;" v-if="!$v.loansSearch.name.required">姓名不能为空</span>
+                </div>
+                <div class="form-group m-t-20">
+                  <label class="col-sm-2 control-label"><span class="font_red">*</span>电话:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control input-lg" v-model="loansSearch.name" placeholder="请输入你的姓名">
+                    <input type="tel" class="form-control input-lg" v-model="loansSearch.phone" placeholder="请输入你的电话">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">电话:</label>
+                <div class="form-group m-t-20">
+                  <label class="col-sm-2 control-label"><span class="font_red">*</span>月收入:</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control input-lg" v-model="loansSearch.phone" placeholder="请输入你的电话">
+                    <input type="number" min="0" class="form-control input-lg" v-model="loansSearch.revenue" placeholder="请输入月收入金额，单位为元">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">月收入:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control input-lg" v-model="loansSearch.revenue" placeholder="请输入月收入金额，单位为元">
-                  </div>
-                </div>
-                <div class="form-group m-t-40">
+                <div class="form-group m-t-20 m-t-40">
                   <div class="col-sm-12 text-center">
                     <button type="button" class="btn btn-ff5a00 btn-lg">查询额度</button>
                   </div>
@@ -118,11 +119,10 @@ import PriceList from '@/components/core/priceList'
 import loansList from '@/components/core/loansList'
 import warehouse from '@/components/core/warehouse'
 import moneySearch from '@/components/core/moneySearch'
+import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
   export default {
     data () {
       return {
-        orderVerify: '',
-        logisticsVerify: '',
         searchArr:[ 
           {'value': '单号查询', 'active': true},
           {'value': '价格查询', 'active': false},
@@ -137,11 +137,13 @@ import moneySearch from '@/components/core/moneySearch'
         priceSearch: {
           startAddress: '广东,深圳',
           endAddress: '',
-          long: '1.00',
-          breadth: '1.00',
-          high: '1.00',
-          weight: '0.50',
-          quantity: '1.00',
+          tiji: [
+            {number: '1.00', text: '长'},
+            {number: '1.00', text: '宽'},
+            {number: '1.00', text: '高'},
+            {number: '0.50', text: '重量'}
+          ],
+          quantity: '1',
           Special: 'living'
         },
         loansSearch: {
@@ -233,17 +235,24 @@ import moneySearch from '@/components/core/moneySearch'
         this.searchArr[index].active = true
       },
       numbarSubmit() {
-        if(this.orderSearch.order == ''){
-          this.orderVerify = '单号不能为空！'
-        }
-        else if(isNaN(this.orderSearch.order)){
-          this.orderVerify = '请输入正确的单号！'
-        }
       },
       logisticsSubmit() {
           this.$router.push({ path: '/logistics', query: this.priceSearch })
       }
-    }
+    },
+    validations: {
+      orderSearch: {
+        order: {
+          required,
+          alphaNum
+        },
+      },
+      loansSearch: {
+        name: {
+          required
+        },
+      }
+    },
   }
 </script>
 
@@ -268,7 +277,7 @@ import moneySearch from '@/components/core/moneySearch'
   }
 }
 .m-t-20{
-  margin-top: 20px;
+  margin-top: 26px;
 }
 .gt-content{
   background-color: #fff;
@@ -337,6 +346,7 @@ import moneySearch from '@/components/core/moneySearch'
           font-weight: normal;
         }
         .form-group{
+          position: relative;
         }
         .input-group{
           padding-left: 26px;
@@ -360,6 +370,9 @@ import moneySearch from '@/components/core/moneySearch'
     background-repeat: no-repeat;
     background-position: center center;
   }
+}
+.form-group{
+  position: relative;
 }
 
 @media (min-width: 768px) { 

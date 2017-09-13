@@ -5,7 +5,7 @@ body{
   font-size: 16px;
 }
 .m-b-20{
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .m-t-40{
   margin-top: 40px;
@@ -41,13 +41,26 @@ body{
     background-color: $mainColorBg;
 }
 
+.font_red {
+    color: #f00;
+}
+
 //验证提示信息
-.Verify-box{
-	position: relative;
-	.Verify{
-		position: absolute;
-		color: red;
-		left: 20px;
-		bottom: -26px;
-	}
+.form-group__message{
+    display: none;
+    color: #CC3333;
+    margin-top: 0;
+}
+.form-group--error{
+  position: relative;
+    &+.form-group__message {
+      display: block;
+      color: #CC3333;
+      position: absolute;
+      bottom: -24px;
+      left: 12%;
+    }
+}
+.form-group--error input, .form-group--error input:focus, .form-group--error input:hover, .form-group--error textarea {
+    border-color: #CC3333;
 }
