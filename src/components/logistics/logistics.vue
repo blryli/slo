@@ -60,11 +60,13 @@ import moneySearch from '@/components/core/moneySearch'
       	priceLogistics: {
       		startAddress: '广东,深圳',
       		endAddress: '',
-      		long: '1.00',
-      		breadth: '1.00',
-      		high: '1.00',
-      		weight: '0.50',
-      		quantity: '1.00',
+      		tiji: [
+      		  {number: '1.00', text: '长'},
+      		  {number: '1.00', text: '宽'},
+      		  {number: '1.00', text: '高'},
+      		  {number: '0.50', text: '重量'}
+      		],
+      		quantity: '1',
       		Special: 'living'
       	}
       }
