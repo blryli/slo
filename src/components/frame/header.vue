@@ -2,10 +2,13 @@
   <div class="header">
       <div class="header-top">
         <div class="float-right container">
-          <div class="row">
-            <a href="#" class="login">登录</a>
+          <div class="row" v-if="userName == ''">
+            <a @click="login"  class="login">登录</a>
             <span class="l-hr">|</span>
             <a href="#" class="register">注册</a>
+          </div>
+           <div class="row" v-else>
+            <span class="l-hr">尊敬的{{userName}},欢迎登录starpost官方网站</span>
           </div>
         </div>
       </div>
@@ -36,6 +39,7 @@ import TopMenu from './topMenu'
 export default {
   data() {
     return {
+      userName : '',
       menuJson: {}
     }
   },
@@ -50,12 +54,34 @@ export default {
     TopMenu
   },
   created: function () {
-    this.getTopMenu();
+    this.getTopMenu()
+    this.user()
   },
   mounted() {
     
   },
   methods: {
+  	login: function() {
+            //绑定Ajax的内容
+            let _url = window.location.href
+            window.location.href = "http://localhost:9005/login?url=" + _url;
+  	},
+  	user: function(){
+		let _this = this
+		$.ajax({
+			type: "get",
+			contentType: "application/json",
+			url: "http://localhost:9005/user/query",
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function (data) {
+				if(data != null){
+					_this.userName = data				
+				}
+			}
+		});
+  	},
     getTopMenu() {
       this.$http.get('../../../static/data/topMenu.json').then((response) => {
         this.menuJson = response.data
