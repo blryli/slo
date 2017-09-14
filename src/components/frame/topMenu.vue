@@ -1,10 +1,10 @@
 <template>
   <ul class="nav navbar-nav topnav">
     <li v-for="(menu, index) in topMenu.menus">
-      <a v-if="menu.url == undefined">
+      <!-- <a v-if="menu.url == undefined">
         <span class="menu-text">{{menu.menu_name}}</span>
         <b class="caret" v-if="menu.url==undefined"></b>
-      </a>
+      </a> -->
       <router-link v-if="menu.url == '/'" :to="menu.url" exact>
         <span class="menu-text">{{menu.menu_name}}</span>
       </router-link>
