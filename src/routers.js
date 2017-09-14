@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import MainPage from '@/components/frame/MainPage'
 import Home from '@/components/home/index'
+import orderQuery from '@/components/home/orderQuery'
 import Logistics from '@/components/logistics/logistics'
 import salePage from '@/components/salePage/salePage'
 import fbaPage from '@/components/fbaPage/fbaPage'
@@ -22,9 +23,14 @@ const router = new VueRouter({
   linkActiveClass: 'active',
   routes: [
     {
-      path: '/', component: MainPage,
+      path: '/',
+      component: MainPage,
       children: [
-        { path: '/', name: '首页', component: Home },
+        { path: '/',
+          name: '首页',
+          component: Home
+        },
+        { path: '/orderQuery', name: '订单查询', component: orderQuery },
         { path: '/logistics', name: '物流', component: Logistics },
         { path: '/sale', name: '特卖', component: salePage },
         { path: '/fba', name: 'FBA', component: fbaPage },

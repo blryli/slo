@@ -1,6 +1,6 @@
 <template>
 	<div>
-	  <div class="container box m-t-20">
+	  <div class="container m-t-20">
 	  	<div class="row">
 		  	<h4 class="col-sm-6 text-left">查询地点：<strong>美国加州</strong></h4>
 		  	<div class="col-sm-6">
@@ -40,9 +40,7 @@
 </template>
 
 <script>
-import moneySearch from '@/components/core/moneySearch'
   export default {
-    props: {},
     data () {
       return {
       	warehouseArr: [
@@ -62,10 +60,7 @@ import moneySearch from '@/components/core/moneySearch'
       		}
       	]
       }
-  	},
-    components: {
-    	moneySearch
-    }
+  	}
   }
 
 </script>
@@ -74,9 +69,6 @@ import moneySearch from '@/components/core/moneySearch'
 .container{
 	background-color: #fff;
 	margin-top: 20px;
-	padding: 20px;
-}
-.box{
 	padding: 20px;
 }
 </style>

@@ -7,8 +7,14 @@ body{
 .m-b-20{
   margin-bottom: 24px;
 }
+.p-b-20{
+  padding-bottom: 24px;
+}
 .m-t-40{
   margin-top: 40px;
+}
+.m-t-20{
+  margin-top: 20px;
 }
 .p-t-40{
   padding-top: 40px;
@@ -38,7 +44,6 @@ body{
 	}
 }
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: $mainColorBg;
 }
 
 .font_red {

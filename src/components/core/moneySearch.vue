@@ -15,7 +15,7 @@
       <span class="form-group__message" style="left: 66px;" v-else="!$v.priceSearch.endAddress.minLength">长度小于4</span>
     </div>
     <div class="row">
-      <div class="col-sm-3 col-lg-4 m-b-20"  v-for="(item, index) in priceSearch.tiji">
+      <div class="col-xs-6 col-sm-4 col-lg-4 m-b-20"  v-for="(item, index) in priceSearch.tiji">
         <div class="input-group" :class="{error: item.number == ''}">
           <input type="number" min="0.00" step="0.01" class="form-control input-lg form__input" v-model="item.number" @focus="focus($event)" @blur="decimal(index,$event)" @input="floating(index)">
           <label class="ab-label form__label"><span class="font_red">*</span>{{item.text}}:</label>
@@ -23,7 +23,7 @@
         </div>
         <span class="form-group__message">请输入正确的数值</span>
       </div>
-      <div class="col-sm-3 col-lg-4">
+      <div class="col-xs-6 col-sm-4 col-lg-4 m-b-20">
         <div class="input-group p-l-42" :class="{ 'form-group--error': $v.priceSearch.quantity.$error }">
           <input type="number" min="0" step="1" class="form-control input-lg" v-model="priceSearch.quantity" @focus="focus($event)" @input="$v.priceSearch.quantity.$touch()">
           <label class="ab-label"><span class="font_red">*</span>数量:</label>
