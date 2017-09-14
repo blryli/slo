@@ -64,23 +64,22 @@ export default {
   	login: function() {
             //绑定Ajax的内容
             let _url = window.location.href
-            window.location.href = "http://localhost:9005/login?url=" + _url;
+            window.location.href = "/api/oauth/login?url=" + _url;
   	},
   	user: function(){
-		let _this = this
-		$.ajax({
-			type: "get",
-			contentType: "application/json",
-			url: "http://localhost:9005/user/query",
-			xhrFields: {
-				withCredentials: true
-			},
-			success: function (data) {
-				if(data != null){
-					_this.userName = data				
-				}
-			}
-		});
+  		let _this = this
+  		   $.ajax({
+                url: "/api/user/query",
+				type : 'get',                    
+                xhrFields: {
+                    withCredentials: false
+                },
+                success: function (data) {
+                	if(data != null){
+	                	_this.userName = data
+                	}
+                }
+         })
   	},
     getTopMenu() {
       this.$http.get('../../../static/data/topMenu.json').then((response) => {
