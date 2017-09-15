@@ -3,13 +3,13 @@
     <div class="row m-b-20">
       <div class="form-group col-sm-12">
         <label>始发地:</label>
-        <input type="text" class="form-control input-lg" style="width: 89%" v-model="priceSearch.startAddress">
+        <input type="text" class="form-control input-lg width100" v-model="priceSearch.startAddress">
       </div>
     </div>
     <div class="row m-b-20">
       <div class="form-group col-sm-12" :class="{ 'form-group--error': $v.priceSearch.endAddress.$error }">
         <label>目的地:</label>
-        <input type="text" class="form-control input-lg" style="width: 89%" v-model="priceSearch.endAddress" @focus="focus($event)" placeholder="请输入目的地" @input="$v.priceSearch.endAddress.$touch()">
+        <input type="text" class="form-control input-lg width100" v-model="priceSearch.endAddress" @focus="focus($event)" placeholder="请输入目的地" @input="$v.priceSearch.endAddress.$touch()">
       </div>
       <span class="form-group__message" style="left: 66px;" v-if="!$v.priceSearch.endAddress.required">目的地不能为空</span>
       <span class="form-group__message" style="left: 66px;" v-else="!$v.priceSearch.endAddress.minLength">长度小于4</span>
@@ -170,6 +170,12 @@ import { required, minLength} from 'vuelidate/lib/validators'
 
 .error input, .error input:focus, .error input:hover, .error textarea {
     border-color: #CC3333;
+}
+
+@media (min-width: 768px){
+  .width100{
+    width: 90%;
+  }
 }
 
 //移除浏览器自带的上下箭头

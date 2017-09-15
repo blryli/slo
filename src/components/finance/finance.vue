@@ -38,6 +38,9 @@ import financeCore from './financeCore'
     },
     components: {
       financeCore
+    },
+    created() {
+      
     }
   }
 
