@@ -44,7 +44,7 @@ import TopMenu from './topMenu'
 export default {
   data() {
     return {
-      showNav: false
+      showNav: false,
       userName : '',
       menuJson: {}
     }
