@@ -23,6 +23,7 @@ body{
 	height: 44px;
 	font-size: 16px;
 }
+
 .table{
 	thead{
 		tr{
@@ -50,6 +51,12 @@ body{
     color: #f00;
 }
 
+//响应式图片
+.box img{
+	width: 100%;
+	height: auto;
+}
+
 //验证提示信息
 .form-group__message{
     display: none;
@@ -69,3 +76,34 @@ body{
 .form-group--error input, .form-group--error input:focus, .form-group--error input:hover, .form-group--error textarea {
     border-color: #CC3333;
 }
+.container{
+	margin-right: 15px;
+    margin-left: 15px;
+}
+@media (min-width: 768px) { 
+    .container{
+    	margin-right: auto;
+        margin-left: auto;
+    }
+ }
+ @media (max-width: 768px) {
+ 	.container.tb{
+ 		overflow-x: scroll;
+ 		.table{
+ 		width: 800px;
+ 		}
+ 	}
+ }
+
+ //动画
+ .bodyActive{
+   position: fixed;
+   width: 100%;
+   right: 75%;
+   animation: body75 .5s;
+ }
+ @keyframes body75
+ {
+   from {right: 0;}
+   to {right: 75%;}
+ }

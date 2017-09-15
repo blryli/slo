@@ -232,9 +232,6 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 
-.height-560{
-  height: 560px;
-}
 .btn-ff5a00{
   background-color: #ff5a00;
   color: #fff;
@@ -245,9 +242,10 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
 }
 .banner{
   .banner-bg{
-    height: 500px;
+    height: 312px;
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: 1200px auto;
   }
 }
 .m-t-20{
@@ -341,8 +339,6 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
   }
   .gt-advertising{
     height: 560px;
-    background-repeat: no-repeat;
-    background-position: center center;
   }
 }
 .form-group{
@@ -350,10 +346,28 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
 }
 
 @media (min-width: 768px) { 
-    
+    .height-560{
+      height: 560px;
+    }
+    .banner{
+      .banner-bg{
+        height: 369px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 1420px auto;
+      }
+    }
  }
 
 @media (min-width: 992px) {
+  .banner{
+      .banner-bg{
+        height: 500px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 1920px auto;
+      }
+    }
 }
 
 @media (min-width: 1200) {

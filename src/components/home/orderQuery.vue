@@ -14,7 +14,7 @@
           </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container tb">
       <table class="table table-striped table-striped table-hover">
         <thead>
           <tr>
@@ -53,7 +53,7 @@
         <h4 class="col-sm-6 text-left"><strong>物流追踪</strong></h4>
       </div>
       <div class="m-t-20">
-        <el-steps :space="200" :active="0" style="text-align: center;">
+        <el-steps :space="180" :active="0" style="text-align: center;">
           <el-step title="下单"></el-step>
           <el-step title="发货"></el-step>
           <el-step title="运输中"></el-step>
@@ -61,7 +61,7 @@
         </el-steps>
       </div>
       <div class="m-t-40">
-        <p v-for="(item, index) in orderStatus" style="margin-left: 15%;"><span>{{item.time}}</span>&nbsp;&nbsp;<span>{{item.status}}</span></p>
+        <p v-for="(item, index) in orderStatus" style="margin-left: 18%;"><span>{{item.time}}</span>&nbsp;&nbsp;<span>{{item.status}}</span></p>
       </div>
     </div>
   </div>

@@ -51,7 +51,6 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
       }
     },
     created() {
-      console.log(this.loansSearch)
     },
     components: {
     },

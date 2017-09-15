@@ -8,7 +8,7 @@
 		  </div>
 		</div>
 	  </div>
-	  <div class="container m-t-20">
+	  <div class="container tb m-t-20">
 		<table class="table table-striped table-striped">
 		  <thead>
 		  	<tr>
@@ -89,7 +89,6 @@ import moneySearch from '@/components/core/moneySearch'
 .container{
 	background-color: #fff;
 	margin-top: 20px;
-	padding: 20px;
 }
 .box{
 	padding: 20px 10%;

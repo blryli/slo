@@ -13,10 +13,10 @@
         </div>
       </div>
       <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="row">
+        <div class="container nav-container">
+          <div class="row" style="margin-left: -16px;margin-right: -16px;">
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".top-menu" aria-expanded="false">
+              <button type="button" class="navbar-toggle" @click="navSwitch">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -25,7 +25,12 @@
                 <img src="../../assets/img/logo.png" alt="星邮物流支付中心" title="星邮物流支付中心">
               </a>
             </div>
-            <div class="collapse navbar-collapse">
+            <!-- <el-collapse-transition> -->
+              <div class="visible-xs-block visible-sm-block" ref="phoneNav" v-if="showNav" @click="closeNav">
+                  <top-menu :top-menu="menuJson" ref="phoneNav" class="phonemenu"></top-menu>
+              </div>
+            <!-- </el-collapse-transition> -->
+            <div class="visible-md-block visible-lg-block">
               <top-menu :top-menu="menuJson"></top-menu>
             </div>
           </div>
@@ -39,6 +44,7 @@ import TopMenu from './topMenu'
 export default {
   data() {
     return {
+      showNav: false
       userName : '',
       menuJson: {}
     }
@@ -88,16 +94,60 @@ export default {
         console.log(response)
       })
     },
+    closeNav() {
+      this.navSwitch();
+    },
+    navSwitch() {
+      this.showNav = !this.showNav
+      this.$nextTick(function () {
+        let bd =  document.body; //body隐藏滚动条
+        let nb =  document.getElementsByClassName('phonemenu')[0];
+        if(this.showNav == true){
+          bd.classList.add("bodyActive");
+          bd.classList.remove("bodyto0");
+          nb.classList.add("nbActive");
+        } else {
+          bd.classList.remove("bodyActive");
+          bd.classList.add("bodyto0");
+          nb.classList.remove("nbActive");
+        }
+      })
+    }
   }
 }
 
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.phonemenu{
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 0;
+  animation: width75 .5s;
+}
+@keyframes width75
+{
+  from {width: 0;}
+  to {width: 75%;}
+}
+.nbActive{
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 75%;
+}
+
 ul,li{
   padding: 0;
   margin: 0;
   list-style: none;
+}
+.header{
+  position: relative;
+  z-index: 1000;
 }
 .header-top{
   background-color: #333;
@@ -125,12 +175,21 @@ ul,li{
     }
   }
 }
-.collapse {
-  padding: 0;
-}
 .navbar{
   margin: 0;
   height: 100px;
+  .navbar-toggle {
+    padding: 18px;
+    margin-top: 21px;
+    margin-right: 0;
+    .icon-bar{
+      width: 28px;
+      height: 3px;
+      &+.icon-bar{
+        margin-top: 5px;
+      }
+    }
+  }
 }
 .navbar-brand{
   font-size: 60px;
@@ -142,20 +201,58 @@ ul,li{
     height: auto;
   }
 }
+.container.nav-container{
+    margin:0;
+  }
 
 @media (min-width: 768px) { 
-    
+    .navbar-toggle {
+        display: block;
+        position: relative;
+        float: right;
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+        margin-left: 0;
+    }
  }
 
 @media (min-width: 992px) {
+  .navbar-toggle {
+      display: none;
+  }
+  .container.nav-container{
+    width: 970px;
+    margin: 0 auto;
+  }
+  .navbar-header {
+      float: left;
+  }
+  
+}
+@media (max-width: 992px) {
+  .container.nav-container{
+    width: 100%;
+    .navbar-toggle{
+      margin-right: 20px;
+    }
+    .navbar-brand{
+      margin-left: 20px;
+    }
+  }
 }
 
-@media (min-width: 1200) {
+@media (min-width: 1200px) {
    .navbar-brand{
      img{
        width: 200px;
        height: auto;
      }
+   }
+   .container.nav-container{
+     width: 1170px;
    }
 
 }
