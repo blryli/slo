@@ -5,10 +5,10 @@
         <span class="menu-text">{{menu.menu_name}}</span>
         <b class="caret" v-if="menu.url==undefined"></b>
       </a> -->
-      <router-link v-if="menu.url == '/'" :to="menu.url" exact @click.native="closeNav">
+      <router-link v-if="menu.url == '/'" :to="menu.url" exact>
         <span class="menu-text">{{menu.menu_name}}</span>
       </router-link>
-      <router-link v-else :to="menu.url" @click.native="closeNav">
+      <router-link v-else :to="menu.url">
         <span class="menu-text">{{menu.menu_name}}</span>
       </router-link>
       <!-- <ul class="submenu" v-if="menu.url==undefined">

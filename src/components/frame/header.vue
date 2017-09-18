@@ -26,8 +26,8 @@
               </a>
             </div>
             <!-- <el-collapse-transition> -->
-              <div class="visible-xs-block visible-sm-block" ref="phoneNav" v-if="showNav" @click="closeNav">
-                  <top-menu :top-menu="menuJson" ref="phoneNav" class="phonemenu"></top-menu>
+              <div v-show="showNav" @click="closeNav">
+                  <top-menu :top-menu="menuJson" class="phonemenu" ref="phoneNav"></top-menu>
               </div>
             <!-- </el-collapse-transition> -->
             <div class="visible-md-block visible-lg-block">
@@ -101,7 +101,7 @@ export default {
       this.showNav = !this.showNav
       this.$nextTick(function () {
         let bd =  document.body; //body隐藏滚动条
-        let nb =  document.getElementsByClassName('phonemenu')[0];
+        let nb =  this.$refs.phoneNav.$el
         if(this.showNav == true){
           bd.classList.add("bodyActive");
           bd.classList.remove("bodyto0");

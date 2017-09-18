@@ -10,6 +10,7 @@ import './assets/scss/reset.css'
 import './assets/scss/base.css'
 import './assets/scss/colorBtn.css'
 import 'element-ui/lib/theme-default/index.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.config.productionTip = false
 
