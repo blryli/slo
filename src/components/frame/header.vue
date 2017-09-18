@@ -41,6 +41,7 @@
 
 <script>
 import TopMenu from './topMenu'
+import $ from 'jquery'
 export default {
   data() {
     return {
