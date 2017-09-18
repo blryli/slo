@@ -52,7 +52,7 @@
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 .main-page{
-  background-color: #d7d0d0;
+  background-color: #EDEDED;
 }
 .footer {
   margin-top: 20px;

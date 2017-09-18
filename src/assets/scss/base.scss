@@ -10,6 +10,9 @@ body{
 .p-b-20{
   padding-bottom: 24px;
 }
+.p-t-20{
+  padding-top: 24px;
+}
 .m-t-40{
   margin-top: 40px;
 }
@@ -107,3 +110,25 @@ body{
    from {right: 0;}
    to {right: 75%;}
  }
+
+ //banner
+ .el-carousel{
+ 	width: 100%;
+	.el-carousel__container{
+	height: 208px;
+	}
+ }
+ @media (min-width: 768px) { 
+    .el-carousel{
+	  .el-carousel__container{
+	    height: 369px;
+	  }
+	}
+}
+ @media (min-width: 992px) {
+ 	.el-carousel{
+		.el-carousel__container{
+		height: 500px;
+		}
+ 	}
+}
