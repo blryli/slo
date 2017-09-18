@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="banner">
-      <div class="banner-bg" :style="loansBanner"></div>
+      <el-carousel >
+          <el-carousel-item v-for="(item, index) in 3" :key="item">
+            <div class="banner-bg" :style="bannerArr[index]"></div>
+          </el-carousel-item>
+        </el-carousel>
     </div>
     <div class="container m-t-20">
       <div class="gt-content row  height-560">
@@ -10,8 +14,19 @@
             <li v-for="(item, index) in searchArr" :class="{activeColor:item.active == true}" @click="searchActive(index)">{{item.value}}</li>
           </ul>
           <ul class="search-content">
-            <!-- 单号查询 -->
+            <!-- 价格查询 -->
             <li v-show="searchArr[0].active == true">
+              <money-search :price-search="priceSearch"></money-search>
+              <div class="col-sm-12">
+              </div>
+              <div class="row m-t-40">
+                <div class="col-sm-12 text-center">
+                  <button type="button" class="btn btn-df303f btn-lg" @click="logisticsSubmit">查询价格</button>
+                </div>
+              </div>
+            </li>
+            <!-- 追踪单号 -->
+            <li v-show="searchArr[1].active == true">
               <form class="form-horizontal">
                 <div class="form-group">
                   <div class="col-sm-12" :class="{ 'form-group--error': $v.orderSearch.order.$error }">
@@ -26,17 +41,6 @@
                   </div>
                 </div>
               </form>
-            </li>
-            <!-- 价格查询 -->
-            <li v-show="searchArr[1].active == true">
-              <money-search :price-search="priceSearch"></money-search>
-              <div class="col-sm-12">
-              </div>
-              <div class="row m-t-40">
-                <div class="col-sm-12 text-center">
-                  <button type="button" class="btn btn-df303f btn-lg" @click="logisticsSubmit">查询价格</button>
-                </div>
-              </div>
             </li>
             <!-- 贷款查询 -->
             <li v-show="searchArr[2].active == true">
@@ -99,16 +103,20 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
     data () {
       return {
         searchArr:[ 
-          {'value': '单号查询', 'active': true},
-          {'value': '价格查询', 'active': false},
+          {'value': '价格查询', 'active': true},
+          {'value': '追踪单号', 'active': false},
           {'value': '贷款查询', 'active': false},
           // {'value': '海外仓查询', 'active': false},
         ],
         orderSearch: {
           order: ''
         },
-        loansBanner: {backgroundImage: "url(" + require('../../../static/img/banner.png') + ")"},
-        advertising: {backgroundImage: "url(" + require('../../../static/img/advertising.png') + ")"},
+        bannerArr: [
+          { backgroundImage: "url(" + require('../../../static/img/banner1.png') + ")" },
+          { backgroundImage: "url(" + require('../../../static/img/banner2.png') + ")" },
+          { backgroundImage: "url(" + require('../../../static/img/banner3.png') + ")" }
+        ],
+        advertising: { backgroundImage: "url(" + require('../../../static/img/advertising.png') + ")" },
         priceSearch: {
           startAddress: '广东,深圳',
           endAddress: '',
@@ -241,11 +249,13 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
   }
 }
 .banner{
+  width: 100%;
   .banner-bg{
-    height: 312px;
+    width: 100%;
+    height: 208px;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 1200px auto;
+    background-size: 800px auto;
   }
 }
 .m-t-20{
@@ -352,8 +362,6 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
     .banner{
       .banner-bg{
         height: 369px;
-        background-repeat: no-repeat;
-        background-position: center center;
         background-size: 1420px auto;
       }
     }
@@ -363,8 +371,6 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
   .banner{
       .banner-bg{
         height: 500px;
-        background-repeat: no-repeat;
-        background-position: center center;
         background-size: 1920px auto;
       }
     }

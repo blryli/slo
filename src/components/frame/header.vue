@@ -3,7 +3,7 @@
       <div class="header-top">
         <div class="float-right container">
           <div class="row" v-if="userName == ''">
-            <a @click="login"  class="login">登录</a>
+            <a href="#" @click="login"  class="login">登录</a>
             <span class="l-hr">|</span>
             <a href="#" class="register">注册</a>
           </div>

@@ -8,43 +8,30 @@
 		  </div>
 		</div>
 	  </div>
-	  <div class="container tb m-t-20">
+	  <div class="container tb m-t-20 p-t-20">
 		<table class="table table-striped table-striped">
 		  <thead>
 		  	<tr>
-			  	<td>产品名称</td>
+			  	<td>运输方案</td>
+			  	<td>运输路线</td>
 			  	<td>运输时长</td>
+			  	<td>重量(kg)</td>
 			  	<td>运输单价</td>
-			  	<td>费用详情</td>
+			  	<td>总价</td>
 			  	<td>物品说明</td>
+			  	<td></td>
 		  	</tr>
 		  </thead>
 		  <tbody>
 		  	<tr>
-			  	<td>一件代发</td>
+			  	<td>顺丰专线</td>
+			  	<td>深圳-美国</td>
 			  	<td>8-12天</td>
 			  	<td>￥75.00</td>
-			  	<td>
-			  		<p>邮费：￥400</p>
-			  		<p>燃油费：￥90</p>
-			  		<p>挂号费：￥80</p>
-			  		<p>其他费：￥90</p>
-			  	</td>
+			  	<td>100</td>
+			  	<td>1000</td>
 			  	<td><a href="#">点击查看</a></td>
-			  	<td><button type="button" class="btn btn-df303f">立即下单</button></td>
-		  	</tr>
-		  	<tr>
-			  	<td>一件代发</td>
-			  	<td>8-12天</td>
-			  	<td>￥75.00</td>
-			  	<td>
-			  		<p>邮费：￥400</p>
-			  		<p>燃油费：￥90</p>
-			  		<p>挂号费：￥80</p>
-			  		<p>其他费：￥90</p>
-			  	</td>
-			  	<td><a href="#">点击查看</a></td>
-			  	<td><button type="button" class="btn btn-df303f">立即下单</button></td>
+			  	<td><button type="button" class="btn btn-df303f">下单</button></td>
 		  	</tr>
 		  </tbody>
 		</table>
