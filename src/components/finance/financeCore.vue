@@ -36,23 +36,21 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
     props: {
       loansSearch: {
         type: Object,
-        default: function () {
-          return {
-            seller: '',
-            name: '',
-            phone: '',
-            revenue: ''
-          }
-        }
+        default:{}
       }
     },
   	data () {
       return {
       }
     },
-    created() {
-    },
     components: {
+    },
+    watch : {
+    	loansSearch : function(){
+    		this.$emit('getloansSearch', this.loansSearch)
+    	}
+    },
+    created() {
     },
     validations: {
       loansSearch: {
@@ -61,6 +59,8 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
         }
       }
     },
+    methods: {
+    }
   }
 
 </script>

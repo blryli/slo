@@ -4,16 +4,16 @@
           <div class="loans">
             <div class="loans-content">
               <p class="text">可贷额度</p>
-              <div class="title">￥<strong>{{loans.money}}<span>万</span></strong></div>
+              <div class="title">￥<strong>{{loans.money}}<span>{{loans.util}}</span></strong></div>
               <div class ="button"><button type="button" class="btn btn-ff5a00">立即贷款</button></div>
             </div>
           </div>
       </div> 
       <div class="col-md-offset-3 col-md-6 p-t-20">
-        <finance-core :loans-search="loansSearch"></finance-core>
+        <finance-core :loans-search="loansSearch" @getloansSearch='getLoansSearch'></finance-core>
         <div class="form-group m-t-40">
           <div class="col-sm-12 text-center">
-            <button type="button" class="btn btn-ff5a00 btn-lg">重新查询</button>
+            <button type="button" class="btn btn-ff5a00 btn-lg" @click="submit">重新查询</button>
           </div>
         </div>
       </div>
@@ -22,6 +22,7 @@
 
 <script>
 import financeCore from './financeCore'
+import $ from 'jquery'
   export default {
   	data () {
       return {
@@ -32,15 +33,43 @@ import financeCore from './financeCore'
           revenue: ''
         },
         loans: {
-          money: '350'
+          money: '350',
+          util: '万'
         }
       }
     },
     components: {
       financeCore
     },
-    created() {
-      
+    methods: {
+    	submit: function(){
+    	console.log(" loansSearch : "+ JSON.stringify(this.loansSearch))
+    	let _this = this
+    		 $.ajax({
+                url: "http://localhost:9005/finance/loan",
+                type : 'get',  
+                data: _this.loansSearch,
+                contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                statusCode: {
+                    400: function (data) { }
+                },
+                success: function (data) {
+                	console.log(" loansSearch : "+ JSON.stringify(data))
+                    if (data.success) {
+                        _this.loans = data.data
+                    }
+                },
+                error: function (data) {
+                    layer.alert(data.message, { icon: 5 });
+                }
+            })
+    	},
+    	getLoansSearch: function(loansSearch){
+    		this.loansSearch = loansSearch
+    	},
     }
   }
 
