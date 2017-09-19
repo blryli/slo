@@ -276,6 +276,7 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
     h1{
       color: #323232;
       float: left;
+      margin: 0;
     }
     .more{
       float: right;
@@ -288,7 +289,7 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
     height: 40px;
   }
   .search-box{
-    padding: 40px;
+    padding: 20px;
     //搜索菜单
     .search-menu{
       overflow: hidden;
@@ -303,7 +304,7 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
           border-color: #f55520;
         }
         &+li{
-          margin-left: 8%;
+          margin-left: 5%;
         }
       }
     }
@@ -363,6 +364,19 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
       .banner-bg{
         height: 369px;
         background-size: 1420px auto;
+      }
+    }
+    .gt-content{
+      .search-box{
+        padding: 40px;
+        //搜索菜单
+        .search-menu{
+          >li{
+            &+li{
+              margin-left: 10%;
+            }
+          }
+        }
       }
     }
  }

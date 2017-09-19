@@ -1,6 +1,9 @@
 <template>
   <div class="container box m-t-20">
-  	<img src="../../../src/assets/img/404.png" alt="页面正在建设中...">
+    <img src="../../../src/assets/img/404.png" class="hidden-xs" alt="页面正在建设中...">
+    <div class="row">
+    	<img src="../../../src/assets/img/404-small.png" class="visible-xs-block" alt="页面正在建设中...">
+    </div>
   </div>
 </template>
 
