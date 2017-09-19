@@ -296,14 +296,14 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
         float: left;
         cursor: pointer;
         font-size: 18px;
-        padding: 0 4px 20px;
+        padding: 0 0 20px;
         border-bottom: 2px solid #fff;
         &.activeColor, &:hover{
           color: #f55520;
           border-color: #f55520;
         }
         &+li{
-          margin-left: 10%;
+          margin-left: 8%;
         }
       }
     }

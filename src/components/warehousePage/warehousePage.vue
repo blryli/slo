@@ -31,7 +31,7 @@
 			  	<td>{{item.address}}</td>
 			  	<td>{{item.name}}</td>
 			  	<td>{{item.time}}</td>
-			  	<td><a href="#" class="warehouseColor">{{item.laons}}</a></td>
+			  	<td><a href="#" class="">{{item.laons}}</a></td>
 		  	</tr>
 		  </tbody>
 		</table>

@@ -4,6 +4,12 @@
 body{
   font-size: 16px;
 }
+.container{
+	label{
+	  color: #646464;
+	  font-size: 16px;
+	}
+}
 .m-b-20{
   margin-bottom: 24px;
 }
@@ -22,12 +28,18 @@ body{
 .p-t-40{
   padding-top: 40px;
 }
-.input-lg{
-	height: 44px;
-	font-size: 16px;
+
+.main-page {
+	.input-lg{
+		height: 44px;
+		font-size: 16px;
+	}
+	.form-group{
+		margin-bottom:0;
+	}
 }
 
-.table{
+table.table{
 	thead{
 		tr{
 			td{
@@ -42,6 +54,9 @@ body{
 				vertical-align: middle;
 				p{
 					margin-bottom: 4px;
+				}
+				a{
+					color: #2F7AF2;
 				}
 			}
 		}
@@ -79,12 +94,12 @@ body{
 .form-group--error input, .form-group--error input:focus, .form-group--error input:hover, .form-group--error textarea {
     border-color: #CC3333;
 }
-.container{
+.main-page .container{
 	margin-right: 15px;
     margin-left: 15px;
 }
 @media (min-width: 768px) { 
-    .container{
+    .main-page .container{
     	margin-right: auto;
         margin-left: auto;
     }
@@ -96,19 +111,6 @@ body{
  		width: 800px;
  		}
  	}
- }
-
- //动画
- .bodyActive{
-   position: fixed;
-   width: 100%;
-   right: 75%;
-   animation: body75 .5s;
- }
- @keyframes body75
- {
-   from {right: 0;}
-   to {right: 75%;}
  }
 
  //banner
