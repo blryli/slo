@@ -9,7 +9,7 @@
             </div>
           </div>
       </div> 
-      <div class="col-md-offset-3 col-md-6 p-t-20">
+      <div class="col-md-offset-3 col-md-6 p-t-20 p-b-20">
         <finance-core :loans-search="loansSearch" @getloansSearch='getLoansSearch'></finance-core>
         <div class="form-group m-t-40">
           <div class="col-sm-12 text-center">
@@ -87,7 +87,7 @@ import $ from 'jquery'
 }
 .box{
   overflow: hidden;
-  padding: 10px 0 40px;
+  padding: 10px 0 0;
 }
 .loans{
   position: relative;
@@ -101,8 +101,8 @@ import $ from 'jquery'
     }
   } 
   .loans-content{
-    height: 400px;
-    width: 400px;
+    height: 260px;
+    width: 260px;
     border: 4px solid #ff5a00;
     margin: 20px auto 0;
     border-radius: 200px;
@@ -111,20 +111,49 @@ import $ from 'jquery'
     }
   }
   .text{
-    font-size: 18px;
+    font-size: 16px;
     color: #646464;
-    margin: 80px 0 12px;
+    margin: 40px 0 6px;
   }
   .title{
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     strong{
-      font-size: 80px;
+      font-size: 60px;
       font-weight: normal;
       span{
-        font-size:50px;
+        font-size:40px;
       }
     }
   }
+}
+@media (min-width: 768px) { 
+   .loans{
+     .loans-content{
+       height: 400px;
+       width: 400px;
+       border-radius: 200px;
+     }
+     .text{
+       font-size: 18px;
+       margin: 80px 0 12px;
+     }
+     .title{
+       margin-bottom: 30px;
+       strong{
+         font-size: 80px;
+         span{
+           font-size:50px;
+         }
+       }
+     }
+   }
+   .box{
+     padding: 10px 0 40px;
+   }
+ }
+
+@media (min-width: 992px) {
+  
 }
 </style>
