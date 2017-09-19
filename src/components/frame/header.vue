@@ -14,7 +14,7 @@
       </div>
       <nav class="navbar navbar-default">
         <div class="container nav-container">
-          <div class="row" style="margin-left: -16px;margin-right: -16px;">
+          <div class="row">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" @click="navSwitch">
                 <span class="icon-bar"></span>
@@ -26,8 +26,8 @@
               </a>
             </div>
             <!-- <el-collapse-transition> -->
-              <div v-show="showNav" @click="closeNav">
-                  <top-menu :top-menu="menuJson" class="phonemenu" ref="phoneNav"></top-menu>
+              <div v-show="showNav" @click="closeNav"  :class="{nbActive: showNav}">
+                  <top-menu :top-menu="menuJson"></top-menu>
               </div>
             <!-- </el-collapse-transition> -->
             <div class="visible-md-block visible-lg-block">
@@ -45,6 +45,7 @@ export default {
   data() {
     return {
       showNav: false,
+      active: false,
       userName : '',
       menuJson: {}
     }
@@ -95,23 +96,12 @@ export default {
       })
     },
     closeNav() {
-      this.navSwitch();
+      this.showNav = false
+      this.$emit('showNav-to', this.showNav)
     },
     navSwitch() {
       this.showNav = !this.showNav
-      this.$nextTick(function () {
-        let bd =  document.body; //body隐藏滚动条
-        let nb =  this.$refs.phoneNav.$el
-        if(this.showNav == true){
-          bd.classList.add("bodyActive");
-          bd.classList.remove("bodyto0");
-          nb.classList.add("nbActive");
-        } else {
-          bd.classList.remove("bodyActive");
-          bd.classList.add("bodyto0");
-          nb.classList.remove("nbActive");
-        }
-      })
+      this.$emit('showNav-to', this.showNav)
     }
   }
 }
@@ -119,25 +109,18 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-.phonemenu{
-  height: 100%;
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 0;
-  animation: width75 .5s;
-}
-@keyframes width75
-{
-  from {width: 0;}
-  to {width: 75%;}
-}
 .nbActive{
   height: 100%;
   position: fixed;
   right: 0;
   top: 0;
   width: 75%;
+  animation: width75 .5s;
+}
+@keyframes width75
+{
+  from {width: 0;}
+  to {width: 75%;}
 }
 
 ul,li{
@@ -236,10 +219,10 @@ ul,li{
   .container.nav-container{
     width: 100%;
     .navbar-toggle{
-      margin-right: 20px;
+      margin-right: 15px;
     }
     .navbar-brand{
-      margin-left: 20px;
+      margin-left: 15px;
     }
   }
 }

@@ -15,7 +15,7 @@
       <span class="form-group__message" style="left: 66px;" v-else="!$v.priceSearch.endAddress.minLength">长度小于4</span>
     </div>
     <div class="row">
-      <div class="col-xs-6 col-sm-4 col-lg-4 m-b-20"  v-for="(item, index) in priceSearch.tiji">
+      <div class="col-xs-12 col-sm-4 col-lg-4 m-b-20"  v-for="(item, index) in priceSearch.tiji">
         <div class="input-group" :class="{error: item.number == ''}">
           <input type="number" min="0.00" step="0.01" class="form-control input-lg form__input" v-model="item.number" @focus="focus($event)" @blur="decimal(index,$event)" @input="floating(index)">
           <label class="ab-label form__label"><span class="font_red">*</span>{{item.text}}:</label>
@@ -23,8 +23,8 @@
         </div>
         <span class="form-group__message">请输入正确的数值</span>
       </div>
-      <div class="col-xs-6 col-sm-4 col-lg-4 m-b-20">
-        <div class="input-group p-l-42" :class="{ 'form-group--error': $v.priceSearch.quantity.$error }">
+      <div class="col-xs-12 col-sm-4 col-lg-4 m-b-20">
+        <div class="input-group p-l-44" :class="{ 'form-group--error': $v.priceSearch.quantity.$error }">
           <input type="number" min="0" step="1" class="form-control input-lg" v-model="priceSearch.quantity" @focus="focus($event)" @input="$v.priceSearch.quantity.$touch()">
           <label class="ab-label"><span class="font_red">*</span>数量:</label>
           <span class="input-group-addon">箱</span>
@@ -135,17 +135,12 @@ import { required, minLength} from 'vuelidate/lib/validators'
   position: relative;
 }
 .form-inline{
-  label{
-    color: #323232;
-    font-size: 16px;
-    font-weight: normal;
-  }
   .form-group{
   }
   .input-group{
-    padding-left: 42px;
-    &.p-l-42{
-      padding-left: 42px;
+    padding-left: 44px;
+    &.p-l-44{
+      padding-left: 44px;
     }
     .ab-label{
       position: absolute;
@@ -178,12 +173,12 @@ import { required, minLength} from 'vuelidate/lib/validators'
   }
 }
 
-//移除浏览器自带的上下箭头
-// input::-webkit-outer-spin-button,
-// input::-webkit-inner-spin-button {
-//   -webkit-appearance: none;
-// }
-// input[type="number"]{
-//   -moz-appearance: textfield;
-// }
+移除浏览器自带的上下箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
 </style>

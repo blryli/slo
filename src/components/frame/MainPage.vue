@@ -1,7 +1,7 @@
 <template>
-  <div class="main-page">
+  <div class="main-page"  :class="{ 'bodyRight75':showNav == true }">
     <header>
-      <gateway-header @get-json="getTopNavJson"></gateway-header>
+      <gateway-header @get-json="getTopNavJson" @showNav-to="getShowNav"></gateway-header>
     </header>
     <gateway-main></gateway-main>
     <footer>
@@ -31,7 +31,8 @@
   export default {
     data () {
       return {
-        topNavJson: ''
+        topNavJson: '',
+        showNav: ''
       }
     },
     components: {
@@ -44,6 +45,9 @@
     methods: {
       getTopNavJson (val) {
         this.topNavJson = val
+      },
+      getShowNav(val) {
+        this.showNav = val
       }
     }
   }
@@ -51,6 +55,19 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+//动画
+.bodyRight75{
+  position: fixed;
+  width: 100%;
+  right: 75%;
+  animation: right75 .5s;
+}
+@keyframes right75
+{
+  from {right: 0;}
+  to {right: 75%;}
+}
+
 .main-page{
   background-color: #EDEDED;
 }

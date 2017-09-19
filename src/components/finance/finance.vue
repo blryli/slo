@@ -13,7 +13,7 @@
         <finance-core :loans-search="loansSearch"></finance-core>
         <div class="form-group m-t-40">
           <div class="col-sm-12 text-center">
-            <button type="button" class="btn btn-ff5a00 btn-lg" @click="Submit">重新查询</button>
+            <button type="button" class="btn btn-ff5a00 btn-lg">重新查询</button>
           </div>
         </div>
       </div>

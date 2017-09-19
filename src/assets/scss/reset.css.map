@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAEA,WAAc,CACb,OAAO,CAAC,CAAC,CACT,MAAM,CAAC,CAAC,CAET,EAAE,CACD,UAAU,CAAE,IAAI",
+"mappings": "AAEA,CAAE,CACD,OAAO,CAAC,CAAC,CACT,MAAM,CAAC,CAAC,CAET,EAAE,CACD,UAAU,CAAE,IAAI",
 "sources": ["reset.scss"],
 "names": [],
 "file": "reset.css"
