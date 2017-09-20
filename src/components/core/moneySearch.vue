@@ -3,16 +3,24 @@
     <div class="row m-b-20">
       <div class="form-group col-sm-12">
         <label>始发地:</label>
-        <input type="text" class="form-control input-lg width100" v-model="priceSearch.startAddress">
+        <el-cascader
+          expand-trigger="hover"
+          :options="priceSearch.startOptions"
+          v-model="priceSearch.startAddress"
+          @change="handleChange">
+        </el-cascader>
       </div>
     </div>
     <div class="row m-b-20">
-      <div class="form-group col-sm-12" :class="{ 'form-group--error': $v.priceSearch.endAddress.$error }">
+      <div class="form-group col-sm-12">
         <label>目的地:</label>
-        <input type="text" class="form-control input-lg width100" v-model="priceSearch.endAddress" @focus="focus($event)" placeholder="请输入目的地" @input="$v.priceSearch.endAddress.$touch()">
+        <el-cascader
+          expand-trigger="hover"
+          :options="priceSearch.endOptions"
+          v-model="priceSearch.endAddress"
+          @change="handleChange">
+        </el-cascader>
       </div>
-      <span class="form-group__message" style="left: 66px;" v-if="!$v.priceSearch.endAddress.required">目的地不能为空</span>
-      <span class="form-group__message" style="left: 66px;" v-else="!$v.priceSearch.endAddress.minLength">长度小于4</span>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-4 col-lg-4 m-b-20"  v-for="(item, index) in priceSearch.tiji">
@@ -55,8 +63,46 @@ import { required, minLength} from 'vuelidate/lib/validators'
         type: Object,
         default: function () {
           return {
-            startAddress: '广东,深圳',
-            endAddress: '',
+            startOptions: [{
+              value: 'guangdong',
+              label: '广东省',
+              children: [{
+                value: 'shenzhen',
+                label: '深圳市',
+                children: [{
+                  value: 'baoan',
+                  label: '宝安区'
+                }]
+              }, {
+                value: 'dongguang',
+                label: '东莞市',
+                children: [{
+                  value: 'tianshangrenjian',
+                  label: '天上人间'
+                }]
+              }]
+            }],
+            endOptions: [{
+              value: 'guangdong',
+              label: '广东省',
+              children: [{
+                value: 'shenzhen',
+                label: '深圳市',
+                children: [{
+                  value: 'baoan',
+                  label: '宝安区'
+                }]
+              }, {
+                value: 'dongguang',
+                label: '东莞市',
+                children: [{
+                  value: 'tianshangrenjian',
+                  label: '天上人间'
+                }]
+              }]
+            }],
+            startAddress: [],
+            endAddress: [],
             tiji: [
               {number: '1.00', text: '长'},
               {number: '1.00', text: '宽'},
@@ -75,10 +121,6 @@ import { required, minLength} from 'vuelidate/lib/validators'
   	},
     validations: {
       priceSearch: {
-        endAddress: {
-          required,
-          minLength: minLength(4)
-        },
         breadth: {
           required
         },
@@ -97,6 +139,9 @@ import { required, minLength} from 'vuelidate/lib/validators'
       }
     },
     methods: {
+      handleChange(value) {
+        console.log(value);
+      },
       decimal(index, event) {
           let z = /^(0|[1-9][0-9]*)$/
           let f = /^(0|[1-9][0-9]*)+(.[0-9])$/
@@ -130,7 +175,6 @@ import { required, minLength} from 'vuelidate/lib/validators'
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-
 .m-b-20{
   position: relative;
 }
