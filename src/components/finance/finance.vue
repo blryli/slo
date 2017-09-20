@@ -43,10 +43,9 @@ import $ from 'jquery'
     },
     methods: {
     	submit: function(){
-    	console.log(" loansSearch : "+ JSON.stringify(this.loansSearch))
     	let _this = this
     		 $.ajax({
-                url: "http://localhost:9005/finance/loan",
+                url: "/api/finance/loan",
                 type : 'get',  
                 data: _this.loansSearch,
                 contentType: "application/json",
@@ -57,13 +56,9 @@ import $ from 'jquery'
                     400: function (data) { }
                 },
                 success: function (data) {
-                	console.log(" loansSearch : "+ JSON.stringify(data))
                     if (data.success) {
                         _this.loans = data.data
                     }
-                },
-                error: function (data) {
-                    layer.alert(data.message, { icon: 5 });
                 }
             })
     	},
