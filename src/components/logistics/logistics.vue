@@ -45,44 +45,8 @@ import moneySearch from '@/components/core/moneySearch'
     data () {
       return {
       	priceLogistics: {
-      		startOptions: [{
-      		  value: 'guangdong',
-      		  label: '广东省',
-      		  children: [{
-      		    value: 'shenzhen',
-      		    label: '深圳市',
-      		    children: [{
-      		      value: 'baoan',
-      		      label: '宝安区'
-      		    }]
-      		  }, {
-      		    value: 'dongguang',
-      		    label: '东莞市',
-      		    children: [{
-      		      value: 'tianshangrenjian',
-      		      label: '天上人间'
-      		    }]
-      		  }]
-      		}],
-      		endOptions: [{
-      		  value: 'guangdong',
-      		  label: '广东省',
-      		  children: [{
-      		    value: 'shenzhen',
-      		    label: '深圳市',
-      		    children: [{
-      		      value: 'baoan',
-      		      label: '宝安区'
-      		    }]
-      		  }, {
-      		    value: 'dongguang',
-      		    label: '东莞市',
-      		    children: [{
-      		      value: 'tianshangrenjian',
-      		      label: '天上人间'
-      		    }]
-      		  }]
-      		}],
+      		startOptions: [],
+      		endOptions: [],
       		startAddress: [],
       		endAddress: [],
       		tiji: [
@@ -103,8 +67,58 @@ import moneySearch from '@/components/core/moneySearch'
     	if(this.$route.query.long){
 			this.priceLogistics = this.$route.query;
     	}
+    	this.queryStartOptions()
+    	this.queryEndOptions()
+    },
+    watch: {
+    	priceLogistics : {
+    	  handler(oldVal, newVal) {
+    	  		console.log("watch  1"+ JSON.stringify(this.priceLogistics))
+    	  },
+    	  deep: true
+    	}
     },
     methods: {
+    	queryEndOptions: function(){
+    		let _this = this
+    		 $.ajax({
+                url: "/api/selection/address/world",
+                type : 'get',  
+                contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                statusCode: {
+                    400: function (data) { }
+                },
+                success: function (data) {
+                    if (data.success) {
+                   		 console.log("queryStartOptions : "+JSON.stringify(data.data))
+                     	_this.priceLogistics.endOptions = data.data
+                    }
+                }
+            })
+    	},
+    	queryStartOptions: function(){
+    		let _this = this
+    		 $.ajax({
+                url: "/api/selection/address/aboriginal",
+                type : 'get',  
+                contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                statusCode: {
+                    400: function (data) { }
+                },
+                success: function (data) {
+                    if (data.success) {
+                    	console.log("queryEndOptions : "+JSON.stringify(data.data))
+                       _this.priceLogistics.startOptions = data.data
+                    }
+                }
+            })
+    	}
     },
   }
 
