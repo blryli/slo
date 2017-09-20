@@ -120,6 +120,16 @@ table.table{
 	height: 208px;
 	}
  }
+ //级联选择器
+ .el-cascader{
+   width: 90%;
+   .el-cascader__label{
+     padding: 4px 25px 4px 10px;
+   }
+   .el-input__inner{
+     height: 44px;
+   }
+ }
  @media (min-width: 768px) { 
     .el-carousel{
 	  .el-carousel__container{

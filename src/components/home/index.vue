@@ -118,8 +118,46 @@ import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
         ],
         advertising: { backgroundImage: "url(" + require('../../../static/img/advertising.png') + ")" },
         priceSearch: {
-          startAddress: '广东,深圳',
-          endAddress: '',
+          startOptions: [{
+            value: 'guangdong',
+            label: '广东省',
+            children: [{
+              value: 'shenzhen',
+              label: '深圳市',
+              children: [{
+                value: 'baoan',
+                label: '宝安区'
+              }]
+            }, {
+              value: 'dongguang',
+              label: '东莞市',
+              children: [{
+                value: 'tianshangrenjian',
+                label: '天上人间'
+              }]
+            }]
+          }],
+          endOptions: [{
+            value: 'guangdong',
+            label: '广东省',
+            children: [{
+              value: 'shenzhen',
+              label: '深圳市',
+              children: [{
+                value: 'baoan',
+                label: '宝安区'
+              }]
+            }, {
+              value: 'dongguang',
+              label: '东莞市',
+              children: [{
+                value: 'tianshangrenjian',
+                label: '天上人间'
+              }]
+            }]
+          }],
+          startAddress: [],
+          endAddress: [],
           tiji: [
             {number: '1.00', text: '长'},
             {number: '1.00', text: '宽'},
