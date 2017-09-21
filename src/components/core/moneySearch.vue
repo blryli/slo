@@ -87,14 +87,6 @@ import { required, minLength} from 'vuelidate/lib/validators'
         },
       }
     },
-    watch: {
-    	priceSearch :{
-    	   handler(oldVal, newVal) {
-    	  		console.log("watch "+ JSON.stringify(this.priceSearch))
-    	  },
-    	  deep: true
-    	}
-    },
     methods: {
       handleChange(value) {
         console.log(value);
