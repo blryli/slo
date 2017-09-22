@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/reset.css'
 import './assets/scss/base.css'
 import './assets/scss/colorBtn.css'
+import '../static/js/global'
 
 Vue.config.productionTip = false
 

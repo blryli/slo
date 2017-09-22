@@ -72,12 +72,6 @@ import moneySearch from '@/components/core/moneySearch'
     	this.queryEndOptions()
     },
     watch: {
-    	priceLogistics : {
-    	  handler(oldVal, newVal) {
-    	  		console.log("watch  1"+ JSON.stringify(this.priceLogistics.startAddress))
-    	  },
-    	  deep: true
-    	}
     },
     methods: {
     	query: function(){
@@ -103,7 +97,7 @@ import moneySearch from '@/components/core/moneySearch'
     		let form = {'originatingSites':this.priceLogistics.startAddress,'destinations':this.priceLogistics.endAddress,
     		'length':length ,'width': width ,'height':height, 'weight':weight ,'number': this.priceLogistics.quantity}
     		 $.ajax({
-                url: "/api/logistic/price",
+                url: URL + "/logistic/price",
                 type : 'post',
                 data: JSON.stringify(form), 
                 contentType: "application/json",
@@ -123,7 +117,7 @@ import moneySearch from '@/components/core/moneySearch'
     	queryEndOptions: function(){
     		let _this = this
     		 $.ajax({
-                url: "/api/selection/address/world",
+                url: URL + "/selection/address/world",
                 type : 'get',  
                 contentType: "application/json",
                 xhrFields: {
@@ -143,7 +137,7 @@ import moneySearch from '@/components/core/moneySearch'
     	queryStartOptions: function(){
     		let _this = this
     		 $.ajax({
-                url: "/api/selection/address/aboriginal",
+                url:  URL + "/selection/address/aboriginal",
                 type : 'get',  
                 contentType: "application/json",
                 xhrFields: {
