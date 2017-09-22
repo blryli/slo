@@ -72,12 +72,12 @@ export default {
   	login: function() {
             //绑定Ajax的内容
             let _url = window.location.href
-            window.location.href = "/api/oauth/login?url=" + _url;
+            window.location.href = URL + "/oauth/login?url=" + _url;
   	},
   	user: function(){
   		let _this = this
   		   $.ajax({
-                url: "/api/user/query",
+                url: URL + "/user/query",
 				type : 'get',                    
                 xhrFields: {
                     withCredentials: false

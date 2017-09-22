@@ -45,7 +45,7 @@ import $ from 'jquery'
     	submit: function(){
     	let _this = this
     		 $.ajax({
-                url: "/api/finance/loan",
+                url: URL + "/finance/loan",
                 type : 'get',  
                 data: _this.loansSearch,
                 contentType: "application/json",
