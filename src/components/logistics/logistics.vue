@@ -4,7 +4,7 @@
 		<money-search :price-search="priceLogistics"></money-search>
 		<div class="row m-t-40">
 		  <div class="col-sm-12 text-center">
-		    <button type="button" class="btn btn-df303f btn-lg">查询价格</button>
+		    <button type="button" class="btn btn-df303f btn-lg" @click="query()">查询价格</button>
 		  </div>
 		</div>
 	  </div>
@@ -23,14 +23,14 @@
 		  	</tr>
 		  </thead>
 		  <tbody>
-		  	<tr>
-			  	<td>顺丰专线</td>
-			  	<td>深圳-美国</td>
-			  	<td>8-12天</td>
-			  	<td>￥75.00</td>
-			  	<td>100</td>
-			  	<td>1000</td>
-			  	<td><a href="#"></a></td>
+		  	<tr v-for="(item ,index) in  logistics">
+			  	<td>{{item.productName}}</td>
+			  	<td>{{item.outAddress}}-{{item.arriveAddress}}</td>
+			  	<td>{{item.prescription}}{{item.prescriptionUnit}}</td>
+			  	<td>{{item.weight}}kg</td>
+			  	<td>{{item.price}}{{item.currency}}</td>
+			  	<td>{{item.wholePrice}}{{item.currency}}</td>
+			  	<td><a href="#">点击查看</a></td>
 			  	<td><button type="button" class="btn btn-df303f">下单</button></td>
 		  	</tr>
 		  </tbody>
@@ -45,55 +45,20 @@ import moneySearch from '@/components/core/moneySearch'
     data () {
       return {
       	priceLogistics: {
-      		startOptions: [{
-      		  value: 'guangdong',
-      		  label: '广东省',
-      		  children: [{
-      		    value: 'shenzhen',
-      		    label: '深圳市',
-      		    children: [{
-      		      value: 'baoan',
-      		      label: '宝安区'
-      		    }]
-      		  }, {
-      		    value: 'dongguang',
-      		    label: '东莞市',
-      		    children: [{
-      		      value: 'tianshangrenjian',
-      		      label: '天上人间'
-      		    }]
-      		  }]
-      		}],
-      		endOptions: [{
-      		  value: 'guangdong',
-      		  label: '广东省',
-      		  children: [{
-      		    value: 'shenzhen',
-      		    label: '深圳市',
-      		    children: [{
-      		      value: 'baoan',
-      		      label: '宝安区'
-      		    }]
-      		  }, {
-      		    value: 'dongguang',
-      		    label: '东莞市',
-      		    children: [{
-      		      value: 'tianshangrenjian',
-      		      label: '天上人间'
-      		    }]
-      		  }]
-      		}],
+      		startOptions: [],
+      		endOptions: [],
       		startAddress: [],
       		endAddress: [],
       		tiji: [
-      		  {number: '1.00', text: '长'},
-      		  {number: '1.00', text: '宽'},
-      		  {number: '1.00', text: '高'},
-      		  {number: '0.50', text: '重量'}
+      		  {number: 1.00, text: '长'},
+      		  {number: 1.00, text: '宽'},
+      		  {number: 1.00, text: '高'},
+      		  {number: 0.50, text: '重量'}
       		],
       		quantity: '1',
       		Special: 'living'
-      	}
+      	},
+      	logistics: []
       }
   	},
     components: {
@@ -103,8 +68,92 @@ import moneySearch from '@/components/core/moneySearch'
     	if(this.$route.query.long){
 			this.priceLogistics = this.$route.query;
     	}
+    	this.queryStartOptions()
+    	this.queryEndOptions()
+    },
+    watch: {
     },
     methods: {
+    	query: function(){
+    		let _this = this
+    		let length 
+    		let width 
+    		let height 
+    		let weight 
+    		this.priceLogistics.tiji.forEach((data , index)=>{
+    			if(data.text == '长'){
+    				length = data.number
+    			}
+    			if(data.text == '宽'){
+    				width = data.number
+    			}
+    			if(data.text == '高'){
+    				height = data.number
+    			}
+    			if(data.text == '重量'){
+    				weight = data.number
+    			}
+    		})
+    		let form = {'originatingSites':this.priceLogistics.startAddress,'destinations':this.priceLogistics.endAddress,
+    		'length':length ,'width': width ,'height':height, 'weight':weight ,'number': this.priceLogistics.quantity}
+    		 $.ajax({
+                url: URL + "/logistic/price",
+                type : 'post',
+                data: JSON.stringify(form), 
+                contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                statusCode: {
+                    400: function (data) { }
+                },
+                success: function (data) {
+                    if (data.success) {
+                     	_this.logistics = data.data
+                    }
+                }
+            })
+    	},
+    	queryEndOptions: function(){
+    		let _this = this
+    		 $.ajax({
+                url: URL + "/selection/address/world",
+                type : 'get',  
+                contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                statusCode: {
+                    400: function (data) { }
+                },
+                success: function (data) {
+                    if (data.success) {
+                   		 console.log("queryStartOptions : "+JSON.stringify(data.data))
+                     	_this.priceLogistics.endOptions = data.data
+                    }
+                }
+            })
+    	},
+    	queryStartOptions: function(){
+    		let _this = this
+    		 $.ajax({
+                url:  URL + "/selection/address/aboriginal",
+                type : 'get',  
+                contentType: "application/json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                statusCode: {
+                    400: function (data) { }
+                },
+                success: function (data) {
+                    if (data.success) {
+                    	console.log("queryEndOptions : "+JSON.stringify(data.data))
+                       _this.priceLogistics.startOptions = data.data
+                    }
+                }
+            })
+    	}
     },
   }
 

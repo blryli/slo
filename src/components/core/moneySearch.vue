@@ -61,58 +61,7 @@ import { required, minLength} from 'vuelidate/lib/validators'
     props: {
       priceSearch: {
         type: Object,
-        default: function () {
-          return {
-            startOptions: [{
-              value: 'guangdong',
-              label: '广东省',
-              children: [{
-                value: 'shenzhen',
-                label: '深圳市',
-                children: [{
-                  value: 'baoan',
-                  label: '宝安区'
-                }]
-              }, {
-                value: 'dongguang',
-                label: '东莞市',
-                children: [{
-                  value: 'tianshangrenjian',
-                  label: '天上人间'
-                }]
-              }]
-            }],
-            endOptions: [{
-              value: 'guangdong',
-              label: '广东省',
-              children: [{
-                value: 'shenzhen',
-                label: '深圳市',
-                children: [{
-                  value: 'baoan',
-                  label: '宝安区'
-                }]
-              }, {
-                value: 'dongguang',
-                label: '东莞市',
-                children: [{
-                  value: 'tianshangrenjian',
-                  label: '天上人间'
-                }]
-              }]
-            }],
-            startAddress: [],
-            endAddress: [],
-            tiji: [
-              {number: '1.00', text: '长'},
-              {number: '1.00', text: '宽'},
-              {number: '1.00', text: '高'},
-              {number: '0.50', text: '重量'}
-            ],
-            quantity: '1',
-            Special: 'living'
-          }
-        }
+        default: {}
       }
     },
     data () {
