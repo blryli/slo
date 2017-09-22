@@ -30,7 +30,7 @@
 			  	<td>￥75.00</td>
 			  	<td>100</td>
 			  	<td>1000</td>
-			  	<td><a href="#">点击查看</a></td>
+			  	<td><a href="#"></a></td>
 			  	<td><button type="button" class="btn btn-df303f">下单</button></td>
 		  	</tr>
 		  </tbody>
