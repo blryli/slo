@@ -6,12 +6,17 @@ import router from './routers'
 import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import ElementUI from 'element-ui'
+// import vueLookImages from 'vue-look-images'
 import 'element-ui/lib/theme-default/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/reset.css'
 import './assets/scss/base.css'
 import './assets/scss/colorBtn.css'
+<<<<<<< HEAD
+import './assets/scss/colorBtn.css'
+=======
 import '../static/js/global'
+>>>>>>> f0c7727d6e91c01016cdfa1c3df7800d9e9771bc
 
 Vue.config.productionTip = false
 
@@ -19,6 +24,7 @@ Vue.use(Vuelidate)
 Vue.use(router)
 Vue.use(VueResource)
 Vue.use(ElementUI)
+// Vue.use(vueLookImages)
 
 /* eslint-disable no-new */
 const app = new Vue({

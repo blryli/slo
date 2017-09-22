@@ -21,9 +21,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">
+              <router-link class="navbar-brand" :to="'/'">
                 <img src="../../assets/img/logo.png" alt="星邮物流支付中心" title="星邮物流支付中心">
-              </a>
+              </router-link>
             </div>
             <!-- <el-collapse-transition> -->
               <div v-show="showNav" @click="closeNav"  :class="{nbActive: showNav}">

@@ -4,6 +4,7 @@
     <div class="row">
     	<img src="../../../src/assets/img/404-small.png" class="visible-xs-block" alt="页面正在建设中...">
     </div>
+    <!-- <vue-look-images></vue-look-images> -->
   </div>
 </template>
 
