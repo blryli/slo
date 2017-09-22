@@ -31,7 +31,7 @@
 			  	<td>{{item.price}}{{item.currency}}</td>
 			  	<td>{{item.wholePrice}}{{item.currency}}</td>
 			  	<td><a href="#">点击查看</a></td>
-			  	<td><button type="button" class="btn btn-df303f">下单</button></td>
+			  	<td><button type="button" class="btn btn-df303f" @click="createOrder(item.productCode)">下单</button></td>
 		  	</tr>
 		  </tbody>
 		</table>
@@ -74,6 +74,10 @@ import moneySearch from '@/components/core/moneySearch'
     watch: {
     },
     methods: {
+    	createOrder: function(code){
+    		let _url = window.location.href
+            window.location.href =  URL + "/order/create?code=" + code;
+    	},
     	query: function(){
     		let _this = this
     		let length 
@@ -128,7 +132,6 @@ import moneySearch from '@/components/core/moneySearch'
                 },
                 success: function (data) {
                     if (data.success) {
-                   		 console.log("queryStartOptions : "+JSON.stringify(data.data))
                      	_this.priceLogistics.endOptions = data.data
                     }
                 }
@@ -148,7 +151,6 @@ import moneySearch from '@/components/core/moneySearch'
                 },
                 success: function (data) {
                     if (data.success) {
-                    	console.log("queryEndOptions : "+JSON.stringify(data.data))
                        _this.priceLogistics.startOptions = data.data
                     }
                 }
