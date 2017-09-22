@@ -80,7 +80,7 @@ export default {
                 url: URL + "/user/query",
 				type : 'get',                    
                 xhrFields: {
-                    withCredentials: false
+                    withCredentials: true
                 },
                 success: function (data) {
                 	if(data != null){
