@@ -1,8 +1,8 @@
 {
-  "name": "gateway",
+  "name": "vue-slo",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "blry",
+  "author": "blryli",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

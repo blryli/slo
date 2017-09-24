@@ -1,431 +1,78 @@
 <template>
   <div>
-    <div class="banner">
-      <el-carousel >
-          <el-carousel-item v-for="(item, index) in 3" :key="item">
-            <div class="banner-bg" :style="bannerArr[index]"></div>
-          </el-carousel-item>
-        </el-carousel>
-    </div>
-    <div class="container m-t-20">
-      <div class="gt-content row  height-560">
-        <div class="search-box col-md-12 col-lg-7">
-          <ul class="search-menu">
-            <li v-for="(item, index) in searchArr" :class="{activeColor:item.active == true}" @click="searchActive(index)">{{item.value}}</li>
-          </ul>
-          <ul class="search-content">
-            <!-- 价格查询 -->
-            <li v-show="searchArr[0].active == true">
-              <money-search :price-search="priceSearch"></money-search>
-              <div class="col-sm-12">
-              </div>
-              <div class="row m-t-40">
-                <div class="col-sm-12 text-center">
-                  <button type="button" class="btn btn-df303f btn-lg" @click="logisticsSubmit">查询价格</button>
-                </div>
-              </div>
-            </li>
-            <!-- 追踪单号 -->
-            <li v-show="searchArr[1].active == true">
-              <form class="form-horizontal">
-                <div class="form-group">
-                  <div class="col-sm-12" :class="{ 'form-group--error': $v.orderSearch.order.$error }">
-                    <input type="text" class="form-control input-lg" v-model="orderSearch.order" placeholder="请输入你的单号" @input="$v.orderSearch.order.$touch()">
-                  </div>
-                  <span class="form-group__message" style="left: 15px;" v-if="!$v.orderSearch.order.required">单号不能为空</span>
-                  <span class="form-group__message" style="left: 15px;" v-if="!$v.orderSearch.order.minLength">请输入正确的单号</span>
-                </div>
-                <div class="form-group m-t-40">
-                  <div class="col-sm-12 text-center">
-                    <button type="button" class="btn btn-ff5a00 btn-lg" @click="numbarSubmit">查询单号</button>
-                  </div>
-                </div>
-              </form>
-            </li>
-            <!-- 贷款查询 -->
-            <li v-show="searchArr[2].active == true">
-              <finance-core :loans-search="loansSearch"></finance-core>
-              <div class="form-group m-t-40">
-                <div class="col-sm-12 text-center">
-                  <button type="button" class="btn btn-ff5a00 btn-lg" @click="financeSubmit">查询额度</button>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="gt-advertising visible-lg-block col-lg-5" :style="advertising"></div>
-      </div>
-    </div>
-    <!-- 价格专区 -->
-    <div class="container m-t-20">
-      <div class="gt-content row">
-        <div class="gt-header">
-          <h1>价格专区</h1>
-          <a href="#" class="more price-more">更多优惠>></a>
-        </div>
-        <Price-list :price-arr="priceArr"></Price-list>
-        <div class="gt-footer"></div>
-      </div>
-    </div>
-    <!-- 贷款专区 -->
-    <div class="container m-t-20">
-      <div class="gt-content row">
-        <div class="gt-header">
-          <h1>贷款专区</h1>
-          <a href="#" class="more price-more">更多贷款>></a>
-        </div>
-        <loans-list :loans-arr="loansArr"></loans-list>
-        <div class="gt-footer"></div>
-      </div>
-    </div>
-    <!-- 海外仓专区 -->
-    <div class="container m-t-20">
-      <div class="gt-content row">
-        <div class="gt-header">
-          <h1>海外仓专区</h1>
-          <a href="#" class="more price-more">更多仓库>></a>
-        </div>
-        <warehouse :warehouse-arr="warehouseArr"></warehouse>
-        <div class="gt-footer"></div>
-      </div>
+    <div class="container m-t-20 m-b-20">
+      <case-list :case-arr="caseArr"></case-list>
     </div>
   </div>
 </template>
 
 <script>
-import PriceList from '@/components/core/priceList'
-import loansList from '@/components/core/loansList'
-import warehouse from '@/components/core/warehouse'
-import moneySearch from '@/components/core/moneySearch'
-import financeCore from '@/components/finance/financeCore'
-import { required, minLength, alphaNum} from 'vuelidate/lib/validators'
+import caseList from '@/components/core/caseList'
   export default {
     data () {
       return {
-        searchArr:[ 
-          {'value': '价格查询', 'active': true},
-          {'value': '追踪单号', 'active': false},
-          {'value': '贷款查询', 'active': false},
-          // {'value': '海外仓查询', 'active': false},
-        ],
-        orderSearch: {
-          order: ''
-        },
-        bannerArr: [
-          { backgroundImage: "url(" + require('../../../static/img/banner1.png') + ")" },
-          { backgroundImage: "url(" + require('../../../static/img/banner2.png') + ")" },
-          { backgroundImage: "url(" + require('../../../static/img/banner3.png') + ")" }
-        ],
-        advertising: { backgroundImage: "url(" + require('../../../static/img/advertising.png') + ")" },
-        priceSearch: {
-          startOptions: [{
-            value: 'guangdong',
-            label: '广东省',
-            children: [{
-              value: 'shenzhen',
-              label: '深圳市',
-              children: [{
-                value: 'baoan',
-                label: '宝安区'
-              }]
-            }, {
-              value: 'dongguang',
-              label: '东莞市',
-              children: [{
-                value: 'tianshangrenjian',
-                label: '天上人间'
-              }]
-            }]
-          }],
-          endOptions: [{
-            value: 'guangdong',
-            label: '广东省',
-            children: [{
-              value: 'shenzhen',
-              label: '深圳市',
-              children: [{
-                value: 'baoan',
-                label: '宝安区'
-              }]
-            }, {
-              value: 'dongguang',
-              label: '东莞市',
-              children: [{
-                value: 'tianshangrenjian',
-                label: '天上人间'
-              }]
-            }]
-          }],
-          startAddress: [],
-          endAddress: [],
-          tiji: [
-            {number: '1.00', text: '长'},
-            {number: '1.00', text: '宽'},
-            {number: '1.00', text: '高'},
-            {number: '0.50', text: '重量'}
-          ],
-          quantity: '1',
-          Special: 'living'
-        },
-        loansSearch: {
-          seller: '',
-          name: '',
-          phone: '',
-          revenue: ''
-        },
-        loansArr: [
+        caseArr: [
           {
-            money: '500',
-            seller: 'ebay卖家'
+            src: 'static/img/img.png',
+            title: '哥本哈哥本哈哥本哈哥本哈',
+            text: 'Architects',
+            time: '2014-04-14',
+            particularsText: [
+              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
+              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            ],
+            particularsImg: [
+              { src: 'static/img/xiangqing.png' },
+              { src: 'static/img/xiangqing.png' },
+            ],
+            teamUnit: {
+              unit: '广东省深圳市',
+              address: 'github',
+              team: '阿里巴巴',
+              scale: '10000',
+              time: '2017-12-11',
+              user: '杨杨杨'
+            },
+            particularsLogo: 'static/img/logo.png',
+            particularsName: '纬图设计',
+            particularsAbout: [
+              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
+              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            ]
           },
           {
-            money: '500',
-            seller: 'ebay卖家'
+            src: 'static/img/img.png',
+            title: '根Bloom自然科装置根Bloom自然科装置',
+            text: 'Norm',
+            time: '2017-08-17'
           },
           {
-            money: '500',
-            seller: 'ebay卖家'
+            src: 'static/img/img.png',
+            title: '科学节装置设计科学节装置设计',
+            text: 'Norm Architects'
           },
           {
-            money: '500',
-            seller: 'ebay卖家'
-          }
-        ],
-        warehouseArr: [
-          {
-            warehouse: '美国',
-            text: '涵盖美系、美东在内的100个仓库',
-            money: '30'
-          },
-          {
-            warehouse: '美国',
-            text: '涵盖美系、美东在内的100个仓库',
-            money: '30'
-          },
-          {
-            warehouse: '美国',
-            text: '涵盖美系、美东在内的100个仓库',
-            money: '30'
-          },
-          {
-            warehouse: '美国',
-            text: '涵盖美系、美东在内的100个仓库',
-            money: '30'
-          }
-        ],
-        priceArr: [
-          {
-            startAddress: '深圳',
-            endAddress: '俄罗斯',
-            data: '2017.09.06',
-            time: '48小时',
-            price: '10',
-          },
-          {
-            startAddress: '深圳',
-            endAddress: '俄罗斯',
-            data: '2017.09.06',
-            time: '48小时',
-            price: '10',
-          },
-          {
-            startAddress: '深圳',
-            endAddress: '俄罗斯',
-            data: '2017.09.06',
-            time: '48小时',
-            price: '10',
-          },
-          {
-            startAddress: '深圳',
-            endAddress: '俄罗斯',
-            data: '2017.09.06',
-            time: '48小时',
-            price: '10',
+            src: 'static/img/img.png',
+            title: '哥本哈根Bloom自然科学节装置设计',
+            text: 'Norm Architects'
           }
         ]
-    }
+      }
     },
     components: {
-      PriceList, loansList ,warehouse, moneySearch, financeCore
+      caseList
     },
     methods: {
-      searchActive(index) {
-        this.searchArr.forEach((d, i) =>{
-          d.active = false
-        })
-        this.searchArr[index].active = true
-      },
-      numbarSubmit() {
-          this.$router.push({ path: '/orderQuery', query: this.orderSearch })
-      },
-      logisticsSubmit() {
-          this.$router.push({ path: '/logistics', query: this.priceSearch })
-      },
-      financeSubmit() {
-          this.$router.push({ path: '/finance', query: this.loansSearch })
-      }
-    },
-    validations: {
-      orderSearch: {
-        order: {
-          required,
-          alphaNum
-        },
-      }
     },
   }
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 
-.btn-ff5a00{
-  background-color: #ff5a00;
-  color: #fff;
-  padding: 10px 30px;
-  &:hover{
-    background-color: #FF762B;
-  }
-}
-.banner{
-  width: 100%;
-  .banner-bg{
-    width: 100%;
-    height: 208px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 800px auto;
-  }
-}
-.m-t-20{
-  margin-top: 26px;
-}
-.gt-content{
-  background-color: #fff;
-  border-radius: 10px;
-  .gt-header{
-    padding: 0 20px;
-    border-bottom: 1px solid #dcdcdc;
-    overflow: hidden;
-    & *{
-      height: 60px;
-      line-height: 60px;
-      font-size: 18px;
-    }
-    h1{
-      color: #323232;
-      float: left;
-      margin: 0;
-    }
-    .more{
-      float: right;
-    }
-    .price-more{
-      color: #df303f;
-    }
-  }
-  .gt-footer{
-    height: 40px;
-  }
-  .search-box{
-    padding: 20px;
-    //搜索菜单
-    .search-menu{
-      overflow: hidden;
-      >li{
-        float: left;
-        cursor: pointer;
-        font-size: 18px;
-        padding: 0 0 20px;
-        border-bottom: 2px solid #fff;
-        &.activeColor, &:hover{
-          color: #f55520;
-          border-color: #f55520;
-        }
-        &+li{
-          margin-left: 5%;
-        }
-      }
-    }
-    //搜索内容
-    .search-content{
-      margin-top: 50px;
-      label{
-        color: #323232;
-        font-weight: normal;
-      }
-      .form-horizontal{
-        .form-group{
-          width: 100%;
-        }
-        label{
-          min-width: 64px;
-        }
-      }
-      .form-inline{
-        label{
-          color: #323232;
-          font-weight: normal;
-        }
-        .form-group{
-          position: relative;
-        }
-        .input-group{
-          padding-left: 26px;
-          &.p-l-42{
-            padding-left: 42px;
-          }
-          .ab-label{
-            position: absolute;
-            left: 0;
-            top: 10px;
-          }
-        }
-        .input-group-addon{
-          padding: 0 2px;
-        }
-      }
-    }
-  }
-  .gt-advertising{
-    height: 560px;
-  }
-}
-.form-group{
-  position: relative;
-}
-
 @media (min-width: 768px) { 
-    .height-560{
-      height: 560px;
-    }
-    .banner{
-      .banner-bg{
-        height: 369px;
-        background-size: 1420px auto;
-      }
-    }
-    .gt-content{
-      .search-box{
-        padding: 40px;
-        //搜索菜单
-        .search-menu{
-          >li{
-            &+li{
-              margin-left: 10%;
-            }
-          }
-        }
-      }
-    }
  }
 
 @media (min-width: 992px) {
-  .banner{
-      .banner-bg{
-        height: 500px;
-        background-size: 1920px auto;
-      }
-    }
 }
 
 @media (min-width: 1200) {

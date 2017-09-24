@@ -3,68 +3,14 @@
     {
       "id": "index",
       "active": true,
-      "menu_name": "首页",
+      "menu_name": "发现案例",
       "url": "/"
     },
     {
       "id": "sale",
       "active": false,
-      "menu_name": "特卖",
+      "menu_name": "作品集",
       "url": "/sale"
-    },
-    {
-      "id": "FBA",
-      "active": false,
-      "menu_name": "FBA",
-      "url": "/fba"
-    },
-    {
-      "id": "logistics",
-      "active": false,
-      "menu_name": "物流",
-      "url": "/logistics"
-    },
-    {
-      "id": "warehouse",
-      "active": false,
-      "menu_name": "海外仓",
-      "url": "/warehouse"
-    },
-    {
-      "id": "distribution",
-      "active": false,
-      "menu_name": "分销",
-      "url": "/distribution"
-    },
-    {
-      "id": "transshipment",
-      "active": false,
-      "menu_name": "转运",
-      "url": "/transshipment"
-    },
-    {
-      "id": "finance",
-      "active": false,
-      "menu_name": "金融",
-      "url": "/finance"
-    },
-    {
-      "id": "offLine",
-      "active": false,
-      "menu_name": "线下门店",
-      "url": "/offLine"
-    },
-    {
-      "id": "help",
-      "active": false,
-      "menu_name": "帮助中心",
-      "url": "/help"
-    },
-    {
-      "id": "cooperation",
-      "active": false,
-      "menu_name": "渠道合作",
-      "url": "/cooperation"
     }
   ]
 }

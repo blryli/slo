@@ -6,17 +6,25 @@
     <gateway-main></gateway-main>
     <footer>
       <div class="footer">
-        <div class="footer-inner">
-          <div class="footer-content">
-            <span class="footer-text">深圳市星邮供应链管理有限公司</span>
-            <span class="action-buttons">
-            <!-- <a href="" class="qq-icon"><i class="fa fa-qq bigger-150" aria-hidden="true"></i></a>
-            <a href="" class="weixin-icon"><i class="fa fa-weixin bigger-150" aria-hidden="true"></i></a>
-            <a href="" class="weibo-icon"><i class="fa fa-weibo bigger-150" aria-hidden="true"></i></a> -->
-          </span>
+        <div class="container row">
+          <div class="col-xs-12 col-sm-2 logo text-center">
+            <h1>slo</h1>
+          </div>
+          <div class="col-xs-12 col-sm-8 text text-center">
+            <ul>
+              <li class="col-xs-4"><a href="#">商务合作</a></li>
+              <li class="col-xs-4"><a href="#">联系我们</a></li>
+              <li class="col-xs-4"><a href="#">声明版权</a></li>
+              <li class="col-xs-4"><a href="#">意见反馈</a></li>
+              <li class="col-xs-4"><a href="#">关于我们</a></li>
+              <li class="col-xs-4"><a href="#">隐私保护</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-2  text-center">
+            <div class="ewm">img</div>
           </div>
         </div>
-      </div>
+        </div>
     </footer>
     <!--返回顶部按钮-->
     <div class="to-top" style="display: none;">
@@ -28,6 +36,7 @@
 <script>
   import gatewayHeader from './header'
   import gatewayMain from './main'
+  import $ from 'jquery'
   export default {
     data () {
       return {
@@ -40,7 +49,7 @@
       gatewayMain
     },
     mounted () {
-      
+      this.toggleToTop()
     },
     methods: {
       getTopNavJson (val) {
@@ -48,6 +57,21 @@
       },
       getShowNav(val) {
         this.showNav = val
+      },
+      toggleToTop () {
+        $(window).scroll(function(){
+          if($(window).scrollTop() > 450){
+            $('.to-top').fadeIn('slow');
+          }else{
+            $('.to-top').fadeOut('slow');
+          }
+        })
+      },
+      //当点击跳转按钮时
+      backTop () {
+        $('body').animate({
+          scrollTop:0
+        },500)
       }
     }
   }
@@ -69,39 +93,57 @@
 }
 
 .main-page{
-  background-color: #EDEDED;
+  // background-color: #EDEDED;
 }
 .footer {
-  margin-top: 20px;
-    .footer-inner{
-      text-align: center;
-      .footer-content{
-        padding: 8px;
-        line-height: 24px;
-        color: #666;
-        background-color: #666;
-        .footer-text{
-          color: #fff;
-          opacity: .6;
-        }
-        .action-buttons a {
-          margin: 0 3px;
-          display: inline-block;
+  padding: 20px;
+  background-color: #282727;
+  color: #fff;
+  .logo{
+    color: #FEE300;
+    margin-top: 20px;
+    h1{
+      font-size: 46px;
+    }
+  }
+  .text{
+    padding: 20px 40px;
+    border-right: 2px solid #666;
+    border-left: 2px solid #666;
+    li{
+      margin: 10px 0;
+      a{
+        font-size: 14px;
+        opacity: .6;
+        color: #fff;
+        &:hover{
+          opacity: .9;
           text-decoration: none;
-          .fa{
-            display: inline-block;
-            line-height: 1;
-            color: #999;
-            padding: 4px;
-            border: 1px solid #999;
-            border-radius: 20px;
-            &:hover{
-              color: #666;
-              border-color: #666;
-            }
-          }
         }
       }
     }
+  }
+  .ewm{
+    padding: 10px 20px;
+  }
+}
+/* 返回顶部按钮 */
+  .to-top {
+    position: fixed;
+    bottom: 168px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 999999;
+    opacity: 1;
+  }
+  #goBack{
+    display: block;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #647A91;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
   }
 </style>

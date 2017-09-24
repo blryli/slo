@@ -1,37 +1,42 @@
 <template>
   <div class="header">
-      <div class="header-top">
-        <div class="float-right container">
-          <div class="row" v-if="userName == ''">
-            <a href="#" @click="login"  class="login">登录</a>
-            <span class="l-hr">|</span>
-            <a href="#" class="register">注册</a>
-          </div>
-           <div class="row" v-else>
-            <span class="l-hr">尊敬的{{userName}},欢迎登录starpost官方网站</span>
-          </div>
+      <div class="header-top container ">
+        <router-link class="navbar-brand" :to="'/'">slo</router-link>
+        <div class="navbar-header navbar-default">
+          <button type="button" class="navbar-toggle" @click="navSwitch">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
       </div>
-      <nav class="navbar navbar-default">
-        <div class="container nav-container">
+      <nav class="navbar">
+        <div class="container">
           <div class="row">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" @click="navSwitch">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <router-link class="navbar-brand" :to="'/'">
-                <img src="../../assets/img/logo.png" alt="星邮物流支付中心" title="星邮物流支付中心">
-              </router-link>
-            </div>
-            <!-- <el-collapse-transition> -->
-              <div v-show="showNav" @click="closeNav"  :class="{nbActive: showNav}">
+            <div class="col-sm-6">
+              <!-- <el-collapse-transition> -->
+              <div v-show="showNav" @click="closeNav" :class="{nbActive: showNav}">
                   <top-menu :top-menu="menuJson"></top-menu>
               </div>
-            <!-- </el-collapse-transition> -->
-            <div class="visible-md-block visible-lg-block">
-              <top-menu :top-menu="menuJson"></top-menu>
+              <!-- </el-collapse-transition> -->
+              <div class="hidden-xs" >
+                <top-menu :top-menu="menuJson"></top-menu>
+              </div>
+            </div>
+            <div  class="col-sm-6">
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-sm-offset-2" style="margin-top: 22px;">
+                  <input type="text" class="form-control" placeholder="请输入公司/作品名称">
+                </div>
+                <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
+                  <a href="#" @click="login"  class="login">登录</a>
+                  <span class="l-hr">|</span>
+                  <a href="#" class="register">注册</a>
+                </div>
+                 <div v-else class="col-sm-6">
+                  <span class="l-hr">blry</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -110,6 +115,21 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.navbar-default{
+  background-color: #fff;
+  .navbar-toggle {
+    padding: 14px;
+    margin-top: 21px;
+    margin-right: 0;
+    .icon-bar{
+      width: 24px;
+      height: 3px;
+      &+.icon-bar{
+        margin-top: 5px;
+      }
+    }
+  }
+}
 .nbActive{
   height: 100%;
   position: fixed;
@@ -129,72 +149,51 @@ ul,li{
   margin: 0;
   list-style: none;
 }
+.f-l{
+  float: left;
+}
+.f-r{
+  float: right;
+}
+.o-h{
+  overflow: hidden;
+}
 .header{
   position: relative;
   z-index: 1000;
+  background-color: #fff;
 }
 .header-top{
-  background-color: #333;
-  height: 30px;
-  .float-right{
-    text-align: right;
-    .login, .register{
-      height:30px;
-      line-height:30px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
-      opacity: .8;
-      &:hover{
-        opacity: 1;
-      }
-    }
-    .l-hr{
-      color: #fff;
-      margin: 0 10px;
-      opacity: .6;
-      font-size: 12px;
-      height:30px;
-      line-height:30px;
-    }
+  .navbar-brand{
+    font-size: 46px;
+    height: 40px;
+    line-height: 40px;
+    color: #333;
+    padding: 0;
+    font-weight: block;
+    margin-top: 30px;
   }
 }
-.navbar{
-  margin: 0;
-  height: 100px;
-  .navbar-toggle {
-    padding: 18px;
-    margin-top: 21px;
-    margin-right: 0;
-    .icon-bar{
-      width: 28px;
-      height: 3px;
-      &+.icon-bar{
-        margin-top: 5px;
-      }
-    }
+.login, .register{
+  height:80px;
+  line-height:80px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: .8;
+  &:hover{
+    opacity: 1;
   }
 }
-.navbar-brand{
-  font-size: 60px;
-  height: 100px;
-  line-height: 100px;
-  padding: 20px 0 0;
-  img{
-    width: 160px;
-    height: auto;
-  }
+.l-hr{
+  color: #aaa;
+  margin: 0 10px;
+  opacity: .6;
+  font-size: 12px;
+  height:30px;
+  line-height:30px;
 }
-.container.nav-container{
-    margin:0;
-  }
-
 @media (min-width: 768px) { 
-    .navbar-toggle {
-        display: block;
-        position: relative;
-        float: right;
-    }
     .navbar-header {
         float: none;
     }
@@ -204,28 +203,12 @@ ul,li{
  }
 
 @media (min-width: 992px) {
-  .navbar-toggle {
-      display: none;
-  }
-  .container.nav-container{
-    width: 970px;
-    margin: 0 auto;
-  }
   .navbar-header {
       float: left;
   }
   
 }
 @media (max-width: 992px) {
-  .container.nav-container{
-    width: 100%;
-    .navbar-toggle{
-      margin-right: 15px;
-    }
-    .navbar-brand{
-      margin-left: 15px;
-    }
-  }
 }
 
 @media (min-width: 1200px) {
@@ -235,9 +218,5 @@ ul,li{
        height: auto;
      }
    }
-   .container.nav-container{
-     width: 1170px;
-   }
-
 }
 </style>

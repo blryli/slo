@@ -47,10 +47,7 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
 .nav{
   float: none;
-  background-color: #f8f8f8;
   padding: 10px 0;
-  margin-top: -1px;
-  height: 100%;
   >li{
     display: block;
     float: none;
@@ -59,48 +56,50 @@
       height: 40px;
       line-height: 40px;
       font-size: 18px;
-      color: #323232;
+      color: #333;
       &:hover{
-        color: #f55520;
+        color: #333;
         background-color: #f0f0f0;
       }
       &.active{
-        color: #f55520;
+        color: #333;
+        background-color: #f0f0f0;
+        font-size: 32px;
       }
     }
   }
 }
 @media (min-width: 768px) { 
-    
- }
-
-@media (min-width: 992px) {
     .nav{
-      float: right;
-      background-color: transparent;
       padding: 0;
       margin-top: 0;
+      float: left;
       >li{
         float: left;
         & + li{
           margin-left: 20px;
         }
         >a{
-        height: 100px;
-        line-height: 100px;
+        height: 80px;
+        line-height: 80px;
         padding: 0;
         font-size: 18px;
-        color: #323232;
+        color: #333;
         &:hover{
-          color: #f55520;
+          color: #333;
           background-color: transparent;
         }
         &.active{
-          color: #f55520;
+          background-color: transparent;
+          color: #333;
+          font-size: 32px;
         }
       }
     }
-    }
+  }
+ }
+
+@media (min-width: 992px) {
 }
 
 @media (min-width: 1200px) {
