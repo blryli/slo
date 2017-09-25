@@ -1,4 +1,4 @@
-# gateway
+# vue-slo
 
 > A Vue.js project
 

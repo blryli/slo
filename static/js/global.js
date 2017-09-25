@@ -1,1 +1,1 @@
-global.URL = 'https://gateway-web.starpost.cn';
+// global.URL = 'https://gateway-web.starpost.cn';

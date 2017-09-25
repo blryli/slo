@@ -19,7 +19,7 @@
                 <li class="hr hr-m-20"></li>
                 <li class="text-center"><span class="shouc">收藏</span></li>
                 <li class="hr hr-m-20"></li>
-                <li class="text-center"><button type="button" class="btn btn-default">分享</button></li>
+                <li class="text-center"><button type="button" class="btn btn-default"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button></li>
               </ul>
             </div>
             <div class="col-sm-4">
@@ -45,7 +45,7 @@
                 <ul class="bg-fff lick"  style="padding-bottom: 0;">
                     <li class="title">你可能还喜欢以下项目</li>
                     <li class="hr hr-m-10"></li>
-                    <case-list :case-arr="lickArr" :title-size="ts"></case-list>
+                    <case-list :case-arr="lickArr"></case-list>
                 </ul>
             </div>
 		</div>
@@ -58,8 +58,8 @@ import caseList from '@/components/core/caseList'
   export default {
     data () {
       return {
-        ts: {
-            'font-size': '14px'
+        minHeight: {
+            'min-height': '211px'
         },
         particularsArr: [],
         lickArr: [
@@ -97,6 +97,9 @@ import caseList from '@/components/core/caseList'
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.fa{
+    color: #888;
+}
 .text-ms{
     margin-bottom: 16px;
     p{

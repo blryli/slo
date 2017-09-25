@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container m-t-20 m-b-20">
-      <case-list :case-arr="caseArr"></case-list>
+      <case-list :case-arr="caseArr" :title-size="titleSize" :min-height="minHeight"></case-list>
     </div>
   </div>
 </template>
@@ -11,6 +11,10 @@ import caseList from '@/components/core/caseList'
   export default {
     data () {
       return {
+        titleSize: { 'font-size':'18px' },
+        minHeight: {
+          'min-height': '307px'
+        },
         caseArr: [
           {
             src: 'static/img/img.png',

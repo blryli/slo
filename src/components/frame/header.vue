@@ -74,26 +74,26 @@ export default {
     
   },
   methods: {
-  	login: function() {
-            //绑定Ajax的内容
-            let _url = window.location.href
-            window.location.href = URL + "/oauth/login?url=" + _url;
-  	},
-  	user: function(){
-  		let _this = this
-  		   $.ajax({
-                url: URL + "/user/query",
-				type : 'get',                    
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: function (data) {
-                	if(data != null){
-	                	_this.userName = data
-                	}
-                }
-         })
-  	},
+  	// login: function() {
+   //          //绑定Ajax的内容
+   //          let _url = window.location.href
+   //          window.location.href = URL + "/oauth/login?url=" + _url;
+  	// },
+  	// user: function(){
+  	// 	let _this = this
+  	// 	   $.ajax({
+   //              url: URL + "/user/query",
+			// 	type : 'get',                    
+   //              xhrFields: {
+   //                  withCredentials: true
+   //              },
+   //              success: function (data) {
+   //              	if(data != null){
+	  //               	_this.userName = data
+   //              	}
+   //              }
+   //       })
+  	// },
     getTopMenu() {
       this.$http.get('../../../static/data/topMenu.json').then((response) => {
         this.menuJson = response.data
