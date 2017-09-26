@@ -115,6 +115,11 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.form-control{
+  background-color: #eee;
+  border: 0;
+  box-shadow: none;
+}
 .navbar-default{
   background-color: #fff;
   .navbar-toggle {

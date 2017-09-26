@@ -8,7 +8,7 @@
       <div class="footer">
         <div class="container row">
           <div class="col-xs-12 col-sm-2 logo text-center">
-            <h1>slo</h1>
+            <h1 class="text-left">slo</h1>
           </div>
           <div class="col-xs-12 col-sm-8 text text-center">
             <ul>
@@ -101,7 +101,7 @@
   color: #fff;
   .logo{
     color: #FEE300;
-    margin-top: 20px;
+    margin-top: 15px;
     h1{
       font-size: 46px;
     }

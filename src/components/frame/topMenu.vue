@@ -6,10 +6,10 @@
         <b class="caret" v-if="menu.url==undefined"></b>
       </a> -->
       <router-link v-if="menu.url == '/'" :to="menu.url" exact>
-        <span class="menu-text">{{menu.menu_name}}</span>
+        <span class="menu-text"><strong class="title">{{menu.menu_name}}</strong><span></span></span>
       </router-link>
       <router-link v-else :to="menu.url">
-        <span class="menu-text">{{menu.menu_name}}</span>
+        <span class="menu-text"><strong class="title">{{menu.menu_name}}</strong><span></span></span>
       </router-link>
       <!-- <ul class="submenu" v-if="menu.url==undefined">
         <li v-for="sub in menu.sub_menus">
@@ -66,6 +66,28 @@
         background-color: #f0f0f0;
         font-size: 32px;
       }
+    }
+  }
+}
+.title{
+  font-weight: normal;
+}
+.active .menu-text{
+  position: relative;
+  .title{
+    position: relative;
+    z-index: 10;
+  }
+  span{
+    position: absolute;
+    top: 16px;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #FEE300;
+    &+span{
+      top: 34px;
     }
   }
 }

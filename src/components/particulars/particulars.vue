@@ -58,10 +58,13 @@ import caseList from '@/components/core/caseList'
   export default {
     data () {
       return {
-        minHeight: {
-            'min-height': '211px'
+        particularsArr: {},
+        titleSize: {
+            'font-size':'14px'
         },
-        particularsArr: [],
+        minHeight: {
+          'min-height': '211px'
+        },
         lickArr: [
             {
               src: 'static/img/img.png',
@@ -87,6 +90,7 @@ import caseList from '@/components/core/caseList'
     },
     created() {
         this.particularsArr = this.$route.query
+        console.log(this.particularsArr)
     },
     watch: {
     },
