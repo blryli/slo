@@ -29,7 +29,7 @@
                   <input type="text" class="form-control" placeholder="请输入公司/作品名称">
                 </div>
                 <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
-                  <a href="#" @click="login"  class="login">登录</a>
+                  <a href="#"  class="login">登录</a>
                   <span class="l-hr">|</span>
                   <a href="#" class="register">注册</a>
                 </div>
@@ -57,18 +57,17 @@ export default {
     }
   },
   watch: {
-    menuJson: {
-      handler(val, oldVal) {
-        this.$emit('get-json', val);
-      }
-    }
+    // menuJson: {
+    //   handler(val, oldVal) {
+    //     this.$emit('get-json', val);
+    //   }
+    // }
   },
   components: {
     TopMenu
   },
   created: function () {
     this.getTopMenu()
-    this.user()
   },
   mounted() {
     
@@ -97,6 +96,7 @@ export default {
     getTopMenu() {
       this.$http.get('../../../static/data/topMenu.json').then((response) => {
         this.menuJson = response.data
+        console.log(response)
       }, (response) => {
         console.log(response)
       })

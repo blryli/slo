@@ -1,448 +1,389 @@
 <template>
   <div>
     <div class="container m-t-20 m-b-20">
-      <case-list :case-arr="caseArr" :title-size="titleSize" :min-height="minHeight"></case-list>
+      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="120">
+        <case-list :case-arr="datas"></case-list>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import caseList from '@/components/core/caseList'
+var count = 0;
   export default {
     data () {
       return {
-        titleSize: { 'font-size':'18px' },
-        minHeight: {
-          'min-height': '307px'
-        },
-        caseArr: [
+        datas: [
           {
-            src: 'static/img/img.png',
-            title: '哥哥哥哥哥哥哥哥哥哥哥哥哥哥哥哥',
-            text: 'Architects',
-            time: '2014-04-14',
-            particularsText: [
-              { text: '111111学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "去去去去去去去去去去去去去去去去去去",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "111111111111111111111111111111" },
+              { "text": "111111111111111111111111" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "111111111111",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "111111111111111"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: '纬图设计',
-            particularsAbout: [
-              { text: '2222222然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "1111111111111111",
+            "particularsAbout": [
+              { "text": "11111111111111111111111111111111111111111111111" },
+              { "text": "1111111111111111111111111111111111111" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '根Bloom自然科装置根Bloom自然科装置',
-            text: 'Norm',
-            time: '2017-08-17',
-            particularsText: [
-              { text: '3333333m自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "2222222222222222222222222222222222" },
+              { "text": "22222222222222222222222222222222222" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "2222222222222222222",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "2222222222"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'aaaaaa',
-            particularsAbout: [
-              { text: '4444444自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "222222222222222",
+            "particularsAbout": [
+              { "text": "2222222222222222222222222222222222222222222222" },
+              { "text": "2222222222222222222222222222" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '设计设计设计设计设计设计设计设计设计设计设计',
-            text: 'Norm Architects',
-            time: '2017-06-16',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "去去去去去去去去去去去去去去去去去去",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "111111111111111111111111111111" },
+              { "text": "111111111111111111111111" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "111111111111",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "111111111111111"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: '纬图设计',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "1111111111111111",
+            "particularsAbout": [
+              { "text": "11111111111111111111111111111111111111111111111" },
+              { "text": "1111111111111111111111111111111111111" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "2222222222222222222222222222222222" },
+              { "text": "22222222222222222222222222222222222" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "2222222222222222222",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "2222222222"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "222222222222222",
+            "particularsAbout": [
+              { "text": "2222222222222222222222222222222222222222222222" },
+              { "text": "2222222222222222222222222222" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "去去去去去去去去去去去去去去去去去去",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "111111111111111111111111111111" },
+              { "text": "111111111111111111111111" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "111111111111",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "111111111111111"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "1111111111111111",
+            "particularsAbout": [
+              { "text": "11111111111111111111111111111111111111111111111" },
+              { "text": "1111111111111111111111111111111111111" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "2222222222222222222222222222222222" },
+              { "text": "22222222222222222222222222222222222" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "2222222222222222222",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "2222222222"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "222222222222222",
+            "particularsAbout": [
+              { "text": "2222222222222222222222222222222222222222222222" },
+              { "text": "2222222222222222222222222222" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "去去去去去去去去去去去去去去去去去去",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "111111111111111111111111111111" },
+              { "text": "111111111111111111111111" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "111111111111",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "111111111111111"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "1111111111111111",
+            "particularsAbout": [
+              { "text": "11111111111111111111111111111111111111111111111" },
+              { "text": "1111111111111111111111111111111111111" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "2222222222222222222222222222222222" },
+              { "text": "22222222222222222222222222222222222" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "2222222222222222222",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "2222222222"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "222222222222222",
+            "particularsAbout": [
+              { "text": "2222222222222222222222222222222222222222222222" },
+              { "text": "2222222222222222222222222222" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "去去去去去去去去去去去去去去去去去去",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "111111111111111111111111111111" },
+              { "text": "111111111111111111111111" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "111111111111",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "111111111111111"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "1111111111111111",
+            "particularsAbout": [
+              { "text": "11111111111111111111111111111111111111111111111" },
+              { "text": "1111111111111111111111111111111111111" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "2222222222222222222222222222222222" },
+              { "text": "22222222222222222222222222222222222" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "2222222222222222222",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "2222222222"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "222222222222222",
+            "particularsAbout": [
+              { "text": "2222222222222222222222222222222222222222222222" },
+              { "text": "2222222222222222222222222222" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "去去去去去去去去去去去去去去去去去去",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "111111111111111111111111111111" },
+              { "text": "111111111111111111111111" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "111111111111",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "111111111111111"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "1111111111111111",
+            "particularsAbout": [
+              { "text": "11111111111111111111111111111111111111111111111" },
+              { "text": "1111111111111111111111111111111111111" }
             ]
           },
           {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "src": "static/img/img.png",
+            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "text": "Norm Architects",
+            "time": "2018-08-17",
+            "particularsText": [
+              { "text": "2222222222222222222222222222222222" },
+              { "text": "22222222222222222222222222222222222" }
             ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
+            "particularsImg": [
+              { "src": "static/img/xiangqing.png" },
+              { "src": "static/img/xiangqing.png" }
             ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
+            "teamUnit": {
+              "unit": "广东省深圳市",
+              "address": "github",
+              "team": "2222222222222222222",
+              "scale": "10000",
+              "time": "2017-12-11",
+              "user": "2222222222"
             },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
-            ]
-          },
-          {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
-            ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
-            ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
-            },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
-            ]
-          },
-          {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
-            ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
-            ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
-            },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
-            ]
-          },
-          {
-            src: 'static/img/img.png',
-            title: '爱我中华爱我中华爱我中华爱我中华爱我中华',
-            text: 'Norm Architects',
-            time: '2018-08-17',
-            particularsText: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
-            ],
-            particularsImg: [
-              { src: 'static/img/xiangqing.png' },
-              { src: 'static/img/xiangqing.png' },
-            ],
-            teamUnit: {
-              unit: '广东省深圳市',
-              address: 'github',
-              team: '阿里巴巴',
-              scale: '10000',
-              time: '2017-12-11',
-              user: '杨杨杨'
-            },
-            particularsLogo: 'static/img/logo.png',
-            particularsName: 'bbbbb',
-            particularsAbout: [
-              { text: '哥本哈根Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' },
-              { text: 'Bloom自然科学节装置设计哥本哈根Bloom自然科学节装置设计' }
+            "particularsLogo": "static/img/logo.png",
+            "particularsName": "222222222222222",
+            "particularsAbout": [
+              { "text": "2222222222222222222222222222222222222222222222" },
+              { "text": "2222222222222222222222222222" }
             ]
           }
-        ]
+        ],
+        busy: false,
+        caseArr: []
       }
     },
     components: {
       caseList
     },
+    created () {
+      this.getCase();
+    },
     methods: {
+      loadMore() {
+        this.busy = true;
+        setTimeout(() => {
+          for (var i = 0, j = 8; i < j; i++) {
+            if(count < this.caseArr.length){
+              this.datas.push( this.caseArr[count] );
+              count++;
+            }
+          }
+          this.busy = false;
+        }, 1000);
+      },
+      getCase() {
+        this.$http.get('../../../static/data/caseArr.json').then((response) => {
+          this.caseArr = response.data.cases
+
+          console.log(this.caseArr)
+        }, (response) => {
+          console.log(response)
+        })
+      },
     },
   }
 </script>

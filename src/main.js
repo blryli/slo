@@ -6,6 +6,7 @@ import router from './routers'
 import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import ElementUI from 'element-ui'
+var infiniteScroll =  require('vue-infinite-scroll');
 // import vueLookImages from 'vue-look-images'
 import 'element-ui/lib/theme-default/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -16,6 +17,7 @@ import '../static/js/global'
 
 Vue.config.productionTip = false
 
+Vue.use(infiniteScroll)
 Vue.use(Vuelidate)
 Vue.use(router)
 Vue.use(VueResource)
