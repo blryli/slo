@@ -16,7 +16,7 @@
             <div class="col-sm-6">
               <!-- <el-collapse-transition> -->
               <div v-show="showNav" @click="closeNav" :class="{nbActive: showNav}">
-                  <top-menu :top-menu="menuJson"></top-menu>
+                  <top-menu :top-menu="menuJson" class="phone-top-menu"></top-menu>
               </div>
               <!-- </el-collapse-transition> -->
               <div class="hidden-xs" >
@@ -25,7 +25,7 @@
             </div>
             <div  class="col-sm-6">
               <div class="row">
-                <div class="col-xs-6 col-sm-6 col-sm-offset-2" style="margin-top: 22px;">
+                <div class="col-xs-8 col-sm-6 col-sm-offset-2" style="margin-top: 22px;">
                   <input type="text" class="form-control" placeholder="请输入公司/作品名称">
                 </div>
                 <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
@@ -96,7 +96,6 @@ export default {
     getTopMenu() {
       this.$http.get('../../../static/data/topMenu.json').then((response) => {
         this.menuJson = response.data
-        console.log(response)
       }, (response) => {
         console.log(response)
       })
@@ -115,6 +114,10 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.phone-top-menu{
+  background-color: #e5e5e5;
+  height: 100%;
+}
 .form-control{
   background-color: #eee;
   border: 0;
@@ -192,7 +195,7 @@ ul,li{
 }
 .l-hr{
   color: #aaa;
-  margin: 0 10px;
+  margin: 0 10%;
   opacity: .6;
   font-size: 12px;
   height:30px;

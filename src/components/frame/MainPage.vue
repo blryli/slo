@@ -8,7 +8,7 @@
       <div class="footer">
         <div class="container row">
           <div class="col-xs-12 col-sm-2 logo text-center">
-            <h1 class="text-left">slo</h1>
+            <h1>slo</h1>
           </div>
           <div class="col-xs-12 col-sm-8 text text-center">
             <ul>
@@ -21,14 +21,14 @@
             </ul>
           </div>
           <div class="col-xs-12 col-sm-2  text-center">
-            <div class="ewm">img</div>
+            <div class="ewm"><img src="static/img/wx.png" alt="微信"></div>
           </div>
         </div>
         </div>
     </footer>
     <!--返回顶部按钮-->
     <div class="to-top" style="display: none;">
-      <a href="#" title="返回顶部" id="goBack" @click.prevent="backTop">返回顶部</a>
+      <a href="#" title="返回顶部" id="goBack" @click.once="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
     </div>
   </div>
 </template>
@@ -101,15 +101,14 @@
   color: #fff;
   .logo{
     color: #FEE300;
+    text-align: center;
     margin-top: 15px;
     h1{
       font-size: 46px;
     }
   }
   .text{
-    padding: 20px 40px;
-    border-right: 2px solid #666;
-    border-left: 2px solid #666;
+    padding: 20px 0;
     li{
       margin: 10px 0;
       a{
@@ -137,13 +136,27 @@
     opacity: 1;
   }
   #goBack{
+    color: #fff;
     display: block;
-    padding: 10px;
+    padding: 10px 14px;
     overflow: hidden;
-    background-color: #647A91;
+    background-color: #666;
     color: #fff;
     font-size: 14px;
     border-radius: 4px;
     text-decoration: none;
+    &:hover{
+      background-color: #444;
+    }
   }
+
+  @media (min-width: 768px) { 
+      .footer{
+        .text{
+          border-right: 2px solid #666;
+          border-left: 2px solid #666;
+          padding: 20px 40px;
+        }
+      }
+   }
 </style>

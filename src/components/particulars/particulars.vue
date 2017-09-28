@@ -17,7 +17,7 @@
                 <li class="unit"><strong>设计时间</strong>：{{particularsArr.teamUnit.time}}</li>
                 <li class="unit"><strong>拍摄者</strong>：{{particularsArr.teamUnit.user}}</li>
                 <li class="hr hr-m-20"></li>
-                <li class="text-center"><span class="shouc">收藏</span></li>
+                <li class="text-center"><a href="#" class="shouc"><i class="fa fa-star" aria-hidden="true"></i>收藏</a></li>
                 <li class="hr hr-m-20"></li>
                 <li class="text-center"><button type="button" class="btn btn-default"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button></li>
               </ul>
@@ -45,7 +45,7 @@
                 <ul class="bg-fff lick"  style="padding-bottom: 0;">
                     <li class="title">你可能还喜欢以下项目</li>
                     <li class="hr hr-m-10"></li>
-                    <case-list :case-arr="lickArr"></case-list>
+                    <case-list :case-arr="lickArr" :title-size="titleSize" :min-height="minHeight" :row-top="rowTop"></case-list>
                 </ul>
             </div>
 		</div>
@@ -64,6 +64,9 @@ import caseList from '@/components/core/caseList'
         },
         minHeight: {
           'min-height': '211px'
+        },
+        rowTop: {
+          'top': '28px'
         },
         lickArr: [
             {
@@ -90,7 +93,6 @@ import caseList from '@/components/core/caseList'
     },
     created() {
         this.particularsArr = this.$route.query
-        console.log(this.particularsArr)
     },
     watch: {
     },
@@ -101,6 +103,9 @@ import caseList from '@/components/core/caseList'
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+p{
+    word-wrap:break-word;
+}
 .fa{
     color: #888;
 }
@@ -159,12 +164,26 @@ import caseList from '@/components/core/caseList'
     margin: 16px -20px;
 }
 .shouc{
+    position: relative;
     width: 80px;
     height: 80px;
     display: inline-block;
     background-color: #FEE300;
     border-radius: 40px;
     line-height: 200px;
+    text-decoration: none;
+    color: #333;
+    &:hover{
+        background-color: #FFEB46;
+    }
+    .fa-star{
+        font-size: 30px;
+        color: #fff;
+        position: absolute;
+        top: 32%;
+        left: 50%;
+        margin-left: -13px;
+    }
 }
 //右边栏
 .al-logo{
@@ -200,6 +219,11 @@ import caseList from '@/components/core/caseList'
 .lick{
     .title{
         font-size: 16px;
+    }
+    .through{
+        span+span{
+            top: 28px;
+        }
     }
 }
 </style>

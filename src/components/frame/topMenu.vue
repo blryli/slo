@@ -33,12 +33,6 @@
       }
     },
     methods: {
-      // toActive(menu,index) {
-      //   menu.forEach((d, i) =>{
-      //     d.active = false
-      //   })
-      //   menu[index].active = true
-      // }
     }
   }
 

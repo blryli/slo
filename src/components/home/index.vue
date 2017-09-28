@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container m-t-20 m-b-20">
-      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="120">
+      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300">
         <case-list :case-arr="datas"></case-list>
       </div>
     </div>
@@ -17,7 +17,7 @@ var count = 0;
         datas: [
           {
             "src": "static/img/img.png",
-            "title": "去去去去去去去去去去去去去去去去去去",
+            "title": "去去去去去去去去去去去去去",
             "text": "Norm Architects",
             "time": "2018-08-17",
             "particularsText": [
@@ -101,7 +101,7 @@ var count = 0;
           },
           {
             "src": "static/img/img.png",
-            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "title": "AAAAAAAAAA啊啊啊啊啊啊啊啊",
             "text": "Norm Architects",
             "time": "2018-08-17",
             "particularsText": [
@@ -157,7 +157,7 @@ var count = 0;
           },
           {
             "src": "static/img/img.png",
-            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
+            "title": "爱我中华爱中华爱我中华",
             "text": "Norm Architects",
             "time": "2018-08-17",
             "particularsText": [
@@ -378,8 +378,6 @@ var count = 0;
       getCase() {
         this.$http.get('../../../static/data/caseArr.json').then((response) => {
           this.caseArr = response.data.cases
-
-          console.log(this.caseArr)
         }, (response) => {
           console.log(response)
         })
