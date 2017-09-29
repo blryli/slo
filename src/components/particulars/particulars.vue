@@ -45,7 +45,7 @@
                 <ul class="bg-fff lick"  style="padding-bottom: 0;">
                     <li class="title">你可能还喜欢以下项目</li>
                     <li class="hr hr-m-10"></li>
-                    <case-list :case-arr="lickArr" :title-size="titleSize" :min-height="minHeight" :row-top="rowTop"></case-list>
+                    <case-list :case-arr="lickArr" :title-size="14" :row-top="28" :show-text="false"></case-list>
                 </ul>
             </div>
 		</div>
@@ -59,15 +59,6 @@ import caseList from '@/components/core/caseList'
     data () {
       return {
         particularsArr: {},
-        titleSize: {
-            'font-size':'14px'
-        },
-        minHeight: {
-          'min-height': '211px'
-        },
-        rowTop: {
-          'top': '28px'
-        },
         lickArr: [
             {
               src: 'static/img/img.png',

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <div class="header-top container ">
-        <router-link class="navbar-brand" :to="'/'">slo</router-link>
+        <router-link class="navbar-brand phone-margin" :to="'/'">slo</router-link>
         <div class="navbar-header navbar-default">
           <button type="button" class="navbar-toggle" @click="navSwitch">
             <span class="icon-bar"></span>
@@ -25,13 +25,13 @@
             </div>
             <div  class="col-sm-6">
               <div class="row">
-                <div class="col-xs-8 col-sm-6 col-sm-offset-2" style="margin-top: 22px;">
+                <div class="col-xs-8 col-sm-6 col-sm-offset-2 phone-margin" style="margin-top: 22px;">
                   <input type="text" class="form-control" placeholder="请输入公司/作品名称">
                 </div>
                 <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
                   <a href="#"  class="login">登录</a>
-                  <span class="l-hr">|</span>
-                  <a href="#" class="register">注册</a>
+                  <span class="l-hr hidden-xs">|</span>
+                  <a href="#" class="register hidden-xs">注册</a>
                 </div>
                  <div v-else class="col-sm-6">
                   <span class="l-hr">blry</span>
@@ -201,6 +201,9 @@ ul,li{
   height:30px;
   line-height:30px;
 }
+.phone-margin{
+  margin: 0 15px 0 -15px;
+}
 @media (min-width: 768px) { 
     .navbar-header {
         float: none;
@@ -208,12 +211,15 @@ ul,li{
     .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
         margin-left: 0;
     }
- }
+    .phone-margin{
+      margin: 0;
+    }
+}
 
 @media (min-width: 992px) {
   .navbar-header {
       float: left;
-  }
+}
   
 }
 @media (max-width: 992px) {
