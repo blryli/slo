@@ -1,9 +1,9 @@
 <template>
   <ul class="row">
     <li class="col-xs-6 col-sm-4 col-md-3" style="padding: 0" v-for="(item, index) in caseArr">
-      <ul class="slo-case o-h">
+      <ul class="slo-case o-h" :class="{ 'm-b-20': showText == false }">
         <router-link class="img router" :to="{path: '/particulars',query: caseArr[index]}" tag="li"><img :src="item.src"></router-link>
-        <router-link class="title router through" :style="{ 'font-size': titleSize + 'px' }" to="/particulars" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
+        <router-link class="title router through" :class="{ 'p-b-20': showText == false }" :style="{ 'font-size': titleSize + 'px' }" to="/particulars" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
         <li class="text" v-if="showText">{{item.text}}</li>
       </ul>
     </li>
@@ -65,7 +65,7 @@ export default {
 }
 
 .slo-case{
-  max-width: 280px;
+  max-width: 298px;
   background-color: #fff;
   margin: 0 6px 20px;
   &:hover{
@@ -101,19 +101,24 @@ export default {
   font-weight: bold;
   margin-top: 12px;
   min-height: 50px;
+  max-width: 238px;
+  color: #191919;
 }
 .text{
   font-size: 14px;
   padding: 12px 0 20px;
+  color: #282727;
 }
 @media (min-width: 768px) { 
   .slo-case{
     padding: 10px 10px 0;
-    margin: 0 1px 20px;
+    margin: 0 1px 40px;
+    &.m-b-20{
+      margin-bottom: 20px;
+    }
   }
   .title{
-    margin-top: 18px;
-    min-height: 50px;
+    margin-top: 20px;
   }
 }
 </style>

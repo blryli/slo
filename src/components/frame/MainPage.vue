@@ -6,29 +6,29 @@
     <gateway-main></gateway-main>
     <footer>
       <div class="footer">
-        <div class="container row">
-          <div class="col-xs-12 col-sm-2 logo text-center">
-            <h1>slo</h1>
+        <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 logo">
+            <h1>LA<span>FOLIO</span></h1>
           </div>
-          <div class="col-xs-12 col-sm-8 text text-center">
+          <div class="col-xs-12 col-sm-7 text">
             <ul>
-              <li class="col-xs-4"><a href="#">商务合作</a></li>
-              <li class="col-xs-4"><a href="#">联系我们</a></li>
-              <li class="col-xs-4"><a href="#">声明版权</a></li>
-              <li class="col-xs-4"><a href="#">意见反馈</a></li>
-              <li class="col-xs-4"><a href="#">关于我们</a></li>
-              <li class="col-xs-4"><a href="#">隐私保护</a></li>
+              <li class="col-xs-4 about"><a href="#">关于我们</a></li>
+              <li class="col-xs-12"><a href="#">SLO 设计网 Copayright @ 2017 ofo inc. 保留所有权利。京公网安备 11010802022978号</a></li>
             </ul>
           </div>
-          <div class="col-xs-12 col-sm-2  text-center">
+          <div class="col-xs-12 col-sm-2">
             <div class="ewm"><img src="static/img/wx.png" alt="微信"></div>
           </div>
+        </div>
         </div>
         </div>
     </footer>
     <!--返回顶部按钮-->
     <div class="to-top" style="display: none;">
-      <a href="#" title="返回顶部" id="goBack" @click.once="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+      <a href="#" id="goBack" @click.once="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+      <br>
+      <span>返回顶部</span>
     </div>
   </div>
 </template>
@@ -60,7 +60,7 @@
       },
       toggleToTop () {
         $(window).scroll(function(){
-          if($(window).scrollTop() > 450){
+          if($(window).scrollTop() > 150){
             $('.to-top').fadeIn('slow');
           }else{
             $('.to-top').fadeOut('slow');
@@ -96,19 +96,27 @@
   // background-color: #EDEDED;
 }
 .footer {
-  padding: 20px;
+  padding: 20px 0;
   background-color: #282727;
   color: #fff;
   .logo{
     color: #FEE300;
-    text-align: center;
-    margin-top: 15px;
+    margin-top: 18px;
     h1{
-      font-size: 46px;
+      font-size: 40px;
+    }
+    span{
+      opacity: .8;
     }
   }
   .text{
-    padding: 20px 0;
+    padding: 20px 40px;
+    .about{
+      a{
+        font-size: 18px;
+        opacity: 1;
+      }
+    }
     li{
       margin: 10px 0;
       a{
@@ -116,37 +124,41 @@
         opacity: .6;
         color: #fff;
         &:hover{
-          opacity: .9;
           text-decoration: none;
         }
       }
     }
   }
   .ewm{
-    padding: 10px 20px;
+    float: right;
+    padding-top: 20px;
   }
 }
 /* 返回顶部按钮 */
   .to-top {
     position: fixed;
-    bottom: 168px;
-    right: 15px;
+    bottom: 200px;
+    right: 250px;
     cursor: pointer;
     z-index: 999999;
     opacity: 1;
+    span{
+      font-size: 12px;
+      color: #666;
+    }
   }
   #goBack{
-    color: #fff;
-    display: block;
+    color: #666;
+    display: inline-block;
     padding: 10px 14px;
     overflow: hidden;
-    background-color: #666;
-    color: #fff;
+    background-color: #fff;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 20px;
+    border: 1px solid #eee;
     text-decoration: none;
     &:hover{
-      background-color: #444;
+      color: #333;
     }
   }
 
@@ -155,7 +167,7 @@
         .text{
           border-right: 2px solid #666;
           border-left: 2px solid #666;
-          padding: 20px 40px;
+          padding: 20px 80px;
         }
       }
    }

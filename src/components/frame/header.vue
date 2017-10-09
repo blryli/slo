@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <div class="header-top container ">
-        <router-link class="navbar-brand phone-margin" :to="'/'">slo</router-link>
+        <router-link class="navbar-brand phone-margin" :to="'/'">LA<span class="dan">FOLIO</span></router-link>
         <div class="navbar-header navbar-default">
           <button type="button" class="navbar-toggle" @click="navSwitch">
             <span class="icon-bar"></span>
@@ -29,9 +29,9 @@
                   <input type="text" class="form-control" placeholder="请输入公司/作品名称">
                 </div>
                 <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
-                  <a href="#"  class="login">登录</a>
+                  <a href="#"  class="login"><strong>登录</strong><span></span></a>
                   <span class="l-hr hidden-xs">|</span>
-                  <a href="#" class="register hidden-xs">注册</a>
+                  <a href="#" class="register hidden-xs"><strong>注册</strong><span></span></a>
                 </div>
                  <div v-else class="col-sm-6">
                   <span class="l-hr">blry</span>
@@ -118,6 +118,9 @@ export default {
   background-color: #e5e5e5;
   height: 100%;
 }
+.dan{
+  color: #888;
+}
 .form-control{
   background-color: #eee;
   border: 0;
@@ -173,24 +176,41 @@ ul,li{
 }
 .header-top{
   .navbar-brand{
-    font-size: 46px;
-    height: 40px;
-    line-height: 40px;
-    color: #333;
+    font-size: 36px;
+    height: 36px;
+    line-height: 36px;
+    color: #191919;
     padding: 0;
     font-weight: block;
-    margin-top: 30px;
+    margin-top: 36px;
   }
 }
 .login, .register{
+  position: relative;
   height:80px;
   line-height:80px;
-  color: #333;
+  color: #191919;
   text-decoration: none;
-  font-size: 14px;
-  opacity: .8;
+  font-size: 16px;
+  strong{
+    font-weight: normal;
+  }
   &:hover{
-    opacity: 1;
+    strong{
+      position: relative;
+      font-weight: bold;
+      z-index: 10;
+    }
+    span{
+      position: absolute;
+      left: 0;
+      top: 6px;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 4px;
+      background-color: #FEE300;
+    }
   }
 }
 .l-hr{

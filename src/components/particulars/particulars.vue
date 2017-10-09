@@ -17,7 +17,7 @@
                 <li class="unit"><strong>设计时间</strong>：{{particularsArr.teamUnit.time}}</li>
                 <li class="unit"><strong>拍摄者</strong>：{{particularsArr.teamUnit.user}}</li>
                 <li class="hr hr-m-20"></li>
-                <li class="text-center"><a href="#" class="shouc"><i class="fa fa-star" aria-hidden="true"></i>收藏</a></li>
+                <li class="text-center"><button type="button" class="shouc" :class="{active: crrut == true}" @click="crrut = true"><i class="fa fa-star" aria-hidden="true"></i><span v-if="crrut == true">已</span>收藏</button></li>
                 <li class="hr hr-m-20"></li>
                 <li class="text-center"><button type="button" class="btn btn-default"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button></li>
               </ul>
@@ -59,6 +59,7 @@ import caseList from '@/components/core/caseList'
     data () {
       return {
         particularsArr: {},
+        crrut: false,
         lickArr: [
             {
               src: 'static/img/img.png',
@@ -156,14 +157,18 @@ p{
 }
 .shouc{
     position: relative;
+    border: 0;
     width: 80px;
     height: 80px;
     display: inline-block;
-    background-color: #FEE300;
     border-radius: 40px;
     line-height: 200px;
     text-decoration: none;
     color: #333;
+    background-color: #ccc;
+    &.active{
+        background-color: #FEE300;
+    }
     &:hover{
         background-color: #FFEB46;
     }
