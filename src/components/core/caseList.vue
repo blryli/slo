@@ -1,8 +1,8 @@
 <template>
   <ul class="row">
-    <li class="col-xs-6 col-sm-4 col-md-3" style="padding: 0" v-for="(item, index) in caseArr">
+    <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
       <ul class="slo-case o-h">
-        <router-link class="img router" :to="{path: '/particulars',query: caseArr[index]}" tag="li"><img :src="item.src"></router-link>
+        <router-link class="img router" :to="{path: pathUrl,query: caseArr[index]}" tag="li"><img :src="item.src"></router-link>
         <router-link class="title router through" :style="{ 'font-size': titleSize + 'px' }" to="/particulars" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
         <li class="text" v-if="showText">{{item.text}}</li>
       </ul>
@@ -15,6 +15,10 @@
 export default {
     props: {
       caseArr: {},
+      pathUrl: {
+        type: String,
+        default: '/particulars'
+      },
       titleSize: {
         type: Number,
         default: function() {
@@ -26,6 +30,10 @@ export default {
         default: 34
       },
       showText: {
+        type: Boolean,
+        default: true
+      },
+      colFour: {
         type: Boolean,
         default: true
       }
