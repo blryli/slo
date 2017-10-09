@@ -2,11 +2,7 @@
   <div class="bg-F2F2F2 p-b-20">
     <div class="container m-t-20 row" v-for="item in worksArr">
     	<ul class="col-sm-2 works-left">
-        <li class="al-logo text-center">
-            <img :src="item.worksLogo">
-            <h3>{{item.worksName}}</h3>
-        </li>
-        <li class="al-btn text-center"><button type="button" class="btn btn-FEE300">关注</button></li>
+        <attention :attention-arr="item.attentionArr"></attention>
       </ul>
       <div class="col-sm-7 works-center">
         <case-list :case-arr="lickArr" :col-four="false" :title-size="16"></case-list>
@@ -25,14 +21,17 @@
 
 <script>
 import caseList from '@/components/core/caseList'
+import attention from '@/components/core/attention'
 import Recruit from './recruit'
   export default {
   	data () {
       return {
         worksArr: [
           {
-            worksLogo: 'static/img/logo.png',
-            worksName: '默默',
+            attentionArr: {
+              attentionLogo: 'static/img/logo.png',
+              attentionName: '默默'
+            },
             recruitInfo:[
               {
                 company: '纬图设计',
@@ -55,8 +54,10 @@ import Recruit from './recruit'
             ]
           },
           {
-            worksLogo: 'static/img/logo.png',
-            worksName: '默默',
+            attentionArr: {
+              attentionLogo: 'static/img/logo.png',
+              attentionName: '默默'
+            },
             recruitInfo:[
               {
                 company: '纬图设计',
@@ -99,7 +100,7 @@ import Recruit from './recruit'
       }
     },
     components: {
-      caseList, Recruit
+      caseList, Recruit, attention
     }
   }
 
@@ -113,35 +114,8 @@ import Recruit from './recruit'
     background-color: #F2F2F2;
     padding-top: 20px;
 }
-.al-logo{
-    img{
-        width: 60px;
-        height: auto;
-        padding-top: 15px;
-    }
-    h3{
-        margin-top: 10px;
-    }
-}
-.al-btn{
-    margin-top: 20px;
-    &+.al-btn{
-        margin-top: 10px;
-    }
-}
-.btn-FEE300{
-    background-color: #FEE300;
-    &:hover{
-        background-color: #FFEB47;
-    }
-}
-.btn{
-    border-radius: 10px;
-    padding: 4px 8px;
-    width: 106px;
-}
 .works-left{
-  padding-top: 60px;
+  padding-top: 80px;
 }
 .works-center{
   padding-top: 30px;

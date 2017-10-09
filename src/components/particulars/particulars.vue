@@ -3,9 +3,10 @@
         <div class="position-bg"></div>
         <div class="particulars">
           <div class="container m-t-20">
-            <div class="particulars-close" @click="goBack">X</i></div>
-            <div class="particulars-prev" @click="goBack"><i class="fa fa-chevron-left" aria-hidden="true"></i></i></div>
-            <div class="particulars-next" @click="goBack"><i class="fa fa-chevron-right" aria-hidden="true"></i></i></div>
+            <div class="particulars-close" @click="goBack">X</div>
+            <div class="particulars-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+            <div class="particulars-next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+            <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div cladss="row">
                 <div class="col-sm-8"> 
                   <ul class="bg-fff">
@@ -24,16 +25,19 @@
                     <li class="hr hr-m-20"></li>
                     <li class="text-center"><a href="#" class="shouc"><i class="fa fa-star" aria-hidden="true"></i>收藏</a></li>
                     <li class="hr hr-m-20"></li>
-                    <li class="text-center"><button type="button" class="btn btn-default"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button></li>
+                    <li class="text-center particulars-sharing">
+                        <button type="button" class="btn btn-default" @click="alrtSharingShow = true"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button>
+                        <p class="alrt-sharing" v-show="alrtSharingShow == true">
+                            <span class="particulars-close" style="right: 0" @click="alrtSharingShow = false">X</span>
+                            <span class="sharing-text">扫描分享到微信朋友圈</span>
+                            <img class="sharing-ewm" src="static/img/wx.png">
+                        </p>
+                    </li>
                   </ul>
                 </div>
                 <div class="col-sm-4">
                   <ul class="bg-fff">
-                    <li class="al-logo text-center">
-                        <img :src="particularsArr.particularsLogo">
-                        <h3>{{particularsArr.particularsName}}</h3>
-                    </li>
-                    <li class="al-btn text-center"><button type="button" class="btn btn-FEE300">关注</button></li>
+                    <attention :attention-arr="particularsArr"></attention>
                     <li class="al-btn text-center"><button type="button" class="btn btn-default">更多作品</button></li>
                     <li class="hr"></li>
                     <li class="">
@@ -61,10 +65,12 @@
 
 <script>
 import caseList from '@/components/core/caseList'
+import attention from '@/components/core/attention'
   export default {
     data () {
       return {
         particularsArr: {},
+        alrtSharingShow: false,
         lickArr: [
             {
               src: 'static/img/img.png',
@@ -86,7 +92,7 @@ import caseList from '@/components/core/caseList'
       }
   	},
     components: {
-        caseList
+        caseList, attention
     },
     created() {
         this.particularsArr = this.$route.query
@@ -104,6 +110,36 @@ import caseList from '@/components/core/caseList'
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.particulars-bg{
+    background-color: #000;
+    opacity: .2;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.particulars-sharing{
+    position: relative;
+    .alrt-sharing{
+        z-index: 20;
+        position: absolute;
+        left: 50%;
+        margin-left: -91px;
+        width: 182px;
+        background-color: #fff;
+        top: -260px;
+        .sharing-text{
+            display: inline-block;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .sharing-ewm{
+            padding: 20px;
+        }
+    }
+}
 p{
     word-wrap:break-word;
 }
@@ -137,6 +173,7 @@ p{
         cursor: pointer;
         &:hover{
             color: #333;
+            background-color: #FEE300;
         }
     }
 }
@@ -171,7 +208,7 @@ p{
     }
 }
 .btn{
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 4px 8px;
     width: 106px;
 }

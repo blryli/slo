@@ -12,7 +12,10 @@
 <script>
   export default {
     props: {
-      recruitInfo: ''
+      recruitInfo: {
+        type: Array,
+        default: []
+      }
     },
     data () {
       return {}
