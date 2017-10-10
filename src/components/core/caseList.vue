@@ -79,6 +79,11 @@ export default {
   img{
     width: 100%;
     height: auto;
+    &:hover{
+      transition: filter .3s;
+      filter: brightness(1.1) contrast(110%);
+      -webkit-filter: brightness(1.1) contrast(110%);
+    }
   }
 }
 .through{
