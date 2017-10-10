@@ -1,5 +1,8 @@
 <template>
   <ul class="row">
+    <li class="col-xs-6 col-sm-4 recruit-box" :class="{'col-md-3': colFour}" style="float: right" v-if="recruitShow == true">
+      <recruit :recruit-info="recruitInfo"></recruit>
+    </li>
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
       <ul class="slo-case o-h">
         <router-link class="img router" :to="{path: pathUrl,query: caseArr[index]}" tag="li"><img :src="item.src"></router-link>
@@ -11,10 +14,11 @@
 </template>
 
 <script>
-
+import Recruit from '@/components/works/recruit'
 export default {
     props: {
       caseArr: {},
+      recruitInfo: {},
       pathUrl: {
         type: String,
         default: '/particulars'
@@ -36,7 +40,14 @@ export default {
       colFour: {
         type: Boolean,
         default: true
+      },
+      recruitShow: {
+        type: Boolean,
+        default: false
       }
+    },
+    components: {
+      Recruit
     },
     data () {
         return {
@@ -71,6 +82,14 @@ export default {
 .o-h{
   overflow: hidden;
 }
+.recruit-box{
+  margin-bottom: 40px;
+  .works-recruit{
+    background-color: #f2f2f2;
+    padding: 30px 20px;
+    min-height: 316px;
+  }
+}
 
 .slo-case{
   max-width: 298px;
@@ -92,22 +111,6 @@ export default {
       filter: brightness(1.1) contrast(110%);
       -webkit-filter: brightness(1.1) contrast(110%);
     }
-  }
-}
-.through{
-  position: relative;
-  strong{
-    position: relative;
-    z-index: 10;
-  }
-  span{
-    position: absolute;
-    top: 10px;
-    z-index: 0;
-    display: block;
-    width: 100%;
-    height: 4px;
-    background-color: #FEE300;
   }
 }
 .title{

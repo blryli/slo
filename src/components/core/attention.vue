@@ -2,7 +2,7 @@
   <li class="al-logo text-center">
       <img :src="attentionArr.attentionLogo">
       <h3>{{attentionArr.attentionName}}</h3>
-      <p class="al-btn text-center"><button type="button" class="btn btn-FEE300" :class="{ 'btn-default': active == true }" @click="active = true"><span v-show="active == true">已</span>关注</button></p>
+      <p class="al-btn text-center"><button type="button" class="btn btn-FEE300" :class="{ 'btn-default': attentionActive == true }" @click="attentionActive =! attentionActive"><span v-show="attentionActive == true">已</span>关注</button></p>
   </li>
 </template>
 
@@ -13,7 +13,7 @@
     },
     data () {
       return {
-        active: false
+        attentionActive: false
       }
     },
     components: {
@@ -36,22 +36,13 @@
 .al-btn{
     margin-top: 20px;
 }
-.btn-FEE300{
-    background-color: #FEE300;
-    &:hover{
-        background-color: #FFEB47;
+.companyProfile{
+    .al-logo{
+        padding: 50px 40px;
     }
-}
-.btn-default{
-    background-color: #fff;
-    &:hover{
-        background-color: #fff;
+    .al-btn{
+        padding-top: 30px;
     }
-}
-.btn{
-    border-radius: 8px;
-    padding: 4px 8px;
-    width: 106px;
 }
 
 </style>

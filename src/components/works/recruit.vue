@@ -5,7 +5,7 @@
         <li><strong>{{recruit.company}}（{{recruit.address}}）</strong></li>
         <li>{{recruit.position}}&nbsp;/&nbsp;{{recruit.state}}</li>
       </ul>
-      <a href="#">查看更多</a>
+      <router-link :to="{ path: '/companyProfile', query: 11}" class="more">查看更多</router-link>
     </div>
 </template>
 

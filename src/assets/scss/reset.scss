@@ -7,3 +7,12 @@
 li{
 	list-style: none;
 }
+*, .btn{
+	outline:0;
+	&:focus {outline:0;}
+}
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+	border: 0;
+	&:focus {outline:none;}
+}

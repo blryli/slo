@@ -23,7 +23,7 @@
                     <li class="unit"><strong>设计时间</strong>：{{particularsArr.teamUnit.time}}</li>
                     <li class="unit"><strong>拍摄者</strong>：{{particularsArr.teamUnit.user}}</li>
                     <li class="hr hr-m-20"></li>
-                    <li class="text-center"><a href="#" class="shouc"><i class="fa fa-star" aria-hidden="true"></i>收藏</a></li>
+                    <li class="text-center"><a href="javascript:;" class="shouc" :class="{ active: crrut == true }" @click="crrut = true"><i class="fa fa-star" aria-hidden="true"></i><span v-show="crrut == true">已</span>收藏</a></li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center particulars-sharing">
                         <button type="button" class="btn btn-default" @click="alrtSharingShow = true"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button>
@@ -38,7 +38,7 @@
                 <div class="col-sm-4">
                   <ul class="bg-fff">
                     <attention :attention-arr="particularsArr"></attention>
-                    <li class="al-btn text-center"><button type="button" class="btn btn-default">更多作品</button></li>
+                    <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: particularsArr}" class="btn btn-default">更多作品</router-link></li>
                     <li class="hr"></li>
                     <li class="">
                         <p v-for="(item, index) in particularsArr.particularsAbout" v-if="index==0">{{item.text}}</p>
@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import caseList from '@/components/core/caseList'
 import attention from '@/components/core/attention'
   export default {
     data () {
@@ -93,7 +92,7 @@ import attention from '@/components/core/attention'
       }
   	},
     components: {
-        caseList, attention
+        attention
     },
     created() {
         this.particularsArr = this.$route.query
@@ -241,11 +240,6 @@ p{
         display: inline-block;
     }
 }
-.hr{
-    height: 1px;
-    background-color: #eee;
-    margin: 30px 0;
-}
 .hr-m-20{
     margin: 30px -20px;
 }
@@ -301,13 +295,7 @@ p{
         background-color: #FFEB47;
     }
 }
-.more{
-    text-decoration: underline;
-    color: #6294BE;
-    &:hover{
-        color: #87AECE;
-    }
-}
+
 //底部
 .lick{
     .title{

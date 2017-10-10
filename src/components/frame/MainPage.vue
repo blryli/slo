@@ -26,7 +26,7 @@
     </footer>
     <!--返回顶部按钮-->
     <div class="to-top" style="display: none;">
-      <a href="#" id="goBack" @click.once="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+      <button type="button" id="goBack" @click="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
       <br>
       <span>返回顶部</span>
     </div>
@@ -67,11 +67,13 @@
           }
         })
       },
-      //当点击跳转按钮时
+      //回到顶部
       backTop () {
-        $('body').animate({
-          scrollTop:0
-        },500)
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        // $('body').stop().animate({
+        //   scrollTop:0
+        // },500)
       }
     }
   }
