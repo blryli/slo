@@ -7,10 +7,10 @@
       "url": "/"
     },
     {
-      "id": "sale",
+      "id": "works",
       "active": false,
       "menu_name": "作品集",
-      "url": "/sale"
+      "url": "/works"
     }
   ]
 }
