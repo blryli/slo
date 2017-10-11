@@ -30,7 +30,7 @@
                   <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
                 </div>
                 <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
-                  <a href="#"  class="login"><strong>登录</strong><span></span></a>
+                  <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
                   <span class="l-hr hidden-xs">|</span>
                   <a href="#" class="register hidden-xs"><strong>注册</strong><span></span></a>
                 </div>

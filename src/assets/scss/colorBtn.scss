@@ -19,3 +19,21 @@
         background-color: #fff;
     }
 }
+.el-checkbox__input.is-checked .el-checkbox__inner{
+    background-color: #FEE300;
+    border-color: #F0DC30;
+}
+.el-checkbox__input.is-focus .el-checkbox__inner{
+    border-color: #F0DC30;
+}
+.el-checkbox__inner:hover {
+    border-color: #F0DC30;
+}
+.el-checkbox__label{
+    color: #282727;
+    font-weight: 100;
+}
+.form-group--error+.form-group__message{
+    bottom: 90px;
+    left: 0;
+}
