@@ -29,13 +29,24 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                   <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
                 </div>
-                <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
+                <div class="col-xs-4 col-sm-4 col-md-6 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
                   <span class="l-hr hidden-xs">|</span>
-                  <a href="#" class="register hidden-xs"><strong>注册</strong><span></span></a>
+                  <router-link :to="{path:'/login',query: {crru:2}}" class="register hidden-xs"><strong>注册</strong><span></span></router-link>
                 </div>
-                 <div v-else class="col-sm-6">
-                  <span class="l-hr">blry</span>
+                 <div v-else class="col-xs-4 col-sm-4 col-md-6 text-right loginFinish">
+                    <div class="uesr-box">
+                      <img :src="userImg" alt="我的头像">
+                      <div class="p-yellow"></div>
+                      <ul class="dropdown-menu dropdown-menu-right user-info">
+                        <li><a href="#">{{userName}}</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">我的收藏</a></li>
+                        <li><a href="#">我的关注</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" @click="pullOut">退出</a></li>
+                      </ul>
+                    </div>
                 </div>
               </div>
             </div>
@@ -54,6 +65,7 @@ export default {
       showNav: false,
       active: false,
       userName : '',
+      userImg: '',
       menuJson: {}
     }
   },
@@ -71,9 +83,20 @@ export default {
     this.getTopMenu()
   },
   mounted() {
-    
+  },
+  watch: {
+    '$route.query.name': function() {
+      if(this.$route.query.name && this.$route.query.src){
+        this.userName = this.$route.query.name
+        this.userImg = this.$route.query.src
+      }
+    }
   },
   methods: {
+    pullOut() {
+      this.userName = ''
+      this.userImg = ''
+    },
   	// login: function() {
    //          //绑定Ajax的内容
    //          let _url = window.location.href
@@ -115,6 +138,46 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.container{
+  padding: 0;
+}
+.loginFinish{
+  margin-top: 18px;
+  .uesr-box{
+    position: relative;
+    .p-yellow{
+      display: none;
+    }
+    .user-info{
+      display: none;
+      border-radius: 0;
+      padding: 10px 0;
+      top: 60px;
+    }
+    img{
+      z-index: 1050;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    &:hover{
+      .p-yellow{
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: -20px;
+        width: 60px;
+        height: 160px;
+        background-color: #FEE300;
+      }
+      .user-info{
+        display: block;
+      }
+    }
+  }
+}
 .header-topsearch{
   position: relative;
   .fa{

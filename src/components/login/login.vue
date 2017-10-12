@@ -12,15 +12,15 @@
 				</div>
 				<div v-show="crru == 1">
 					<div class="login-container">
-						<div class="form-group" v-bind:class="{ 'form-group--error': $v.loginPhone.$error, 'form-group--loading': $v.loginPhone.$pending }">
+						<div class="form-group" v-bind:class="{ 'form-group--error': $v.loginPhone.$error }">
 						    <input type="number" class="form__input login-input" name="phone" placeholder="请输入手机号码" v-model.trim="loginPhone" @input="$v.loginPhone.$touch()">
 						 </div>
-						 <span class="form-group__message" v-if="!$v.loginPhone.required && $v.loginPassword.required">手机号不能为空</span>
-						 <div class="form-group" v-bind:class="{ 'form-group--error': $v.loginPassword.$error, 'form-group--loading': $v.loginPassword.$pending }">
+						 <span class="form-group__message" v-if="!$v.loginPhone.required">手机号不能为空</span>
+						 <div class="form-group" v-bind:class="{ 'form-group--error': $v.loginPassword.$error }">
 						    <input type="password" class="form__input login-input" name="phone" placeholder="请输入密码" v-model.trim="loginPassword" @input="$v.loginPassword.$touch()">
 						 </div>
 						 <span class="form-group__message" v-if="$v.loginPhone.required && !$v.loginPassword.required">密码不能为空</span>
-						 <span class="form-group__message" v-if="erroInfo == true">手机号或密码错误</span>
+						 <span class="form-group__message" v-if="!$v.loginPhone.required && !$v.loginPassword.required">手机号或密码错误</span>
 						<button type="button" class="btn btn-dl m-t-30" @click="loginBtn">登录</button>
 						<el-checkbox v-model="checked">下次自动登陆</el-checkbox>
 						<a href="#" class="forget">忘记密码</a>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { required, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength } from 'vuelidate/lib/validators'
   export default {
     props: {},
     data() {
@@ -69,7 +69,6 @@ import { required, maxLength } from 'vuelidate/lib/validators'
     		yzmStatus: true,
     		loginPhone: '',
     		loginPassword: '',
-    		erroInfo: false
     	}
     },
     components: {
@@ -77,19 +76,23 @@ import { required, maxLength } from 'vuelidate/lib/validators'
     validations() {
     	return {
     		loginPhone: {
-    			required
+    			required,
     		},
     		loginPassword: {
     			required
     		}
     	}
     },
+    created() {
+    	if(this.$route.query.crru == 2){
+	    	this.crru = 2
+    	}
+    },
     methods: {
     	loginBtn() {
-    		if( this.loginPhone == '' && this.loginPassword =='') {
-    			this.erroInfo = true
+    		if( this.loginPhone =! '' && this.loginPassword !='') {
+	    		this.$router.push({ path: '/',query: {name: '我叫鎏锋胸',src: 'static/img/xiong.png'} })
     		}
-    		this.$router.push({ path: '/' })
     	}
     }
   }
