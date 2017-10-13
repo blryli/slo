@@ -217,7 +217,7 @@ input:-moz-placeholder { color: #ddd; }
 	left: 0;
 	height: 763px;
 	z-index: 1000;
-	background: url(/static/img/login.png) no-repeat center center;
+	background: url(/static/img/login.jpg) no-repeat center center;
 }
 .logo{
 	margin-top: 6%;
