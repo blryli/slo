@@ -13,7 +13,7 @@
       <nav class="navbar">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <!-- <el-collapse-transition> -->
               <div v-show="showNav" @click="closeNav" :class="{nbActive: showNav}">
                   <top-menu :top-menu="menuJson" class="phone-top-menu"></top-menu>
@@ -23,18 +23,18 @@
                 <top-menu :top-menu="menuJson"></top-menu>
               </div>
             </div>
-            <div  class="col-sm-6">
+            <div  class="col-sm-4">
               <div class="row">
-                <div class="col-xs-8 col-sm-6 col-sm-offset-2 phone-margin header-topsearch" style="margin-top: 22px;">
+                <div class="col-xs-8 col-sm-8 phone-margin header-topsearch" style="margin-top: 22px;">
                   <i class="fa fa-search" aria-hidden="true"></i>
                   <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-6 text-right" v-if="userName == ''">
+                <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
                   <span class="l-hr hidden-xs">|</span>
                   <router-link :to="{path:'/login',query: {crru:2}}" class="register hidden-xs"><strong>注册</strong><span></span></router-link>
                 </div>
-                 <div v-else class="col-xs-4 col-sm-4 col-md-6 text-right loginFinish">
+                 <div v-else class="col-xs-4 col-sm-4 text-right loginFinish">
                     <div class="uesr-box">
                       <img :src="userImg" alt="我的头像">
                       <div class="p-yellow"></div>
