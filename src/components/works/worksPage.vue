@@ -325,7 +325,7 @@ var count = 0;
     font-size: 69px;
     font-weight: 500;
     margin-bottom: 30px;
-    color: #000;
+    color: #191919;
     text-align: center;
   }
   .hr{

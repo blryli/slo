@@ -14,7 +14,9 @@
     props: {
       recruitInfo: {
         type: Array,
-        default: []
+        default: function() {
+          return []
+        }
       }
     },
     data () {

@@ -18,7 +18,12 @@ import Recruit from '@/components/works/recruit'
 export default {
     props: {
       caseArr: {},
-      recruitInfo: {},
+      recruitInfo: {
+        type: Array,
+        default: function() {
+          return []
+        }
+      },
       pathUrl: {
         type: String,
         default: '/particulars'

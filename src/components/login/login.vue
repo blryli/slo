@@ -2,7 +2,7 @@
 	<div class="box-height">
 		<div class="login-box">
 			<div class="logo">
-			  	<h1>LA<span>FOLIO</span></h1>
+			  	<img src="static/img/logo2.png">
 			  	<p>登陆LAFOLIO，发现更多精彩内容</p>
 			</div>
 			<div class="login-content">
@@ -222,13 +222,9 @@ input:-moz-placeholder { color: #ddd; }
 .logo{
 	margin-top: 6%;
 	text-align: center;
-  h1{
-  	color: #FEE300;
-    font-size: 36px;
-
-  }
-  span{
-    opacity: .6;
+  img{
+  	display: block;
+  	margin: 0 auto 20px;
   }
   p{
   	font-size: 18px;

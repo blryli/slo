@@ -19,6 +19,22 @@
         background-color: #fff;
     }
 }
+
+//关闭按钮
+.particulars-close{
+    position: absolute;
+    right: 15px;
+    top: -36px;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    font-weight: normal;
+    cursor: pointer;
+    background: url(/static/img/ic_close.png) no-repeat center center;
+    &:hover{
+        background: url(/static/img/ic_close_2.png) no-repeat center center;
+    }
+}
 .el-checkbox__input.is-checked .el-checkbox__inner{
     background-color: #FEE300;
     border-color: #F0DC30;

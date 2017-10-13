@@ -8,6 +8,7 @@ import Works from '@/components/works/works'
 import WorksPage from '@/components/works/worksPage'
 import CompanyProfile from '@/components/works/companyProfile'
 import Login from '@/components/login/login'
+import myCenter from '@/components/myCenter/myCenter'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,8 @@ const router = new VueRouter({
         { path: '/works', name: '作品集', component: Works },
         { path: '/worksPage', name: '公司作品', component: WorksPage },
         { path: '/companyProfile', name: '公司详情', component: CompanyProfile },
-        { path: '/login', name: '公司详情', component: Login },
+        { path: '/login', name: '登录注册', component: Login },
+        { path: '/myCenter', name: '个人中心', component: myCenter },
       ]
     }
   ]

@@ -123,7 +123,7 @@ import Recruit from './recruit'
 .works-right{
   border-left: 1px solid #ddd;
   height: 326px;
-  text-align: center;
+  padding-left: 30px;
   padding-top: 140px;
   label{
     .fa{

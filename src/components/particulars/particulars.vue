@@ -3,11 +3,11 @@
         <div class="position-bg"></div>
         <div class="particulars">
           <div class="container m-t-20">
-            <div class="particulars-close" @click="goBack">X</div>
+            <div class="particulars-close" @click="goBack"></div>
             <div class="particulars-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
             <div class="particulars-next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
-            <div cladss="row">
+            <div class="row">
                 <div class="col-sm-8"> 
                   <ul class="bg-fff">
                     <li class="title">{{particularsArr.title}}</li>
@@ -28,7 +28,7 @@
                     <li class="text-center particulars-sharing">
                         <button type="button" class="btn btn-default" @click="alrtSharingShow = true"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button>
                         <p class="alrt-sharing" v-show="alrtSharingShow == true">
-                            <span class="particulars-close" style="right: 0" @click="alrtSharingShow = false">X</span>
+                            <span class="particulars-close" style="right: 0" @click="alrtSharingShow = false"></span>
                             <span class="sharing-text">扫描分享到微信朋友圈</span>
                             <img class="sharing-ewm" src="static/img/wx.png">
                         </p>
@@ -65,6 +65,7 @@
 
 <script>
 import attention from '@/components/core/attention'
+import caseList from '@/components/core/caseList'
   export default {
     data () {
       return {
@@ -92,7 +93,7 @@ import attention from '@/components/core/attention'
       }
   	},
     components: {
-        attention
+        attention, caseList
     },
     created() {
         this.particularsArr = this.$route.query
@@ -147,19 +148,6 @@ p{
     position: relative;
     z-index: 2000;
 }
-.particulars-close{
-    position: absolute;
-    right: 30px;
-    top: -42px;
-    font-size: 36px;
-    color: #fff;
-    font-weight: normal;
-    cursor: pointer;
-    opacity: .6;
-    &:hover{
-        opacity: .8;
-    }
-}
 .particulars-prev, .particulars-next{
     position: absolute;
     top: 160px;
@@ -168,20 +156,20 @@ p{
         width: 40px;
         height: 40px;
         line-height: 40px;
+        color: #191919;
         border-radius: 20px;
         text-align: center;
         cursor: pointer;
         &:hover{
-            color: #333;
             background-color: #FEE300;
         }
     }
 }
 .particulars-prev{
-    left: -35px;
+    left: -45px;
 }
 .particulars-next{
-    right: -35px;
+    right: -45px;
 }
 .position-bg{
     position: fixed;

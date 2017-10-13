@@ -9,7 +9,7 @@
         <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-3 logo">
-            <router-link :to="'/'"><h1>LA<span>FOLIO</span></h1></router-link>
+            <router-link :to="'/'"><img src="static/img/logo2.png"></router-link>
           </div>
           <div class="col-xs-12 col-sm-7 text">
             <ul>
@@ -101,18 +101,11 @@
   padding: 20px 0;
   background-color: #282727;
   color: #fff;
+  .container{
+    padding: 0;
+  }
   .logo{
-    margin-top: 28px;
-    a{
-      color: #FEE300;
-      text-decoration: none;
-      h1{
-        font-size: 36px;
-      }
-      span{
-        opacity: .6;
-      }
-    }
+    margin-top: 52px;
   }
   .text{
     padding: 20px 40px;

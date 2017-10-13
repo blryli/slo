@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <div class="header-top container ">
-        <router-link class="navbar-brand phone-margin" :to="'/'">LA<span class="dan">FOLIO</span></router-link>
+        <router-link class="navbar-brand phone-margin" :to="'/'"><img src="static/img/logo1.png"></router-link>
         <div class="navbar-header navbar-default">
           <button type="button" class="navbar-toggle" @click="navSwitch">
             <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
                       <img :src="userImg" alt="我的头像">
                       <div class="p-yellow"></div>
                       <ul class="dropdown-menu dropdown-menu-right user-info">
-                        <li><a href="#">{{userName}}</a></li>
+                        <li><router-link :to="{path: '/myCenter'}">{{userName}}</router-link></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">我的收藏</a></li>
                         <li><a href="#">我的关注</a></li>
@@ -254,13 +254,12 @@ ul,li{
 }
 .header-top{
   .navbar-brand{
-    font-size: 36px;
-    height: 36px;
-    line-height: 36px;
-    color: #191919;
     padding: 0;
-    font-weight: block;
     margin-top: 36px;
+    height: 28px;
+    img{
+      display: block;
+    }
   }
 }
 .login, .register{
@@ -324,11 +323,5 @@ ul,li{
 }
 
 @media (min-width: 1200px) {
-   .navbar-brand{
-     img{
-       width: 200px;
-       height: auto;
-     }
-   }
 }
 </style>
