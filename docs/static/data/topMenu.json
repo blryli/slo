@@ -1,0 +1,17 @@
+{
+  "menus": [
+    {
+      "id": "index",
+      "active": true,
+      "menu_name": "发现案例",
+      "url": "/"
+    },
+    {
+      "id": "works",
+      "active": false,
+      "menu_name": "作品集",
+      "url": "/works"
+    }
+  ]
+}
+
