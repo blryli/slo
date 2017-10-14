@@ -26,9 +26,13 @@
     </footer>
     <!--返回顶部按钮-->
     <div class="to-top" style="display: none;">
-      <button type="button" id="goBack" @click="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
-      <br>
-      <span>返回顶部</span>
+      <div class="container">
+        <p>
+          <button type="button" id="goBack" @click="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+          <br>
+          <span>返回顶部</span>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -135,14 +139,21 @@
 /* 返回顶部按钮 */
   .to-top {
     position: fixed;
-    bottom: 200px;
-    right: 250px;
+    bottom: 194px;
+    width: 100%;
     cursor: pointer;
     z-index: 999999;
     opacity: 1;
+    .container{
+      position: relative;
+      text-align: right;
+    }
     span{
       font-size: 12px;
       color: #666;
+    }
+    p{
+      margin-right: -80px;
     }
   }
   #goBack{

@@ -39,12 +39,12 @@
                       <img :src="userImg" alt="我的头像">
                       <div class="p-yellow"></div>
                       <ul class="dropdown-menu dropdown-menu-right user-info">
-                        <li><router-link :to="{path: '/myCenter'}">{{userName}}</router-link></li>
+                        <li class="user-text"><router-link :to="{path: '/myCenter'}">{{userName}}</router-link></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">我的收藏</a></li>
-                        <li><a href="#">我的关注</a></li>
+                        <li class="user-text"><a href="#">我的收藏</a></li>
+                        <li class="user-text"><a href="#">我的关注</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#" @click="pullOut">退出</a></li>
+                        <li class="user-text"><a href="#" @click="pullOut">退出</a></li>
                       </ul>
                     </div>
                 </div>
@@ -138,6 +138,16 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.user-info {
+  .user-text{
+    padding: 4px 0;
+    a{
+      &:hover{
+        font-weight: bold;
+      }
+    }
+  }
+}
 .container{
   padding: 0;
 }
