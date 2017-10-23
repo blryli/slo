@@ -13,7 +13,7 @@
       <nav class="navbar">
         <div class="container">
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <!-- <el-collapse-transition> -->
               <div v-show="showNav" @click="closeNav" :class="{nbActive: showNav}">
                   <top-menu :top-menu="menuJson" class="phone-top-menu"></top-menu>
@@ -23,15 +23,15 @@
                 <top-menu :top-menu="menuJson"></top-menu>
               </div>
             </div>
-            <div  class="col-sm-4">
+            <div  class="col-sm-5">
               <div class="row">
-                <div class="col-xs-8 col-sm-8 phone-margin header-topsearch" style="margin-top: 22px;">
+                <div class="col-xs-8 col-sm-6 col-sm-offset-2 phone-margin header-topsearch" style="margin-top: 26px;">
                   <i class="fa fa-search" aria-hidden="true"></i>
                   <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
                 </div>
                 <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
-                  <span class="l-hr hidden-xs">|</span>
+                  <span class="l-hr hidden-xs"></span>
                   <router-link :to="{path:'/login',query: {crru:2}}" class="register hidden-xs"><strong>注册</strong><span></span></router-link>
                 </div>
                  <div v-else class="col-xs-4 col-sm-4 text-right loginFinish">
@@ -197,7 +197,7 @@ export default {
     color: #aaa;
   }
   .form-control{
-    height: 30px;
+    height: 26px;
     padding-left: 30px;
     font-size: 12px;
   }
@@ -291,7 +291,7 @@ ul,li{
     span{
       position: absolute;
       left: 0;
-      top: 6px;
+      top: 2px;
       z-index: 0;
       display: block;
       width: 100%;
@@ -301,12 +301,11 @@ ul,li{
   }
 }
 .l-hr{
-  color: #aaa;
-  margin: 0 10%;
-  opacity: .6;
-  font-size: 12px;
-  height:30px;
-  line-height:30px;
+  background-color: #aaa;
+  margin: 0 18px -2px;
+  width: 1px;
+  height: 14px;
+  display: inline-block;
 }
 .phone-margin{
   margin: 0 15px 0 -15px;

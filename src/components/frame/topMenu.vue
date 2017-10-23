@@ -68,21 +68,19 @@
 }
 .active .menu-text{
   position: relative;
+  padding: 0 4px;
   .title{
     position: relative;
     z-index: 10;
   }
   span{
     position: absolute;
-    top: 16px;
+    top: 20px;
     z-index: 0;
     display: block;
     width: 100%;
     height: 4px;
     background-color: #FEE300;
-    &+span{
-      top: 34px;
-    }
   }
 }
 @media (min-width: 768px) { 

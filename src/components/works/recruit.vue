@@ -29,16 +29,25 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
 .works-recruit{
   padding-top: 40px;
+  position: relative;
+  height: 316px;
   h2{
     font-size: 18px;
     font-weight: bold;
     margin: 0;
+    margin-bottom: 15px;
   }
   ul{
-    margin-top: 15px;
+    margin-top: 10px;
     li{
       line-height: 24px;
+      color: #191919;
     }
+  }
+  .more{
+    position: absolute;
+    left: 0;
+    bottom: 40px;
   }
 }
 </style>

@@ -28,7 +28,7 @@
     <div class="to-top" style="display: none;">
       <div class="container">
         <p>
-          <button type="button" id="goBack" @click="backTop"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+          <a id="goBack" @click="backTop"></a>
           <br>
           <span>返回顶部</span>
         </p>
@@ -139,7 +139,7 @@
 /* 返回顶部按钮 */
   .to-top {
     position: fixed;
-    bottom: 194px;
+    bottom: 210px;
     width: 100%;
     cursor: pointer;
     z-index: 999999;
@@ -150,24 +150,20 @@
     }
     span{
       font-size: 12px;
+      margin-top: 6px;
       color: #666;
     }
     p{
-      margin-right: -80px;
+      margin-right: -100px;
     }
   }
   #goBack{
-    color: #666;
+    width:40px;
+    height: 40px;
     display: inline-block;
-    padding: 10px 14px;
-    overflow: hidden;
-    background-color: #fff;
-    font-size: 14px;
-    border-radius: 20px;
-    border: 1px solid #eee;
-    text-decoration: none;
+    background: url(/static/img/ic_back1.png) no-repeat center center;
     &:hover{
-      color: #333;
+      background: url(/static/img/ic_back_select.png) no-repeat center center;
     }
   }
 

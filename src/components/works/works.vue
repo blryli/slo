@@ -12,7 +12,7 @@
       </div>
       <div class="col-sm-1 works-right">
         <router-link :to="{ path: '/worksPage', query: worksArr}">  
-          <label class="text-center"><i class="fa fa-chevron-right" aria-hidden="true"></i><br><small>查看全部</small></label>
+          <label class="text-center"><i class="fa" aria-hidden="true"></i><small>查看全部</small></label>
         </router-link>
       </div>
     </div>
@@ -109,47 +109,40 @@ import Recruit from './recruit'
 <style lang="scss" rel="stylesheet/scss" scoped>
 .container{
 	background-color: #fff;
+  height: 316px;
 }
 .bg-F2F2F2{
     background-color: #F2F2F2;
     padding-top: 20px;
 }
 .works-left{
-  padding-top: 80px;
+  padding-top: 85px;
 }
 .works-center{
   padding-top: 30px;
 }
 .works-right{
   border-left: 1px solid #ddd;
-  height: 348px;
+  height: 316px;
   padding-left: 30px;
-  padding-top: 140px;
+  padding-top: 130px;
   label{
     .fa{
-        background-color: #fff;
-        border: 1px solid #666;
         width: 40px;
         height: 40px;
-        padding-left: 2px;
-        line-height: 40px;
-        border-radius: 20px;
         cursor: pointer;
+        background: url(/static/img/ic_view_all.png) no-repeat center center;
     }
     small{
-      margin-top: 10px;
+      margin-top: 6px;
       display: inline-block;
-      color: #888;
+      color: #696969;
+      font-size: 12px;
       font-weight: normal;
     }
     &:hover{
       .fa{
-        color: #333;
-        background-color: #FEE300;
-        border-color: #FEE300;
-      }
-      small{
-        color: #333;
+        background: url(/static/img/ic_view_all1.png) no-repeat center center;
       }
     }
   }

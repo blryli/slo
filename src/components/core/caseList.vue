@@ -84,6 +84,9 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+ul{
+  margin-bottom: 0;
+}
 .o-h{
   overflow: hidden;
 }
@@ -127,13 +130,13 @@ export default {
 }
 .text{
   font-size: 14px;
-  padding: 12px 0 20px;
+  padding: 14px 0 16px;
   color: #282727;
 }
 @media (min-width: 768px) { 
   .slo-case{
     padding: 10px 10px 0;
-    margin: 0 1px 40px;
+    margin: 0 1px 30px;
     &.m-b-20{
       margin-bottom: 20px;
     }

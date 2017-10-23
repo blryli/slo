@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container m-t-20 m-b-20">
+    <div class="container m-t-20 m-b-10">
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300" infinite-scroll-immediate-check="true">
         <case-list :case-arr="datas"></case-list>
       </div>
