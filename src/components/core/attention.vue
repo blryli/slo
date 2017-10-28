@@ -35,6 +35,7 @@
     }
     h3{
         margin-top: 10px;
+        word-wrap: break-word;
     }
 }
 .btn{

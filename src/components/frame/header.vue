@@ -29,7 +29,7 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                   <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
                 </div>
-                <div class="col-xs-4 col-sm-4 text-right" v-if="userName == ''">
+                <div class="col-xs-3 col-sm-4 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
                   <span class="l-hr hidden-xs"></span>
                   <router-link :to="{path:'/login',query: {crru:2}}" class="register hidden-xs"><strong>注册</strong><span></span></router-link>
@@ -219,7 +219,7 @@ export default {
   .navbar-toggle {
     padding: 14px;
     margin-top: 21px;
-    margin-right: 0;
+    margin-right: 15px;
     .icon-bar{
       width: 24px;
       height: 3px;
@@ -309,7 +309,7 @@ ul,li{
   display: inline-block;
 }
 .phone-margin{
-  margin: 0 15px 0 -15px;
+  margin: 0 15px 0 0;
 }
 @media (min-width: 768px) { 
     .navbar-header {
@@ -320,6 +320,11 @@ ul,li{
     }
     .phone-margin{
       margin: 0;
+    }
+    .navbar-default{
+      .navbar-toggle {
+        margin-right: 0;
+      }
     }
 }
 

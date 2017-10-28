@@ -42,6 +42,9 @@
     li{
       line-height: 24px;
       color: #191919;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
     }
   }
   .more{

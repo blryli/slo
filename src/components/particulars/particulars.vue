@@ -23,8 +23,11 @@
                     <li class="unit"><strong>设计时间</strong>：{{particularsArr.teamUnit.time}}</li>
                     <li class="unit"><strong>拍摄者</strong>：{{particularsArr.teamUnit.user}}</li>
                     <li class="hr hr-m-20"></li>
-                    <li class="text-center"><a href="javascript:;" class="shouc" :class="{ active: crrut == true }" @click="crrut = true"><i class="fa fa-star" aria-hidden="true"></i><span v-show="crrut == true">已</span>收藏</a></li>
-                    <li class="hr hr-m-20"></li>
+                    <li class="text-center">
+                        <a href="javascript:;" class="shouc" :class="{ active: crrut == true }" @click="crrut = true"></a>
+                        <p><span v-show="crrut == true">已</span>收藏</p>
+                    </li>
+                    <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
                     <li class="text-center particulars-sharing">
                         <button type="button" class="btn btn-default" @click="alrtSharingShow = true"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button>
                         <p class="alrt-sharing" v-show="alrtSharingShow == true">
@@ -50,7 +53,7 @@
           </div>
           <div class="container m-t-20">
     		<div class="row m-b-20">
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     <ul class="bg-fff lick"  style="padding-bottom: 0;">
                         <li class="title">你可能还喜欢以下项目</li>
                         <li class="hr hr-m-10"></li>
@@ -153,17 +156,17 @@ p{
     cursor: pointer;
     width: 40px;
     height: 40px;
-    top: 200px;
+    top: -45px;
 }
 .particulars-prev{
-    left: -45px;
+    left: 13px;
     background: url(/static/img/ic_arrow_left.png) no-repeat center center;
     &:hover{
         background: url(/static/img/ic_arrow_left2.png) no-repeat center center;
     }
 }
 .particulars-next{
-    right: -45px;
+    right: 180px;
     background: url(/static/img/ic_arrow_right.png) no-repeat center center;
     &:hover{
         background: url(/static/img/ic_arrow_right2.png) no-repeat center center;
@@ -208,7 +211,7 @@ p{
 }
 .bg-fff{
     background-color: #fff;
-	padding: 20px;
+	padding: 20px 20px 15px;
 }
 .container{
     position: relative;
@@ -243,25 +246,11 @@ p{
     border: 0;
     width: 80px;
     height: 80px;
+    margin-bottom: 3px;
     display: inline-block;
-    border-radius: 40px;
-    line-height: 200px;
-    text-decoration: none;
-    color: #333;
-    background-color: #ccc;
+    background: url(/static/img/ic_collect.png) no-repeat center center;
     &.active{
-        background-color: #FEE300;
-    }
-    &:hover{
-        background-color: #FFEB46;
-    }
-    .fa-star{
-        font-size: 30px;
-        color: #fff;
-        position: absolute;
-        top: 32%;
-        left: 50%;
-        margin-left: -13px;
+        background: url(/static/img/ic_collect2.png) no-repeat center center;
     }
 }
 //右边栏
@@ -299,4 +288,15 @@ p{
         }
     }
 }
+ @media (min-width: 768px) {
+    .particulars-prev, .particulars-next{
+        top: 200px;
+    }
+    .particulars-prev{
+        left: -45px;
+    }
+    .particulars-next{
+        right: -45px;
+    }
+ }
 </style>

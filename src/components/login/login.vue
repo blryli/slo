@@ -5,7 +5,7 @@
 		<div class="login-box">
 			<div class="logo">
 			  	<img src="static/img/logo2.png"  @click="headerShow">
-			  	<p>登陆LAFOLIO，发现更多精彩内容</p>
+			  	<p>登陆LAFOLIO，发现更多精彩内容 !</p>
 			</div>
 			<div class="login-content">
 				<div class="login-header">
@@ -29,8 +29,8 @@
 					</div>
 					<div class="others-login text-center">
 						<h3>第三方账号登陆</h3>
-						<button type="button" class="btn"><i class="fa fa-weixin" aria-hidden="true"></i></button>
-						<button type="button" class="btn"><i class="fa fa-qq" aria-hidden="true"></i></button>
+						<a href="javascript:;" class="btn btn-img-weixin"></a>
+						<a href="javascript:;" class="btn btn-img-qq"></a>
 					</div>
 				</div>
 				<div v-show="crru == 2">
@@ -51,8 +51,8 @@
 					</div>
 					<div class="others-login small">
 						<span class="inline-text">第三方账号注册</span>
-						<button type="button" class="btn"><i class="fa fa-weixin" aria-hidden="true"></i></button>
-						<button type="button" class="btn"><i class="fa fa-qq" aria-hidden="true"></i></button>
+						<a href="javascript:;" class="btn weixin-img-small"></a>
+            <a href="javascript:;" class="btn qq-img-small"></a>
 					</div>
 				</div>
 			</div>
@@ -122,13 +122,37 @@ input:-moz-placeholder { color: #ddd; }
 .m-t-b-20{
 	margin: 16px 0 10px;
 }
+.btn-img-weixin{
+  background: url(/static/img/ic_wechat.png) no-repeat center center;
+  &:hover{
+    background: url(/static/img/ic_wechat_1.png) no-repeat center center;
+  }
+}
+.weixin-img-small{
+  background: url(/static/img/ic_wechat_2.png) no-repeat center center;
+  &:hover{
+    background: url(/static/img/ic_wechat_3.png) no-repeat center center;
+  }
+}
+.btn-img-qq{
+  background: url(/static/img/ic_qq.png) no-repeat center center;
+  &:hover{
+    background: url(/static/img/ic_qq_1.png) no-repeat center center;
+  }
+}
+.qq-img-small{
+  background: url(/static/img/ic_qq_2.png) no-repeat center center;
+  &:hover{
+    background: url(/static/img/ic_qq_3.png) no-repeat center center;
+  }
+}
 .check{
   cursor: pointer;
   font-weight: normal;
   font-size: 12px;
   img{
-    margin-right: 4px;
-    margin-top: -2px;
+    margin-right: 10px;
+    margin-top: -4px;
   }
 }
 .login-content{
@@ -199,19 +223,14 @@ input:-moz-placeholder { color: #ddd; }
 	}
 	.others-login{
 		h3{
-			font-size: 14px;
+			font-size: 12px;
+      font-weight: bold;
 			margin-bottom: 30px;
 		}
 		.btn{
 			width: 42px;
 			height: 42px;
-			font-size: 20px;
-			color: #fff;
 			border-radius: 50%;
-			&:hover{
-				background-color: #FEE300;
-				color: #191919;
-			}
 			&+.btn{
 				margin-left: 48px;
 			}
