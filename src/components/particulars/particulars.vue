@@ -33,7 +33,7 @@
                         <p class="alrt-sharing" v-show="alrtSharingShow == true">
                             <span class="particulars-close" style="right: 0" @click="alrtSharingShow = false"></span>
                             <span class="sharing-text">扫描分享到微信朋友圈</span>
-                            <img class="sharing-ewm" src="static/img/wx.png">
+                            <img class="sharing-ewm" src="static/img/ewm.png">
                         </p>
                     </li>
                   </ul>
@@ -133,7 +133,7 @@ import caseList from '@/components/core/caseList'
         margin-left: -91px;
         width: 182px;
         background-color: #fff;
-        top: -260px;
+        top: -250px;
         .sharing-text{
             display: inline-block;
             padding: 12px 20px;
