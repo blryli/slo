@@ -328,10 +328,9 @@ var count = 0;
   }
 }
 .works-right{
-  border-left: 1px solid #ddd;
-  height: 326px;
-  padding-left: 30px;
-  padding-top: 140px;
+  height: auto;
+  padding-left: 102px;
+  padding-top: 10px;
   label{
     .fa{
         background-color: #fff;
@@ -406,4 +405,12 @@ var count = 0;
       margin-left: -4px;
     }
 }
+ @media (min-width: 768px) {
+  .works-right{
+    border-left: 1px solid #ddd;
+    height: 326px;
+    padding-left: 30px;
+    padding-top: 140px;
+  }
+ }
 </style>

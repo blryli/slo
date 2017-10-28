@@ -33,7 +33,7 @@
                         <p class="alrt-sharing" v-show="alrtSharingShow == true">
                             <span class="particulars-close" style="right: 0" @click="alrtSharingShow = false"></span>
                             <span class="sharing-text">扫描分享到微信朋友圈</span>
-                            <img class="sharing-ewm" src="static/img/ewm.png">
+                            <img class="sharing-ewm" src="/static/img/ewm.png">
                         </p>
                     </li>
                   </ul>
@@ -45,13 +45,13 @@
                     <li class="hr"></li>
                     <li class="">
                         <p v-for="(item, index) in particularsArr.particularsAbout" v-if="index==0">{{item.text}}</p>
-                        <p><a class="more" href="#">查看更多</a></p>
+                        <p><router-link :to="{ path: '/worksPage', query: particularsArr}" class="more">查看更多</router-link></p>
                     </li>
                   </ul>
                 </div>
             </div>
           </div>
-          <div class="container m-t-20">
+          <div class="container" style="padding-bottom: 8px;">
     		<div class="row m-b-20">
                 <div class="col-sm-9">
                     <ul class="bg-fff lick"  style="padding-bottom: 0;">
@@ -133,6 +133,7 @@ import caseList from '@/components/core/caseList'
         margin-left: -91px;
         width: 182px;
         background-color: #fff;
+        z-index: 200;
         top: -250px;
         .sharing-text{
             display: inline-block;
@@ -265,7 +266,10 @@ p{
     }
 }
 .al-btn{
-    margin-top: 20px;
+    margin-top: 10px;
+    a{
+        font-size: 12px;
+    }
     &+.al-btn{
         margin-top: 10px;
     }

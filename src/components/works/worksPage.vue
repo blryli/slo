@@ -12,11 +12,11 @@
           <p>浙江百慕生物科技有限公司隶属浙江丽珀集团，成立于2011年3月，注册资本1000万元，是一家从事海洋生物开发销售的公司，主要从事保健品（海参）产品的销售。</p>
           <p>旗下的优参堂海参品牌源自于卢炜翎先生创立的优参号参堂，经过一百多年的发展，现已成为最具规模化，现代化，专业化的海参加工生产企业之一。</p>
           <p>公司特与世纪联华超市股份有限公司、物美商业集团股份有限公司、天天好大药房等合作，在浙江省多个城市100多家门店进行销售。此外公司还搭档杭州电视台生活频道《生活大参考》、杭州电视台生活频道电商平台共同进行优参堂海参的销售，致力于将品牌以更多样化的形式进行推广，将产品以更方便快捷的渠道送达到消费者手中。</p>
-          <div class="particulars-top text-center" @click="show = false"><i class="fa fa-chevron-up" aria-hidden="true"></i><br><small>收起</small></div>
+          <div class="particulars-top text-center" @click="show = false"><i class="fa" aria-hidden="true"></i><small>收起</small></div>
         </div>
       </transition>
     </div>
-    <div class="container m-t-30 m-b-20">
+    <div class="container m-t-20" style="margin-bottom: 10px;">
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300" infinite-scroll-immediate-check="true">
         <case-list :case-arr="datas" :recruit-info="recruitInfo" :recruit-show="true"></case-list>
       </div>
@@ -362,17 +362,16 @@ var count = 0;
     left: 50%;
     margin-left: -20px;
     .fa{
-        background-color: #fff;
+        transform:rotate(-90deg);
+        background: url(/static/img/ic_view_all.png) no-repeat top center;
+        display: block;
         width: 40px;
         height: 40px;
-        line-height: 40px;
-        border-radius: 20px;
         margin-bottom: 6px;
         text-align: center;
         cursor: pointer;
         &:hover{
-            color: #333;
-            background-color: #FEE300;
+            background: url(/static/img/ic_view_all1.png) no-repeat top center;
         }
     }
 }

@@ -103,7 +103,8 @@
 }
 
 .main-page{
-  // background-color: #EDEDED;
+  // position: relative;
+  // z-index: 5;
 }
 .footer {
   padding: 20px 0;
@@ -157,14 +158,14 @@
 /* 返回顶部按钮 */
   .to-top {
     position: fixed;
-    bottom: 185px;
+    height: 1px;
+    bottom: 200px;
+    z-index: 9999;
     width: 100%;
-    z-index: 999999;
-    opacity: 1;
     .container{
       position: relative;
-      text-align: right;
-      cursor: pointer;
+      z-index: 9999;
+      height: 1px;
     }
     span{
       font-size: 12px;
@@ -173,11 +174,18 @@
     }
     p{
       margin-right: -110px;
+      margin-top: -60px;
+      float: right;
+      z-index: 9999;
+      position: relative;
+      text-align: center;
     }
   }
   #goBack{
+    cursor: pointer;
     width:40px;
     height: 40px;
+    margin-left: 4px;
     display: inline-block;
     background: url(/static/img/ic_back1.png) no-repeat center center;
     &:hover{

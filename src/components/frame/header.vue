@@ -25,7 +25,8 @@
             </div>
             <div  class="col-sm-5">
               <div class="row">
-                <div class="col-xs-8 col-sm-6 col-sm-offset-2 phone-margin header-topsearch" style="margin-top: 26px;">
+                <div class="col-xs-0 col-sm-2"></div>
+                <div class="col-xs-9 col-sm-6 phone-margin header-topsearch" style="margin-top: 26px;">
                   <i class="fa fa-search" aria-hidden="true"></i>
                   <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
                 </div>
@@ -309,7 +310,7 @@ ul,li{
   display: inline-block;
 }
 .phone-margin{
-  margin: 0 15px 0 0;
+  // margin: 0 15px 0 0;
 }
 @media (min-width: 768px) { 
     .navbar-header {
