@@ -1,8 +1,10 @@
 <template>
 	<div class="box-height">
+    <div class="login-box-bg"></div>
+    <div class="login-box-img"></div>
 		<div class="login-box">
 			<div class="logo">
-			  	<img src="static/img/logo2.png">
+			  	<img src="static/img/logo2.png"  @click="headerShow">
 			  	<p>登陆LAFOLIO，发现更多精彩内容</p>
 			</div>
 			<div class="login-content">
@@ -21,8 +23,8 @@
 						 </div>
 						 <span class="form-group__message" v-if="$v.loginPhone.required && !$v.loginPassword.required">密码不能为空</span>
 						 <span class="form-group__message" v-if="!$v.loginPhone.required && !$v.loginPassword.required">手机号或密码错误</span>
-						<button type="button" class="btn btn-dl m-t-30" @click="loginBtn">登录</button>
-						<el-checkbox v-model="checked">下次自动登陆</el-checkbox>
+						<button type="button" class="btn btn-dl m-t-30" :class="{'login-hover': loginPhone != '' && loginPassword != ''}" @click="loginBtn">登录</button>
+            <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label>
 						<a href="#" class="forget">忘记密码</a>
 					</div>
 					<div class="others-login text-center">
@@ -42,7 +44,7 @@
 						<input type="text" class="login-input" name="password" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
 						<input type="text" class="login-input" name="password" placeholder="再次输入密码确认">
 						<div class="m-t-b-20">
-							<el-checkbox v-model="checked">我已阅读并接受</el-checkbox>
+              <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">我已阅读并接受</label>
 							<a href="#" class="forget" style="float: none;">用户协议</a>
 						</div>
 						<button type="button" class="btn btn-dl">注册</button>
@@ -60,12 +62,14 @@
 
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
+import $ from 'jquery'
   export default {
     props: {},
     data() {
     	return {
     		crru: 1,
-    		checked: false,
+        checked: false,
+    		checked1: false,
     		yzmStatus: true,
     		loginPhone: '',
     		loginPassword: '',
@@ -88,12 +92,25 @@ import { required, minLength } from 'vuelidate/lib/validators'
 	    	this.crru = 2
     	}
     },
+    mounted() {
+      this.$nextTick(function () {
+        $('.header').css('display', 'none')
+      })
+    },
     methods: {
     	loginBtn() {
     		if( this.loginPhone =! '' && this.loginPassword !='') {
+          $('.header').css('display', 'block')
 	    		this.$router.push({ path: '/',query: {name: '我叫鎏锋胸',src: 'static/img/xiong.png'} })
     		}
-    	}
+    	},
+      headerShow() {
+        this.$router.push({ path: '/'})
+        $('.header').css('display', 'block')
+      },
+      checkedCrru() {
+        this.checked = !this.checked
+      }
     }
   }
 
@@ -104,6 +121,15 @@ input:-moz-placeholder { color: #ddd; }
 ::-webkit-input-placeholder { color:#ddd; }
 .m-t-b-20{
 	margin: 16px 0 10px;
+}
+.check{
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 12px;
+  img{
+    margin-right: 4px;
+    margin-top: -2px;
+  }
 }
 .login-content{
 	background-color: #fff;
@@ -158,16 +184,17 @@ input:-moz-placeholder { color: #ddd; }
 			color: #aaa;
 			font-weight: bold;
 			font-size: 16px;
-			&:hover{
-				background-color: #FEE300;
-				color: #191919;
-			}
+    }
+		.login-hover{
+			background-color: #FEE300;
+			color: #191919;
 		}
 		.forget{
 			color: #d36f16;
 			text-decoration: none;
 			font-weight: bold;
 			float: right;
+      font-size: 12px;
 		}
 	}
 	.others-login{
@@ -197,34 +224,48 @@ input:-moz-placeholder { color: #ddd; }
 				width: 32px;
 				height: 32px;
 				font-size: 16px;
-				color: #fff;
-				border-radius: 50%;
-				&+.btn{
-					margin-left: 20px;
-				}
-			}
-		}
-	}
+        color: #fff;
+        border-radius: 50%;
+        &+.btn{
+          margin-left: 20px;
+        }
+      }
+    }
+  }
 }
 .box-height{
-	height: 589px;
+ height: 682px;
+}
+.login-box-bg{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 763px;
+  z-index: 1001;
+  background-color: #000;
+  opacity: .5;
 }
 .login-box{
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	height: 763px;
-	z-index: 1000;
+  position: relative;
+  height: 763px;
+  z-index: 1100;
+}
+.login-box-img{
 	background: url(/static/img/login.jpg) no-repeat center center;
+  position: absolute;
+  height: 763px;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 .logo{
 	margin-top: 6%;
 	text-align: center;
+  position: relative;
   img{
   	display: block;
   	margin: 0 auto 20px;
+    cursor: pointer;
   }
   p{
   	font-size: 18px;

@@ -1,6 +1,6 @@
 <template>
   <ul class="row">
-    <li class="col-xs-6 col-sm-4 recruit-box" :class="{'col-md-3': colFour}" style="float: right" v-if="recruitShow == true">
+    <li class="col-xs-6 col-sm-4 recruit-box" :class="{'col-md-3': colFour}" style="float: right;margin-bottom: 30px;" v-if="recruitShow == true">
       <recruit :recruit-info="recruitInfo"></recruit>
     </li>
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
@@ -91,11 +91,14 @@ ul{
   overflow: hidden;
 }
 .recruit-box{
-  margin-bottom: 40px;
+  padding-top: 10px;
   .works-recruit{
     background-color: #f2f2f2;
     padding: 30px 20px;
-    min-height: 316px;
+    height: 304px;
+    .more{
+      left: 20px;
+    }
   }
 }
 

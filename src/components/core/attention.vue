@@ -37,6 +37,9 @@
         margin-top: 10px;
     }
 }
+.btn{
+  font-size: 12px;
+}
 .al-btn{
     margin-top: 30px;
 }
@@ -49,10 +52,10 @@
 }
 .companyProfile{
     .al-logo{
-        padding: 50px 40px;
+        padding: 70px 40px 60px;
     }
     .al-btn{
-        padding-top: 30px;
+        padding-top: 13px;
     }
 }
 

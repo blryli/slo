@@ -11,12 +11,12 @@
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
                     <li class="title">{{companyProfileArr.title}}</li>
-                    <li class="hr hr-m-20" style="margin-top: 20px;"></li>
+                    <li class="hr hr-m-20" style="margin-top: 32px;"></li>
                     <li class="company-js">
                         <h3 class="company-title">公司介绍<span></span></h3>
                         <p>{{companyProfileArr.companyInfoText}}</p>
                     </li>
-                    <li class="hr hr-m-20"></li>
+                    <li class="hr hr-m-20" style="margin-top: 36px;"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司环境<span></span></h3>
                         <p>{{companyProfileArr.companySomeText}}</p>
@@ -27,7 +27,7 @@
                         <h3 class="company-title">公司作品<span></span></h3>
                         <p>{{companyProfileArr.companyWorksText}}</p>
                         <p v-for="item in companyProfileArr.companyWorksImg" class="m-t-20"><img :src="item.src" class="img-responsive img"></p>
-                        <p class="text-center m-t-40 p-b-10"><button type="button" class="btn btn-FEE300">更多作品</button></p>
+                        <p class="text-center"><button type="button" class="btn btn-FEE300">更多公司作品</button></p>
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="company-js img-ms">
@@ -113,6 +113,12 @@ import attention from '@/components/core/attention'
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.btn-FEE300{
+    height: 42px;
+    width: 158px;
+    font-weight: bold;
+    margin-top: 20px;
+}
 .email-through{
     width: 300px;
     margin: 0 auto;
@@ -125,13 +131,14 @@ import attention from '@/components/core/attention'
         display: inline-block;
         padding: 0 4px;
         margin: 0 -4px;
+        margin-top: 4px;
         strong{
             padding-left: 7px;
         }
     }
     .works-text-title{
         display: block;
-        margin-top: 20px;
+        margin-top: 13px;
         font-weight: bold;
         margin-left: -6px;
         margin-bottom: 6px;
@@ -143,7 +150,11 @@ import attention from '@/components/core/attention'
 .company-title{
     position: relative;
     padding-bottom: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #212121;
+    margin-top: 38px;
     span{
         height: 2px;
         width: 24px;
@@ -156,6 +167,7 @@ import attention from '@/components/core/attention'
 }
 p{
     word-wrap:break-word;
+    line-height: 24px;
 }
 .companyProfile{
     padding-bottom: 30px;
@@ -180,17 +192,19 @@ p{
 }
 .bg-fff{
     background-color: #fff;
-	padding: 20px;
+	padding: 30px;
 }
 .container{
     position: relative;
 }
 .title{
-    font-size: 26px;
+    font-size: 28px;
+    color: #212121;
+    line-height: 28px;
     font-weight: bold;
 }
 .hr-m-20{
-    margin: 30px -20px;
+    margin: 40px -30px;
 }
 .hr-m-10{
     margin: 16px -20px;

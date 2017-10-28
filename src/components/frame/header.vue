@@ -278,6 +278,7 @@ ul,li{
   line-height:80px;
   color: #191919;
   text-decoration: none;
+  padding: 0 2px;
   font-size: 16px;
   strong{
     font-weight: normal;
@@ -291,7 +292,7 @@ ul,li{
     span{
       position: absolute;
       left: 0;
-      top: 2px;
+      top: 10px;
       z-index: 0;
       display: block;
       width: 100%;
@@ -302,7 +303,7 @@ ul,li{
 }
 .l-hr{
   background-color: #aaa;
-  margin: 0 18px -2px;
+  margin: 0 16px -2px;
   width: 1px;
   height: 14px;
   display: inline-block;

@@ -46,7 +46,6 @@
   }
   .more{
     position: absolute;
-    left: 0;
     bottom: 40px;
   }
 }

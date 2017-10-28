@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="bg-F2F2F2 works-banner">
+    <div class="bg-F2F2F2 works-banner" :class="{paddingbottom: show == true}">
       <h1>纬图设计</h1>
       <div class="al-btn text-center">
         <button type="button" class="btn btn-FEE300" @click="active =! active" :class="{ 'btn-default': active == true }"><span v-show="active == true">已</span>关注</button>
-        <button type="button" class="btn btn-default" @click="show = true">公司简介</button>
+        <button type="button" class="btn btn-default" @click="show = true" v-show="show == false">公司简介</button>
       </div>
       <div class="hr" v-show="show == true"></div>
       <transition name="el-zoom-in-top">
@@ -16,7 +16,7 @@
         </div>
       </transition>
     </div>
-    <div class="container m-t-20 m-b-20">
+    <div class="container m-t-30 m-b-20">
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300" infinite-scroll-immediate-check="true">
         <case-list :case-arr="datas" :recruit-info="recruitInfo" :recruit-show="true"></case-list>
       </div>
@@ -320,10 +320,12 @@ var count = 0;
     background-color: #F2F2F2;
 }
 .works-banner{
-  padding: 70px 0 130px;
+  padding: 64px 0 130px;
+  min-height: 350px;
   h1{
-    font-size: 69px;
+    font-size: 72px;
     font-weight: 500;
+    line-height: 72px;
     margin-bottom: 30px;
     color: #191919;
     text-align: center;
@@ -331,6 +333,9 @@ var count = 0;
   .hr{
     background-color: #ccc;
   }
+}
+.paddingbottom{
+  padding-bottom: 117px;
 }
 .al-btn{
     margin-top: 20px;
@@ -342,6 +347,7 @@ var count = 0;
     border-radius: 10px;
     padding: 4px 8px;
     width: 106px;
+    font-size: 12px;
     &+.btn{
       margin-left: 15px;
     }

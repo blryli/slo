@@ -4,11 +4,11 @@
         <div class="particulars">
           <div class="container m-t-20">
             <div class="particulars-close" @click="goBack"></div>
-            <div class="particulars-prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
-            <div class="particulars-next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+            <div class="particulars-prev"></div>
+            <div class="particulars-next"></div>
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div class="row">
-                <div class="col-sm-8"> 
+                <div class="col-sm-9"> 
                   <ul class="bg-fff">
                     <li class="title">{{particularsArr.title}}</li>
                     <li class="text">时间：{{particularsArr.time}}</li>
@@ -35,7 +35,7 @@
                     </li>
                   </ul>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <ul class="bg-fff">
                     <attention :attention-arr="particularsArr"></attention>
                     <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: particularsArr}" class="btn btn-default">更多作品</router-link></li>
@@ -150,26 +150,24 @@ p{
 }
 .particulars-prev, .particulars-next{
     position: absolute;
-    top: 160px;
-    .fa{
-        background-color: #fff;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        color: #191919;
-        border-radius: 20px;
-        text-align: center;
-        cursor: pointer;
-        &:hover{
-            background-color: #FEE300;
-        }
-    }
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    top: 200px;
 }
 .particulars-prev{
     left: -45px;
+    background: url(/static/img/ic_arrow_left.png) no-repeat center center;
+    &:hover{
+        background: url(/static/img/ic_arrow_left2.png) no-repeat center center;
+    }
 }
 .particulars-next{
     right: -45px;
+    background: url(/static/img/ic_arrow_right.png) no-repeat center center;
+    &:hover{
+        background: url(/static/img/ic_arrow_right2.png) no-repeat center center;
+    }
 }
 .position-bg{
     position: fixed;
@@ -187,10 +185,14 @@ p{
 .text-ms{
     margin-bottom: 16px;
     p{
-        margin-bottom: 6px;
+        line-height: 14px;
+        &+p{
+            margin-top: 10px;
+        }
     }
 }
 .img-ms{
+    margin-top: 20px;
     p{
         margin-bottom: 20px;
     }
@@ -212,14 +214,16 @@ p{
     position: relative;
 }
 .title{
-    font-size: 26px;
+    font-size: 28px;
     font-weight: bold;
+    line-height: 28px;
 }
 .text{
-    margin: 0 0 30px;
-    padding-top: 10px;
+    padding-top: 20px;
+    line-height: 12px;
 }
 .unit{
+    color: #191919;
     &+.unit{
         margin-top: 30px;
     }
