@@ -1,0 +1,15 @@
+{
+	"user_id":"用户id",
+	"user_name":"登录名",
+	"user_name_en":"英文名",
+	"user_password":"密码",
+	"user_status":"状态，0:未激活，1:已激活",
+	"is_admin":"是否是超级管理员，0:不是，1:是",
+	"user_email":"电子邮箱",
+	"user_phone":"联系座机电话",
+	"user_mobile_phone":"联系手机号",
+	"user_note":"备注",
+	"user_add_time":"注册时间",
+	"user_update_time":"最后更新时间",
+	"user_last_login":"最后登录时间"
+}

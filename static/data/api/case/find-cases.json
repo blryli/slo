@@ -1,0 +1,18 @@
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+            "case_id":1,
+            "img_min": "缩略图1",
+            "title": "案例标题1",
+            "author": "作者1"
+        },
+        {
+            "case_id":2,
+            "img_min": "缩略图2",
+            "title": "案例标题2",
+            "author": "作者2"
+        }
+    ]
+}

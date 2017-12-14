@@ -1,0 +1,9 @@
+{
+    "company_id":"公司id",
+    "name":"公司名称",
+    "logo":"公司logo图片地址",
+    "desc":"公司介绍(带有html标签)",
+    "environment":"公司环境描述(带有html标签)",
+    "ings":["static/img/xiangqing.png","static/img/xiangqing.png"],//公司图片
+    "has_attention":0//是否关注,0:否,1:是
+}

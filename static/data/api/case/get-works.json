@@ -1,0 +1,76 @@
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+            "company_info":{
+                "company_id":1,
+                "name":"公司名称",
+                "logo":"公司logo图片地址",
+                "desc":"公司介绍(带有html标签)",
+                "has_attention":0//是否关注,0:否,1:是
+            },
+            "cases":[
+                {
+                    "case_id":1,
+                    "img_min": "缩略图1",
+                    "title": "案例标题1",
+                    "author": "作者1"
+                },
+                {
+                    "case_id":2,
+                    "img_min": "缩略图2",
+                    "title": "案例标题2",
+                    "author": "作者2"
+                }
+            ],
+            "recruitment_info":[
+                {
+                    "recruitment_id":"招聘id",
+                    "title":"标题",
+                    "position":"职位"
+                },
+                {
+                    "recruitment_id":"招聘id",
+                    "title":"标题",
+                    "position":"职位"
+                }
+            ]
+        },
+        {
+            "company_info":{
+                "company_id":2,
+                "name":"公司名称",
+                "logo":"公司logo图片地址",
+                "desc":"公司介绍(带有html标签)",
+                "has_attention":0//是否关注,0:否,1:是
+            },
+            "cases":[
+                {
+                    "case_id":1,
+                    "img_min": "缩略图1",
+                    "title": "案例标题1",
+                    "author": "作者1"
+                },
+                {
+                    "case_id":2,
+                    "img_min": "缩略图2",
+                    "title": "案例标题2",
+                    "author": "作者2"
+                }
+            ],
+            "recruitment_info":[
+                {
+                    "recruitment_id":"招聘id",
+                    "title":"标题",
+                    "position":"职位"
+                },
+                {
+                    "recruitment_id":"招聘id",
+                    "title":"标题",
+                    "position":"职位"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "recruitment_id":"招聘id",
+    "company_id":"公司id",
+    "title":"标题",
+    "position":"职位",
+    "desc":"招聘描述(带有html标签)"
+}
