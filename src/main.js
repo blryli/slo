@@ -17,6 +17,9 @@ import '../static/js/global'
 
 Vue.config.productionTip = false
 
+import fn from './fn'
+Vue.prototype.$fns=fn;
+
 Vue.use(infiniteScroll)
 Vue.use(Vuelidate)
 Vue.use(router)

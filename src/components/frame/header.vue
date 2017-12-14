@@ -119,11 +119,13 @@ export default {
    //       })
   	// },
     getTopMenu() {
-      this.$http.get('../../../static/data/topMenu.json').then((response) => {
-        this.menuJson = response.data
-      }, (response) => {
-        console.log(response)
-      })
+  	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
+		  if(json.ask=='1'){
+			  this.menuJson = {menus:json.data}
+		  }else{
+			  console.error(json.message)
+		  }
+	  });    	
     },
     closeNav() {
       this.showNav = false
