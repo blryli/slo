@@ -3,6 +3,7 @@
 *@param page N 页码(默认1)
 *@param pageSize N 每页条数(默认8)
 *@param keyWords N 搜索关键字(默认"")
+*@param companyId N 公司id(默认"")
 */
 {
     "ask": 1,
