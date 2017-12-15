@@ -12,7 +12,7 @@
       attentionArr: {},
       attentionShow: {
         type: Boolean,
-        default: trues
+        default: true
       }
     },
   }
