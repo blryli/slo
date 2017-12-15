@@ -1,8 +1,8 @@
 <template>
   <li class="al-logo text-center">
-      <img :src="attentionArr.attentionLogo">
-      <h3>{{attentionArr.attentionName}}</h3>
-      <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionActive == true }" @click="attentionActive = true"><span v-show="attentionActive == true">已</span>关注</button></p>
+      <img :src="attentionArr.logo">
+      <h3>{{attentionArr.name}}</h3>
+      <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == true }" @click="attentionArr.has_attention = true"><span v-show="attentionArr.has_attention == true">已</span>关注</button></p>
   </li>
 </template>
 
@@ -12,16 +12,9 @@
       attentionArr: {},
       attentionShow: {
         type: Boolean,
-        default: true
+        default: trues
       }
     },
-    data () {
-      return {
-        attentionActive: false
-      }
-    },
-    components: {
-    }
   }
 
 </script>

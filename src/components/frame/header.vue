@@ -121,7 +121,6 @@ export default {
     getTopMenu() {
   	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
 		  if(json.ask=='1'){
-        console.log(json)
 			  this.menuJson = json.data
 		  }else{
 			  console.error(json.message)

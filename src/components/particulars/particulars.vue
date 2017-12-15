@@ -11,21 +11,21 @@
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
                     <li class="title">{{particularsArr.title}}</li>
-                    <li class="text">时间：{{particularsArr.time}}</li>
+                    <li class="text">时间：{{particularsArr.add_date}}</li>
                     <li class="hr"></li>
-                    <li class="text-ms"><p v-for="item in particularsArr.particularsText">{{item.text}}</p></li>
-                    <li class="img-ms"><p v-for="item in particularsArr.particularsImg"><img :src="item.src" class="img-responsive img"></p></li>
+                    <li class="text-ms">>{{particularsArr.desc}}</li>
+                    <li class="img-ms"><p v-for="item in particularsArr.imgs"><img :src="item" class="img-responsive img"></p></li>
                     <li class="hr"></li>
-                    <li class="unit"><strong>业务单位</strong>：{{particularsArr.teamUnit.unit}}</li>
-                    <li class="unit"><strong>项目地址</strong>：{{particularsArr.teamUnit.address}}</li>
-                    <li class="unit"><strong>设计团队</strong>：{{particularsArr.teamUnit.team}}</li>
-                    <li class="unit"><strong>用地规模</strong>：{{particularsArr.teamUnit.scale}}</li>
-                    <li class="unit"><strong>设计时间</strong>：{{particularsArr.teamUnit.time}}</li>
-                    <li class="unit"><strong>拍摄者</strong>：{{particularsArr.teamUnit.user}}</li>
+                    <li class="unit"><strong>业务单位</strong>：{{particularsArr.unit}}</li>
+                    <li class="unit"><strong>项目地址</strong>：{{particularsArr.address}}</li>
+                    <li class="unit"><strong>设计团队</strong>：{{particularsArr.team}}</li>
+                    <li class="unit"><strong>用地规模</strong>：{{particularsArr.scale}}</li>
+                    <li class="unit"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
+                    <li class="unit"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">
-                        <a href="javascript:;" class="shouc" :class="{ active: crrut == true }" @click="crrut = true"></a>
-                        <p><span v-show="crrut == true">已</span>收藏</p>
+                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="particularsArr.has_collect = true"></a>
+                        <p><span v-show="particularsArr.has_collect == true">已</span>收藏</p>
                     </li>
                     <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
                     <li class="text-center particulars-sharing">
@@ -40,12 +40,12 @@
                 </div>
                 <div class="col-sm-3">
                   <ul class="bg-fff">
-                    <attention :attention-arr="particularsArr"></attention>
-                    <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: particularsArr}" class="btn btn-default">更多作品</router-link></li>
+                    <attention :attention-arr="particularsArr.company_info"></attention>
+                    <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: particularsArr.company_info}" class="btn btn-default">更多作品</router-link></li>
                     <li class="hr"></li>
                     <li class="">
-                        <p v-for="(item, index) in particularsArr.particularsAbout" v-if="index==0">{{item.text}}</p>
-                        <p><router-link :to="{ path: '/worksPage', query: particularsArr}" class="more">查看更多</router-link></p>
+                        <p>{{particularsArr.company_info.desc}}</p>
+                        <p><router-link :to="{ path: '/worksPage', query: particularsArr.company_info}" class="more">查看更多</router-link></p>
                     </li>
                   </ul>
                 </div>
@@ -57,7 +57,7 @@
                     <ul class="bg-fff lick"  style="padding-bottom: 0;">
                         <li class="title">你可能还喜欢以下项目</li>
                         <li class="hr hr-m-10"></li>
-                        <case-list :case-arr="lickArr" :title-size="14" :row-top="28" :show-text="false"></case-list>
+                        <case-list :case-arr="particularsArr.recommend" :title-size="14" :row-top="28" :show-text="false"></case-list>
                     </ul>
                 </div>
     		</div>
@@ -73,40 +73,34 @@ import caseList from '@/components/core/caseList'
     data () {
       return {
         particularsArr: {},
-        crrut: false,
         alrtSharingShow: false,
-        lickArr: [
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然',
-            },
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然科学节装置设计',
-            },
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然科学节装置设计',
-            },
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然科学节装置设计',
-            },
-        ]
       }
   	},
     components: {
         attention, caseList
     },
     created() {
-        this.particularsArr = this.$route.query
         document.body.scrollTop = document.documentElement.scrollTop = 0;
+        this.getCase();
     },
     watch: {
     },
     methods: {
         goBack(){
             this.$router.go(-1)
+        },
+        getCase(){
+          var data = {
+                  case_id: this.$route.query.id
+          }
+          this.$fns.post('/api/case/get-case',data,(json)=>{
+              if(json.ask=='1'){
+                this.particularsArr = json.data
+                console.log(json.data)
+              }else{
+                  console.error(json.message)
+              }
+          });
         }
     },
   }

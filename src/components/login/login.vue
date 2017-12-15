@@ -1,10 +1,10 @@
 <template>
-	<div class="box-height">
-    <div class="login-box-bg"></div>
-    <div class="login-box-img"></div>
+	<div>
+	    <div class="login-box-bg"></div>
+	    <div class="login-box-img"></div>
 		<div class="login-box">
 			<div class="logo">
-			  	<img src="static/img/logo2.png"  @click="headerShow">
+			  	<router-link to="/"><img src="static/img/logo2.png"></router-link>
 			  	<p>登陆LAFOLIO，发现更多精彩内容 !</p>
 			</div>
 			<div class="login-content">
@@ -57,11 +57,13 @@
 				</div>
 			</div>
 		</div>
+		<gateway-footer></gateway-footer>
 	</div>
 </template>
 
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
+import gatewayFooter from '../frame/footer.vue'
 import $ from 'jquery'
   export default {
     props: {},
@@ -76,6 +78,7 @@ import $ from 'jquery'
     	}
     },
     components: {
+    	gatewayFooter
     },
     validations() {
     	return {
@@ -104,10 +107,6 @@ import $ from 'jquery'
 	    		this.$router.push({ path: '/',query: {name: '我叫鎏锋胸',src: 'static/img/xiong.png'} })
     		}
     	},
-      headerShow() {
-        this.$router.push({ path: '/'})
-        $('.header').css('display', 'block')
-      },
       checkedCrru() {
         this.checked = !this.checked
       }
@@ -252,33 +251,30 @@ input:-moz-placeholder { color: #ddd; }
     }
   }
 }
-.box-height{
- height: 682px;
-}
 .login-box-bg{
   position: absolute;
   width: 100%;
   top: 0;
-  height: 763px;
+  height: 794px;
   z-index: 1001;
   background-color: #000;
   opacity: .5;
 }
 .login-box{
   position: relative;
-  height: 763px;
+  padding-top: 6%;
+  height: 794px;
   z-index: 1100;
 }
 .login-box-img{
-	background: url(/static/img/login.jpg) no-repeat center center;
   position: absolute;
-  height: 763px;
+  background: url(/static/img/login.jpg) no-repeat center center;
+  height: 794px;
   top: 0;
   width: 100%;
   z-index: 1000;
 }
 .logo{
-	margin-top: 6%;
 	text-align: center;
   position: relative;
   img{

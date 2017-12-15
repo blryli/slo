@@ -29,10 +29,10 @@ const router = new VueRouter({
         { path: '/works', name: '作品集', component: Works },
         { path: '/worksPage', name: '公司作品', component: WorksPage },
         { path: '/companyProfile', name: '公司详情', component: CompanyProfile },
-        { path: '/login', name: '登录注册', component: Login },
         { path: '/myCenter', name: '个人中心', component: myCenter },
       ]
-    }
+    },
+    { path: '/login', name: '登录注册', component: Login }
   ]
 })
 

@@ -1,0 +1,41 @@
+{
+    "ask": 1,
+    "message": "success",
+    "data": {
+        "case_id":1,
+        "img_min": "缩略图",
+        "title": "案例标题",
+        "author": "作者",
+        "add_date": "添加日期",
+        "desc": "案例描述(带有html标签)",
+        "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
+        "unit": "业主单位",
+        "address": "项目地址",
+        "team": "设计师团队",
+        "scale": 0,
+        "design_date": "设计日期",
+        "photographer": "拍摄者",
+        "has_collect":0,
+        "company_info":{
+            "company_id":1,
+            "name":"公司名称",
+            "logo":"static/img/logo.png",
+            "desc":"公司介绍(带有html标签)",
+            "has_attention":0
+        },
+        "recommend":[
+            {
+                "case_id":1,
+                "img_min": "static/img/xiangqing.png",
+                "title": "案例标题1",
+                "author": "作者1"
+            },
+            {
+                "case_id":2,
+                "img_min": "static/img/xiangqing.png",
+                "title": "案例标题2",
+                "author": "作者2"
+            }
+        ]
+    }
+}

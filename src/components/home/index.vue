@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="container m-t-20 p-b-10">
-      <div v-infinite-scroll="getCase" infinite-scroll-disabled="busy" infinite-scroll-distance="300" infinite-scroll-immediate-check="true">
-        <case-list :case-arr="datas"></case-list>
-      </div>
+      <case-list :case-arr="datas"></case-list>
     </div>
   </div>
 </template>
@@ -26,16 +24,16 @@ var count = 0;
       caseList
     },
     created(){
-      this.getCase();
+      this.findCase();
     },
     methods: {
-      getCase(){
+      findCase(){
     	  var data = {
     			  page:this.page,
     			  pageSize:this.pageSize,
     			  keyWords:this.keyWords
     	  }
-    	  this.$fns.post('/api/case/get-cases',data,(json)=>{
+    	  this.$fns.post('/api/case/find-cases',data,(json)=>{
     		  if(json.ask=='1'){
             if(json.data.length){
               this.page++;
