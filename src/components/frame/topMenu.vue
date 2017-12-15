@@ -1,6 +1,6 @@
 <template>
   <ul class="nav navbar-nav nav-pills topnav">
-    <li v-for="(menu, index) in topMenu.menus">
+    <li v-for="(menu, index) in topMenu">
       <!-- <a v-if="menu.url == undefined">
         <span class="menu-text">{{menu.menu_name}}</span>
         <b class="caret" v-if="menu.url==undefined"></b>
@@ -24,8 +24,11 @@
   export default {
     props: {
       topMenu: {
-        type: Object,
-        required: true
+        type: Array,
+        required: true,
+        default: function() {
+          return []
+        }
       }
     },
     data () {

@@ -67,7 +67,7 @@ export default {
       active: false,
       userName : '',
       userImg: '',
-      menuJson: {}
+      menuJson: []
     }
   },
   watch: {
@@ -121,7 +121,8 @@ export default {
     getTopMenu() {
   	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
 		  if(json.ask=='1'){
-			  this.menuJson = {menus:json.data}
+        console.log(json)
+			  this.menuJson = json.data
 		  }else{
 			  console.error(json.message)
 		  }
