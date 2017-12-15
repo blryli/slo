@@ -7,5 +7,4 @@
     "case_desc":"公司作品描述(带有html标签)",
     "imgs":["static/img/xiangqing.png","static/img/xiangqing.png"],//公司图片
     "has_attention":0//是否关注,0:否,1:是
-    
 }
