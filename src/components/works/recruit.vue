@@ -2,10 +2,10 @@
     <div class="works-recruit">
       <h2 class="title">招聘信息</h2>
       <ul v-for="recruit in recruitInfo">
-        <li><strong>{{recruit.company}}（{{recruit.address}}）</strong></li>
-        <li>{{recruit.position}}&nbsp;/&nbsp;{{recruit.state}}</li>
+        <li><strong>{{recruit.title}}</strong></li>
+        <li>{{recruit.position}}</li>
       </ul>
-      <router-link :to="{ path: '/companyProfile', query: 11}" class="more">查看更多</router-link>
+      <router-link :to="{ path: '/companyProfile', query: {id: 1}}" class="more">查看更多</router-link>
     </div>
 </template>
 

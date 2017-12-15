@@ -12,12 +12,10 @@ var count = 0;
   export default {
     data () {
       return {
-    	page:1,
-    	pageSize:8,
-    	keyWords:'',
+      	page:1,
+      	pageSize:8,
+      	keyWords:'',
         datas: [],
-        busy: false,
-        caseArr: []
       }
     },
     components: {

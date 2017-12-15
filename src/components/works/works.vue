@@ -1,17 +1,17 @@
 <template>
   <div class="bg-F2F2F2 p-b-20">
-    <div class="container m-t-20 row" v-for="item in worksArr">
+    <div class="container m-t-20 row" v-for="item in datas">
     	<ul class="col-sm-2 works-left">
-        <attention :attention-arr="item.attentionArr"></attention>
+        <attention :attention-arr="item.company_info"></attention>
       </ul>
       <div class="col-sm-7 works-center">
-        <case-list :case-arr="lickArr" :col-four="false" :title-size="16"></case-list>
+        <case-list :case-arr="item.cases" :col-four="false" :title-size="16"></case-list>
       </div>
       <div class="col-xs-6 col-sm-2">
-        <recruit :recruit-info="item.recruitInfo"></recruit>
+        <recruit :recruit-info="item.recruitment_info"></recruit>
       </div>
       <div class="col-xs-6 col-sm-1 works-right">
-        <router-link :to="{ path: '/worksPage', query: worksArr}">  
+        <router-link :to="{ path: '/worksPage', query: {id: item.company_info.company_id}}">  
           <label class="text-center"><i class="fa"></i><small>查看全部</small></label>
         </router-link>
       </div>
@@ -26,81 +26,38 @@ import Recruit from './recruit'
   export default {
   	data () {
       return {
-        worksArr: [
-          {
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            recruitInfo:[
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-            ]
-          },
-          {
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            recruitInfo:[
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-            ]
-          },
-        ],
-        lickArr: [
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然',
-              text: '洋洋'
-            },
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然科学节装置设计',
-              text: '洋洋'
-            },
-            {
-              src: 'static/img/img.png',
-              title: '哥本哈根Bloom自然科学节装置设计',
-              text: '洋洋'
-            }
-        ]
+        page:1,
+        pageSize:8,
+        keyWords:'',
+        datas: []
       }
     },
     components: {
       caseList, Recruit, attention
+    },
+    created(){
+      this.getWorks();
+    },
+    methods: {
+      getWorks(){
+        var data = {
+            page:this.page,
+            pageSize:this.pageSize,
+            keyWords:this.keyWords
+        }
+        this.$fns.post('/api/case/get-works',data,(json)=>{
+          if(json.ask=='1'){
+            if(json.data.length){
+              this.page++;
+              json.data.forEach((item,k)=>{
+                this.datas.push(item);
+              })
+            }
+          }else{
+            console.error(json.message)
+          }
+        });
+      }
     }
   }
 
