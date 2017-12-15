@@ -1,3 +1,7 @@
+/**
+*@desc 案例详情
+*@param case_id Y 案例id
+*/
 {
     "ask": 1,
     "message": "success",
