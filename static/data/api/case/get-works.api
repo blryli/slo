@@ -1,5 +1,5 @@
 /**
-*@desc 发现案例
+*@desc 作品集
 *@param page N 页码(默认1)
 *@param pageSize N 每页条数(默认2)
 *@param keyWords N 搜索关键字(默认"")
