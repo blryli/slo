@@ -5,36 +5,40 @@
             <div cladss="row" style="margin: 0 -15px;">
                 <div class="col-sm-3">
                   <div class="bg-fff">
-                    <attention :attention-arr="companyProfileArr.attentionArr"></attention>
+                    <attention :attention-arr="datas.company_info"></attention>
                   </div>
                 </div>
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
-                    <li class="title">{{companyProfileArr.title}}</li>
+                    <li class="title">{{datas.title_jion}}</li>
                     <li class="hr hr-m-20" style="margin-top: 32px;"></li>
                     <li class="company-js">
                         <h3 class="company-title">公司介绍<span></span></h3>
-                        <p>{{companyProfileArr.companyInfoText}}</p>
+                        <p>{{datas.company_info.desc}}</p>
                     </li>
                     <li class="hr hr-m-20" style="margin-top: 36px;"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司环境<span></span></h3>
-                        <p>{{companyProfileArr.companySomeText}}</p>
-                        <p v-for="item in companyProfileArr.companySomeImg"><img :src="item.src" class="img-responsive img"></p>
+                        <p>{{datas.company_info.environment_desc}}</p>
+                        <p v-for="item in datas.company_info.imgs"><img :src="item" class="img-responsive img"></p>
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司作品<span></span></h3>
-                        <p>{{companyProfileArr.companyWorksText}}</p>
-                        <p v-for="item in companyProfileArr.companyWorksImg" class="m-t-20"><img :src="item.src" class="img-responsive img"></p>
+                        <p>{{datas.company_info.case_desc}}</p>
+                        <p v-for="item in datas.case_imgs" class="m-t-20"><img :src="item" class="img-responsive img"></p>
                         <p class="text-center"><button type="button" class="btn btn-FEE300">更多公司作品</button></p>
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">招聘职位<span></span></h3>
-                        <ul class="works-box" v-for="text in companyProfileArr.worksTextArr">
+                        <div class="works-box" v-for="text in datas.recruitment_info">
+                            <h4 class="works-title through"><strong>{{text.position}}</strong><span></span></h4>
+                            <p class="works-text" v-html="text.desc"></p>
+                        </div>
+                        <!-- <ul class="works-box" v-for="text in datas.worksTextArr">
                             <li>
-                                <h4 class="works-title through"><strong>景观主创方案设计师</strong><span></span></h4>
+                                <h4 class="works-title through"><strong>{{datas.recruitment_info.title}}</strong><span></span></h4>
                                 <strong class="works-text-title">【工作职责】</strong>
                                 <p class="works-text">{{text.worksDutyText}}</p>
                             </li>
@@ -42,12 +46,12 @@
                                 <strong class="works-text-title">【岗位要求】</strong>
                                 <p class="works-text">{{text.worksRequireText}}</p>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">对以上职位感兴趣者，请将你的个人作品集、简历和薪资要求发送到</li>
                     <li class="text-center">
-                        <p class="email-through through"><strong>{{companyProfileArr.email}}</strong><span></span></p>
+                        <p class="email-through through"><strong>{{datas.company_info.email}}</strong><span></span></p>
                     </li>
                   </ul>
                 </div>
@@ -62,35 +66,7 @@ import attention from '@/components/core/attention'
   export default {
     data () {
       return {
-        companyProfileArr: {
-            title: '招聘-主创设计师',
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            companyInfoText: '公司特与世纪联华超市股份有限公司、物美商业集团股份有限公司、天天好大药房等合作，在浙江省多个城市100多家门店进行销售。此外公司还搭档杭州电视台生活频道《生活大参考》、杭州电视台生活频道电商平台共同进行优参堂海参的销售，致力于将品牌以更多样化的形式进行推广，将产品以更方便快捷的渠道送达到消费者手中。',
-            companySomeText: '形式进行推广，将产品以更方便快捷的渠道送达到消费者手中。',
-            companyWorksText: '产品以更方便快捷的渠道送达到消费者手中。',
-            companySomeImg: [
-                {src: 'static/img/xiangqing.png'}
-            ],
-            companyWorksImg: [
-                {src: 'static/img/xiangqing.png'},
-                {src: 'static/img/xiangqing.png'},
-                {src: 'static/img/xiangqing.png'}
-            ],
-            worksTextArr: [
-                {
-                    worksDutyText: '1.公司特与世纪联华超市股份有限公司。',
-                    worksRequireText: '1.公司特与世纪联华超市股份有限公司市股份有限公司市股份有限公司。'
-                },
-                {
-                    worksDutyText: '1.公司特与世纪联华超市股份有限公司。',
-                    worksRequireText: '1.公司特与世纪联华超市股份有限公司市股份有限公司市股份有限公司。'
-                }
-            ],
-            email: 'shanghai@qq.com'
-        },
+        datas: {},
         crrut: false,
       }
   	},
@@ -99,14 +75,27 @@ import attention from '@/components/core/attention'
     },
     created() {
         console.log(this.$route.query.id)
-        // this.companyProfileArr = this.$route.query
+        // this.datas = this.$route.query
         // document.body.scrollTop = document.documentElement.scrollTop = 0;
+        this.getRecruitments()
     },
     watch: {
     },
     methods: {
         goBack(){
             this.$router.go(-1)
+        },
+        getRecruitments(){
+          var data = {
+                  company_info: this.$route.query.id
+          }
+          this.$fns.post('/api/case/get-recruitments',data,(json)=>{
+              if(json.ask=='1'){
+                  this.datas = json.data
+              }else{
+                  console.error(json.message)
+              }
+          });
         }
     },
   }
@@ -137,13 +126,13 @@ import attention from '@/components/core/attention'
             padding-left: 7px;
         }
     }
-    .works-text-title{
-        display: block;
-        margin-top: 13px;
-        font-weight: bold;
-        margin-left: -6px;
-        margin-bottom: 6px;
-    }
+    // .works-text-title{
+    //     display: block;
+    //     margin-top: 13px;
+    //     font-weight: bold;
+    //     margin-left: -6px;
+    //     margin-bottom: 6px;
+    // }
     .works-text{
         margin-bottom: 1px;
     }
