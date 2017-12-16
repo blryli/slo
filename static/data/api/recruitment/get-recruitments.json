@@ -11,7 +11,7 @@
 	    	"environment_desc":"公司环境描述(带有html标签)",
 	    	"imgs":["static/img/xiangqing.png"],
 	    	"case_desc":"公司作品描述(带有html标签)",
-        "email":"shanghai@qq.com",
+	    	"email":"shanghai@qq.com",
 	    	"has_attention":0
   		},
   		"case_imgs":["static/img/xiangqing.png","static/img/xiangqing.png","static/img/xiangqing.png"],
@@ -20,12 +20,12 @@
 			    "title":"标题",
 			    "position":"职位",
 			    "desc":"招聘描述(带有html标签)"
-        },
+  			},
   			{
 			    "title":"标题",
 			    "position":"职位",
 			    "desc":"招聘描述(带有html标签)"
-        }
+  			}
   		]
     }
 }
