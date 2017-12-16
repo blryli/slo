@@ -10,6 +10,10 @@ import CompanyProfile from '@/components/works/companyProfile'
 import Login from '@/components/login/login'
 import myCenter from '@/components/myCenter/myCenter'
 
+
+import MainPageEnd from '@/views/frame/MainPage'
+import HomeEnd from '@/views/home/index'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -32,7 +36,14 @@ const router = new VueRouter({
         { path: '/myCenter', name: '个人中心', component: myCenter },
       ]
     },
-    { path: '/login', name: '登录注册', component: Login }
+    { path: '/login', name: '登录注册', component: Login },
+    {
+      path: '/admin',
+      component: MainPageEnd,
+      children: [
+        { path: '/', name: '首页', component: HomeEnd },
+      ]
+    }
   ]
 })
 
