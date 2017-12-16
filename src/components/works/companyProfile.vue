@@ -1,7 +1,7 @@
 <template>
 	<div class="bg-F2F2F2">
         <div class="companyProfile">
-          <div class="container m-t-20">
+          <div class="container m-t-20" v-if="datas != ''">
             <div cladss="row" style="margin: 0 -15px;">
                 <div class="col-sm-3">
                   <div class="bg-fff">
@@ -14,7 +14,7 @@
                     <li class="hr hr-m-20" style="margin-top: 32px;"></li>
                     <li class="company-js">
                         <h3 class="company-title">公司介绍<span></span></h3>
-                        <p>{{datas.company_info.desc}}</p>
+                        <p v-html="datas.company_info.desc"></p>
                     </li>
                     <li class="hr hr-m-20" style="margin-top: 36px;"></li>
                     <li class="company-js img-ms">
@@ -66,17 +66,13 @@ import attention from '@/components/core/attention'
   export default {
     data () {
       return {
-        datas: {},
-        crrut: false,
+        datas: '',
       }
   	},
     components: {
         attention
     },
     created() {
-        console.log(this.$route.query.id)
-        // this.datas = this.$route.query
-        // document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.getRecruitments()
     },
     watch: {
@@ -120,8 +116,7 @@ import attention from '@/components/core/attention'
     .works-title{
         display: inline-block;
         padding: 0 4px;
-        margin: 0 -4px;
-        margin-top: 4px;
+        margin: 4px -4px 10px;
         strong{
             padding-left: 7px;
         }

@@ -16,10 +16,8 @@
         </div>
       </transition>
     </div>
-    <div class="container m-t-20" style="margin-bottom: 10px;">
-      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="300" infinite-scroll-immediate-check="true">
-        <case-list :case-arr="datas" :recruit-info="recruitInfo" :recruit-show="true"></case-list>
-      </div>
+    <div class="container m-t-20" style="margin-bottom: 10px;" v-scroll="loadMore">
+      <case-list :case-arr="datas" :recruit-info="recruitInfo" :recruit-show="true"></case-list>
     </div>
   </div>
 </template>
@@ -36,57 +34,9 @@ var count = 0;
         active: false,
         show: false,
         data: [],
-        datas: [
-          {
-            "src": "static/img/img.png",
-            "title": "去去去去去去去去去去去去去",
-            "text": "Norm Architects",
-            "time": "2018-08-17",
-            "particularsText": [
-              { "text": "111111111111111111111111111111" },
-              { "text": "111111111111111111111111" }
-            ],
-            "particularsImg": [
-              { "src": "static/img/xiangqing.png" },
-              { "src": "static/img/xiangqing.png" }
-            ],
-            "teamUnit": {
-              "unit": "广东省深圳市",
-              "address": "github",
-              "team": "111111111111",
-              "scale": "10000",
-              "time": "2017-12-11",
-              "user": "111111111111111"
-            },
-            "particularsLogo": "static/img/logo.png",
-            "particularsName": "1111111111111111",
-            "particularsAbout": [
-              { "text": "11111111111111111111111111111111111111111111111" },
-              { "text": "1111111111111111111111111111111111111" }
-            ]
-          }
-        ],
-        caseArr: [],
-        recruitInfo:[
-          {
-            company: '纬图设计',
-            address: '杭州',
-            position: '室内设计师',
-            state: '总监助理'
-          },
-          {
-            company: '纬图设计',
-            address: '杭州',
-            position: '室内设计师',
-            state: '总监助理'
-          },
-          {
-            company: '纬图设计',
-            address: '杭州',
-            position: '室内设计师',
-            state: '总监助理'
-          }
-        ],
+        datas: [],
+        loading: false,
+        hasMore: true,
       }
     },
     components: {
@@ -94,6 +44,7 @@ var count = 0;
     },
     created () {
       this.getWorks();
+      this.findCase();
     },
     methods: {
       getWorks(){
@@ -109,7 +60,38 @@ var count = 0;
             console.error(json.message)
           }
         });
-      }
+      },
+        loadMore(){
+          if(!this.loading && this.hasMore){
+            this.loading = true
+            // 请求下一页数据
+            this.findCase();
+            this.loading = false
+          }
+        },
+        findCase(){
+          var data = {
+              page:this.page,
+              pageSize:this.pageSize,
+              keyWords:this.keyWords
+          }
+          this.$fns.post('/api/case/find-cases',data,(json)=>{
+            if(json.ask=='1'){
+              if(json.data.length){
+                this.page++;
+                json.data.forEach((item,k)=>{
+                  this.datas.push(item);
+                })
+                console.log(json.data)
+              }
+              if(json.data.length<this.pageSize){
+                 this.hasMore = false;
+              }
+            }else{
+              console.error(json.message)
+            }
+          });
+        }
     },
   }
 </script>
