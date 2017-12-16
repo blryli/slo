@@ -98,6 +98,7 @@ import attention from '@/components/core/attention'
         attention
     },
     created() {
+        console.log(this.$route.query.id)
         // this.companyProfileArr = this.$route.query
         // document.body.scrollTop = document.documentElement.scrollTop = 0;
     },

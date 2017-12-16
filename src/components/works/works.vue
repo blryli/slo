@@ -8,7 +8,7 @@
         <case-list :case-arr="item.cases" :col-four="false" :title-size="16"></case-list>
       </div>
       <div class="col-xs-6 col-sm-2">
-        <recruit :recruit-info="item.recruitment_info"></recruit>
+        <recruit :recruit-info="item.recruitment_info" :id="item.company_info.company_id"></recruit>
       </div>
       <div class="col-xs-6 col-sm-1 works-right">
         <router-link :to="{ path: '/worksPage', query: {id: item.company_info.company_id}}">  

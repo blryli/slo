@@ -19,6 +19,18 @@ Vue.config.productionTip = false
 
 import fn from './fn'
 Vue.prototype.$fns=fn;
+Vue.directive('scroll',{
+    bind: function (el, binding){
+      window.addEventListener('scroll', function() {
+        var scrollTop = $(document).scrollTop();
+        if(scrollTop > 0 && el.clientHeight > 0 && scrollTop + window.innerHeight >= el.clientHeight) {
+          let loadData = binding.value
+          loadData()
+        }
+      })
+    }
+  }
+)
 
 Vue.use(infiniteScroll)
 Vue.use(Vuelidate)

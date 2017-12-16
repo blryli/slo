@@ -5,7 +5,7 @@
         <li><strong>{{recruit.title}}</strong></li>
         <li>{{recruit.position}}</li>
       </ul>
-      <router-link :to="{ path: '/companyProfile', query: {id: 1}}" class="more">查看更多</router-link>
+      <router-link :to="{ path: '/companyProfile', query: {id: id}}" class="more">查看更多</router-link>
     </div>
 </template>
 
@@ -17,7 +17,8 @@
         default: function() {
           return []
         }
-      }
+      },
+      id: ''
     },
     data () {
       return {}

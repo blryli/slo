@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container m-t-20 p-b-10">
+    <div class="container m-t-20 p-b-10" v-scroll="loadMore">
       <case-list :case-arr="datas"></case-list>
     </div>
   </div>
@@ -16,6 +16,8 @@ var count = 0;
       	pageSize:8,
       	keyWords:'',
         datas: [],
+        loading: false,
+        hasMore: true,
       }
     },
     components: {
@@ -25,6 +27,15 @@ var count = 0;
       this.findCase();
     },
     methods: {
+      loadMore(){
+        if(!this.loading && this.hasMore){
+          this.loading = true
+          console.log('数据加载...')
+          // 请求下一页数据
+          this.findCase()
+          this.loading = false
+        }
+      },
       findCase(){
     	  var data = {
     			  page:this.page,
@@ -38,6 +49,10 @@ var count = 0;
               json.data.forEach((item,k)=>{
                 this.datas.push(item);
               })
+              console.log(json.data)
+            }
+            if(json.data.length<this.pageSize){
+               this.hasMore = false;
             }
     		  }else{
     			  console.error(json.message)
