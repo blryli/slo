@@ -85,7 +85,7 @@ import attention from '@/components/core/attention'
           var data = {
                   company_info: this.$route.query.id
           }
-          this.$fns.post('/api/case/get-recruitments',data,(json)=>{
+          this.$fns.post('/api/recruitment/get-recruitments',data,(json)=>{
               if(json.ask=='1'){
                   this.datas = json.data
               }else{

@@ -8,7 +8,6 @@
     "data": {
     	"company_id":1,
     	"name":"公司名称",
-    	"logo":"公司logo图片地址",
     	"desc":"公司介绍(带有html标签)",
     	"has_attention":0,//是否关注,0:否,1:是
     	"recruitment_info":[

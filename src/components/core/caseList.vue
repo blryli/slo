@@ -2,7 +2,6 @@
   <ul class="row">
     <li class="col-xs-6 col-sm-4 recruit-box" :class="{'col-md-3': colFour}" style="float: right;margin-bottom: 30px;" v-if="recruitShow == true">
       <recruit :recruit-info="recruitInfo" :id="id"></recruit>
-      {{id}}
     </li>
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
       <ul class="slo-case o-h">

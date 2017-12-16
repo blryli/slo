@@ -1,0 +1,24 @@
+{
+    "ask": 1,
+    "message": "success",
+    "data": {
+    	"company_id":1,
+    	"name":"公司名称",
+    	"desc":"公司介绍(带有html标签)",
+    	"has_attention":0,
+    	"recruitment_info":[
+					{
+						"recruitment_id":"招聘id",
+					    "title":"标题",
+					    "position":"职位",
+					    "desc":"招聘描述(带有html标签)"
+					},
+					{
+						"recruitment_id":"招聘id",
+					    "title":"标题",
+					    "position":"职位",
+					    "desc":"招聘描述(带有html标签)"
+					}
+    	]
+    }
+}
