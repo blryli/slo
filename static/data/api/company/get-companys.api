@@ -1,0 +1,22 @@
+/**
+*@desc 获取所有公司
+*@param companyId Y 公司id
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+             {
+            	 "company_id":1,
+            	 "name":"公司1"
+             },
+             {
+            	 "company_id":2,
+            	 "name":"公司2"
+             },
+             {
+            	 "company_id":3,
+            	 "name":"公司3"
+             }
+      ]
+}
