@@ -1,0 +1,25 @@
+//@desc 添加案例
+/**
+ * @param
+ */
+{
+    "company_id":"公司id",
+    "title": "案例标题",
+    "author": "作者",
+    "unit": "业主单位",
+    "address": "项目地址",
+    "team": "设计师团队",
+    "scale": 0,//用地规模(平方米)
+    "design_date": "设计日期",
+    "photographer": "拍摄者",
+    "desc": "案例描述(带有html标签)",
+    "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"]
+}
+/**
+ * @response
+ */
+{
+    "ask": 1,
+    "message": "success"
+    "errors":[]
+}
