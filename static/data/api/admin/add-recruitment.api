@@ -1,0 +1,18 @@
+//@desc 发布招聘
+/**
+ * @param
+ */
+{
+	"company_id":"公司id",
+	"title":"标题",
+	"position":"职位",
+	"desc":"招聘描述(带有html标签)"
+}
+/**
+ * @response
+ */
+{
+    "ask": 1,
+    "message": "success"
+    "errors":[]
+}
