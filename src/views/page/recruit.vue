@@ -1,18 +1,18 @@
 <template>
     <div class="end-box">
       <p><span>公司名称：</span>
-        <el-select v-model="datas.name" filterable placeholder="请选择公司">
+        <el-select v-model="datas.name" clearable filterable placeholder="请选择公司">
             <el-option
               v-for="item in names"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              :key="item.company_id"
+              :label="item.name"
+              :value="item.company_id">
             </el-option>
           </el-select>
       </p>
       <p><span>标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
       <p><span class="span">职位：</span><el-input v-model="datas.position"></el-input></p>
-      <p><span class="span">招聘描述：</span><vue-editor v-model="datas.desc"></vue-editor></p>
+      <p><span class="span">招聘描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
       <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
     </div>
 </template>
@@ -28,14 +28,36 @@ export default {
         "position":"",
         "desc":""
       },
+      customToolbar: [
+        ['bold', 'italic', 'underline'],
+         ['blockquote', 'code-block'],
+         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+         [{ 'indent': '-1'}, { 'indent': '+1' }],
+         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+         [{ 'color': [] }, { 'background': [] }],
+         [{ 'font': [] }],
+         [{ 'align': [] }],
+      ]
     }
   },
   components: {
   	VueEditor
   },
+  created() {
+    this.getCompanys();
+  },
   methods: {
     submit() {
 
+    },
+    getCompanys(){
+      this.$fns.post('/api/company/get-companys',{},(json)=>{
+          if(json.ask=='1'){
+            this.names = json.data
+          }else{
+              console.error(json.message)
+          }
+      });
     },
   }
 }

@@ -2,9 +2,11 @@
     <div class="end-box">
       <p><span>公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
       <p><span>公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
-      <p><span class="span">公司描述：</span><vue-editor v-model="datas.desc"></vue-editor></p>
-      <p><span class="span">公司环境描述：</span><vue-editor v-model="datas.environment_desc"></vue-editor></p>
-      <p><span class="span">公司作品描述：</span><vue-editor v-model="datas.case_desc"></vue-editor></p>
+      <p v-html="datas.desc"></p>
+      <p>{{datas.desc}}</p>
+      <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
+      <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.environment_desc"></vue-editor></p>
+      <p><span class="span">公司作品描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.case_desc"></vue-editor></p>
       <div class="p">
         <span class="span">公司logo：</span>
         <div class="upload-img">
@@ -21,11 +23,11 @@
           :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
             <i class="el-icon-plus"></i>
           </el-upload>
-          <el-dialog :visible.sync="dialogVisible" size="tiny">
-            <img width="100%" :src="dialogImageUrl" alt>
-          </el-dialog>
         </div>
       </div>
+      <el-dialog :visible.sync="dialogVisible" size="tiny">
+        <img width="100%" :src="dialogImageUrl" alt>
+      </el-dialog>
       <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
     </div>
 </template>
@@ -36,11 +38,11 @@ export default {
   data() {
     return {
       datas: {
-        "name":"",
-        "email":"",
-        "desc":"",
-        "environment_desc":"",
-        "case_desc":""
+        name:'',
+        email:'',
+        desc:'',
+        environment_desc:'',
+        case_desc:''
       },
       name:'img',
       dialogImageUrl: '',
@@ -54,7 +56,17 @@ export default {
         limit:50,
         multiple:true,
         imgs:[]
-      }
+      },
+      customToolbar: [
+        ['bold', 'italic', 'underline'],
+         ['blockquote', 'code-block'],
+         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+         [{ 'indent': '-1'}, { 'indent': '+1' }],
+         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+         [{ 'color': [] }, { 'background': [] }],
+         [{ 'font': [] }],
+         [{ 'align': [] }],
+      ]
     }
   },
   components: {
@@ -62,7 +74,41 @@ export default {
   },
   methods: {
     submit() {
-
+      var data = {
+              name: this.datas.name,
+              email: this.datas.email,
+              desc: this.datas.desc,
+              environment_desc: this.datas.environment_desc,
+              case_desc: this.datas.case_desc,
+              logo: this.logoImg.imgs,
+              imgs: this.companyImg.imgs
+      }
+      this.$fns.post('/api/admin/add-company',data,(json)=>{
+          if(json.ask=='1'){
+            this.$message({message:json.message,type:'success',showClose:true});
+            console.log(this.datas.desc)
+            this.datas = {
+              name:'',
+              email:'',
+              desc:'',
+              environment_desc:'',
+              case_desc:''
+            }
+          }else{
+              var msgHtml = '';
+              if(json.errors.length){
+                json.errors.forEach((msg,k)=>{
+                  msgHtml += '<p>' + msg + '</p>';
+                });
+              }
+              this.$message({
+                type:'error',
+                showClose:true,
+                dangerouslyUseHTMLString: true,
+                message: msgHtml ? msgHtml : 'Returns unknown error'
+              });
+          }
+      });
     },
 	 //查看图片
     preview(file){
@@ -70,7 +116,7 @@ export default {
           this.dialogVisible = true;
     },
     //更新图片数组
-    refreshImgs(fileList,imgs){
+    refreshImgs(fileList){
       imgs=[];
       if(fileList.length){
         fileList.forEach((item,k)=>{
@@ -88,8 +134,7 @@ export default {
     },
     //logo移除
     removeLogo(file, fileList){
-      this.$fns.post('/api/img/delete',{filename:file.response.filename});
-      this.logoImg.imgs = this.refreshImgs(fileList,this.logoImg.imgs);
+      this.logoImg.imgs = this.refreshImgs(fileList);
     },
     //company成功
     successCompany(json, file, fileList){
@@ -97,8 +142,7 @@ export default {
     },
     //company移除
     removeCompany(file, fileList){
-      this.$fns.post('/api/img/delete',{filename:file.response.filename});
-      this.companyImg.imgs = this.refreshImgs(fileList,this.companyImg.imgs);
+      this.companyImg.imgs = this.refreshImgs(fileList);
     }
   }
 }
@@ -131,5 +175,16 @@ export default {
     }
   }
 }
-
+ol li:before {  
+    content:counter(sectioncounter) "、";   
+    counter-increment:sectioncounter;  
+ } 
+ ol{
+  padding-left: 20px;
+ }
+ ul{
+  padding-left: 40px;
+ }
+ ul li{ display:list-item;list-style-type: disc }
+ ol{list-style-type: decimal }
 </style>

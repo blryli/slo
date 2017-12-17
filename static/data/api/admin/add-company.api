@@ -16,6 +16,6 @@
  */
 {
     "ask": 1,
-    "message": "success"
+    "message": "success",
     "errors":[]
 }
