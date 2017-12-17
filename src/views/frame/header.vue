@@ -10,7 +10,7 @@
     </el-col>
     <el-col :span="6" class="login">
     	<span>你好,{{useName}}</span>
-    	<router-link :to="{path:'/login'}">退出登录</router-link>
+    	<router-link :to="{path:'/endLogin'}">退出登录</router-link>
     </el-col>
   </el-row>
 </template>

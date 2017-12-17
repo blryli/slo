@@ -15,6 +15,7 @@ import MainPageEnd from '@/views/frame/MainPage'
 import HomeEnd from '@/views/page/index'
 import addCase from '@/views/page/addCase'
 import recruit from '@/views/page/recruit'
+import endLogin from '@/views/page/endLogin'
 
 Vue.use(VueRouter)
 
@@ -45,9 +46,10 @@ const router = new VueRouter({
       children: [
         { path: '/', name: '创建公司', component: HomeEnd },
         { path: 'addCase', name: '添加案例', component: addCase },
-        { path: 'recruit', name: '发布招聘', component: recruit }
+        { path: 'recruit', name: '发布招聘', component: recruit },
       ]
-    }
+    },
+    { path: '/endLogin', name: '后台登陆', component: endLogin }
   ]
 })
 
