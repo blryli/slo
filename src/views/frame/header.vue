@@ -9,9 +9,9 @@
     	</ul>
     </el-col>
     <el-col :span="6" class="login">
-    	<router-link to="/">登陆</router-link>
+    	<router-link to="/login">登陆</router-link>
     	<span>|</span>
-    	<router-link to="/">注册</router-link>
+    	<router-link :to="{path:'/login',query: {crru:2}}">注册</router-link>
     </el-col>
   </el-row>
 </template>
@@ -33,7 +33,7 @@ export default {
         },{
           id: 2,
           name: '添加案例',
-          url: 'scheme'
+          url: '/admin/addCase'
         },{
           id: 3,
           name: '发布招聘',

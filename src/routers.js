@@ -12,7 +12,8 @@ import myCenter from '@/components/myCenter/myCenter'
 
 
 import MainPageEnd from '@/views/frame/MainPage'
-import HomeEnd from '@/views/home/index'
+import HomeEnd from '@/views/page/index'
+import addCase from '@/views/page/addCase'
 
 Vue.use(VueRouter)
 
@@ -41,7 +42,8 @@ const router = new VueRouter({
       path: '/admin',
       component: MainPageEnd,
       children: [
-        { path: '/', name: '首页', component: HomeEnd },
+        { path: '/', name: '创建公司', component: HomeEnd },
+        { path: 'addCase', name: '添加案例', component: addCase },
       ]
     }
   ]
