@@ -1,6 +1,5 @@
 /**
 *@desc 获取所有公司
-*@param companyId Y 公司id
 */
 {
     "ask": 1,
