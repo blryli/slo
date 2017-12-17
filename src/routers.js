@@ -14,6 +14,7 @@ import myCenter from '@/components/myCenter/myCenter'
 import MainPageEnd from '@/views/frame/MainPage'
 import HomeEnd from '@/views/page/index'
 import addCase from '@/views/page/addCase'
+import recruit from '@/views/page/recruit'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,7 @@ const router = new VueRouter({
       children: [
         { path: '/', name: '创建公司', component: HomeEnd },
         { path: 'addCase', name: '添加案例', component: addCase },
+        { path: 'recruit', name: '发布招聘', component: recruit }
       ]
     }
   ]

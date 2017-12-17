@@ -1,11 +1,11 @@
 <template>
 	<div class="bg-F2F2F2">
         <div class="position-bg"></div>
-        <div class="particulars">
+        <div class="particulars" v-if="particularsArr != ''">
           <div class="container m-t-20">
             <div class="particulars-close" @click="goBack"></div>
-            <div class="particulars-prev"></div>
-            <div class="particulars-next"></div>
+            <div class="particulars-prev" @click="prev"></div>
+            <div class="particulars-next" @click="next"></div>
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div class="row">
                 <div class="col-sm-9"> 
@@ -72,8 +72,9 @@ import caseList from '@/components/core/caseList'
   export default {
     data () {
       return {
-        particularsArr: {},
+        particularsArr: '',
         alrtSharingShow: false,
+        id: ''
       }
   	},
     components: {
@@ -82,6 +83,7 @@ import caseList from '@/components/core/caseList'
     created() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.getCase();
+        this.id = this.$route.query.id;
     },
     watch: {
     },
@@ -90,18 +92,27 @@ import caseList from '@/components/core/caseList'
             this.$router.go(-1)
         },
         getCase(){
+            console.log(this.id)
           var data = {
-                  case_id: this.$route.query.id
+                  case_id: this.id
           }
           this.$fns.post('/api/case/get-case',data,(json)=>{
               if(json.ask=='1'){
                 this.particularsArr = json.data
-                console.log(json.data)
+                console.log(this.particularsArr.company_info.company_id)
               }else{
                   console.error(json.message)
               }
           });
-        }
+        },
+        prev() {
+            this.id--;
+            this.getCase();
+        },
+        next() {
+            this.id++;
+            this.getCase();
+        },
     },
   }
 

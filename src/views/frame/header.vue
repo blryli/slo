@@ -1,6 +1,6 @@
 <template>
   <el-row class="header">
-    <el-col :span="5" class="logo"><router-link to="/"><img :src="logo" alt="logo"></router-link></el-col>
+    <el-col :span="5" class="logo"><router-link to="/admin"><img :src="logo" alt="logo"></router-link></el-col>
     <el-col :span="13">
     	<ul class="nav">
     		<li v-for="(menu, index) in menus">
@@ -9,9 +9,8 @@
     	</ul>
     </el-col>
     <el-col :span="6" class="login">
-    	<router-link to="/login">登陆</router-link>
-    	<span>|</span>
-    	<router-link :to="{path:'/login',query: {crru:2}}">注册</router-link>
+    	<span>你好,{{useName}}</span>
+    	<router-link :to="{path:'/login'}">退出登录</router-link>
     </el-col>
   </el-row>
 </template>
@@ -37,20 +36,17 @@ export default {
         },{
           id: 3,
           name: '发布招聘',
-          url: 'scheme'
+          url: '/admin/recruit'
         }]
       }
     },
   },
   data() {
   	return {
-  		navWidth: 0
+  		"useName": "老王"
   	}
   },
   methods: {
-    closeNav() {
-      this.navWidth = 0
-    }
   }
 }
 </script>
@@ -110,60 +106,10 @@ export default {
 .login{
 	text-align: right;
 	font-size: 14px;
-  a{
-    color: #333;
-  }
 	span{
 		display: inline-block;
 		margin: 0 15px;
-		color: #aaa;
+		color: #333;
 	}
-}
-//菜单图标
-.icon{
-  margin-top: 10px;
-  display: block;
-}
-.sp-menu-icon{
-  width: 24px;
-  padding: 6px 6px 6px 0;
-  display: block;
-  border-radius: 2px;
-  cursor: pointer;
-  margin-bottom: 6px;
-  &:after{
-    content: '';
-    display: block;
-    width: 24px;  
-    height: 3px;  
-    border-top: 3px solid #666;  
-    border-bottom: 3px solid #666;  
-    background-color: #666;  
-    padding: 4px 0;  
-    background-clip:content-box;
-  }
-}
-@media (min-width: 768px){
-  
-  .nav{
-    width: 100% !important;
-  	position: relative;
-    background-color: transparent;
-    padding-top: 0;
-  	top: 0;
-  	li{
-  		float: left;
-		padding: 0;
-  		+li{
-  			margin-left: 10%;
-  		}
-  	}
-  }
-  .icon{
-  	display: none;
-  }
-  .login{
-    display: block;
-  }
 }
 </style>
