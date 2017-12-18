@@ -9,7 +9,7 @@
       <div class="p">
         <span class="span">公司logo：</span>
         <div class="upload-img">
-          <el-upload action="/api/img/upload" list-type="picture-card" :name="logoImg.name" :limit="logoImg.limit"  :multiple="logoImg.multiple"
+          <el-upload action="/api/img/upload" list-type="picture-card" :name="name" :limit="logoImg.limit"  :multiple="logoImg.multiple"
           :on-preview="preview" :on-remove="removeLogo" :on-success="successLogo">
             <i class="el-icon-plus"></i>
           </el-upload>
@@ -18,7 +18,7 @@
       <div class="p">
         <span class="span">公司图片：</span>
         <div class="upload-img">
-          <el-upload action="/api/img/upload" list-type="picture-card" :name="companyImg.name" :limit="companyImg.limit"  :multiple="companyImg.multiple"
+          <el-upload action="/api/img/upload" list-type="picture-card" :name="name" :limit="companyImg.limit"  :multiple="companyImg.multiple"
           :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
             <i class="el-icon-plus"></i>
           </el-upload>
