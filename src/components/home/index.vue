@@ -30,7 +30,6 @@ var count = 0;
       loadMore(){
         if(!this.loading && this.hasMore){
           this.loading = true
-          console.log('数据加载...')
           // 请求下一页数据
           this.findCase()
           this.loading = false
@@ -49,7 +48,6 @@ var count = 0;
               json.data.forEach((item,k)=>{
                 this.datas.push(item);
               })
-              console.log(json.data)
             }
             if(json.data.length<this.pageSize){
                this.hasMore = false;

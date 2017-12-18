@@ -4,8 +4,8 @@
         <div class="particulars" v-if="particularsArr != ''">
           <div class="container m-t-20">
             <div class="particulars-close" @click="goBack"></div>
-            <div class="particulars-prev" @click="prev"></div>
-            <div class="particulars-next" @click="next"></div>
+            <div class="particulars-prev" v-show="prevShow" @click="prev($event)"></div>
+            <div class="particulars-next" v-show="nextShow" @click="next"></div>
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div class="row">
                 <div class="col-sm-9"> 
@@ -74,7 +74,10 @@ import caseList from '@/components/core/caseList'
       return {
         particularsArr: '',
         alrtSharingShow: false,
-        id: ''
+        id: '',
+        ids: [],
+        prevShow: true,
+        nextShow: true,
       }
   	},
     components: {
@@ -84,6 +87,7 @@ import caseList from '@/components/core/caseList'
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.getCase();
         this.id = this.$route.query.id;
+        this.ids = this.$route.query.ids
     },
     watch: {
     },
@@ -92,25 +96,50 @@ import caseList from '@/components/core/caseList'
             this.$router.go(-1)
         },
         getCase(){
-            console.log(this.id)
           var data = {
                   case_id: this.id
           }
           this.$fns.post('/api/case/get-case',data,(json)=>{
               if(json.ask=='1'){
                 this.particularsArr = json.data
-                console.log(this.particularsArr.company_info.company_id)
               }else{
                   console.error(json.message)
               }
           });
         },
         prev() {
-            this.id--;
+            let index;
+            if(this.nextShow == false) {
+                this.nextShow = true;
+            }
+            this.ids.forEach((d, i) => {
+                if(this.id == d){
+                    index = i-1
+                }
+            })
+            this.id = this.ids[index]
+            if(index == 0) {
+                this.id = this.ids[index]
+                this.prevShow = false
+            }
             this.getCase();
         },
         next() {
-            this.id++;
+            let index;
+            let l = this.ids.length;
+            if(this.prevShow == false){
+                this.prevShow = true;
+            }
+            this.ids.forEach((d, i) => {
+                if(this.id == d){
+                    index = i+1
+                }
+            })
+            this.id = this.ids[index]
+            if(index == l-1) {
+                this.id = this.ids[index]
+                this.nextShow = false
+            }
             this.getCase();
         },
     },

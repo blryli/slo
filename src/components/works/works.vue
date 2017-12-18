@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-F2F2F2 p-b-20">
+  <div class="bg-F2F2F2 p-b-20" v-scroll="loadMore">
     <div class="container m-t-20 row" v-for="item in datas">
     	<ul class="col-sm-2 works-left">
         <attention :attention-arr="item.company_info"></attention>
@@ -29,7 +29,9 @@ import Recruit from './recruit'
         page:1,
         pageSize:8,
         keyWords:'',
-        datas: []
+        datas: [],
+        loading: false,
+        hasMore: true,
       }
     },
     components: {
@@ -39,6 +41,14 @@ import Recruit from './recruit'
       this.getWorks();
     },
     methods: {
+      loadMore(){
+        if(!this.loading && this.hasMore){
+          this.loading = true
+          // 请求下一页数据
+          this.getWorks()
+          this.loading = false
+        }
+      },
       getWorks(){
         var data = {
             page:this.page,

@@ -5,7 +5,7 @@
     </li>
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
       <ul class="slo-case o-h">
-        <router-link class="img router" :to="{path: pathUrl,query: {id: item.case_id}}" tag="li"><img :src="item.img_min"></router-link>
+        <router-link class="img router" :to="{path: pathUrl,query: {id: item.case_id, ids: ids}}" tag="li"><img :src="item.img_min"></router-link>
         <router-link class="title router through" :style="{ 'font-size': titleSize + 'px' }" to="/particulars" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
         <li class="text" v-if="showText">{{item.author}}</li>
       </ul>
@@ -65,7 +65,14 @@ export default {
       this.$nextTick(function () {
       })
     },
-    watch: {
+    computed: {
+      ids() {
+        let arr = []
+        this.caseArr.forEach((d, i) => {
+          arr.push(d.case_id)
+        })
+        return arr
+      },
     },
     methods:{
       textLength(text) {
