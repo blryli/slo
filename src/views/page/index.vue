@@ -79,7 +79,7 @@ export default {
               desc: this.datas.desc,
               environment_desc: this.datas.environment_desc,
               case_desc: this.datas.case_desc,
-              logo: this.logoImg.imgs,
+              logo: this.logoImg.imgs.length?this.logoImg.imgs[0]:'',
               imgs: this.companyImg.imgs
       }
       this.$fns.post('/api/admin/add-company',data,(json)=>{
