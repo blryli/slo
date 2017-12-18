@@ -3,7 +3,6 @@
       <p><span>公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
       <p><span>公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
       <p v-html="datas.desc"></p>
-      <p>{{datas.desc}}</p>
       <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
       <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.environment_desc"></vue-editor></p>
       <p><span class="span">公司作品描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.case_desc"></vue-editor></p>
@@ -117,7 +116,7 @@ export default {
     },
     //更新图片数组
     refreshImgs(fileList){
-      imgs=[];
+      var imgs=[];
       if(fileList.length){
         fileList.forEach((item,k)=>{
           if(item.response.ask=='1'){
@@ -125,7 +124,6 @@ export default {
           }
         });
       }
-      console.log(imgs);
       return imgs;
     },
     //logo成功
