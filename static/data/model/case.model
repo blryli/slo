@@ -1,5 +1,6 @@
 {
     "case_id":1,//案例id
+    "company_id":"公司id",
     "img_min": "缩略图",
     "title": "案例标题",
     "author": "作者",
