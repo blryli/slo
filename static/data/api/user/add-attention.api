@@ -1,0 +1,14 @@
+//@desc 关注公司
+/**
+ * @param
+ */
+{
+    "companyId":"公司id",//Y
+}
+/**
+ * @response
+ */
+{
+    "ask": 1,//不等于1时，弹框提示message
+    "message": "success"
+}
