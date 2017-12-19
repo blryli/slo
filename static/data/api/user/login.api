@@ -12,6 +12,6 @@
  */
 {
     "ask": 1,
-    "message": "success"
-    "is_login":1//是否已登录，0：否，1：是
+    "message": "success",
+    "name":""
 }
