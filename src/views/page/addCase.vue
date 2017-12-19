@@ -37,6 +37,7 @@
           </div>
         </div>
       </p>
+      <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
     </el-col>
   </el-row>
 </template>
@@ -166,10 +167,6 @@ export default {
    ol{
     padding-left: 20px;
    }
-   ul{
-    padding-left: 40px;
-   }
-   ul li{ display:list-item;list-style-type: disc }
    ol{list-style-type: decimal }
 }
 </style>

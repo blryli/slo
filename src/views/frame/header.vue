@@ -39,14 +39,28 @@ export default {
           url: '/admin/recruit'
         }]
       }
-    },
+    }
+  },
+  created() {
+    this.getLogin();
   },
   data() {
   	return {
-  		"useName": "老王"
+  		useName: ''
   	}
   },
   methods: {
+    getLogin(){
+      this.$fns.post('/api/user/login',{},(json)=>{
+          if(json.ask=='1'){
+            console.log(json)
+            this.useName = json.name
+          }
+          if(json.ask != '1'){
+            this.$router.push({path: '/endLogin'})
+          }
+      });
+    }
   }
 }
 </script>

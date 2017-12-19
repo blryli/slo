@@ -179,10 +179,6 @@ export default {
    ol{
     padding-left: 20px;
    }
-   ul{
-    padding-left: 40px;
-   }
-   ul li{ display:list-item;list-style-type: disc }
    ol{list-style-type: decimal }
 }
 </style>
