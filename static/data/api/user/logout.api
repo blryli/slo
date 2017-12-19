@@ -1,0 +1,12 @@
+//@desc 用户退出登录
+/**
+ * @param
+ */
+{}
+/**
+ * @response
+ */
+{
+    "ask": 1,
+    "message": "success"
+}
