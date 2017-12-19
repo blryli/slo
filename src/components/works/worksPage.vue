@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-scroll="loadMore">
     <div class="bg-F2F2F2 works-banner" :class="{paddingbottom: show == true}">
       <h1>{{data.name}}</h1>
       <div class="al-btn text-center">
@@ -14,7 +14,7 @@
         </div>
       </transition>
     </div>
-    <div class="container m-t-20" style="margin-bottom: 10px;" v-scroll="loadMore">
+    <div class="container m-t-20" style="margin-bottom: 10px;">
       <case-list :case-arr="datas" :recruit-info="data.recruitment_info" :id="data.company_id" :recruit-show="true"></case-list>
     </div>
   </div>
@@ -34,6 +34,9 @@ var count = 0;
         datas: [],
         loading: false,
         hasMore: true,
+        page:1,
+        pageSize:8,
+        keyWords:'',
       }
     },
     components: {
@@ -84,7 +87,7 @@ var count = 0;
             }else{
               console.error(json.message)
             }
-          });
+          },{},false);
         }
     },
   }

@@ -71,11 +71,6 @@ export default {
     }
   },
   watch: {
-    // menuJson: {
-    //   handler(val, oldVal) {
-    //     this.$emit('get-json', val);
-    //   }
-    // }
   },
   components: {
     TopMenu
@@ -98,26 +93,6 @@ export default {
       this.userName = ''
       this.userImg = ''
     },
-  	// login: function() {
-   //          //绑定Ajax的内容
-   //          let _url = window.location.href
-   //          window.location.href = URL + "/oauth/login?url=" + _url;
-  	// },
-  	// user: function(){
-  	// 	let _this = this
-  	// 	   $.ajax({
-   //              url: URL + "/user/query",
-			// 	type : 'get',                    
-   //              xhrFields: {
-   //                  withCredentials: true
-   //              },
-   //              success: function (data) {
-   //              	if(data != null){
-	  //               	_this.userName = data
-   //              	}
-   //              }
-   //       })
-  	// },
     getTopMenu() {
   	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
 		  if(json.ask=='1'){
