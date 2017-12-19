@@ -50,7 +50,7 @@ export default {
   methods: {
     submit() {
       var data = {
-              name: this.datas.name,
+              company_id: this.datas.name,
               title: this.datas.title,
               position: this.datas.position,
               desc: this.datas.desc
