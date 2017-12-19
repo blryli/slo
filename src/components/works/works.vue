@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-F2F2F2 p-b-20">
-    <div class="container m-t-20 row" v-for="item in datas" v-scroll="loadMore">
+  <div class="bg-F2F2F2 p-b-20" v-scroll="loadMore">
+    <div class="container m-t-20 row" v-for="item in datas">
     	<ul class="col-sm-2 works-left">
         <attention :attention-arr="item.company_info"></attention>
       </ul>
@@ -27,7 +27,7 @@ import Recruit from './recruit'
   	data () {
       return {
         page:1,
-        pageSize:8,
+        pageSize:2,
         keyWords:'',
         datas: [],
         loading: false,
@@ -66,7 +66,7 @@ import Recruit from './recruit'
           }else{
             console.error(json.message)
           }
-        });
+        },{},false);
       }
     }
   }
