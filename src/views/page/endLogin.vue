@@ -3,7 +3,7 @@
       <p class="title"><strong>后台登陆</strong></p>
       <div class="erroInfo" v-show="show">请输入正确的账号密码</div>
       <p><el-input v-model="name" placeholder="账号"></el-input></p>
-      <p><el-input v-model="Pass" placeholder="密码"></el-input></p>
+      <p><el-input v-model="pass" placeholder="密码"></el-input></p>
       <p><el-button type="primary" style="width: 100%;" @click="submit">提交</el-button></p>
     </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       name: '',
-      Pass: '',
+      pass: '',
       show: false
     }
   },
@@ -23,17 +23,17 @@ export default {
   },
   methods: {
     submit() {
-      if(this.name != '' && this.Pass != '') {
+      if(this.name != '' && this.pass != '') {
         var data = {
                 userName: this.name,
                 userPass: this.pass
         }
-        this.$fns.post('/api/case/get-case',data,(json)=>{
+        this.$fns.post('/api/user/login',data,(json)=>{
             if(json.ask=='1'){
               this.$router.push({path:'/admin'});
             }else{
               this.show = true
-              this.$message({message:msg,type:'error',showClose:true});
+              //this.$message({message:json.message,type:'error',showClose:true});
             }
         });
       }else{

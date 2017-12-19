@@ -85,7 +85,6 @@ export default {
       this.$fns.post('/api/admin/add-company',data,(json)=>{
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
-            console.log(this.datas.desc)
             this.datas = {
               name:'',
               email:'',
@@ -94,14 +93,14 @@ export default {
               case_desc:''
             }
           }else{
-              this.$message({message:msg,type:'error',showClose:true});
+              this.$message({message:json.message,type:'error',showClose:true});
           }
       });
     },
 	 //查看图片
     preview(file){
       this.dialogImageUrl = file.url;
-          this.dialogVisible = true;
+      this.dialogVisible = true;
     },
     //更新图片数组
     refreshImgs(fileList){
@@ -117,7 +116,7 @@ export default {
     },
     //logo成功
     successLogo(json, file, fileList){
-      this.logoImg.imgs = this.refreshImgs(fileList,this.logoImg.imgs);
+      this.logoImg.imgs = this.refreshImgs(fileList);
     },
     //logo移除
     removeLogo(file, fileList){
@@ -125,7 +124,7 @@ export default {
     },
     //company成功
     successCompany(json, file, fileList){
-      this.companyImg.imgs = this.refreshImgs(fileList,this.companyImg.imgs);
+      this.companyImg.imgs = this.refreshImgs(fileList);
     },
     //company移除
     removeCompany(file, fileList){
