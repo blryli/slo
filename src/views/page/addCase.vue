@@ -113,7 +113,6 @@ export default {
       this.$fns.post('/api/admin/add-case',data,(json)=>{
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
-            console.log(this.datas.desc)
             this.datas = {
               "name":"",
               "title":"",

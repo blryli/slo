@@ -48,11 +48,9 @@ var count = 0;
         var data = {
             company_id: this.$route.query.id
         }
-        console.log(data)
         this.$fns.post('/api/company/get-company-info',data,(json)=>{
           if(json.ask=='1'){
             this.data = json.data
-            console.log(this.data)
           }else{
             console.error(json.message)
           }
@@ -79,7 +77,6 @@ var count = 0;
                 json.data.forEach((item,k)=>{
                   this.datas.push(item);
                 })
-                console.log(json.data)
               }
               if(json.data.length<this.pageSize){
                  this.hasMore = false;

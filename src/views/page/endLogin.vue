@@ -1,7 +1,7 @@
 <template>
     <div class="end-lgin">
       <p class="title"><strong>后台登陆</strong></p>
-      <div class="erroInfo" v-show="show">请输入正确的账号密码</div>
+      <div class="erroInfo" v-show="show && show1 != ''">{{msg}}</div>
       <p><el-input v-model="name" placeholder="账号"></el-input></p>
       <p><el-input v-model="pass" placeholder="密码"></el-input></p>
       <p><el-button type="primary" style="width: 100%;" @click="submit">提交</el-button></p>
@@ -14,12 +14,18 @@ export default {
     return {
       name: '',
       pass: '',
-      show: false
+      show: false,
+      show1: ''
     }
   },
   components: {
   },
   created() {
+  },
+  moumted: {
+    msg() {
+      return this.show == true ? '请输入正确的账号密码' : this.show1
+    }
   },
   methods: {
     submit() {
@@ -32,8 +38,8 @@ export default {
             if(json.ask=='1'){
               this.$router.push({path:'/admin'});
             }else{
-              this.show = true
-              //this.$message({message:json.message,type:'error',showClose:true});
+              this.show = false;
+              this.show1 = json.message;
             }
         });
       }else{

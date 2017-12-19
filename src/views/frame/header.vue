@@ -53,7 +53,6 @@ export default {
     getLogin(){
       this.$fns.post('/api/user/login',{},(json)=>{
           if(json.ask=='1'){
-            console.log(json)
             this.useName = json.name
           }
           if(json.ask != '1'){
