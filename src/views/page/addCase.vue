@@ -27,7 +27,7 @@
         <div class="p">
           <span class="span">案例图片：</span>
           <div class="upload-img">
-            <el-upload action="/api/img/upload" list-type="picture-card" :name="logos.name" :limit="logos.limit"  :multiple="logos.multiple"
+            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" :limit="logos.limit"  :multiple="logos.multiple"
             :on-preview="preview" :on-remove="remove" :on-success="success">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -63,8 +63,8 @@ export default {
       dialogVisible: false,
       name:'img',
       logos: {
-        limit:1,
-        multiple:false,
+        limit:50,
+        multiple:true,
         imgs:[],
       },
       names: [],
@@ -121,7 +121,7 @@ export default {
               "desc":""
             }
           }else{
-              this.$message({message:msg,type:'error',showClose:true});
+              this.$message({message:json.message,type:'error',showClose:true});
           }
       });
     },
@@ -135,32 +135,25 @@ export default {
       });
     },
      refreshImgs(fileList){
-        this.imgs=[];
+        var imgs=[];
         if(fileList.length){
           fileList.forEach((item,k)=>{
             if(item.response.ask=='1'){
-              item.response.filename && this.imgs.push(item.response.filename);
+              item.response.filename && imgs.push(item.response.filename);
             }
           });
         }
+        return imgs;
       },
       success(json, file, fileList){
-        this.refreshImgs(fileList);
-        //console.log(this.imgs);
+        this.logos.imgs = this.refreshImgs(fileList);
       },
       remove(file, fileList){
-        this.$fns.post('/api/img/delete',{filename:file.response.filename},(json)=>{
-          if(json.ask=='1'){
-            console.log('删除成功');
-          }else{
-            console.error('删除失败');
-          }
-        });
-        this.refreshImgs(fileList);
+        this.logos.imgs = this.refreshImgs(fileList);
       },
       preview(file){
         this.dialogImageUrl = file.url;
-            this.dialogVisible = true;
+        this.dialogVisible = true;
       }
   }
 }
