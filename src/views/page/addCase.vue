@@ -18,8 +18,14 @@
     <el-col :span="10">
       <p><span class="span">项目地址：</span><el-input v-model="datas.address"></el-input></p>
       <p><span class="span">设计师团队：</span><el-input v-model="datas.team"></el-input></p>
-      <p><span class="span">用地规模：</span><el-input v-model="datas.scale"></el-input></p>
-      <p><span class="span">设计日期：</span><el-input v-model="datas.design_date"></el-input></p>
+      <p><span class="span">用地规模(m²)：</span><el-input v-model="datas.scale"></el-input></p>
+      <p><span class="span">设计日期：</span>
+        <el-date-picker
+          v-model="datas.design_date"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
+      </p>
       <p><span class="span">拍摄者：</span><el-input v-model="datas.photographer"></el-input></p>
     </el-col>
     <el-col :span="24">

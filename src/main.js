@@ -24,8 +24,8 @@ Vue.directive('scroll',{
       window.addEventListener('scroll', function() {
         var scrollTop = $(document).scrollTop();
         if(scrollTop > 0 && el.clientHeight > 0 && scrollTop + window.innerHeight >= el.clientHeight) {
-          let loadData = binding.value
-          loadData()
+          let loadMore = binding.value
+          loadMore()
         }
       })
     }
