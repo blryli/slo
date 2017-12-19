@@ -94,18 +94,7 @@ export default {
               case_desc:''
             }
           }else{
-              var msgHtml = '';
-              if(json.errors.length){
-                json.errors.forEach((msg,k)=>{
-                  msgHtml += '<p>' + msg + '</p>';
-                });
-              }
-              this.$message({
-                type:'error',
-                showClose:true,
-                dangerouslyUseHTMLString: true,
-                message: msgHtml ? msgHtml : 'Returns unknown error'
-              });
+              this.$message({message:msg,type:'error',showClose:true});
           }
       });
     },

@@ -91,7 +91,39 @@ export default {
   },
   methods: {
 	  submit() {
-
+      var data = {
+              company_id: this.datas.name,
+              title: this.datas.title,
+              author: this.datas.author,
+              unit: this.datas.unit,
+              address: this.datas.address,
+              team: this.datas.team,
+              scale: this.datas.scale,
+              design_date: this.datas.design_date,
+              photographer: this.datas.photographer,
+              desc: this.datas.desc,
+              imgs: this.logos.imgs
+      }
+      this.$fns.post('/api/admin/add-case',data,(json)=>{
+          if(json.ask=='1'){
+            this.$message({message:json.message,type:'success',showClose:true});
+            console.log(this.datas.desc)
+            this.datas = {
+              "name":"",
+              "title":"",
+              "author":"",
+              "unit":"",
+              "address":"",
+              "team":"",
+              "scale":"",
+              "design_date":"",
+              "photographer":"",
+              "desc":""
+            }
+          }else{
+              this.$message({message:msg,type:'error',showClose:true});
+          }
+      });
     },
     getCompanys(){
       this.$fns.post('/api/company/get-companys',{},(json)=>{

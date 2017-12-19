@@ -49,7 +49,25 @@ export default {
   },
   methods: {
     submit() {
-
+      var data = {
+              name: this.datas.name,
+              title: this.datas.title,
+              position: this.datas.position,
+              desc: this.datas.desc
+      }
+      this.$fns.post('/api/admin/add-recruitment',data,(json)=>{
+          if(json.ask=='1'){
+            this.$message({message:json.message,type:'success',showClose:true});
+            this.datas = {
+              name:'',
+              title:'',
+              position:'',
+              desc:''
+            }
+          }else{
+              this.$message({message:msg,type:'error',showClose:true});
+          }
+      });
     },
     getCompanys(){
       this.$fns.post('/api/company/get-companys',{},(json)=>{

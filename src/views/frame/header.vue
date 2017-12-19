@@ -10,7 +10,7 @@
     </el-col>
     <el-col :span="6" class="login">
     	<span>你好,{{useName}}</span>
-    	<router-link :to="{path:'/endLogin'}">退出登录</router-link>
+    	<a href="javascriput:;" @click="logout">退出登录</a>
     </el-col>
   </el-row>
 </template>
@@ -59,6 +59,11 @@ export default {
           if(json.ask != '1'){
             this.$router.push({path: '/endLogin'})
           }
+      });
+    },
+    logout(){
+      this.$fns.post('/api/user/logout',{},(json)=>{
+        this.$router.push({path: '/endLogin'})
       });
     }
   }
