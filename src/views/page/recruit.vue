@@ -1,6 +1,6 @@
 <template>
     <div class="end-box">
-      <p><span>公司名称：</span>
+      <p><span class="span">公司名称：</span>
         <el-select v-model="datas.name" clearable filterable placeholder="请选择公司">
             <el-option
               v-for="item in names"
@@ -10,7 +10,7 @@
             </el-option>
           </el-select>
       </p>
-      <p><span>标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
+      <p><span class="span">标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
       <p><span class="span">职位：</span><el-input v-model="datas.position"></el-input></p>
       <p><span class="span">招聘描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
       <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
@@ -100,7 +100,7 @@ export default {
   }
   p, .p{
     margin-bottom: 15px;
-    span, .span{
+    .span{
       width: 100px;
       display: inline-block;
     }

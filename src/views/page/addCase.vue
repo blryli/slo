@@ -1,7 +1,7 @@
 <template>
   <el-row class="end-box">
     <el-col :span="10">
-      <p><span>所属公司：</span>
+      <p><span class="span">所属公司：</span>
         <el-select v-model="datas.name" clearable filterable placeholder="请选择">
             <el-option
               v-for="item in names"
@@ -11,9 +11,9 @@
             </el-option>
           </el-select>
       </p>
-      <p><span>标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
-      <p><span>作者：</span><el-input v-model="datas.author" placeholder=""></el-input></p>
-      <p><span>业主单位：</span><el-input v-model="datas.unit" placeholder=""></el-input></p>
+      <p><span class="span">标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
+      <p><span class="span">作者：</span><el-input v-model="datas.author" placeholder=""></el-input></p>
+      <p><span class="span">业主单位：</span><el-input v-model="datas.unit" placeholder=""></el-input></p>
     </el-col>
     <el-col :span="10">
       <p><span class="span">项目地址：</span><el-input v-model="datas.address"></el-input></p>
@@ -184,7 +184,7 @@ export default {
   }
   p, .p{
     margin-bottom: 15px;
-    span, .span{
+    .span{
       width: 100px;
       display: inline-block;
     }

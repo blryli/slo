@@ -1,7 +1,7 @@
 <template>
     <div class="end-box">
-      <p><span>公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
-      <p><span>公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
+      <p><span class="span">公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
+      <p><span class="span">公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
       <p v-html="datas.desc"></p>
       <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
       <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.environment_desc"></vue-editor></p>
@@ -153,7 +153,7 @@ export default {
   }
   p, .p{
     margin-bottom: 15px;
-    span, .span{
+    .span{
       width: 100px;
       display: inline-block;
     }
