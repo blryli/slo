@@ -76,6 +76,8 @@ import caseList from '@/components/core/caseList'
         alrtSharingShow: false,
         id: '',
         ids: [],
+        index:0,
+        idslen:0,
         prevShow: true,
         nextShow: true,
       }
@@ -85,11 +87,20 @@ import caseList from '@/components/core/caseList'
     },
     created() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-        this.getCase();
         this.id = this.$route.query.id;
-        this.ids = this.$route.query.ids
+        this.ids = this.$route.query.ids;
+        this.idslen = this.$route.query.ids.length;
+        this.index = this.$route.query.index;
+        this.prevShow = this.index!==0;
+        this.nextShow = this.index!==(this.idslen-1);
+        this.getCase();
     },
-    watch: {
+    watch:{
+        index:function(){
+            this.prevShow = this.index!==0;
+            this.nextShow = this.index!==(this.idslen-1);
+            this.id = this.ids[this.index];
+        }
     },
     methods: {
         goBack(){
@@ -97,7 +108,7 @@ import caseList from '@/components/core/caseList'
         },
         getCase(){
           var data = {
-                  case_id: this.id
+            case_id: this.id
           }
           this.$fns.post('/api/case/get-case',data,(json)=>{
               if(json.ask=='1'){
@@ -108,38 +119,11 @@ import caseList from '@/components/core/caseList'
           });
         },
         prev() {
-            let index;
-            if(this.nextShow == false) {
-                this.nextShow = true;
-            }
-            this.ids.forEach((d, i) => {
-                if(this.id == d){
-                    index = i-1
-                }
-            })
-            this.id = this.ids[index]
-            if(index == 0) {
-                this.id = this.ids[index]
-                this.prevShow = false
-            }
+            this.index != 0 && this.index--;
             this.getCase();
         },
         next() {
-            let index;
-            let l = this.ids.length;
-            if(this.prevShow == false){
-                this.prevShow = true;
-            }
-            this.ids.forEach((d, i) => {
-                if(this.id == d){
-                    index = i+1
-                }
-            })
-            this.id = this.ids[index]
-            if(index == l-1) {
-                this.id = this.ids[index]
-                this.nextShow = false
-            }
+            this.index != (this.idslen-1) && this.index++;
             this.getCase();
         },
     },

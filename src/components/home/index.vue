@@ -18,12 +18,16 @@ var count = 0;
         datas: [],
         loading: false,
         hasMore: true,
+        name:'',
+        src:''
       }
     },
     components: {
       caseList
     },
     created(){
+        this.name = this.$route.query.name;
+        this.src = this.$route.query.src;
       this.findCase();
     },
     methods: {

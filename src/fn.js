@@ -1,7 +1,7 @@
 import $ from 'jquery'
 //配置接口根目录,编译上线时改成空字符串就ok
 const apiRoot = '/static/data';
-//const apiRoot = '';
+// const apiRoot = '';
 const fn = {
 		//发送一个ajax POST 请求
 		post:function(url,data,success,error,async){

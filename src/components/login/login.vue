@@ -23,7 +23,7 @@
 						 </div>
 						 <span class="form-group__message" v-if="$v.loginPhone.required && !$v.loginPassword.required">密码不能为空</span>
 						 <span class="form-group__message" v-if="!$v.loginPhone.required && !$v.loginPassword.required">手机号或密码错误</span>
-						<button type="button" class="btn btn-dl m-t-30" :class="{'login-hover': loginPhone != '' && loginPassword != ''}" @click="loginBtn">登录</button>
+						<button type="button" class="btn btn-dl m-t-30" :class="canLogin() ?'login-hover':''" @click="canLogin()&&loginBtn()">登录</button>
             <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label>
 						<a href="#" class="forget">忘记密码</a>
 					</div>
@@ -35,19 +35,20 @@
 				</div>
 				<div v-show="crru == 2">
 					<div class="login-container">
-						<button type="button" class="btn btn-yzm" :class="{ 'btn-FEE300': yzmStatus == true }" @click="yzmStatus = false">
+						<!-- <button type="button" class="btn btn-yzm" :class="{ 'btn-FEE300': yzmStatus == true }" @click="yzmStatus = false">
 							<span v-show="yzmStatus == true">发送验证码</span>
 							<span v-show="yzmStatus == false">60s后再次发送</span>
-						</button>
-						<input type="text" class="login-input" name="phone" placeholder="请输入手机号码">
-						<input type="text" class="login-input" name="password" placeholder="请输入验证码">
-						<input type="text" class="login-input" name="password" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
-						<input type="text" class="login-input" name="password" placeholder="再次输入密码确认">
+						</button> -->
+						<input type="text" class="login-input" name="phone" v-model.trim="registerPhone" placeholder="请输入手机号码">
+						<!-- <input type="text" class="login-input" name="password" placeholder="请输入验证码"> -->
+						<input type="text" class="login-input" name="password" v-model.trim="registerPassword1" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
+						<input type="text" class="login-input" name="password" v-model.trim="registerPassword2" placeholder="再次输入密码确认">
 						<div class="m-t-b-20">
               <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">我已阅读并接受</label>
 							<a href="#" class="forget" style="float: none;">用户协议</a>
 						</div>
-						<button type="button" class="btn btn-dl">注册</button>
+						<button type="button" class="btn btn-dl m-t-30" :class="canRegister()?'login-hover':''" @click="canRegister() && registerBtn()">注册</button>
+
 					</div>
 					<div class="others-login small">
 						<span class="inline-text">第三方账号注册</span>
@@ -70,11 +71,14 @@ import $ from 'jquery'
     data() {
     	return {
     		crru: 1,
-        checked: false,
+        	checked: false,
     		checked1: false,
     		yzmStatus: true,
     		loginPhone: '',
     		loginPassword: '',
+    		registerPhone:'',
+    		registerPassword1:'',
+    		registerPassword2:''
     	}
     },
     components: {
@@ -101,11 +105,42 @@ import $ from 'jquery'
       })
     },
     methods: {
+    	canLogin(){
+    		return this.loginPhone && this.loginPassword;
+    	},
+    	canRegister(){
+    		return this.registerPhone && this.registerPassword1 && this.registerPassword2==this.registerPassword1;
+    	},
     	loginBtn() {
     		if( this.loginPhone =! '' && this.loginPassword !='') {
-          $('.header').css('display', 'block')
-	    		this.$router.push({ path: '/',query: {name: '我叫鎏锋胸',src: 'static/img/xiong.png'} })
+		       var data = {
+		                userName: this.loginPhone,
+		                userPass: this.loginPassword
+		        }
+		        this.$fns.post('/api/user/login',data,(json)=>{
+		            if(json.ask=='1'){
+		              $('.header').css('display', 'block');
+		              this.$router.push({path:'/',query: {name: json.name,src: 'static/img/xiong.png'}});
+		            }else{
+		            	this.$message({message:json.message,type:'error',showClose:true});
+		              // this.show = false;
+		              // this.show1 = json.message;
+		            }
+		        });
     		}
+    	},
+    	registerBtn(){
+    		var data = {
+		                userName: this.registerPhone,
+		                userPass: this.registerPassword1
+		        }
+		        this.$fns.post('/api/user/register',data,(json)=>{
+		            if(json.ask=='1'){
+		              this.$router.push({path:'/',query: {name: json.name,src: 'static/img/xiong.png'}});
+		            }else{
+		            	this.$message({message:json.message,type:'error',showClose:true});
+		            }
+		        });
     	},
       checkedCrru() {
         this.checked = !this.checked
