@@ -1,4 +1,4 @@
-//@desc 登录验证/判断当前用户是否已登录
+//@desc 登录验证/获取当前用户信息
 /**
  * @param
  */
@@ -13,5 +13,9 @@
 {
     "ask": 1,
     "message": "success",
-    "name":""
+    "name":186823454,//手机号
+    "nick_name":"老王",//昵称
+    "user_id":1,//用户id
+    "avatar_img":"",//头像地址
+    "signature":""//个性签名
 }
