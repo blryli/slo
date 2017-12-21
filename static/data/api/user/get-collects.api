@@ -1,7 +1,7 @@
 /**
 *@desc 获取当前用户收藏的案例
 *@param page N 页码(默认1)
-*@param pageSize N 每页条数(默认2)
+*@param pageSize N 每页条数(默认8)
 */
 {
     "ask": 1,
