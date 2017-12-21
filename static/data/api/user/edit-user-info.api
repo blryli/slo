@@ -3,7 +3,7 @@
  * @param
  */
 {
-    "nick_name":"昵称",//N
+    "nickName":"昵称",//N
     "signature":"个性签名"//N
 }
 /**
