@@ -78,27 +78,39 @@ export default {
   },
   created: function () {
     this.getTopMenu();
-    this.userName = this.$route.query.name
-    this.userImg = this.$route.query.src
+    this.getUserInfo();
   },
-  mounted: {
+  computed: {
     myName() {
-      return this.nickname != '' ? nickname : this.userName;
+      return this.nickname != '' ? this.nickname : this.userName;
     }
   },
   methods: {
+    getUserInfo() {
+      let _this = this;
+        console.log(this.loginPhone)
+        this.$fns.post('/api/user/login',{},(json)=>{
+            if(json.ask=='1'){
+              _this.nickname = json.nick_name;
+              _this.userName = json.name;
+              _this.userImg = json.avatar_img;
+            }else{
+              this.$message({message:json.message,type:'error',showClose:true});
+            }
+        });
+    },
     pullOut() {
       this.userName = ''
       this.userImg = ''
     },
     getTopMenu() {
   	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
-		  if(json.ask=='1'){
-			  this.menuJson = json.data
-		  }else{
-			  console.error(json.message)
-		  }
-	  });    	
+  		  if(json.ask=='1'){
+  			  this.menuJson = json.data
+  		  }else{
+  			  console.error(json.message)
+  		  }
+  	  });    	
     },
     closeNav() {
       this.showNav = false

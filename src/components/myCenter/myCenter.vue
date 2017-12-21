@@ -1,35 +1,34 @@
 <template>
-  <div :class="{ 'bg-F2F2F2': active == 2, 'p-b-20': active == 2 }">
+  <div :class="{ 'bg-F2F2F2': active == 2, 'p-b-20': active == 2 }" v-scroll="loadMore">
     <div class="bg-F2F2F2 works-banner my-center text-center">
       <img :src="userImg">
-      <h1>{{userName}}</h1>
+      <h1>{{myName}}</h1>
       <small>{{userText}}</small>
       <div class="al-btn">
-        <button type="button" class="btn btn-FEE300-fff" @click="active = 1" :class="{ 'btn-FEE300': active == 1 }">我的收藏</button>
-        <button type="button" class="btn btn-FEE300-fff" @click="active = 2" :class="{ 'btn-FEE300': active == 2 }">我的关注</button>
+        <button type="button" class="btn btn-FEE300-fff" @click="shouc" :class="{ 'btn-FEE300': active == 1 }">我的收藏</button>
+        <button type="button" class="btn btn-FEE300-fff" @click="gzhu" :class="{ 'btn-FEE300': active == 2 }">我的关注</button>
       </div>
     </div>
     <div class="container m-t-20 m-b-20" v-if="active == 1">
-        <case-list :case-arr="datas" :recruit-info="recruitInfo"></case-list>
+        <case-list :case-arr="datas"></case-list>
     </div>
     <div class="container m-t-20 m-b-20 bg-fff" v-for="(item, index) in myAttentionArr" v-if="active == 2">
       <ul class="col-sm-2 my-center-left">
-        <attention :attention-arr="item.attentionArr"></attention>
-        <p class="text-center m-t-20"><a href="javascript:;" class="more" @click="lookText(index)">查看全部</a></p>
+        <attention :attention-arr="item.company_info"></attention>
       </ul>
-      <div class="fix-bg" v-if="item.showText == true"></div>
+      <!-- <div class="fix-bg" v-if="item.showText == true"></div>
       <div class="fix-box row" v-if="item.showText == true">
         <div class="container">
           <div class="particulars-close" @click="item.showText = false"></div>
           <attention :attention-arr="item.attentionArr" attention-show="false" class="fix-box-header"></attention>
           <p>{{item.text}}</p>
         </div>
-      </div>
+      </div> -->
       <div class="col-sm-9 my-center-right">
-        <case-list :case-arr="datas" :recruit-info="recruitInfo" class="m-r-20"></case-list>
+        <case-list :case-arr="item.cases" class="m-r-20"></case-list>
       </div>
       <div class="col-sm-1 works-right">
-        <router-link :to="{ path: '/worksPage', query: worksArr}">  
+        <router-link :to="{ path: '/worksPage'}">  
           <label class="text-center"><i class="fa fa-chevron-right" aria-hidden="true"></i><br><small>查看全部</small></label>
         </router-link>
       </div>
@@ -46,233 +45,109 @@ var count = 0;
     },
     data () {
       return {
-        userImg: 'static/img/xiong.png',
-        userName: '我叫鎏锋胸',
-        userText: '很大很大的胸，一对哦',
+        userImg: '',
+        userName: '',
+        nickname: '',
+        userText: '',
         active: 1,
-        myAttentionArr: [
-          {
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            showText: false,
-            text: '浙江百慕生物科技有限公司隶属浙江丽珀集团，成立于2011年3月，注册资本1000万元，是一家从事海洋生物开发销售的公司，主要从事保健品（海参）产品的销是一家从事海洋生物开发销售的公司，主要从事保健品（海参）产品的销是一家从事海洋生物开发销售的公司，主要从事保健品（海参）产品的销售'
-          },
-          {
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            showText: false,
-            text: '注册资本1000万元,注册资本1000万元,注册资本1000万元,注册资本1000万元,注册资本1000万元浙江百慕生物科技有限公司隶属浙江丽珀集团，成立于2011年3月，注册资本1000万元，是一家从事海洋生物开发销售的公司，主要从事保健品（海参）产品的销售'
-          },
-        ],
-        worksArr: [
-          {
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            recruitInfo:[
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-            ]
-          },
-          {
-            attentionArr: {
-              attentionLogo: 'static/img/logo.png',
-              attentionName: '默默'
-            },
-            recruitInfo:[
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-              {
-                company: '纬图设计',
-                address: '杭州',
-                position: '室内设计师',
-                state: '总监助理'
-              },
-            ]
-          },
-        ],
-        datas: [
-          {
-            "src": "static/img/img.png",
-            "title": "去去去去去去去去去去去去去",
-            "text": "Norm Architects",
-            "time": "2018-08-17",
-            "particularsText": [
-              { "text": "111111111111111111111111111111" },
-              { "text": "111111111111111111111111" }
-            ],
-            "particularsImg": [
-              { "src": "static/img/xiangqing.png" },
-              { "src": "static/img/xiangqing.png" }
-            ],
-            "teamUnit": {
-              "unit": "广东省深圳市",
-              "address": "github",
-              "team": "111111111111",
-              "scale": "10000",
-              "time": "2017-12-11",
-              "user": "111111111111111"
-            },
-            "particularsLogo": "static/img/logo.png",
-            "particularsName": "1111111111111111",
-            "particularsAbout": [
-              { "text": "11111111111111111111111111111111111111111111111" },
-              { "text": "1111111111111111111111111111111111111" }
-            ]
-          },
-          {
-            "src": "static/img/img.png",
-            "title": "爱我中华爱我中华爱我中华爱我中华爱我中华",
-            "text": "Norm Architects",
-            "time": "2018-08-17",
-            "particularsText": [
-              { "text": "2222222222222222222222222222222222" },
-              { "text": "22222222222222222222222222222222222" }
-            ],
-            "particularsImg": [
-              { "src": "static/img/xiangqing.png" },
-              { "src": "static/img/xiangqing.png" }
-            ],
-            "teamUnit": {
-              "unit": "广东省深圳市",
-              "address": "github",
-              "team": "2222222222222222222",
-              "scale": "10000",
-              "time": "2017-12-11",
-              "user": "2222222222"
-            },
-            "particularsLogo": "static/img/logo.png",
-            "particularsName": "222222222222222",
-            "particularsAbout": [
-              { "text": "2222222222222222222222222222222222222222222222" },
-              { "text": "2222222222222222222222222222" }
-            ]
-          },
-          {
-            "src": "static/img/img.png",
-            "title": "去去去去去去去去去去去去去去去去去去",
-            "text": "Norm Architects",
-            "time": "2018-08-17",
-            "particularsText": [
-              { "text": "111111111111111111111111111111" },
-              { "text": "111111111111111111111111" }
-            ],
-            "particularsImg": [
-              { "src": "static/img/xiangqing.png" },
-              { "src": "static/img/xiangqing.png" }
-            ],
-            "teamUnit": {
-              "unit": "广东省深圳市",
-              "address": "github",
-              "team": "111111111111",
-              "scale": "10000",
-              "time": "2017-12-11",
-              "user": "111111111111111"
-            },
-            "particularsLogo": "static/img/logo.png",
-            "particularsName": "1111111111111111",
-            "particularsAbout": [
-              { "text": "11111111111111111111111111111111111111111111111" },
-              { "text": "1111111111111111111111111111111111111" }
-            ]
-          },
-          {
-            "src": "static/img/img.png",
-            "title": "AAAAAAAAAA啊啊啊啊啊啊啊啊",
-            "text": "Norm Architects",
-            "time": "2018-08-17",
-            "particularsText": [
-              { "text": "2222222222222222222222222222222222" },
-              { "text": "22222222222222222222222222222222222" }
-            ],
-            "particularsImg": [
-              { "src": "static/img/xiangqing.png" },
-              { "src": "static/img/xiangqing.png" }
-            ],
-            "teamUnit": {
-              "unit": "广东省深圳市",
-              "address": "github",
-              "team": "2222222222222222222",
-              "scale": "10000",
-              "time": "2017-12-11",
-              "user": "2222222222"
-            },
-            "particularsLogo": "static/img/logo.png",
-            "particularsName": "222222222222222",
-            "particularsAbout": [
-              { "text": "2222222222222222222222222222222222222222222222" },
-              { "text": "2222222222222222222222222222" }
-            ]
-          }
-        ],
-        busy: false,
-        caseArr: [],
+        myAttentionArr: [],
+        datas: [],
+        page:1,
+        pageSize:8,
+        keyWords:'',
+        loading: false,
+        hasMore: true,
       }
     },
     components: {
       caseList, attention
     },
     created () {
-      this.getCase();
+      this.getUserInfo();
+      this.findCase();
+    },
+    computed: {
+      myName() {
+        return this.nickname != '' ? this.nickname : this.userName;
+      }
     },
     methods: {
-      lookText(index) {
-        this.myAttentionArr.forEach((d, i) => {
-          d.showText = false
-        })
-        this.myAttentionArr[index].showText = true
-      },
-      loadMore() {
-        this.busy = true;
-        setTimeout(() => {
-          for (var i = 0, j = 8; i < j; i++) {
-            if(count < this.caseArr.length){
-              this.datas.push( this.caseArr[count] );
-              count++;
-            }
+      loadMore(){
+        if(!this.loading && this.hasMore){
+          this.loading = true;
+          // 请求下一页数据
+          if(this.active == 1){
+            this.findCase();
+          }else{
+            this.getWorks();
           }
-          this.busy = false;
-        }, 1000);
+          this.loading = false;
+        }
       },
-      getCase() {
-        this.$http.get('../../../static/data/caseArr.json').then((response) => {
-          this.caseArr = response.data.cases
-        }, (response) => {
-          console.log(response)
-        })
+      shouc() {
+        this.active = 1;
+        this.getUserInfo();
       },
-    },
+      gzhu() {
+        this.active = 2;
+        this.getWorks();
+      },
+      getUserInfo() {
+        let _this = this;
+          this.$fns.post('/api/user/login',{},(json)=>{
+              if(json.ask=='1'){
+                _this.nickname = json.nick_name;
+                _this.userName = json.name;
+                _this.userImg = json.avatar_img;
+                _this.userText = json.signature;
+              }else{
+                this.$message({message:json.message,type:'error',showClose:true});
+              }
+          });
+      },
+      getWorks(){
+        var data = {
+            page:this.page,
+            pageSize:this.pageSize,
+            keyWords:this.keyWords
+        }
+        this.$fns.post('/api/case/get-works',data,(json)=>{
+          if(json.ask=='1'){
+            if(json.data.length){
+              this.page++;
+              json.data.forEach((item,k)=>{
+                this.myAttentionArr.push(item);
+                console.log(this.myAttentionArr)
+              })
+            }
+          }else{
+            console.error(json.message)
+          }
+        },{},false);
+      },
+      findCase(){
+        var data = {
+            page:this.page,
+            pageSize:this.pageSize,
+            keyWords:this.keyWords
+        }
+        this.$fns.post('/api/case/find-cases',data,(json)=>{
+          if(json.ask=='1'){
+            if(json.data.length){
+              this.page++;
+              json.data.forEach((item,k)=>{
+                this.datas.push(item);
+              })
+            }
+            if(json.data.length<this.pageSize){
+               this.hasMore = false;
+            }
+          }else{
+            console.error(json.message)
+          }
+        },{},false);
+      }
+    }
   }
 </script>
 

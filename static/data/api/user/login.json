@@ -1,5 +1,9 @@
 {
     "ask": 1,
     "message": "success",
-    "name":"老王"
+    "name":186823454,
+    "nick_name":"老王",
+    "user_id":1,
+    "avatar_img":"static/img/xiong.png",
+    "signature":"我很大"
 }

@@ -101,10 +101,9 @@ import $ from 'jquery'
 	                userName: this.loginPhone,
 	                userPass: this.loginPassword
 	        }
-	        console.log(this.loginPhone)
 	        this.$fns.post('/api/user/login',data,(json)=>{
 	            if(json.ask=='1'){
-	              this.$router.push({path:'/',query: {name: json.name,src: 'static/img/xiong.png'}});
+	              this.$router.push({path:'/'});
 	            }else{
 	            	this.$message({message:json.message,type:'error',showClose:true});
 	              // this.show = false;
