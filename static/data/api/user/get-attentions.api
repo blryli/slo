@@ -1,0 +1,58 @@
+/**
+*@desc 获取当前用户关注的公司案例
+*@param page N 页码(默认1)
+*@param pageSize N 每页条数(默认2)
+*@param keyWords N 搜索关键字(默认"")
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+            "company_info":{
+                "company_id":1,
+                "name":"公司名称",
+                "logo":"公司logo图片地址",
+                "desc":"公司介绍(带有html标签)",
+                "has_attention":0//是否关注,0:否,1:是
+            },
+            "cases":[
+                {
+                    "case_id":1,
+                    "img_min": "缩略图1",
+                    "title": "案例标题1",
+                    "author": "作者1"
+                },
+                {
+                    "case_id":2,
+                    "img_min": "缩略图2",
+                    "title": "案例标题2",
+                    "author": "作者2"
+                }
+            ]
+        },
+        {
+            "company_info":{
+                "company_id":2,
+                "name":"公司名称",
+                "logo":"公司logo图片地址",
+                "desc":"公司介绍(带有html标签)",
+                "has_attention":0//是否关注,0:否,1:是
+            },
+            "cases":[
+                {
+                    "case_id":1,
+                    "img_min": "缩略图1",
+                    "title": "案例标题1",
+                    "author": "作者1"
+                },
+                {
+                    "case_id":2,
+                    "img_min": "缩略图2",
+                    "title": "案例标题2",
+                    "author": "作者2"
+                }
+            ]
+        }
+    ]
+}

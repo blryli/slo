@@ -1,0 +1,15 @@
+//@desc 编辑昵称/编辑个性签名
+/**
+ * @param
+ */
+{
+    "nick_name":"昵称",//N
+    "signature":"个性签名"//N
+}
+/**
+ * @response
+ */
+{
+    "ask": 1,
+    "message": "success"
+}
