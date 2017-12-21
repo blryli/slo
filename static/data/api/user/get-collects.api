@@ -1,0 +1,23 @@
+/**
+*@desc 获取当前用户收藏的案例
+*@param page N 页码(默认1)
+*@param pageSize N 每页条数(默认2)
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+            "case_id":1,
+            "img_min": "缩略图1",
+            "title": "案例标题1",
+            "author": "作者1"
+        },
+        {
+            "case_id":2,
+            "img_min": "缩略图2",
+            "title": "案例标题2",
+            "author": "作者2"
+        }
+    ]
+}
