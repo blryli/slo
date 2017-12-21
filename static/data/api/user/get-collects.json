@@ -1,0 +1,54 @@
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+            "case_id":1,
+            "img_min": "static/img/img.png",
+            "title": "案例标题1111",
+            "author": "作者11111"
+        },
+        {
+            "case_id":2,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        },
+        {
+            "case_id":3,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        },
+        {
+            "case_id":4,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        },
+        {
+            "case_id":5,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        },
+        {
+            "case_id":6,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        },
+        {
+            "case_id":7,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        },
+        {
+            "case_id":8,
+            "img_min": "static/img/img.png",
+            "title": "案例标题2222",
+            "author": "作者22222"
+        }
+    ]
+}

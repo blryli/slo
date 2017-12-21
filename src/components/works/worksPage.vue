@@ -49,7 +49,7 @@ var count = 0;
     methods: {
       getCompanyInfo(){
         var data = {
-            company_id: this.$route.query.id
+            companyId: this.$route.query.id
         }
         this.$fns.post('/api/company/get-company-info',data,(json)=>{
           if(json.ask=='1'){

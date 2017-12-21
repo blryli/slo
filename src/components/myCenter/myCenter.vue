@@ -64,7 +64,7 @@ var count = 0;
     },
     created () {
       this.getUserInfo();
-      this.findCase();
+      this.getCollects();
     },
     computed: {
       myName() {
@@ -77,9 +77,9 @@ var count = 0;
           this.loading = true;
           // 请求下一页数据
           if(this.active == 1){
-            this.findCase();
+            this.getCollects();
           }else{
-            this.getWorks();
+            this.getAttentions();
           }
           this.loading = false;
         }
@@ -90,7 +90,7 @@ var count = 0;
       },
       gzhu() {
         this.active = 2;
-        this.getWorks();
+        this.getAttentions();
       },
       getUserInfo() {
         let _this = this;
@@ -105,19 +105,18 @@ var count = 0;
               }
           });
       },
-      getWorks(){
+      getAttentions(){
         var data = {
             page:this.page,
             pageSize:this.pageSize,
             keyWords:this.keyWords
         }
-        this.$fns.post('/api/case/get-works',data,(json)=>{
+        this.$fns.post('/api/user/get-attentions',data,(json)=>{
           if(json.ask=='1'){
             if(json.data.length){
               this.page++;
               json.data.forEach((item,k)=>{
                 this.myAttentionArr.push(item);
-                console.log(this.myAttentionArr)
               })
             }
           }else{
@@ -125,13 +124,13 @@ var count = 0;
           }
         },{},false);
       },
-      findCase(){
+      getCollects(){
         var data = {
             page:this.page,
             pageSize:this.pageSize,
             keyWords:this.keyWords
         }
-        this.$fns.post('/api/case/find-cases',data,(json)=>{
+        this.$fns.post('/api/user/get-collects',data,(json)=>{
           if(json.ask=='1'){
             if(json.data.length){
               this.page++;
