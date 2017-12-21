@@ -95,7 +95,7 @@ export default {
               _this.userName = json.name;
               _this.userImg = json.avatar_img;
             }else{
-              this.$message({message:json.message,type:'error',showClose:true});
+              //this.$message({message:json.message,type:'error',showClose:true});
             }
         });
     },
