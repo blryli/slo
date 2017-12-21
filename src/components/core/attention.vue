@@ -1,7 +1,8 @@
 <template>
   <li class="al-logo text-center">
       <img :src="attentionArr.logo">
-      <h3>{{attentionArr.name}}</h3>
+      <h3 @mouseenter="show = true" @mouseleave="show = false">{{attentionArr.name}}</h3>
+      <h2 v-if="show == true && textLength(attentionArr.name)" class="orient">{{attentionArr.name}}</h2>
       <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == true }" @click="attentionArr.has_attention = true"><span v-show="attentionArr.has_attention == true">已</span>关注</button></p>
   </li>
 </template>
@@ -15,6 +16,16 @@
         default: true
       }
     },
+    data () {
+      return {
+        show: false
+      }
+    },
+    methods: {
+      textLength(text) {
+        return text.length > 12
+      }
+    }
   }
 
 </script>
@@ -29,6 +40,25 @@
     h3{
         margin-top: 10px;
         word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        position: relative;
+        line-height: 30px;
+    }
+    .orient{
+      position: absolute;
+      line-height: 30px;
+      font-size: 24px;
+      left: 100%;
+      top: 100px;
+      z-index: 2000;
+      width: 300px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+      padding: 10px;
     }
 }
 .btn{

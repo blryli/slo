@@ -40,7 +40,7 @@
                       <img :src="userImg" alt="我的头像">
                       <div class="p-yellow"></div>
                       <ul class="dropdown-menu dropdown-menu-right user-info">
-                        <li class="user-text"><router-link :to="{path: '/myCenter'}">{{userName}}</router-link></li>
+                        <li class="user-text"><router-link :to="{path: '/myCenter'}">{{myName}}</router-link></li>
                         <li role="separator" class="divider"></li>
                         <li class="user-text"><a href="#">我的收藏</a></li>
                         <li class="user-text"><a href="#">我的关注</a></li>
@@ -67,6 +67,7 @@ export default {
       active: false,
       userName : '',
       userImg: '',
+      nickname: '',
       menuJson: []
     }
   },
@@ -76,16 +77,13 @@ export default {
     TopMenu
   },
   created: function () {
-    this.getTopMenu()
+    this.getTopMenu();
+    this.userName = this.$route.query.name
+    this.userImg = this.$route.query.src
   },
-  mounted() {
-  },
-  watch: {
-    '$route.query.name': function() {
-      if(this.$route.query.name && this.$route.query.src){
-        this.userName = this.$route.query.name
-        this.userImg = this.$route.query.src
-      }
+  mounted: {
+    myName() {
+      return this.nickname != '' ? nickname : this.userName;
     }
   },
   methods: {

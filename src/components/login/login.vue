@@ -14,17 +14,15 @@
 				</div>
 				<div v-show="crru == 1">
 					<div class="login-container">
-						<div class="form-group" v-bind:class="{ 'form-group--error': $v.loginPhone.$error }">
-						    <input type="number" class="form__input login-input" name="phone" placeholder="请输入手机号码" v-model.trim="loginPhone" @input="$v.loginPhone.$touch()">
+						<div class="form-group">
+						    <input type="number" class="form__input login-input" name="username" placeholder="请输入手机号码" v-model="loginPhone">
 						 </div>
-						 <span class="form-group__message" v-if="!$v.loginPhone.required">手机号不能为空</span>
-						 <div class="form-group" v-bind:class="{ 'form-group--error': $v.loginPassword.$error }">
-						    <input type="password" class="form__input login-input" name="phone" placeholder="请输入密码" v-model.trim="loginPassword" @input="$v.loginPassword.$touch()">
+						 <span class="form-group__message"手机号不能为空</span>
+						 <div class="form-group">
+						    <input type="password" class="form__input login-input" name="password" placeholder="请输入密码" v-model="loginPassword">
 						 </div>
-						 <span class="form-group__message" v-if="$v.loginPhone.required && !$v.loginPassword.required">密码不能为空</span>
-						 <span class="form-group__message" v-if="!$v.loginPhone.required && !$v.loginPassword.required">手机号或密码错误</span>
 						<button type="button" class="btn btn-dl m-t-30" :class="canLogin() ?'login-hover':''" @click="canLogin()&&loginBtn()">登录</button>
-            <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label>
+            			<label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label>
 						<a href="#" class="forget">忘记密码</a>
 					</div>
 					<div class="others-login text-center">
@@ -39,10 +37,10 @@
 							<span v-show="yzmStatus == true">发送验证码</span>
 							<span v-show="yzmStatus == false">60s后再次发送</span>
 						</button> -->
-						<input type="text" class="login-input" name="phone" v-model.trim="registerPhone" placeholder="请输入手机号码">
+						<input type="number" class="login-input" name="phone" v-model="registerPhone" placeholder="请输入手机号码">
 						<!-- <input type="text" class="login-input" name="password" placeholder="请输入验证码"> -->
-						<input type="text" class="login-input" name="password" v-model.trim="registerPassword1" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
-						<input type="text" class="login-input" name="password" v-model.trim="registerPassword2" placeholder="再次输入密码确认">
+						<input type="password" class="login-input" name="password" v-model="registerPassword1" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
+						<input type="password" class="login-input" name="password" v-model="registerPassword2" placeholder="再次输入密码确认">
 						<div class="m-t-b-20">
               <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">我已阅读并接受</label>
 							<a href="#" class="forget" style="float: none;">用户协议</a>
@@ -63,7 +61,6 @@
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators'
 import gatewayFooter from '../frame/footer.vue'
 import $ from 'jquery'
   export default {
@@ -84,25 +81,12 @@ import $ from 'jquery'
     components: {
     	gatewayFooter
     },
-    validations() {
-    	return {
-    		loginPhone: {
-    			required,
-    		},
-    		loginPassword: {
-    			required
-    		}
-    	}
-    },
     created() {
     	if(this.$route.query.crru == 2){
 	    	this.crru = 2
     	}
     },
     mounted() {
-      this.$nextTick(function () {
-        $('.header').css('display', 'none')
-      })
     },
     methods: {
     	canLogin(){
@@ -112,31 +96,30 @@ import $ from 'jquery'
     		return this.registerPhone && this.registerPassword1 && this.registerPassword2==this.registerPassword1;
     	},
     	loginBtn() {
-    		if( this.loginPhone =! '' && this.loginPassword !='') {
-		       var data = {
-		                userName: this.loginPhone,
-		                userPass: this.loginPassword
-		        }
-		        this.$fns.post('/api/user/login',data,(json)=>{
-		            if(json.ask=='1'){
-		              $('.header').css('display', 'block');
-		              this.$router.push({path:'/',query: {name: json.name,src: 'static/img/xiong.png'}});
-		            }else{
-		            	this.$message({message:json.message,type:'error',showClose:true});
-		              // this.show = false;
-		              // this.show1 = json.message;
-		            }
-		        });
-    		}
+    		let _this = this;
+	        var data = {
+	                userName: this.loginPhone,
+	                userPass: this.loginPassword
+	        }
+	        console.log(this.loginPhone)
+	        this.$fns.post('/api/user/login',data,(json)=>{
+	            if(json.ask=='1'){
+	              this.$router.push({path:'/',query: {name: json.name,src: 'static/img/xiong.png'}});
+	            }else{
+	            	this.$message({message:json.message,type:'error',showClose:true});
+	              // this.show = false;
+	              // this.show1 = json.message;
+	            }
+	        });
     	},
     	registerBtn(){
     		var data = {
-		                userName: this.registerPhone,
-		                userPass: this.registerPassword1
+	                userName: this.registerPhone,
+	                userPass: this.registerPassword1
 		        }
 		        this.$fns.post('/api/user/register',data,(json)=>{
 		            if(json.ask=='1'){
-		              this.$router.push({path:'/',query: {name: json.name,src: 'static/img/xiong.png'}});
+		              this.$router.push({path:'/login',query: {crru:2}});
 		            }else{
 		            	this.$message({message:json.message,type:'error',showClose:true});
 		            }

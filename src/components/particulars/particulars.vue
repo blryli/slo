@@ -13,7 +13,7 @@
                     <li class="title">{{particularsArr.title}}</li>
                     <li class="text">时间：{{particularsArr.add_date}}</li>
                     <li class="hr"></li>
-                    <li class="text-ms">{{particularsArr.desc}}</li>
+                    <li class="text-ms" v-html="particularsArr.desc"></li>
                     <li class="img-ms"><p v-for="item in particularsArr.imgs"><img :src="item" class="img-responsive img"></p></li>
                     <li class="hr"></li>
                     <li class="unit"><strong>业务单位</strong>：{{particularsArr.unit}}</li>
@@ -44,7 +44,7 @@
                     <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: particularsArr.company_info}" class="btn btn-default">更多作品</router-link></li>
                     <li class="hr"></li>
                     <li class="">
-                        <p>{{particularsArr.company_info.desc}}</p>
+                        <p v-html="particularsArr.company_info.desc"></p>
                         <p><router-link :to="{ path: '/worksPage', query: particularsArr.company_info}" class="more">查看更多</router-link></p>
                     </li>
                   </ul>

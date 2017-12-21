@@ -5,7 +5,7 @@
         {
             "company_info":{
                 "company_id":1,
-                "name":"公司名称",
+                "name":"公司名称公司名称公司名称公司名称公司名称公司名称",
                 "logo":"static/img/img.png",
                 "desc":"公司介绍(带有html标签)",
                 "has_attention":0
