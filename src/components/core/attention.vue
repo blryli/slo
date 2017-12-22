@@ -35,9 +35,9 @@
         }
         this.$fns.post('/api/user/edit-attention',data,(json)=>{
             if(json.ask=='1'){
+              this.attentionArr.has_attention = !this.attentionArr.has_attention; 
               this.$message({message:json.message,type:'success',showClose:true});
             }else{
-              qux = true;
               this.$message({message:json.message,type:'error',showClose:true});
             }
         });

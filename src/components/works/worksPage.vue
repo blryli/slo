@@ -53,9 +53,9 @@ var count = 0;
         }
         this.$fns.post('/api/user/edit-attention',data,(json)=>{
             if(json.ask=='1'){
+              this.data.has_attention =! this.data.has_attention;
               this.$message({message:json.message,type:'success',showClose:true});
             }else{
-              qux = true;
               this.$message({message:json.message,type:'error',showClose:true});
             }
         });
@@ -84,7 +84,8 @@ var count = 0;
           var data = {
               page:this.page,
               pageSize:this.pageSize,
-              keyWords:this.keyWords
+              keyWords:this.keyWords,
+              companyId:this.$route.query.id
           }
           this.$fns.post('/api/case/find-cases',data,(json)=>{
             if(json.ask=='1'){

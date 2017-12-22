@@ -80,6 +80,7 @@ import caseList from '@/components/core/caseList'
         idslen:0,
         prevShow: true,
         nextShow: true,
+        iscollect: ''
       }
   	},
     components: {
@@ -109,9 +110,9 @@ import caseList from '@/components/core/caseList'
           }
           this.$fns.post('/api/user/edit-attention',data,(json)=>{
               if(json.ask=='1'){
+                this.particularsArr.has_collect = !this.particularsArr.has_collect;
                 this.$message({message:json.message,type:'success',showClose:true});
               }else{
-                qux = true;
                 this.$message({message:json.message,type:'error',showClose:true});
               }
           });

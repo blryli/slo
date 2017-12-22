@@ -86,7 +86,7 @@ var count = 0;
       },
       shouc() {
         this.active = 1;
-        this.getUserInfo();
+        this.getCollects();
       },
       gzhu() {
         this.active = 2;
