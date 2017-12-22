@@ -3,7 +3,7 @@
       <p class="title"><strong>后台登陆</strong></p>
       <div class="erroInfo" v-show="show && show1 != ''">{{msg}}</div>
       <p><el-input v-model="name" placeholder="账号"></el-input></p>
-      <p><el-input v-model="pass" placeholder="密码"></el-input></p>
+      <p><el-input v-model="pass" type="password" placeholder="密码"></el-input></p>
       <p><el-button type="primary" style="width: 100%;" @click="submit">提交</el-button></p>
     </div>
 </template>
