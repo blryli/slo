@@ -140,11 +140,6 @@ export default {
               dangerouslyUseHTMLString: true,
               message: msgHtml ? msgHtml : 'Returns unknown error'
             });
-
-
-
-
-              
           }
       });
     },

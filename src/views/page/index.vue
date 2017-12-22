@@ -95,11 +95,18 @@ export default {
             this.$refs.companyImg.clearFiles();
             this.$refs.logoImg.clearFiles();
           }else{
-
-
-
-            
-              this.$message({message:json.message,type:'error',showClose:true});
+            var msgHtml = '';
+            if(json.errors.length){
+              json.errors.forEach((msg,k)=>{
+                msgHtml += '<p>' + msg + '</p>';
+              });
+            }
+            this.$message({
+              type:'error',
+              showClose:true,
+              dangerouslyUseHTMLString: true,
+              message: msgHtml ? msgHtml : 'Returns unknown error'
+            });
           }
       });
     },
