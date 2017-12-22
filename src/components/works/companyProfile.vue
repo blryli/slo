@@ -83,7 +83,7 @@ import attention from '@/components/core/attention'
         },
         getRecruitments(){
           var data = {
-                  company_info: this.$route.query.id
+                  company_id: this.$route.query.id
           }
           this.$fns.post('/api/recruitment/get-recruitments',data,(json)=>{
               if(json.ask=='1'){
