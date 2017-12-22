@@ -106,7 +106,7 @@ import caseList from '@/components/core/caseList'
     methods: {
         getCollect() {
           var data = {
-              caseId:this.false,
+              caseId:this.particularsArr.case_id
           }
           this.$fns.post('/api/user/edit-attention',data,(json)=>{
               if(json.ask=='1'){
@@ -127,7 +127,6 @@ import caseList from '@/components/core/caseList'
           this.$fns.post('/api/case/get-case',data,(json)=>{
               if(json.ask=='1'){
                 this.particularsArr = json.data;
-                console.log(this.particularsArr.case_id)
               }else{
                   console.error(json.message)
               }
