@@ -128,7 +128,7 @@ import caseList from '@/components/core/caseList'
               if(json.ask=='1'){
                 this.particularsArr = json.data;
               }else{
-                  console.error(json.message)
+                this.$message({message:json.message,type:'error',showClose:true});
               }
           });
         },

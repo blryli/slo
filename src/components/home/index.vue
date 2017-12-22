@@ -57,7 +57,7 @@ var count = 0;
                this.hasMore = false;
             }
     		  }else{
-    			  console.error(json.message)
+            this.$message({message:json.message,type:'error',showClose:true});
     		  }
     	  },{},false);
       }

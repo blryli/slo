@@ -93,7 +93,7 @@ import attention from '@/components/core/attention'
               if(json.ask=='1'){
                   this.datas = json.data
               }else{
-                  console.error(json.message)
+                this.$message({message:json.message,type:'error',showClose:true});
               }
           });
         }
