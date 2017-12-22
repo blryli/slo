@@ -63,6 +63,9 @@ import Recruit from './recruit'
                 this.datas.push(item);
               })
             }
+            if(json.data.length<this.pageSize){
+               this.hasMore = false;
+            }
           }else{
             console.error(json.message)
           }

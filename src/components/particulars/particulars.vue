@@ -24,8 +24,8 @@
                     <li class="unit"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">
-                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="particularsArr.has_collect = true"></a>
-                        <p><span v-show="particularsArr.has_collect == true">已</span>收藏</p>
+                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == false }" @click="getCollect"></a>
+                        <p><span v-show="particularsArr.has_collect == false">取消</span>收藏</p>
                     </li>
                     <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
                     <li class="text-center particulars-sharing">
@@ -40,12 +40,12 @@
                 </div>
                 <div class="col-sm-3">
                   <ul class="bg-fff">
-                    <attention :attention-arr="particularsArr.company_info"></attention>
-                    <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: particularsArr.company_info}" class="btn btn-default">更多作品</router-link></li>
+                    <attention :attention-arr="particularsArr.company_info" :id="particularsArr.company_info.company_id"></attention>
+                    <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: {id:particularsArr.company_info.company_id}}" class="btn btn-default">更多作品</router-link></li>
                     <li class="hr"></li>
                     <li class="">
                         <p v-html="particularsArr.company_info.desc"></p>
-                        <p><router-link :to="{ path: '/worksPage', query: particularsArr.company_info}" class="more">查看更多</router-link></p>
+                        <p><router-link :to="{ path: '/worksPage', query: {id:particularsArr.company_info.company_id}}" class="more">查看更多</router-link></p>
                     </li>
                   </ul>
                 </div>
@@ -103,6 +103,19 @@ import caseList from '@/components/core/caseList'
         }
     },
     methods: {
+        getCollect() {
+          var data = {
+              caseId:this.false,
+          }
+          this.$fns.post('/api/user/edit-attention',data,(json)=>{
+              if(json.ask=='1'){
+                this.$message({message:json.message,type:'success',showClose:true});
+              }else{
+                qux = true;
+                this.$message({message:json.message,type:'error',showClose:true});
+              }
+          });
+        },
         goBack(){
             this.$router.go(-1)
         },
@@ -112,7 +125,8 @@ import caseList from '@/components/core/caseList'
           }
           this.$fns.post('/api/case/get-case',data,(json)=>{
               if(json.ask=='1'){
-                this.particularsArr = json.data
+                this.particularsArr = json.data;
+                console.log(this.particularsArr.case_id)
               }else{
                   console.error(json.message)
               }

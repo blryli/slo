@@ -3,7 +3,7 @@
       <img :src="attentionArr.logo">
       <h3 @mouseenter="show = true" @mouseleave="show = false">{{attentionArr.name}}</h3>
       <h2 v-if="show == true && textLength(attentionArr.name)" class="orient">{{attentionArr.name}}</h2>
-      <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == true }" @click="attentionArr.has_attention = true"><span v-show="attentionArr.has_attention == true">已</span>关注</button></p>
+      <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == false}" @click="getAttention"><span v-show="attentionArr.has_attention == false">取消</span>关注</button></p>
   </li>
 </template>
 
@@ -14,17 +14,34 @@
       attentionShow: {
         type: Boolean,
         default: true
-      }
+      },
+      id: ''
     },
     data () {
       return {
-        show: false
+        show: false,
+        qux: false
       }
+    },
+    created(){
     },
     methods: {
       textLength(text) {
         return text.length > 12
-      }
+      },
+      getAttention() {
+        var data = {
+            companyId:this.id,
+        }
+        this.$fns.post('/api/user/edit-attention',data,(json)=>{
+            if(json.ask=='1'){
+              this.$message({message:json.message,type:'success',showClose:true});
+            }else{
+              qux = true;
+              this.$message({message:json.message,type:'error',showClose:true});
+            }
+        });
+      },
     }
   }
 
