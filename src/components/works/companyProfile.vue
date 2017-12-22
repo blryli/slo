@@ -27,7 +27,7 @@
                         <h3 class="company-title">公司作品<span></span></h3>
                         <p>{{datas.company_info.case_desc}}</p>
                         <p v-for="item in datas.case_imgs" class="m-t-20"><img :src="item" class="img-responsive img"></p>
-                        <p class="text-center"><button type="button" class="btn btn-FEE300">更多公司作品</button></p>
+                        <p class="text-center"><button type="button" @click="toWorksPage" class="btn btn-FEE300">更多公司作品</button></p>
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="company-js img-ms">
@@ -80,6 +80,9 @@ import attention from '@/components/core/attention'
     methods: {
         goBack(){
             this.$router.go(-1)
+        },
+        toWorksPage(){
+            this.$router.push({path:'/worksPage', query: {id: this.datas.company_info.company_id}})
         },
         getRecruitments(){
           var data = {

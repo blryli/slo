@@ -43,6 +43,7 @@ var count = 0;
       caseList, Recruit
     },
     created () {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.getCompanyInfo();
       this.findCase();
     },
