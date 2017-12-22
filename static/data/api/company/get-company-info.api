@@ -9,6 +9,7 @@
     	"company_id":1,
     	"name":"公司名称",
     	"desc":"公司介绍(带有html标签)",
+    	"email":"shanghai@qq.com",
     	"has_attention":0,//是否关注,0:否,1:是
     	"recruitment_info":[
 					{
