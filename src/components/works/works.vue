@@ -67,7 +67,7 @@ import Recruit from './recruit'
                this.hasMore = false;
             }
           }else{
-            console.error(json.message)
+            this.$message({message:json.message,type:'error',showClose:true});
           }
         },{},false);
       }

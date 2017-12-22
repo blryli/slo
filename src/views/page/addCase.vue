@@ -33,7 +33,7 @@
         <div class="p">
           <span class="span">案例图片：</span>
           <div class="upload-img">
-            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" :limit="logos.limit"  :multiple="logos.multiple"
+            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
             :on-preview="preview" :on-remove="remove" :on-success="success">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -125,8 +125,26 @@ export default {
               "photographer":"",
               "desc":""
             }
+            this.logos.imgs = [];
+            this.$refs.logos.clearFiles();
           }else{
-              this.$message({message:json.message,type:'error',showClose:true});
+            var msgHtml = '';
+            if(json.errors.length){
+              json.errors.forEach((msg,k)=>{
+                msgHtml += '<p>' + msg + '</p>';
+              });
+            }
+            this.$message({
+              type:'error',
+              showClose:true,
+              dangerouslyUseHTMLString: true,
+              message: msgHtml ? msgHtml : 'Returns unknown error'
+            });
+
+
+
+
+              
           }
       });
     },
@@ -135,7 +153,7 @@ export default {
           if(json.ask=='1'){
             this.names = json.data
           }else{
-              console.error(json.message)
+            this.$message({message:json.message,type:'error',showClose:true});
           }
       });
     },

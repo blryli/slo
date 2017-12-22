@@ -74,7 +74,7 @@ export default {
           if(json.ask=='1'){
             this.names = json.data
           }else{
-              console.error(json.message)
+            this.$message({message:json.message,type:'error',showClose:true});
           }
       });
     },
