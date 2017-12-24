@@ -5,7 +5,7 @@
             <div cladss="row" style="margin: 0 -15px;">
                 <div class="col-sm-3">
                   <div class="bg-fff">
-                    <attention :attention-arr="datas.company_info"></attention>
+                    <attention :attention-arr="datas.company_info" :id="datas.company_info.company_id"></attention>
                   </div>
                 </div>
                 <div class="col-sm-9"> 

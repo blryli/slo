@@ -14,7 +14,7 @@
     </div>
     <div class="container m-t-20 m-b-20 bg-fff" v-for="(item, index) in myAttentionArr" v-if="active == 2">
       <ul class="col-sm-2 my-center-left">
-        <attention :attention-arr="item.company_info"></attention>
+        <attention :attention-arr="item.company_info" :id="item.company_info.company_id"></attention>
       </ul>
       <!-- <div class="fix-bg" v-if="item.showText == true"></div>
       <div class="fix-box row" v-if="item.showText == true">

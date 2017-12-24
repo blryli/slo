@@ -2,7 +2,7 @@
   <div class="bg-F2F2F2 p-b-20" v-scroll="loadMore">
     <div class="container m-t-20 row" v-for="item in datas">
     	<ul class="col-sm-2 works-left">
-        <attention :attention-arr="item.company_info"></attention>
+        <attention :attention-arr="item.company_info" :id="item.company_info.company_id"></attention>
       </ul>
       <div class="col-sm-7 works-center">
         <case-list :case-arr="item.cases" :col-four="false" :title-size="16"></case-list>
