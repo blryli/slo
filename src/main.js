@@ -8,7 +8,7 @@ import Vuelidate from 'vuelidate'
 import ElementUI from 'element-ui'
 var infiniteScroll =  require('vue-infinite-scroll');
 // import vueLookImages from 'vue-look-images'
-import 'element-ui/lib/theme-default/index.css'
+import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/reset.css'
 import './assets/scss/base.css'
