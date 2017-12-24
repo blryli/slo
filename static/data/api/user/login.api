@@ -14,6 +14,7 @@
     "ask": 1,
     "message": "success",
     "name":186823454,//手机号
+    "is_admin":0,//是否是超级管理员
     "nick_name":"老王",//昵称
     "user_id":1,//用户id
     "avatar_img":"",//头像地址

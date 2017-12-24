@@ -87,21 +87,30 @@ export default {
   },
   methods: {
     getUserInfo() {
-      let _this = this;
         console.log(this.loginPhone)
         this.$fns.post('/api/user/login',{},(json)=>{
             if(json.ask=='1'){
-              _this.nickname = json.nick_name;
-              _this.userName = json.name;
-              _this.userImg = json.avatar_img;
+              this.nickname = json.nick_name;
+              this.userName = json.name;
+              this.userImg = json.avatar_img;
             }else{
-              //this.$message({message:json.message,type:'error',showClose:true});
+              this.$message({message:json.message,type:'error',showClose:true});
             }
         });
     },
     pullOut() {
-      this.userName = ''
-      this.userImg = ''
+      this.$fns.post('/api/user/logout',{},(json)=>{
+          if(json.ask=='1'){
+            this.userName = '';
+            this.nickname = '';
+            this.userImg = '';
+            if(this.$route.path == '/myCenter') {
+              this.$router.push('/')
+            }
+          }else{
+            this.$message({message:json.message,type:'error',showClose:true});
+          }
+      });
     },
     getTopMenu() {
   	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{

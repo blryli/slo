@@ -2,6 +2,7 @@
     "ask": 1,
     "message": "success",
     "name":186823454,
+    "is_admin":0,
     "nick_name":"老王",
     "user_id":1,
     "avatar_img":"static/img/xiong.png",
