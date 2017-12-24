@@ -19,13 +19,13 @@
                     <li class="hr hr-m-20" style="margin-top: 36px;"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司环境<span></span></h3>
-                        <p>{{datas.company_info.environment_desc}}</p>
+                        <p v-html="datas.company_info.environment_desc"></p>
                         <p v-for="item in datas.company_info.imgs"><img :src="item" class="img-responsive img"></p>
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司作品<span></span></h3>
-                        <p>{{datas.company_info.case_desc}}</p>
+                        <p v-html="datas.company_info.case_desc"></p>
                         <p v-for="item in datas.case_imgs" class="m-t-20"><img :src="item" class="img-responsive img"></p>
                         <p class="text-center"><button type="button" @click="toWorksPage" class="btn btn-FEE300">更多公司作品</button></p>
                     </li>
@@ -73,7 +73,8 @@ import attention from '@/components/core/attention'
         attention
     },
     created() {
-        this.getRecruitments()
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        this.getRecruitments();
     },
     watch: {
     },

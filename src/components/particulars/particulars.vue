@@ -19,7 +19,7 @@
                     <li class="unit"><strong>业务单位</strong>：{{particularsArr.unit}}</li>
                     <li class="unit"><strong>项目地址</strong>：{{particularsArr.address}}</li>
                     <li class="unit"><strong>设计团队</strong>：{{particularsArr.team}}</li>
-                    <li class="unit"><strong>用地规模</strong>：{{particularsArr.scale}}</li>
+                    <li class="unit"><strong>用地规模(㎡)</strong>：{{particularsArr.scale}}</li>
                     <li class="unit"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
                     <li class="unit"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="hr hr-m-20"></li>

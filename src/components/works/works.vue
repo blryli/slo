@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-F2F2F2 p-b-20" v-scroll="loadMore">
+  <div class="bg-F2F2F2 p-b-20" v-scroll="loadMore">{{count}}
     <div class="container m-t-20 row" v-for="item in datas">
     	<ul class="col-sm-2 works-left">
         <attention :attention-arr="item.company_info" :id="item.company_info.company_id"></attention>
@@ -23,6 +23,7 @@
 import caseList from '@/components/core/caseList'
 import attention from '@/components/core/attention'
 import Recruit from './recruit'
+import {mapGetters} from 'Vuex'
   export default {
   	data () {
       return {
@@ -38,8 +39,12 @@ import Recruit from './recruit'
       caseList, Recruit, attention
     },
     created(){
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.getWorks();
     },
+    computed: mapGetters([
+      'count'
+    ]),
     methods: {
       loadMore(){
         if(!this.loading && this.hasMore){

@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import ElementUI from 'element-ui'
 var infiniteScroll =  require('vue-infinite-scroll');
+import store from './vuex/store'
 // import vueLookImages from 'vue-look-images'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -42,5 +43,6 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 const app = new Vue({
     router,
+    store,
     ...App
 }).$mount('#app')

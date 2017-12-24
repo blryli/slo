@@ -63,6 +63,7 @@ var count = 0;
       caseList, attention
     },
     created () {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.getUserInfo();
       this.getCollects();
     },

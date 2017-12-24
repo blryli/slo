@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container m-t-20 p-b-10" v-scroll="loadMore">
+      <p>{{count}}</p>
       <case-list :case-arr="datas"></case-list>
     </div>
   </div>
@@ -8,7 +9,7 @@
 
 <script>
 import caseList from '@/components/core/caseList'
-var count = 0;
+import {mapGetters} from 'Vuex'
   export default {
     data () {
       return {
@@ -26,9 +27,14 @@ var count = 0;
       caseList
     },
     created(){
-        this.name = this.$route.query.name;
-        this.src = this.$route.query.src;
+      this.name = this.$route.query.name;
+      this.src = this.$route.query.src;
       this.findCase();
+    },
+    computed: {
+      ...mapGetters([
+        'count'
+      ])
     },
     methods: {
       loadMore(){

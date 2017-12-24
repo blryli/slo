@@ -28,7 +28,7 @@
                 <div class="col-xs-0 col-sm-2"></div>
                 <div class="col-xs-9 col-sm-6 phone-margin header-topsearch" style="margin-top: 26px;">
                   <i class="fa fa-search" aria-hidden="true"></i>
-                  <input type="text" class="form-control" placeholder="请输入公司 / 作品名称">
+                  <input type="text" class="form-control" :value="count" @input="updateCount" placeholder="请输入公司 / 作品名称">
                 </div>
                 <div class="col-xs-3 col-sm-4 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
@@ -57,9 +57,10 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
 import TopMenu from './topMenu'
 import $ from 'jquery'
+import {mapGetters} from 'Vuex'
 export default {
   data() {
     return {
@@ -71,8 +72,6 @@ export default {
       menuJson: []
     }
   },
-  watch: {
-  },
   components: {
     TopMenu
   },
@@ -83,11 +82,16 @@ export default {
   computed: {
     myName() {
       return this.nickname != '' ? this.nickname : this.userName;
-    }
+    },
+    ...mapGetters([
+      'count'
+    ])
   },
   methods: {
+    updateCount(e) {
+      this.$store.commit('updateCount', e.target.value)
+    },
     getUserInfo() {
-        console.log(this.loginPhone)
         this.$fns.post('/api/user/login',{},(json)=>{
             if(json.ask=='1'){
               this.nickname = json.nick_name;
