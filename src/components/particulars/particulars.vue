@@ -100,7 +100,6 @@ import caseList from '@/components/core/caseList'
         index:function(){
             this.prevShow = this.index!==0;
             this.nextShow = this.index!==(this.idslen-1);
-            this.id = this.ids[this.index];
         }
     },
     methods: {
@@ -134,10 +133,12 @@ import caseList from '@/components/core/caseList'
         },
         prev() {
             this.index != 0 && this.index--;
+            this.id = this.ids[this.index];
             this.getCase();
         },
         next() {
             this.index != (this.idslen-1) && this.index++;
+            this.id = this.ids[this.index];
             this.getCase();
         },
     },
