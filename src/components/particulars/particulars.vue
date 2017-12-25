@@ -107,7 +107,7 @@ import caseList from '@/components/core/caseList'
           var data = {
               caseId:this.particularsArr.case_id
           }
-          this.$fns.post('/api/user/edit-attention',data,(json)=>{
+          this.$fns.post('/api/user/edit-collect',data,(json)=>{
               if(json.ask=='1'){
                 this.particularsArr.has_collect = !this.particularsArr.has_collect;
                 this.$message({message:json.message,type:'success',showClose:true});

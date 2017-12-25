@@ -119,10 +119,12 @@ import {mapGetters} from 'Vuex'
       },
       shouc() {
         this.active = 1;
+        this.page = 1;
         this.getCollects();
       },
       gzhu() {
         this.active = 2;
+        this.page = 1;
         this.getAttentions();
       },
       getUserInfo() {
@@ -151,6 +153,9 @@ import {mapGetters} from 'Vuex'
               json.data.forEach((item,k)=>{
                 this.myAttentionArr.push(item);
               })
+            }
+            if(json.data.length<this.pageSize){
+               this.hasMore = false;
             }
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
