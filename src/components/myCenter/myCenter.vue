@@ -122,6 +122,7 @@ import {mapGetters} from 'Vuex'
         this.pageSize = 8;
         this.hasMore = true;
         this.active = 1;
+        this.datas=[];
         this.getCollects();
       },
       gzhu() {
@@ -129,6 +130,7 @@ import {mapGetters} from 'Vuex'
         this.pageSize = 2;
         this.hasMore = true;
         this.active = 2;
+        this.myAttentionArr=[];
         this.getAttentions();
       },
       getUserInfo() {
