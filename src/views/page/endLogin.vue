@@ -35,7 +35,11 @@ export default {
       }
       this.$fns.post('/api/user/login',data,(json)=>{
           if(json.ask=='1'){
-            this.$router.push({path:'/admin'});
+            if(json.is_admin=='1'){
+              this.$router.push({path:'/admin'});
+            }else{
+              this.show1 = '你没有权限!';
+            }
           }else{
             this.show1 = json.message;
           }
