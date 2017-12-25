@@ -52,10 +52,9 @@ export default {
   methods: {
     getLogin(){
       this.$fns.post('/api/user/login',{},(json)=>{
-          if(json.ask=='1'){
+          if(json.ask=='1' && json.is_admin=='1'){
             this.useName = json.name
-          }
-          if(json.ask != '1'){
+          }else{
             this.$router.push({path: '/endLogin'})
           }
       });
