@@ -1,6 +1,8 @@
 <template>
   <li class="al-logo text-center">
-      <img :src="attentionArr.logo">
+      <router-link :to="{ path: '/worksPage',query:{id: attentionArr.company_id}}"> 
+        <img :src="attentionArr.logo">
+      </router-link>
       <h3 @mouseenter="show = true" @mouseleave="show = false">{{attentionArr.name}}</h3>
       <h2 v-if="show == true && textLength(attentionArr.name)" class="orient">{{attentionArr.name}}</h2>
       <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == true}" @click="getAttention"><span v-show="attentionArr.has_attention == true">取消</span>关注</button></p>

@@ -40,7 +40,7 @@
         <case-list :case-arr="item.cases" class="m-r-20"></case-list>
       </div>
       <div class="col-sm-1 works-right">
-        <router-link :to="{ path: '/worksPage'}">  
+        <router-link :to="{ path: '/worksPage',query:{id: item.company_info.company_id}}">  
           <label class="text-center"><i class="fa fa-chevron-right" aria-hidden="true"></i><br><small>查看全部</small></label>
         </router-link>
       </div>
