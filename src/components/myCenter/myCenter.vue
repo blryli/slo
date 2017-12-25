@@ -118,13 +118,17 @@ import {mapGetters} from 'Vuex'
         }
       },
       shouc() {
-        this.active = 1;
         this.page = 1;
+        this.pageSize = 8;
+        this.hasMore = true;
+        this.active = 1;
         this.getCollects();
       },
       gzhu() {
-        this.active = 2;
         this.page = 1;
+        this.pageSize = 2;
+        this.hasMore = true;
+        this.active = 2;
         this.getAttentions();
       },
       getUserInfo() {
