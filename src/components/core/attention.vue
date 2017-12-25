@@ -5,7 +5,7 @@
       </router-link>
       <h3 @mouseenter="show = true" @mouseleave="show = false">{{attentionArr.name}}</h3>
       <h2 v-if="show == true && textLength(attentionArr.name)" class="orient">{{attentionArr.name}}</h2>
-      <p class="al-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == '1'}" @click="getAttention"><span v-show="attentionArr.has_attention == '1'">取消</span>关注</button></p>
+      <p class="al-btn-btn text-center" v-if="attentionShow == true"><button type="button" class="btn btn-FEE300" :class="{ 'btn-bgfff': attentionArr.has_attention == '1'}" @click="getAttention"><span v-show="attentionArr.has_attention == '1'">取消</span>关注</button></p>
   </li>
 </template>
 
@@ -83,7 +83,7 @@
 .btn{
   font-size: 12px;
 }
-.al-btn{
+.al-btn-btn{
     margin-top: 30px;
 }
 .btn-bgfff{

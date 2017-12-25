@@ -13,7 +13,7 @@
         <h1 class="user-info" v-show="showMyName == true">
           <el-input
             placeholder="请输入内容"
-            v-model="myName" @blur="pushMyName" @keyup.enter.native="pushMyName">
+            v-model="myName" @blur="pushMyName">
           </el-input>
         </h1>
       </div>
@@ -21,7 +21,7 @@
       <small class="user-info">
         <el-input v-show="showUserText == true"
           placeholder="请输入内容"
-          v-model="userText" @blur="pushUserText" @keyup.enter.native="pushUserText">
+          v-model="userText" @blur="pushUserText">
         </el-input>
       </small>
       <div class="al-btn">
@@ -401,27 +401,27 @@ import {mapGetters} from 'Vuex'
   }
   .al-btn{
     margin-top: 35px;
-  }
-  .btn{
-      font-size: 14px;
-      height: 38px;
-      width: 160px;
-      border: 1px solid #FEE300;
-      background-color: #fff;
-      &.btn-FEE300{
-        background-color: #FEE300;
-        font-size: 16px;
-        font-weight: bold;
-      }
-      &:first-child{
-        border-radius: 8px 0 0 8px;
-      }
-      &:last-child{
-        border-radius: 0 8px 8px 0;
-      }
-      &+.btn{
-        margin-left: -4px;
-      }
+    .btn{
+        font-size: 14px;
+        height: 38px;
+        width: 160px;
+        border: 1px solid #FEE300;
+        background-color: #fff;
+        &.btn-FEE300{
+          background-color: #FEE300;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        &:first-child{
+          border-radius: 8px 0 0 8px;
+        }
+        &:last-child{
+          border-radius: 0 8px 8px 0;
+        }
+        &+.btn{
+          margin-left: -4px;
+        }
+    }
   }
    @media (min-width: 768px) {
     .works-right{
