@@ -3,7 +3,7 @@
     <div class="bg-F2F2F2 works-banner my-center text-center">
       <!-- <img :src="userImg"> -->
       <div class="upload-img">
-        <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="logoImg" :limit="logoImg.limit"  :multiple="logoImg.multiple"
+        <el-upload action="/api/user/upload-avatar-img" list-type="picture-card" :name="name" ref="logoImg" :limit="logoImg.limit"  :multiple="logoImg.multiple"
         :on-preview="preview" :on-remove="removeLogo" :on-success="successLogo">
         <img v-if="userImg" :src="userImg" class="avatar">
         </el-upload>
