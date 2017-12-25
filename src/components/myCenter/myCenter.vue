@@ -140,11 +140,19 @@ import {mapGetters} from 'Vuex'
         }
       },
       shouc() {
+        this.page = 1;
+        this.pageSize = 8;
+        this.hasMore = true;
         this.active = 1;
+        this.datas=[];
         this.getCollects();
       },
       gzhu() {
+        this.page = 1;
+        this.pageSize = 2;
+        this.hasMore = true;
         this.active = 2;
+        this.myAttentionArr=[];
         this.getAttentions();
       },
       getUserInfo() {
@@ -203,6 +211,9 @@ import {mapGetters} from 'Vuex'
               json.data.forEach((item,k)=>{
                 this.myAttentionArr.push(item);
               })
+            }
+            if(json.data.length<this.pageSize){
+               this.hasMore = false;
             }
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
