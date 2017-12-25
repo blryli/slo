@@ -63,7 +63,7 @@ import {mapGetters} from 'Vuex'
         showMyName: false,
         showUserText: false,
         userImg: '',
-        name:'',
+        name:'img',
         dialogImageUrl: '',
         dialogVisible: false,
         logoImg:{
@@ -73,7 +73,7 @@ import {mapGetters} from 'Vuex'
         },
         userName: '',
         nickname: '',
-        userText: '',
+        userText: ' ',
         myName: '',
         active: 1,
         myAttentionArr: [],
@@ -296,15 +296,13 @@ import {mapGetters} from 'Vuex'
 }
 .el-upload-list--picture-card .el-upload-list__item{
     overflow: hidden;
-    background-color: transparent;
-    border: 0;
-    border-radius: 6px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100px;
-    height: 100px;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    width: 100px !important;
+    height: 100px !important;
     margin: 0 8px 8px 0;
-    display: inline-block;
+    display: inline-block !important;
     .el-progress-circle{
       width: 100px !important;
       height: 100px !important;
