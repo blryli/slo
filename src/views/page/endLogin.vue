@@ -1,10 +1,10 @@
 <template>
     <div class="end-lgin">
       <p class="title"><strong>后台登陆</strong></p>
-      <div class="erroInfo" v-show="show && show1 != ''">{{msg}}</div>
-      <p><el-input v-model="name" placeholder="账号"></el-input></p>
-      <p><el-input v-model="pass" type="password" placeholder="密码"></el-input></p>
-      <p><el-button type="primary" style="width: 100%;" @click="submit">提交</el-button></p>
+      <div class="erroInfo" v-show="show1 != ''">{{msg}}</div>
+      <p><el-input v-model="name" placeholder="账号" @keyup.enter.native="isLogin()&&submit()"></el-input></p>
+      <p><el-input v-model="pass" type="password" placeholder="密码" @keyup.enter.native="isLogin()&&submit()"></el-input></p>
+      <p><el-button type="deflaut" style="width: 100%;" :class="{'el-button--primary':isLogin()}" @click="submit">提交</el-button></p>
     </div>
 </template>
 
@@ -14,37 +14,32 @@ export default {
     return {
       name: '',
       pass: '',
-      show: false,
-      show1: ''
+      show1: '',
+      msg: ''
     }
   },
   components: {
   },
   created() {
   },
-  moumted: {
-    msg() {
-      return this.show == true ? '请输入正确的账号密码' : this.show1
-    }
-  },
   methods: {
-    submit() {
+    isLogin() {
       if(this.name != '' && this.pass != '') {
-        var data = {
-                userName: this.name,
-                userPass: this.pass
-        }
-        this.$fns.post('/api/user/login',data,(json)=>{
-            if(json.ask=='1'){
-              this.$router.push({path:'/admin'});
-            }else{
-              this.show = false;
-              this.show1 = json.message;
-            }
-        });
-      }else{
-        this.show = true
+        return true
       }
+    },
+    submit() {
+      var data = {
+              userName: this.name,
+              userPass: this.pass
+      }
+      this.$fns.post('/api/user/login',data,(json)=>{
+          if(json.ask=='1'){
+            this.$router.push({path:'/admin'});
+          }else{
+            this.show1 = json.message;
+          }
+      });
     },
   }
 }

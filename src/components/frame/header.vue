@@ -28,7 +28,7 @@
                 <div class="col-xs-0 col-sm-2"></div>
                 <div class="col-xs-9 col-sm-6 phone-margin header-topsearch" style="margin-top: 26px;">
                   <i class="fa fa-search" aria-hidden="true"></i>
-                  <input type="text" class="form-control" :value="count" @input="updateCount" placeholder="请输入公司 / 作品名称">
+                  <input type="text" class="form-control" :value="count" @keyup.enter="updateCount" placeholder="请输入公司 / 作品名称">
                 </div>
                 <div class="col-xs-3 col-sm-4 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
@@ -42,8 +42,8 @@
                       <ul class="dropdown-menu dropdown-menu-right user-info">
                         <li class="user-text"><router-link :to="{path: '/myCenter'}">{{myName}}</router-link></li>
                         <li role="separator" class="divider"></li>
-                        <li class="user-text"><a href="#">我的收藏</a></li>
-                        <li class="user-text"><a href="#">我的关注</a></li>
+                        <li class="user-text"><router-link :to="{path: '/myCenter', query: {active:1}}">我的收藏</router-link></li>
+                        <li class="user-text"><router-link :to="{path: '/myCenter', query: {active:2}}">我的关注</router-link></li>
                         <li role="separator" class="divider"></li>
                         <li class="user-text"><a href="#" @click="pullOut">退出</a></li>
                       </ul>
@@ -97,8 +97,6 @@ export default {
               this.nickname = json.nick_name;
               this.userName = json.name;
               this.userImg = json.avatar_img;
-            }else{
-              this.$message({message:json.message,type:'error',showClose:true});
             }
         });
     },

@@ -39,7 +39,7 @@
 <script>
 import caseList from '@/components/core/caseList'
 import attention from '@/components/core/attention'
-var count = 0;
+import {mapGetters} from 'Vuex'
   export default {
     props: {
     },
@@ -64,13 +64,45 @@ var count = 0;
     },
     created () {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
+      if(this.$route.query.active){
+        this.active = this.$route.query.active;
+      }
       this.getUserInfo();
-      this.getCollects();
+      if(this.active == 1) {
+        this.getCollects();
+      }else{
+        this.getAttentions();
+      }
+      console.log(this.active)
+    },
+    watch: {
+      count() {
+            var data = {
+                page:1,
+                pageSize:this.pageSize,
+                keyWords:this.count
+            }
+            this.$fns.post('/api/case/find-cases',data,(json)=>{
+              if(json.ask=='1'){
+                if(json.data.length){
+                  this.datas = json.data
+                }
+                if(json.data.length<this.pageSize){
+                   this.hasMore = false;
+                }
+              }else{
+                this.$message({message:json.message,type:'error',showClose:true});
+              }
+            },{},false);
+      }
     },
     computed: {
       myName() {
         return this.nickname != '' ? this.nickname : this.userName;
-      }
+      },
+      ...mapGetters([
+        'count'
+      ])
     },
     methods: {
       loadMore(){
@@ -110,7 +142,7 @@ var count = 0;
         var data = {
             page:this.page,
             pageSize:this.pageSize,
-            keyWords:this.keyWords
+            keyWords:this.count
         }
         this.$fns.post('/api/user/get-attentions',data,(json)=>{
           if(json.ask=='1'){
@@ -129,7 +161,7 @@ var count = 0;
         var data = {
             page:this.page,
             pageSize:this.pageSize,
-            keyWords:this.keyWords
+            keyWords:this.count
         }
         this.$fns.post('/api/user/get-collects',data,(json)=>{
           if(json.ask=='1'){

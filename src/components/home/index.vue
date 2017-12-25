@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="container m-t-20 p-b-10" v-scroll="loadMore">
-      <p>{{count}}</p>
       <case-list :case-arr="datas"></case-list>
     </div>
   </div>
@@ -36,6 +35,27 @@ import {mapGetters} from 'Vuex'
         'count'
       ])
     },
+    watch: {
+      count() {
+            var data = {
+                page:1,
+                pageSize:this.pageSize,
+                keyWords:this.count
+            }
+            this.$fns.post('/api/case/find-cases',data,(json)=>{
+              if(json.ask=='1'){
+                if(json.data.length){
+                  this.datas = json.data
+                }
+                if(json.data.length<this.pageSize){
+                   this.hasMore = false;
+                }
+              }else{
+                this.$message({message:json.message,type:'error',showClose:true});
+              }
+            },{},false);
+      }
+    },
     methods: {
       loadMore(){
         if(!this.loading && this.hasMore){
@@ -49,7 +69,7 @@ import {mapGetters} from 'Vuex'
     	  var data = {
     			  page:this.page,
     			  pageSize:this.pageSize,
-    			  keyWords:this.keyWords
+    			  keyWords:this.count
     	  }
     	  this.$fns.post('/api/case/find-cases',data,(json)=>{
     		  if(json.ask=='1'){

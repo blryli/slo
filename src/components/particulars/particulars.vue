@@ -24,8 +24,8 @@
                     <li class="unit"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">
-                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == false }" @click="getCollect"></a>
-                        <p><span v-show="particularsArr.has_collect == false">取消</span>收藏</p>
+                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="getCollect"></a>
+                        <p><span v-show="particularsArr.has_collect == true">取消</span>收藏</p>
                     </li>
                     <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
                     <li class="text-center particulars-sharing">

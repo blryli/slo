@@ -15,15 +15,15 @@
 				<div v-show="crru == 1">
 					<div class="login-container">
 						<div class="form-group">
-						    <input type="number" class="form__input login-input" name="username" placeholder="请输入手机号码" v-model="loginPhone">
+						    <input type="number" class="form__input login-input" name="username" placeholder="请输入手机号码" @keyup.enter="canLogin()&&loginBtn()" v-model="loginPhone">
 						 </div>
 						 <span class="form-group__message"手机号不能为空</span>
 						 <div class="form-group">
-						    <input type="password" class="form__input login-input" name="password" placeholder="请输入密码" v-model="loginPassword">
+						    <input type="password" class="form__input login-input" name="password" placeholder="请输入密码" @keyup.enter="canLogin()&&loginBtn()" v-model="loginPassword">
 						 </div>
 						<button type="button" class="btn btn-dl m-t-30" :class="canLogin() ?'login-hover':''" @click="canLogin()&&loginBtn()">登录</button>
-            			<label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label>
-						<a href="#" class="forget">忘记密码</a>
+            			<!-- <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label> -->
+						<!-- <a href="#" class="forget">忘记密码</a> -->
 					</div>
 					<div class="others-login text-center">
 						<h3>第三方账号登陆</h3>
@@ -37,13 +37,13 @@
 							<span v-show="yzmStatus == true">发送验证码</span>
 							<span v-show="yzmStatus == false">60s后再次发送</span>
 						</button> -->
-						<input type="number" class="login-input" name="phone" v-model="registerPhone" placeholder="请输入手机号码">
+						<input type="number" class="login-input" name="phone" v-model="registerPhone" @keyup.enter="canRegister()&&registerBtn()" placeholder="请输入手机号码">
 						<!-- <input type="text" class="login-input" name="password" placeholder="请输入验证码"> -->
-						<input type="password" class="login-input" name="password" v-model="registerPassword1" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
-						<input type="password" class="login-input" name="password" v-model="registerPassword2" placeholder="再次输入密码确认">
+						<input type="password" class="login-input" name="password" v-model="registerPassword1" @keyup.enter="canRegister()&&registerBtn()" placeholder="请输入6-20位密码，字母/数字/字符必须2种">
+						<input type="password" class="login-input" name="password" v-model="registerPassword2" @keyup.enter="canRegister()&&registerBtn()" placeholder="再次输入密码确认">
 						<div class="m-t-b-20">
-              <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">我已阅读并接受</label>
-							<a href="#" class="forget" style="float: none;">用户协议</a>
+              <!-- <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">我已阅读并接受</label> -->
+							<!-- <a href="#" class="forget" style="float: none;">用户协议</a> -->
 						</div>
 						<button type="button" class="btn btn-dl m-t-30" :class="canRegister()?'login-hover':''" @click="canRegister() && registerBtn()">注册</button>
 

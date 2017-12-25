@@ -3,7 +3,7 @@
     <div class="bg-F2F2F2 works-banner" :class="{paddingbottom: show == true}">
       <h1>{{data.name}}</h1>
       <div class="al-btn text-center">
-        <button type="button" class="btn btn-FEE300" @click="getAttention" :class="{ 'btn-default': data.has_attention == false }"><span v-show="data.has_attention == false">已</span>关注</button>
+        <button type="button" class="btn btn-FEE300" @click="getAttention" :class="{ 'btn-default': data.has_attention == true }"><span v-show="data.has_attention == true">已</span>关注</button>
         <button type="button" class="btn btn-default" @click="show = true" v-show="show == false">公司简介</button>
       </div>
       <div class="hr" v-show="show == true"></div>
@@ -23,7 +23,7 @@
 <script>
 import caseList from '@/components/core/caseList'
 import Recruit from './recruit'
-var count = 0;
+import {mapGetters} from 'Vuex'
   export default {
     props: {
     },
@@ -46,6 +46,30 @@ var count = 0;
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.getCompanyInfo();
       this.findCase();
+    },
+    computed:mapGetters([
+        'count'
+    ]),
+    watch: {
+      count() {
+            var data = {
+                page:1,
+                pageSize:this.pageSize,
+                keyWords:this.count
+            }
+            this.$fns.post('/api/case/find-cases',data,(json)=>{
+              if(json.ask=='1'){
+                if(json.data.length){
+                  this.datas = json.data
+                }
+                if(json.data.length<this.pageSize){
+                   this.hasMore = false;
+                }
+              }else{
+                this.$message({message:json.message,type:'error',showClose:true});
+              }
+            },{},false);
+      }
     },
     methods: {
       getAttention() {
@@ -85,7 +109,7 @@ var count = 0;
           var data = {
               page:this.page,
               pageSize:this.pageSize,
-              keyWords:this.keyWords,
+              keyWords:this.count,
               companyId:this.$route.query.id
           }
           this.$fns.post('/api/case/find-cases',data,(json)=>{
