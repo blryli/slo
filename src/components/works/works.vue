@@ -54,9 +54,7 @@ import {mapGetters} from 'Vuex'
             }
             this.$fns.post('/api/case/get-works',data,(json)=>{
               if(json.ask=='1'){
-                if(json.data.length){
-                  this.datas = json.data
-                }
+                this.datas = json.data
                 if(json.data.length<this.pageSize){
                    this.hasMore = false;
                 }

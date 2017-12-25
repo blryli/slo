@@ -44,9 +44,7 @@ import {mapGetters} from 'Vuex'
             }
             this.$fns.post('/api/case/find-cases',data,(json)=>{
               if(json.ask=='1'){
-                if(json.data.length){
-                  this.datas = json.data
-                }
+                this.datas = json.data
                 if(json.data.length<this.pageSize){
                    this.hasMore = false;
                 }

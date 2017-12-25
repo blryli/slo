@@ -28,7 +28,7 @@
                 <div class="col-xs-0 col-sm-2"></div>
                 <div class="col-xs-9 col-sm-6 phone-margin header-topsearch" style="margin-top: 26px;">
                   <i class="fa fa-search" aria-hidden="true"></i>
-                  <input type="text" class="form-control" :value="count" @keyup.enter="updateCount" placeholder="请输入公司 / 作品名称">
+                  <input type="text" class="form-control" :value="count" @keyup.enter="updateCount" @blur="updateCount" placeholder="请输入公司 / 作品名称">
                 </div>
                 <div class="col-xs-3 col-sm-4 text-right" v-if="userName == ''">
                   <router-link  class="login" to="/login"><strong>登录</strong><span></span></router-link>
