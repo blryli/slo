@@ -271,14 +271,10 @@ import {mapGetters} from 'Vuex'
 
 <style lang="scss">
 .el-upload--picture-card {
-    background-color: transparent;
-    border: 0;
-    border-radius: 50%;
-    box-sizing: border-box;
-    width: auto;
-    height: auto;
-    line-height: auto;
-    vertical-align: top;
+    background-color: transparent !important;
+    border: 0 !important;
+    width: 100px !important;
+    height: 100px !important;
     input[type=file] {
         display: none !important;
     }
