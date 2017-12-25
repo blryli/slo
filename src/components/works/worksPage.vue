@@ -3,7 +3,7 @@
     <div class="bg-F2F2F2 works-banner" :class="{paddingbottom: show == true}">
       <h1>{{data.name}}</h1>
       <div class="al-btn text-center">
-        <button type="button" class="btn btn-FEE300" @click="getAttention" :class="{ 'btn-default': data.has_attention == true }"><span v-show="data.has_attention == true">已</span>关注</button>
+        <button type="button" class="btn btn-FEE300" @click="getAttention" :class="{ 'btn-default': data.has_attention == '1' }"><span v-show="data.has_attention == '1'">已</span>关注</button>
         <button type="button" class="btn btn-default" @click="show = true" v-show="show == false">公司简介</button>
       </div>
       <div class="hr" v-show="show == true"></div>
