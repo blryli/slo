@@ -285,6 +285,9 @@ import {mapGetters} from 'Vuex'
         display: none !important;
     }
 }
+.el-upload-list--picture-card .el-progress{
+  width: 100px;
+}
 .upload-img{
   width: 100px;
   margin: 0 auto;
