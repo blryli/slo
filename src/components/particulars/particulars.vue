@@ -3,15 +3,15 @@
         <div class="position-bg"></div>
         <div class="particulars" v-if="particularsArr != ''">
           <div class="container m-t-20">
-            <div class="particulars-close" @click="goBack"></div>
-            <div class="particulars-prev" v-show="prevShow" @click="prev($event)"></div>
+            <div class="particulars-close close-fixed" @click="goBack"></div>
+            <div class="particulars-prev" v-show="prevShow" @click="prev()"></div>
             <div class="particulars-next" v-show="nextShow" @click="next"></div>
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div class="row">
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
                     <li class="title">{{particularsArr.title}}</li>
-                    <li class="text">时间：{{particularsArr.add_date}}</li>
+                    <li class="text">时间：{{particularsArr.add_date}}>>>{{cutId}}</li>
                     <li class="hr"></li>
                     <li class="text-ms" v-html="particularsArr.desc"></li>
                     <li class="img-ms"><p v-for="item in particularsArr.imgs"><img :src="item" class="img-responsive img"></p></li>
@@ -69,13 +69,13 @@
 <script>
 import attention from '@/components/core/attention'
 import caseList from '@/components/core/caseList'
+import {mapGetters} from 'Vuex'
   export default {
     data () {
       return {
         particularsArr: '',
         alrtSharingShow: false,
         id: '',
-        ids: [],
         index:0,
         idslen:0,
         prevShow: true,
@@ -89,19 +89,20 @@ import caseList from '@/components/core/caseList'
     created() {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         this.id = this.$route.query.id;
-        this.ids = this.$route.query.ids;
-        this.idslen = this.$route.query.ids.length;
         this.index = this.$route.query.index;
         this.prevShow = this.index!==0;
-        this.nextShow = this.index!==(this.idslen-1);
+        this.nextShow = this.index!==(this.cutId.length-1);
         this.getCase();
     },
     watch:{
         index:function(){
-            this.prevShow = this.index!==0;
-            this.nextShow = this.index!==(this.idslen-1);
+            this.prevShow = this.index!=0;
+            this.nextShow = this.index!=(this.cutId.length-1);
         }
     },
+    computed: mapGetters([
+      'cutId'
+    ]),
     methods: {
         getCollect() {
           var data = {
@@ -133,12 +134,12 @@ import caseList from '@/components/core/caseList'
         },
         prev() {
             this.index != 0 && this.index--;
-            this.id = this.ids[this.index];
+            this.id = this.cutId[this.index];
             this.getCase();
         },
         next() {
-            this.index != (this.idslen-1) && this.index++;
-            this.id = this.ids[this.index];
+            this.index != (this.cutId.length-1) && this.index++;
+            this.id = this.cutId[this.index];
             this.getCase();
         },
     },
@@ -184,23 +185,26 @@ p{
 .particulars{
     position: relative;
     z-index: 2000;
+    top: -150px;
 }
 .particulars-prev, .particulars-next{
-    position: absolute;
+    position: fixed;
     cursor: pointer;
     width: 40px;
     height: 40px;
-    top: -45px;
+    top: 50%;
+    margin-top: -20px;
+    z-index: 3000;
 }
 .particulars-prev{
-    left: 13px;
+    left: 10px;
     background: url(/static/img/ic_arrow_left.png) no-repeat center center;
     &:hover{
         background: url(/static/img/ic_arrow_left2.png) no-repeat center center;
     }
 }
 .particulars-next{
-    right: 180px;
+    right: 10px;
     background: url(/static/img/ic_arrow_right.png) no-repeat center center;
     &:hover{
         background: url(/static/img/ic_arrow_right2.png) no-repeat center center;
@@ -212,8 +216,8 @@ p{
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #000;
-    opacity: .4;
+    background-color: #bbb;
+    opacity: .9;
     z-index: 1800;
 }
 .fa{
@@ -246,6 +250,7 @@ p{
 .bg-fff{
     background-color: #fff;
 	padding: 20px 20px 15px;
+    box-shadow: 0 0 6px rgba(0,0,0,.2);
 }
 .container{
     position: relative;
@@ -326,14 +331,14 @@ p{
     }
 }
  @media (min-width: 768px) {
-    .particulars-prev, .particulars-next{
-        top: 200px;
-    }
-    .particulars-prev{
-        left: -45px;
-    }
-    .particulars-next{
-        right: -45px;
-    }
+    // .particulars-prev, .particulars-next{
+    //     top: 200px;
+    // }
+    // .particulars-prev{
+    //     left: -45px;
+    // }
+    // .particulars-next{
+    //     right: -45px;
+    // }
  }
 </style>

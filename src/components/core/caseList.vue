@@ -5,8 +5,8 @@
     </li>
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
       <ul class="slo-case o-h">
-        <router-link class="img router" :to="{path: pathUrl,query: {id: item.case_id,index:index, ids: ids}}" tag="li"><img :src="item.img_min"></router-link>
-        <router-link class="title router through" :style="{ 'font-size': titleSize + 'px' }" :to="{path: pathUrl,query: {id: item.case_id,index:index,ids: ids}}" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
+        <router-link class="img router" @click.native="updateCutId" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><img :src="item.img_min"></router-link>
+        <router-link class="title router through" @click.native="updateCutId" :style="{ 'font-size': titleSize + 'px' }" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
         <li class="text" v-if="showText">{{item.author}}</li>
       </ul>
     </li>
@@ -15,6 +15,7 @@
 
 <script>
 import Recruit from '@/components/works/recruit'
+import {mapGetters} from 'Vuex'
 export default {
     props: {
       caseArr: {},
@@ -55,26 +56,19 @@ export default {
     components: {
       Recruit
     },
-    data () {
-        return {
-       }
-    },
-    created() {
-    },
-    mounted: function () {
-      this.$nextTick(function () {
-      })
-    },
     computed: {
-      ids() {
+      ...mapGetters([
+        'cutId'
+      ])
+    },
+    methods:{
+      updateCutId() {
         let arr = []
         this.caseArr.forEach((d, i) => {
           arr.push(d.case_id)
-        })
-        return arr
+        }),
+        this.$store.commit('updateCutId', arr)
       },
-    },
-    methods:{
       textLength(text) {
         if( document.body.scrollWidth < 768 ){
           if(text.length>11){
@@ -142,7 +136,7 @@ ul{
 .text{
   font-size: 14px;
   padding: 14px 0 16px;
-  color: #282727;
+  color: #555;
 }
 @media (min-width: 768px) { 
   .slo-case{

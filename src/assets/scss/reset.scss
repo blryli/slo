@@ -23,3 +23,8 @@ input::-webkit-inner-spin-button {
 input[type="number"]{
   -moz-appearance: textfield;
 }
+.particulars-close.close-fixed{
+	position: fixed;
+	right: 10px;
+	top: 10px;
+}

@@ -11,9 +11,9 @@ import store from './vuex/store'
 // import vueLookImages from 'vue-look-images'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './assets/scss/reset.css'
-import './assets/scss/base.css'
-import './assets/scss/colorBtn.css'
+import './assets/scss/reset.scss'
+import './assets/scss/base.scss'
+import './assets/scss/colorBtn.scss'
 import '../static/js/global'
 
 Vue.config.productionTip = false

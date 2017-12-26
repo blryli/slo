@@ -7,7 +7,8 @@ import mutations from './mutations'
 Vue.use(Vuex)
  
 const state = {
-    count: ''
+    count: '',
+    cutId: []
 }
  
 const store = new Vuex.Store({
