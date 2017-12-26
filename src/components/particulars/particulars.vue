@@ -11,7 +11,7 @@
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
                     <li class="title">{{particularsArr.title}}</li>
-                    <li class="text">时间：{{particularsArr.add_date}}>>>{{cutId}}</li>
+                    <li class="text">时间：{{particularsArr.add_date}}</li>
                     <li class="hr"></li>
                     <li class="text-ms" v-html="particularsArr.desc"></li>
                     <li class="img-ms"><p v-for="item in particularsArr.imgs"><img :src="item" class="img-responsive img"></p></li>
