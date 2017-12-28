@@ -95,8 +95,10 @@ import {mapGetters} from 'Vuex'
       }
       this.getUserInfo();
       if(this.active == 1) {
+    	this.pageSize = 8;
         this.getCollects();
       }else{
+    	this.pageSize = 2;
         this.getAttentions();
       }
     },
