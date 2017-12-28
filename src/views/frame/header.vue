@@ -50,20 +50,20 @@ export default {
   	}
   },
   methods: {
-    getLogin(){
-      this.$fns.post('/api/user/login',{},(json)=>{
-          if(json.ask=='1' && json.is_admin=='1'){
-            this.useName = json.name
-          }else{
-            this.$router.push({path: '/endLogin'})
-          }
-      });
-    },
-    logout(){
-      this.$fns.post('/api/user/logout',{},(json)=>{
-        this.$router.push({path: '/endLogin'})
-      });
-    }
+    // getLogin(){
+    //   this.$fns.post('/api/user/login',{},(json)=>{
+    //       if(json.ask=='1' && json.is_admin=='1'){
+    //         this.useName = json.name
+    //       }else{
+    //         this.$router.push({path: '/endLogin'})
+    //       }
+    //   });
+    // },
+    // logout(){
+    //   this.$fns.post('/api/user/logout',{},(json)=>{
+    //     this.$router.push({path: '/endLogin'})
+    //   });
+    // }
   }
 }
 </script>

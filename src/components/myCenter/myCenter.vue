@@ -270,41 +270,41 @@ import {mapGetters} from 'Vuex'
 </script>
 
 <style lang="scss">
-.el-upload--picture-card {
-    background-color: transparent !important;
-    border: 0 !important;
-    width: 100px !important;
-    height: 100px !important;
-    input[type=file] {
-        display: none !important;
-    }
-}
-.el-upload-list--picture-card .el-progress{
-  width: 100px;
-}
-.upload-img{
-  width: 100px;
-  margin: 0 auto;
-  position: relative;
-  .el-upload-list{
-    position: absolute;
-  }
-}
-.el-upload-list--picture-card .el-upload-list__item{
-    overflow: hidden;
-    background-color: transparent !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    width: 100px !important;
-    height: 100px !important;
-    margin: 0 8px 8px 0;
-    display: inline-block !important;
-    .el-progress-circle{
+.my-center-box{
+  .el-upload--picture-card {
+      background-color: transparent !important;
+      border: 0 !important;
       width: 100px !important;
       height: 100px !important;
+      input[type=file] {
+          display: none !important;
+      }
+  }
+  .el-upload-list--picture-card .el-progress{
+    width: 100px;
+  }
+  .upload-img{
+    width: 100px;
+    margin: 0 auto;
+    position: relative;
+    .el-upload-list{
+      position: absolute;
     }
-}
-.my-center-box{
+  }
+  .el-upload-list--picture-card .el-upload-list__item{
+      overflow: hidden;
+      background-color: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      width: 100px !important;
+      height: 100px !important;
+      margin: 0 8px 8px 0;
+      display: inline-block !important;
+      .el-progress-circle{
+        width: 100px !important;
+        height: 100px !important;
+      }
+  }
   .m-r-20{
     margin-right: 20px;
   }
