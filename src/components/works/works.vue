@@ -1,6 +1,6 @@
 <template>
   <div class="bg-F2F2F2 p-b-20" v-scroll="loadMore">
-    <div class="container m-t-20 row" v-for="item in datas">
+    <div class="container m-t-20 row" v-for="(item, index) in datas" :key="index">
     	<ul class="col-sm-2 works-left">
         <attention :attention-arr="item.company_info" :id="item.company_info.company_id"></attention>
       </ul>

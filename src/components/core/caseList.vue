@@ -3,7 +3,7 @@
     <li class="col-xs-6 col-sm-4 recruit-box" :class="{'col-md-3': colFour}" style="float: right;margin-bottom: 30px;" v-if="recruitShow == true">
       <recruit :recruit-info="recruitInfo" :id="id"></recruit>
     </li>
-    <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr">
+    <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr" :key="index">
       <ul class="slo-case o-h">
         <router-link class="img router" @click.native="updateCutId" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><img :src="item.img_min"></router-link>
         <router-link class="title router through" @click.native="updateCutId" :style="{ 'font-size': titleSize + 'px' }" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>

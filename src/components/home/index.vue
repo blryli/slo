@@ -26,6 +26,7 @@ import {mapGetters} from 'Vuex'
       caseList
     },
     created(){
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.name = this.$route.query.name;
       this.src = this.$route.query.src;
       this.findCase();

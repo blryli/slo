@@ -20,7 +20,7 @@
             "company_id":1,
             "name":"公司名称",
             "logo":"static/img/logo.png",
-            "desc":"公司介绍(带有html标签)",
+            "desc":"公司介绍(带有html标签)公司介绍(带有html标签)公司介绍(带有html标签)公司介绍(带有html标签)公司介绍(带有html标签)公司介绍(带有html标签)",
             "has_attention":0
         },
         "recommend":[

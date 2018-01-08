@@ -1,10 +1,11 @@
 <template>
 	<div>
 	    <div class="login-box-bg"></div>
-	    <div class="login-box-img"></div>
+	    <!--<div class="login-box-img"></div>-->
 		<div class="login-box">
+			<div class="particulars-prev" @click="prev"></div>
 			<div class="logo">
-			  	<router-link to="/"><img src="static/img/logo2.png"></router-link>
+			  	<router-link to="/"><img src="static/img/logo1.png"></router-link>
 			  	<p>登陆LAFOLIO，发现更多精彩内容 !</p>
 			</div>
 			<div class="login-content">
@@ -17,7 +18,7 @@
 						<div class="form-group">
 						    <input type="number" class="form__input login-input" name="username" placeholder="请输入手机号码" @keyup.enter="canLogin()&&loginBtn()" v-model="loginPhone">
 						 </div>
-						 <span class="form-group__message"手机号不能为空</span>
+						 <span class="form-group__message">手机号不能为空</span>
 						 <div class="form-group">
 						    <input type="password" class="form__input login-input" name="password" placeholder="请输入密码" @keyup.enter="canLogin()&&loginBtn()" v-model="loginPassword">
 						 </div>
@@ -89,6 +90,9 @@ import $ from 'jquery'
     mounted() {
     },
     methods: {
+			prev() {
+					this.$router.go(-1);
+			},
     	canLogin(){
     		return this.loginPhone && this.loginPassword;
     	},
@@ -176,6 +180,7 @@ input:-moz-placeholder { color: #ddd; }
 	width: 402px;
 	margin: 0 auto;
 	padding: 0 30px 30px;
+	box-shadow: 0 2px 8px rgba(0,0,0 , .2);
 	.login-header{
 		padding: 26px 30px;
 		border-bottom: 1px solid #ddd;
@@ -274,8 +279,7 @@ input:-moz-placeholder { color: #ddd; }
   top: 0;
   height: 794px;
   z-index: 1001;
-  background-color: #000;
-  opacity: .5;
+  background-color: #f2f2f2;
 }
 .login-box{
   position: relative;
@@ -301,8 +305,27 @@ input:-moz-placeholder { color: #ddd; }
   }
   p{
   	font-size: 18px;
-  	color: #fff;
+  	color: #333;
   	margin-bottom: 35px;
   }
+}
+.particulars-prev{
+    position: fixed;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    top: 30%;
+		margin-top: 40px;
+		left: 20px;
+    z-index: 3000;
+		box-shadow: 0 2px 6px rgba(0,0,0,.2);
+		border-radius: 50%;
+}
+.particulars-prev{
+    left: 10px;
+    background: url(/static/img/ic_arrow_left.png) no-repeat center center;
+    &:hover{
+        background: url(/static/img/ic_arrow_left2.png) no-repeat center center;
+    }
 }
 </style>

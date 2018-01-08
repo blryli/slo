@@ -4,30 +4,30 @@
         <div class="particulars" v-if="particularsArr != ''">
           <div class="container m-t-20">
             <div class="particulars-close close-fixed" @click="goBack"></div>
-            <div class="particulars-prev" v-show="prevShow" @click="prev()"></div>
+            <div class="particulars-prev" v-show="prevShow" @click="prev"></div>
             <div class="particulars-next" v-show="nextShow" @click="next"></div>
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div class="row">
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
-                    <li class="title">{{particularsArr.title}}</li>
-                    <li class="text">时间：{{particularsArr.add_date}}</li>
+                    <li class="title" v-if="particularsArr.title">{{particularsArr.title}}</li>
+                    <li class="text" v-if="particularsArr.add_date">时间：{{particularsArr.add_date}}</li>
                     <li class="hr"></li>
-                    <li class="text-ms" v-html="particularsArr.desc"></li>
-                    <li class="img-ms"><p v-for="item in particularsArr.imgs"><img :src="item" class="img-responsive img"></p></li>
+                    <li class="text-ms" v-if="particularsArr.desc" v-html="particularsArr.desc"></li>
+                    <li class="img-ms" v-if="particularsArr.imgs"><p v-for="(item, index) in particularsArr.imgs" :key="index"><img :src="item" class="img-responsive img"></p></li>
                     <li class="hr"></li>
-                    <li class="unit"><strong>业务单位</strong>：{{particularsArr.unit}}</li>
-                    <li class="unit"><strong>项目地址</strong>：{{particularsArr.address}}</li>
-                    <li class="unit"><strong>设计团队</strong>：{{particularsArr.team}}</li>
-                    <li class="unit"><strong>用地规模(㎡)</strong>：{{particularsArr.scale}}</li>
-                    <li class="unit"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
-                    <li class="unit"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
+                    <li class="unit" v-if="particularsArr.unit"><strong>业务单位</strong>：{{particularsArr.unit}}</li>
+                    <li class="unit" v-if="particularsArr.address"><strong>项目地址</strong>：{{particularsArr.address}}</li>
+                    <li class="unit" v-if="particularsArr.team"><strong>设计团队</strong>：{{particularsArr.team}}</li>
+                    <li class="unit" v-if="particularsArr.scale"><strong>用地规模(㎡)</strong>：{{particularsArr.scale}}</li>
+                    <li class="unit" v-if="particularsArr.design_date"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
+                    <li class="unit" v-if="particularsArr.photographer"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">
                         <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="getCollect"></a>
                         <p><span v-show="particularsArr.has_collect == true">取消</span>收藏</p>
                     </li>
-                    <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
+                    <!-- <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
                     <li class="text-center particulars-sharing">
                         <button type="button" class="btn btn-default" @click="alrtSharingShow = true"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button>
                         <p class="alrt-sharing" v-show="alrtSharingShow == true">
@@ -35,16 +35,16 @@
                             <span class="sharing-text">扫描分享到微信朋友圈</span>
                             <img class="sharing-ewm" src="/static/img/ewm.png">
                         </p>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 fixed-y" ref="fixedY" style="top:0;">
                   <ul class="bg-fff">
                     <attention :attention-arr="particularsArr.company_info" :id="particularsArr.company_info.company_id"></attention>
                     <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: {id:particularsArr.company_info.company_id}}" class="btn btn-default">更多作品</router-link></li>
                     <li class="hr"></li>
                     <li class="">
-                        <p v-html="particularsArr.company_info.desc"></p>
+                        <p class="text-line-3" v-html="particularsArr.company_info.desc"></p>
                         <p><router-link :to="{ path: '/worksPage', query: {id:particularsArr.company_info.company_id}}" class="more">查看更多</router-link></p>
                     </li>
                   </ul>
@@ -55,7 +55,7 @@
     		<div class="row m-b-20">
                 <div class="col-sm-9">
                     <ul class="bg-fff lick"  style="padding-bottom: 0;">
-                        <li class="title">你可能还喜欢以下项目</li>
+                        <li class="title">可编辑选择推送内容</li>
                         <li class="hr hr-m-10"></li>
                         <case-list :case-arr="particularsArr.recommend" :title-size="14" :row-top="28" :show-text="false"></case-list>
                     </ul>
@@ -103,6 +103,19 @@ import {mapGetters} from 'Vuex'
     computed: mapGetters([
       'cutId'
     ]),
+    mounted: function() {
+        this.$nextTick(function() {
+            window.addEventListener('scroll', ()=> {
+                var scrollTop = document.body.scrollTop + document.documentElement.scrollTop
+                if(scrollTop > 56) {
+                    let top = scrollTop - 56;
+                    this.$refs.fixedY.style.top = top + 'px';
+                }else{
+                    this.$refs.fixedY.style.top = '0px';
+                }
+            })
+        })
+    },
     methods: {
         getCollect() {
           var data = {
@@ -270,7 +283,6 @@ p{
         margin-top: 30px;
     }
     strong{
-        width: 120px;
         display: inline-block;
     }
 }
@@ -329,6 +341,12 @@ p{
             top: 28px;
         }
     }
+}
+
+//y固定定位
+.fixed-y{
+    position: absolute;
+    right: 0;
 }
  @media (min-width: 768px) {
     // .particulars-prev, .particulars-next{

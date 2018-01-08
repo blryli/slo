@@ -13,6 +13,7 @@
         <h1 class="user-info" v-show="showMyName == true">
           <el-input
             placeholder="请输入内容"
+            size="small"
             v-model="myName" @blur="pushMyName">
           </el-input>
         </h1>
@@ -21,6 +22,7 @@
       <small class="user-info">
         <el-input v-show="showUserText == true"
           placeholder="请输入内容"
+          size="small"
           v-model="userText" @blur="pushUserText">
         </el-input>
       </small>
@@ -32,7 +34,7 @@
     <div class="container m-t-20 m-b-20" v-if="active == 1">
         <case-list :case-arr="datas"></case-list>
     </div>
-    <div class="container m-t-20 m-b-20 bg-fff" v-for="(item, index) in myAttentionArr" v-if="active == 2">
+    <div class="container m-t-20 m-b-20 bg-fff" v-for="(item, index) in myAttentionArr" :key="index" v-if="active == 2">
       <ul class="col-sm-2 my-center-left">
         <attention :attention-arr="item.company_info" :id="item.company_info.company_id"></attention>
       </ul>
@@ -46,7 +48,7 @@
       </div>
     </div>
     <el-dialog :visible.sync="dialogVisible" size="tiny">
-      <img width="100%" :src="dialogImageUrl" alt>
+      <img width="100%" :src="dialogImageUrl">
     </el-dialog>
   </div>
 </template>
@@ -272,6 +274,9 @@ import {mapGetters} from 'Vuex'
 </script>
 
 <style lang="scss">
+.bg-F2F2F2{
+  background-color: #f2f2f2;
+}
 .my-center-box{
   .el-upload--picture-card {
       background-color: transparent !important;
@@ -321,7 +326,7 @@ import {mapGetters} from 'Vuex'
     h1{
       font-size: 18px;
       margin-bottom: 0;
-      margin-top: 30px;
+      margin-top: 20px;
     }
     .user-info{
       position: relative;
@@ -343,7 +348,7 @@ import {mapGetters} from 'Vuex'
     small{
       font-size: 14px;
       color: #aaa;
-      margin-top: 10px;
+      margin-top: 6px;
     }
   }
   .works-right{
@@ -395,14 +400,14 @@ import {mapGetters} from 'Vuex'
     background-color: #fff;
   }
   .works-banner{
-    padding: 70px 0 30px;
+    padding: 30px 0 30px;
     h1{
       font-weight: bold;
       color: #191919;
     }
   }
   .al-btn{
-    margin-top: 35px;
+    margin-top: 20px;
     .btn{
         font-size: 14px;
         height: 38px;

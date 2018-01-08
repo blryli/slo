@@ -6,7 +6,7 @@ import router from './routers'
 import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
 import ElementUI from 'element-ui'
-var infiniteScroll =  require('vue-infinite-scroll');
+import infiniteScroll from 'vue-infinite-scroll'
 import store from './vuex/store'
 // import vueLookImages from 'vue-look-images'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -19,19 +19,18 @@ import '../static/js/global'
 Vue.config.productionTip = false
 
 import fn from './fn'
-Vue.prototype.$fns=fn;
-Vue.directive('scroll',{
-    bind: function (el, binding){
-      window.addEventListener('scroll', function() {
-        var scrollTop = $(document).scrollTop();
-        if(scrollTop > 0 && el.clientHeight > 0 && scrollTop + window.innerHeight >= el.clientHeight) {
-          let loadMore = binding.value
-          loadMore()
-        }
-      })
-    }
+Vue.prototype.$fns = fn
+Vue.directive('scroll', {
+  bind: function (el, binding) {
+    window.addEventListener('scroll', function () {
+      var scrollTop = document.body.scrollTop + document.documentElement.scrollTop
+      if (scrollTop > 0 && el.clientHeight > 0 && scrollTop + window.innerHeight >= el.clientHeight) {
+        let loadMore = binding.value
+        loadMore()
+      }
+    })
   }
-)
+})
 
 Vue.use(infiniteScroll)
 Vue.use(Vuelidate)
@@ -42,7 +41,7 @@ Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 const app = new Vue({
-    router,
-    store,
-    ...App
+  router,
+  store,
+  ...App
 }).$mount('#app')

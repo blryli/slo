@@ -9,7 +9,7 @@
         <div class="col-xs-12 col-sm-7 text">
           <ul class="row">
             <li class="col-xs-12 about"><a href="#">关于我们</a></li>
-            <li class="col-xs-12"><a href="#">SLO 设计网 Copayright @ 2017 ofo inc. 保留所有权利。京公网安备 11010802022978号</a></li>
+            <li class="col-xs-12"><a href="#">LAFOLIO 设计网 Copayright @ 2017 ofo inc. 保留所有权利。京公网安备 11010802022978号</a></li>
           </ul>
         </div>
         <div class="col-xs-12 col-sm-2">

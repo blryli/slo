@@ -176,6 +176,15 @@ table.table{
      height: 44px;
    }
  }
+
+ //限制文本显示3行
+ .text-line-3{
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+ }
  @media (min-width: 768px) { 
     .el-carousel{
 	  .el-carousel__container{

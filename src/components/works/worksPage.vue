@@ -135,8 +135,8 @@ import {mapGetters} from 'Vuex'
     background-color: #F2F2F2;
 }
 .works-banner{
-  padding: 64px 0 130px;
-  min-height: 350px;
+  padding-top:20px;
+  min-height: 220px;
   h1{
     font-size: 72px;
     font-weight: 500;
