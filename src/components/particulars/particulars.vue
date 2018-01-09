@@ -107,11 +107,13 @@ import {mapGetters} from 'Vuex'
         this.$nextTick(function() {
             window.addEventListener('scroll', ()=> {
                 var scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-                if(scrollTop > 56) {
-                    let top = scrollTop - 56;
-                    this.$refs.fixedY.style.top = top + 'px';
-                }else{
-                    this.$refs.fixedY.style.top = '0px';
+                if(this.$route.path == '/particulars'){
+                    if(scrollTop > 56) {
+                        let top = scrollTop - 56;
+                        this.$refs.fixedY.style.top = top + 'px';
+                    }else{
+                        this.$refs.fixedY.style.top = '0px';
+                    }
                 }
             })
         })

@@ -18,9 +18,8 @@
                             <p class="works-text" v-html="text.desc"></p>
                         </div>
                     </li>
-                    <li class="hr hr-m-20"></li>
-                    <li class="hr hr-m-20" style="margin-top: 32px;"></li>
-                    <li class="company-js">
+                    <li class="hr hr-m-20" v-if="datas.company_info.desc"></li>
+                    <li class="company-js" v-if="datas.company_info.desc">
                         <h3 class="company-title">公司介绍<span></span></h3>
                         <p v-html="datas.company_info.desc"></p>
                     </li>
@@ -37,9 +36,9 @@
                         <p v-for="(item, index) in datas.case_imgs" class="m-t-20" :key="index"><img :src="item" class="img-responsive img"></p>
                         <p class="text-center"><button type="button" @click="toWorksPage" class="btn btn-FEE300">更多公司作品</button></p>
                     </li>
-                    <li class="hr hr-m-20"></li>
-                    <li class="text-center">对以上职位感兴趣者，请将你的个人作品集、简历和薪资要求发送到</li>
-                    <li class="text-center">
+                    <li class="hr hr-m-20" v-if="datas.company_info.email"></li>
+                    <li class="text-center" v-if="datas.company_info.email">对以上职位感兴趣者，请将你的个人作品集、简历和薪资要求发送到</li>
+                    <li class="text-center" v-if="datas.company_info.email">
                         <p class="email-through through"><strong>{{datas.company_info.email}}</strong><span></span></p>
                     </li>
                   </ul>

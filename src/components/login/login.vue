@@ -26,11 +26,11 @@
             			<!-- <label class="check" @click="checkedCrru"><img :src="checked == false ? 'static/img/ic_1.png' : 'static/img/ic_2.png'">下次自动登陆</label> -->
 						<!-- <a href="#" class="forget">忘记密码</a> -->
 					</div>
-					<div class="others-login text-center">
+					<!-- <div class="others-login text-center">
 						<h3>第三方账号登陆</h3>
 						<a href="javascript:;" class="btn btn-img-weixin"></a>
 						<a href="javascript:;" class="btn btn-img-qq"></a>
-					</div>
+					</div> -->
 				</div>
 				<div v-show="crru == 2">
 					<div class="login-container">
@@ -49,11 +49,11 @@
 						<button type="button" class="btn btn-dl m-t-30" :class="canRegister()?'login-hover':''" @click="canRegister() && registerBtn()">注册</button>
 
 					</div>
-					<div class="others-login small">
+					<!-- <div class="others-login small">
 						<span class="inline-text">第三方账号注册</span>
 						<a href="javascript:;" class="btn weixin-img-small"></a>
             <a href="javascript:;" class="btn qq-img-small"></a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
