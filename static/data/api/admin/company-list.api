@@ -12,13 +12,13 @@
         {
         	"company_id":1,
             "name":"aaa",
-            "logo":'"",
+            "logo":"",
             "email":""
         },
         {
         	"company_id":2,
         	"name":"bbb",
-        	"logo":'"",
+        	"logo":"",
         	"email":""
         }
     ]
