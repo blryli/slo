@@ -9,7 +9,7 @@
         </el-input>
       </el-col>
       <el-col :span="4">
-        <el-button type="primary">搜索</el-button>
+        <el-button type="primary" @click.native="getCompanyList">搜索</el-button>
       </el-col>
       <el-col :span="4" :offset="8">
         <el-button type="success" @click.native="show = true">新建</el-button>
@@ -96,11 +96,7 @@ export default {
     return {
       show: false,
       imputValue: '',
-      tableData: [{
-        logo: '2018',
-        name: '1212',
-        email:'133214@qq.com'
-      }],
+      tableData: [],
       datas: {
         name:'',
         email:'',
@@ -151,6 +147,29 @@ export default {
     },
     handleDelete(index, row) {
       this.tableData.splice(index, 1);
+    },
+    getCompanyList() {
+      var _this = this;
+      var data = {
+        name: this.imputValue
+      }
+      this.$fns.post('/api/admin/company-list',data,(json)=>{
+          if(json.ask=='1'){
+            _this.tableData = [];
+            json.data.forEach((d, i) => {
+              if(d.name == _this.imputValue){
+                _this.tableData.push(d);
+              }
+            })
+          }else{
+            this.$message({
+              type:'error',
+              showClose:true,
+              dangerouslyUseHTMLString: true,
+              message: msgHtml ? msgHtml : 'Returns unknown error'
+            });
+          }
+      });
     },
     submit() {
       var data = {

@@ -1,18 +1,19 @@
 {
     "ask": 1,
     "message": "success",
+    "total":25,
     "data": [
         {
         	"company_id":1,
             "name":"aaa",
-            "logo": "",
-            "email":""
+            "logo": "111",
+            "email":"111"
         },
         {
         	"company_id":2,
         	"name":"bbb",
-        	"logo": "",
-        	"email":""
+        	"logo": "2222",
+        	"email":"2222"
         }
     ]
 }
