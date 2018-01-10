@@ -3,7 +3,7 @@
     <el-col :span="5" class="logo"><router-link to="/admin"><img :src="logo" alt="logo"></router-link></el-col>
     <el-col :span="13">
     	<ul class="nav">
-    		<li v-for="(menu, index) in menus">
+    		<li v-for="(menu, index) in menus" :key="index">
           <router-link :to="menu.url">{{menu.name}}</router-link>
         </li>
     	</ul>
@@ -42,7 +42,7 @@ export default {
     }
   },
   created() {
-    this.getLogin();
+    // this.getLogin();
   },
   data() {
   	return {
@@ -50,20 +50,20 @@ export default {
   	}
   },
   methods: {
-    // getLogin(){
-    //   this.$fns.post('/api/user/login',{},(json)=>{
-    //       if(json.ask=='1' && json.is_admin=='1'){
-    //         this.useName = json.name
-    //       }else{
-    //         this.$router.push({path: '/endLogin'})
-    //       }
-    //   });
-    // },
-    // logout(){
-    //   this.$fns.post('/api/user/logout',{},(json)=>{
-    //     this.$router.push({path: '/endLogin'})
-    //   });
-    // }
+    getLogin(){
+      this.$fns.post('/api/user/login',{},(json)=>{
+          if(json.ask=='1' && json.is_admin=='1'){
+            this.useName = json.name
+          }else{
+            this.$router.push({path: '/endLogin'})
+          }
+      });
+    },
+    logout(){
+      this.$fns.post('/api/user/logout',{},(json)=>{
+        this.$router.push({path: '/endLogin'})
+      });
+    }
   }
 }
 </script>

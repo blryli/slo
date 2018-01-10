@@ -13,7 +13,9 @@
     "design_date": "设计日期",
     "photographer": "拍摄者",
     "desc": "案例描述(带有html标签)",
-    "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"]
+    "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
+    "sort":3,//排序值，越大越靠前
+    "is_ad":1//是否推广,0：否，1：是
 }
 /**
  * @response

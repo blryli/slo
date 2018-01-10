@@ -4,7 +4,7 @@
       <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-3 logo">
-          <router-link to="/"><img src="static/img/logo2.png"></router-link>
+          <router-link to="/" @click.native="backTop"><img src="static/img/logo2.png"></router-link>
         </div>
         <div class="col-xs-12 col-sm-7 text">
           <ul class="row">
@@ -20,8 +20,18 @@
       </div>
   </footer>
 </template>
-
 <script>
+export default {
+    methods: {
+      backTop () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        // $('body').stop().animate({
+        //   scrollTop:0
+        // },500)
+      }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

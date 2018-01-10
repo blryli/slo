@@ -184,6 +184,7 @@ table.table{
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  height: 40px;
  }
  @media (min-width: 768px) { 
     .el-carousel{

@@ -27,15 +27,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sp-container{
+.end-content{
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
   min-height: 93vh;
-  min-height: calc(100vh - 89px);
-  min-height: -webkit-calc(100vh - 89px);
-  min-height: -moz-calc(100vh - 89px);
+  min-height: calc(100vh - 205px);
+  min-height: -webkit-calc(100vh - 205px);
+  min-height: -moz-calc(100vh - 205px);
 }
 .end-content{
   padding: 20px;
