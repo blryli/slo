@@ -1,0 +1,19 @@
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+        	"company_id":1,
+            "name":"aaa",
+            "logo": "",
+            "email":""
+        },
+        {
+        	"company_id":2,
+        	"name":"bbb",
+        	"logo": "",
+        	"email":""
+        }
+    ]
+}
+
