@@ -1,0 +1,24 @@
+/**
+*@desc 公司列表
+*@param page N 页码(默认1)
+*@param pageSize N 每页条数(默认8)
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+        {
+        	"company_id":1,
+            "name":"aaa",
+            "logo":'"",
+            "email":""
+        },
+        {
+        	"company_id":2,
+        	"name":"bbb",
+        	"logo":'"",
+        	"email":""
+        }
+    ]
+}
+
