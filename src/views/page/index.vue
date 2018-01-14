@@ -9,82 +9,85 @@
         </el-input>
       </el-col>
       <el-col :span="4">
-        <el-button type="primary" @click.native="getCompanyList">搜索</el-button>
+        <el-button type="primary" @click.native="getCompanyList(isNew)">搜索</el-button>
       </el-col>
       <el-col :span="4" :offset="8">
         <el-button type="success" @click.native="show = true">新建</el-button>
       </el-col>
     </el-row>
     <el-table
-    :data="tableData"
-    stripe
-    style="width: 100%">
-    <el-table-column
-      prop="name"
-      label="公司名称"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      prop="logo"
-      label="公司logo"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      prop="email"
-      label="公司邮箱"
-      width="300">
-    </el-table-column>
-    <el-table-column label="操作">
-      <template slot-scope="scope">
-        <el-button
-          size="mini"
-          @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-  <div class="total">
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="total">
-    </el-pagination>
-  </div>
+      :data="tableData"
+      stripe
+      style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="公司名称"
+        width="300">
+      </el-table-column>
+      <el-table-column
+        prop="logo"
+        label="公司logo"
+        width="300">
+      </el-table-column>
+      <el-table-column
+        prop="email"
+        label="公司邮箱"
+        width="300">
+      </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button
+            size="mini"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div class="total">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="total"
+        :page-size="pageSize"
+        :current-page="page"
+        @current-change="currentPage">
+      </el-pagination>
+    </div>
     <div v-show="show">
-        <div class="particulars-close close-fixed" @click="show = false"></div>
-        <div class="end-bg"></div>
-        <div class="end-box">
-          <p><span class="span">公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
-          <p><span class="span">公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
-          <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
-          <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.environment_desc"></vue-editor></p>
-          <p><span class="span">公司作品描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.case_desc"></vue-editor></p>
-          <div class="p">
-            <span class="span">公司logo：</span>
-            <div class="upload-img">
-              <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="logoImg" :limit="logoImg.limit"  :multiple="logoImg.multiple"
-              :on-preview="preview" :on-remove="removeLogo" :on-success="successLogo">
-                <i class="el-icon-plus"></i>
-              </el-upload>
-            </div>
+      <div class="particulars-close close-fixed" @click="show = false"></div>
+      <div class="end-bg"></div>
+      <div class="end-box">
+        <p><span class="span">公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
+        <p><span class="span">公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
+        <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
+        <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.environment_desc"></vue-editor></p>
+        <p><span class="span">公司作品描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.case_desc"></vue-editor></p>
+        <div class="p">
+          <span class="span">公司logo：</span>
+          <div class="upload-img">
+            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="logoImg" :limit="logoImg.limit"  :multiple="logoImg.multiple"
+            :on-preview="preview" :on-remove="removeLogo" :on-success="successLogo">
+              <i class="el-icon-plus"></i>
+            </el-upload>
           </div>
-          <div class="p">
-            <span class="span">公司图片：</span>
-            <div class="upload-img">
-              <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="companyImg" :limit="companyImg.limit"  :multiple="companyImg.multiple"
-              :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
-                <i class="el-icon-plus"></i>
-              </el-upload>
-            </div>
-          </div>
-          <el-dialog :visible.sync="dialogVisible" size="tiny">
-            <img width="100%" :src="dialogImageUrl" alt>
-          </el-dialog>
-          <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
         </div>
+        <div class="p">
+          <span class="span">公司图片：</span>
+          <div class="upload-img">
+            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="companyImg" :limit="companyImg.limit"  :multiple="companyImg.multiple"
+            :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
+              <i class="el-icon-plus"></i>
+            </el-upload>
+          </div>
+        </div>
+        <el-dialog :visible.sync="dialogVisible" size="tiny">
+          <img width="100%" :src="dialogImageUrl">
+        </el-dialog>
+        <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
+      </div>
     </div>
   </div>
 </template>
@@ -94,8 +97,12 @@ import { VueEditor } from 'vue2-editor'
 export default {
   data() {
     return {
+      isNew: true,
       show: false,
       imputValue: '',
+      page: 1,
+      pageSize: 6,
+      total: 1,
       tableData: [],
       datas: {
         name:'',
@@ -135,11 +142,7 @@ export default {
   mounted: function() {
     this.$nextTick(function() {})
   },
-  computed: {
-    total() {
-      this.tableData.length
-    }
-  },
+  computed: { },
   methods: {
     handleEdit(index, row) {
       this.show = true;
@@ -148,17 +151,28 @@ export default {
     handleDelete(index, row) {
       this.tableData.splice(index, 1);
     },
-    getCompanyList() {
+    currentPage(page) {
+      this.page = page;
+      console.log(page)
+      this.getCompanyList();
+    },
+    getCompanyList(isNew) {
       var _this = this;
       var data = {
-        name: this.imputValue
+        name: this.imputValue,
+        pageSize: this.pageSize,
+        page: this.page
       }
       this.$fns.post('/api/admin/company-list',data,(json)=>{
           if(json.ask=='1'){
             _this.tableData = [];
+            _this.total = json.total;
             json.data.forEach((d, i) => {
               if(d.name == _this.imputValue){
-                _this.tableData.push(d);
+                isNew && (_this.page = 1);
+                if(_this.page*_this.pageSize - _this.pageSize <= i && i < _this.page*_this.pageSize){
+                  _this.tableData.push(d);
+                }
               }
             })
           }else{
