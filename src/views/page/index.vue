@@ -158,9 +158,9 @@ export default {
           if(json.ask=='1'){
             let arr = [];
             this.datas = json.data;
-            this.logoImgList.push({url: json.data.logo});
+            this.logoImgList.push({url: '/imgs/' + json.data.logo});
             json.data.imgs.forEach((d, i) => {
-              arr.push({url: d})
+              arr.push({url: '/imgs/' + d})
             })
             this.companyImgList = arr;
           }else{
