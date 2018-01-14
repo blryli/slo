@@ -68,7 +68,7 @@
         <div class="p">
           <span class="span">公司logo：</span>
           <div class="upload-img">
-            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="logoImg" :limit="logoImg.limit"  :multiple="logoImg.multiple"
+            <el-upload action="/api/img/upload" list-type="picture-card" :file-list="logoImgList" :name="name" ref="logoImg" :limit="logoImg.limit"  :multiple="logoImg.multiple"
             :on-preview="preview" :on-remove="removeLogo" :on-success="successLogo">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -114,6 +114,7 @@ export default {
       name:'img',
       dialogImageUrl: '',
       dialogVisible: false,
+      logoImgList: [{url: ''}],
       logoImg:{
         limit:1,
         multiple:false,
@@ -146,7 +147,20 @@ export default {
   methods: {
     handleEdit(index, row) {
       this.show = true;
-      console.log(index, row);
+      var data = {
+        companyId: row.company_id
+      }
+      this.$fns.post('/api/admin/get-company',data,(json)=>{
+          if(json.ask=='1'){
+            this.datas = json.data;
+            this.logoImgList[0].url = this.datas.logo;
+            console.log(json.data)
+            console.log(this.datas)
+            console.log(this.logoImgList[0].url)
+          }else{
+            this.$message({message:json.message,type:'error',showClose:true});
+          }
+      });
     },
     handleDelete(index, row) {
       this.tableData.splice(index, 1);
@@ -176,12 +190,7 @@ export default {
               }
             })
           }else{
-            this.$message({
-              type:'error',
-              showClose:true,
-              dangerouslyUseHTMLString: true,
-              message: msgHtml ? msgHtml : 'Returns unknown error'
-            });
+            this.$message({message:json.message,type:'error',showClose:true});
           }
       });
     },

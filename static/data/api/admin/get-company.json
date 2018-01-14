@@ -1,0 +1,15 @@
+
+{
+    "ask": 1,
+    "message": "success",
+    "data":{
+		"company_id":1,
+    	"name":"公司名称aaaa",
+    	"email":"公司邮箱",
+    	"desc":"公司介绍(带有html标签)aaaaaaaaaa",
+    	"environment_desc":"公司环境描述(带有html标签)aaaaaa",
+    	"case_desc":"公司作品描述(带有html标签)",
+    	"logo":"static/img/img.png",
+    	"imgs":["static/img/xiangqing.png","static/img/xiangqing.png","static/img/xiangqing.png","static/img/xiangqing.png"]
+    }
+}
