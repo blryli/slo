@@ -1,7 +1,7 @@
 import $ from 'jquery'
 //配置接口根目录,编译上线时改成空字符串就ok
 const apiRoot = '/static/data';
-// const apiRoot = '';
+   // const apiRoot = '';
 const fn = {
 		//发送一个ajax POST 请求
 		post:function(url,data,success,error,async){
@@ -71,6 +71,35 @@ const fn = {
 			typeof by!='function' && (by = function(a,b){return a-b});
 			arr.sort(by);
 			return arr;
-		}
+		},
+		//返回变量类型
+		getType:function(val){
+			var class2type = {};
+		       ["Null","Undefined","Number","Boolean","String","Object","Function","Array","RegExp","Date"].forEach(function(item){
+		           class2type["[object "+ item + "]"] = item.toLowerCase();
+		       })
+			return class2type[Object.prototype.toString.call(val)] || "object";
+		},
+		//返回变量是否是某个类型
+		isType:function(val, type){
+			return this.getType(val) === type;
+		},
+		//复制数组或对象
+		copy:function(obj,deep){
+			if(obj === null || typeof obj !== "object"){
+		           return obj;
+			}
+	       var i, target = this.isType(obj,"array") ? [] : {},value,valueType;
+	       for(i in obj){
+	    	   value = obj[i];
+	           valueType = this.getType(value);
+	           if(deep && (valueType === "array" || valueType === "object")){
+	               target[i] = this.copy(value);
+	           }else{
+	               target[i] = value;
+	           }
+	       }
+	       return target;
+	   }
 }
 export default fn

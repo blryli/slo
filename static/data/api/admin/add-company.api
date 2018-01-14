@@ -1,8 +1,9 @@
-//@desc 创建公司
+//@desc 创建公司/编辑公司
 /**
  * @param
  */
 {
+	"company_id":1,
 	"name":"公司名称",
 	"email":"公司邮箱",
 	"desc":"公司介绍(带有html标签)",
