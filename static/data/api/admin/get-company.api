@@ -1,0 +1,18 @@
+//@desc 获取公司(用于编辑公司)
+/**
+ * @param
+ * companyId 公司id
+ */
+{
+    "ask": 1,
+    "message": "success",
+    "data":{
+    	"name":"公司名称",
+    	"email":"公司邮箱",
+    	"desc":"公司介绍(带有html标签)",
+    	"environment_desc":"公司环境描述(带有html标签)",
+    	"case_desc":"公司作品描述(带有html标签)",
+    	"logo":"",//logo图片
+    	"imgs":[]//公司图片
+    }
+}
