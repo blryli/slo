@@ -62,9 +62,9 @@
       <div class="end-box">
         <p><span class="span">公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
         <p><span class="span">公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
-        <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
-        <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.environment_desc"></vue-editor></p>
-        <p><span class="span">公司作品描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.case_desc"></vue-editor></p>
+        <p><span class="span">公司描述：</span><vue-editor :editorToolbar="customToolbar" id="editor1" v-model="datas.desc"></vue-editor></p>
+        <p><span class="span">公司环境描述：</span><vue-editor :editorToolbar="customToolbar" id="editor2" v-model="datas.environment_desc"></vue-editor></p>
+        <p><span class="span">公司作品描述：</span><vue-editor :editorToolbar="customToolbar" id="editor3" v-model="datas.case_desc"></vue-editor></p>
         <div class="p">
           <span class="span">公司logo：</span>
           <div class="upload-img">
@@ -77,7 +77,7 @@
         <div class="p">
           <span class="span">公司图片：</span>
           <div class="upload-img">
-            <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="companyImg" :limit="companyImg.limit"  :multiple="companyImg.multiple"
+            <el-upload action="/api/img/upload" list-type="picture-card" :file-list="companyImgList" :name="name" ref="companyImg" :limit="companyImg.limit"  :multiple="companyImg.multiple"
             :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -105,16 +105,20 @@ export default {
       total: 1,
       tableData: [],
       datas: {
+        company_id: '',
         name:'',
         email:'',
         desc:'',
         environment_desc:'',
-        case_desc:''
+        case_desc:'',
+        logo: '',
+        imgs: '',
       },
       name:'img',
       dialogImageUrl: '',
       dialogVisible: false,
-      logoImgList: [{url: ''}],
+      logoImgList: [],
+      companyImgList: [],
       logoImg:{
         limit:1,
         multiple:false,
@@ -143,7 +147,7 @@ export default {
   mounted: function() {
     this.$nextTick(function() {})
   },
-  computed: { },
+  computed: {},
   methods: {
     handleEdit(index, row) {
       this.show = true;
@@ -152,11 +156,13 @@ export default {
       }
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
+            let arr = [];
             this.datas = json.data;
-            this.logoImgList[0].url = this.datas.logo;
-            console.log(json.data)
-            console.log(this.datas)
-            console.log(this.logoImgList[0].url)
+            this.logoImgList.push({url: json.data.logo});
+            json.data.imgs.forEach((d, i) => {
+              arr.push({url: d})
+            })
+            this.companyImgList = arr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
@@ -167,7 +173,6 @@ export default {
     },
     currentPage(page) {
       this.page = page;
-      console.log(page)
       this.getCompanyList();
     },
     getCompanyList(isNew) {
@@ -196,18 +201,20 @@ export default {
     },
     submit() {
       var data = {
-              name: this.datas.name,
-              email: this.datas.email,
-              desc: this.datas.desc,
-              environment_desc: this.datas.environment_desc,
-              case_desc: this.datas.case_desc,
-              logo: this.logoImg.imgs.length?this.logoImg.imgs[0]:'',
-              imgs: this.companyImg.imgs
+        company_id: this.datas.company_id,
+        name: this.datas.name,
+        email: this.datas.email,
+        desc: this.datas.desc,
+        environment_desc: this.datas.environment_desc,
+        case_desc: this.datas.case_desc,
+        logo: this.logoImg.imgs.length?this.logoImg.imgs[0]:'',
+        imgs: this.companyImg.imgs
       }
       this.$fns.post('/api/admin/add-company',data,(json)=>{
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
             this.datas = {
+              company_id: '',
               name:'',
               email:'',
               desc:'',
