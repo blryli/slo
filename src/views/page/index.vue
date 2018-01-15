@@ -172,8 +172,6 @@ export default {
             //上传图片
             this.logoImg.imgs[0] = json.data.logo;
             this.companyImg.imgs = imgsArr;
-            console.log(this.logoImgList)
-            console.log(this.companyImgList)
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
