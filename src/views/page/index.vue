@@ -159,19 +159,18 @@ export default {
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
             let arr = [],
-            imgsArr = [];
             this.logoImgList = [];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d})
-              imgsArr.push(d);
             })
             //展示图片
             this.logoImgList.push({url: '/imgs/' + json.data.logo});
             this.companyImgList = arr;
             //上传图片
+            this.logoImg.imgs = []; 
             this.logoImg.imgs[0] = json.data.logo;
-            this.companyImg.imgs = imgsArr;
+            this.companyImg.imgs = json.data.imgs;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
@@ -267,8 +266,10 @@ export default {
       var imgs=[];
       if(fileList.length){
         fileList.forEach((item,k)=>{
-          if(item.response.ask=='1'){
-            item.response.filename && imgs.push(item.response.filename);
+          if(item.hasOwnProperty('response')){
+            item.response.ask=='1' && item.response.filename && imgs.push(item.response.filename);
+          }else if(item.hasOwnProperty('url')){
+            imgs.push(item.url);
           }
         });
       }
