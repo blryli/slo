@@ -159,18 +159,20 @@ export default {
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
             let arr = [];
+            let imgArr = [];
             this.logoImgList = [];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
-              arr.push({url: '/imgs/' + d})
+              arr.push({url: '/imgs/' + d});
+              imgArr.push('/imgs/' + d);
             })
             //展示图片
             this.logoImgList.push({url: '/imgs/' + json.data.logo});
             this.companyImgList = arr;
             //上传图片
             this.logoImg.imgs = []; 
-            this.logoImg.imgs[0] = json.data.logo;
-            this.companyImg.imgs = json.data.imgs;
+            this.logoImg.imgs[0] = '/imgs/' +json.data.logo;
+            this.companyImg.imgs = imgArr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
