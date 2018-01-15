@@ -25,9 +25,11 @@
         width="300">
       </el-table-column>
       <el-table-column
-        prop="logo"
         label="公司logo"
         width="300">
+        <template slot-scope="scope">
+          <img :src="'/imgs/'+scope.row.logo" alt="logo">
+        </template>
       </el-table-column>
       <el-table-column
         prop="email"
@@ -157,6 +159,7 @@ export default {
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
             let arr = [];
+            this.logoImgList = '';
             this.datas = json.data;
             this.logoImgList.push({url: '/imgs/' + json.data.logo});
             json.data.imgs.forEach((d, i) => {
@@ -185,7 +188,7 @@ export default {
       this.$fns.post('/api/admin/company-list',data,(json)=>{
           if(json.ask=='1'){
             _this.tableData = [];
-            _this.total = json.total;
+            _this.total = parseInt(json.total);
             json.data.forEach((d, i) => {
               isNew && (_this.page = 1);
               if(_this.page*_this.pageSize - _this.pageSize <= i && i < _this.page*_this.pageSize){
@@ -277,6 +280,10 @@ export default {
 </script>
 
 <style lang="scss">
+.cell img{
+  width: 50px;
+  height: 50px;
+}
 .total{
   text-align: right;
   margin-top: 20px;
