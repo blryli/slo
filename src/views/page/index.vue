@@ -187,11 +187,10 @@ export default {
             _this.tableData = [];
             _this.total = json.total;
             json.data.forEach((d, i) => {
-              if(d.name == _this.imputValue){
-                isNew && (_this.page = 1);
-                if(_this.page*_this.pageSize - _this.pageSize <= i && i < _this.page*_this.pageSize){
-                  _this.tableData.push(d);
-                }
+              isNew && (_this.page = 1);
+              if(_this.page*_this.pageSize - _this.pageSize <= i && i < _this.page*_this.pageSize){
+                _this.tableData.push(d);
+                console.log(_this.tableData)
               }
             })
           }else{
