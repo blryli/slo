@@ -167,8 +167,9 @@ export default {
               arr.push({url: '/imgs/' + d})
               imgsArr.push(d);
             })
-            this.logo = json.data.logo;
-            this.imgs = imgsArr;
+            this.logoImg.imgs=[];
+            this.logoImg.imgs.push(json.data.log);
+            this.companyImg.imgs = json.data.imgs;
             this.companyImgList = arr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
