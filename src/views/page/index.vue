@@ -103,7 +103,7 @@ export default {
       show: false,
       imputValue: '',
       page: 1,
-      pageSize: 6,
+      pageSize: 5,
       total: 1,
       tableData: [],
       datas: {
@@ -202,14 +202,8 @@ export default {
       }
       this.$fns.post('/api/admin/company-list',data,(json)=>{
           if(json.ask=='1'){
-            _this.tableData = [];
+            _this.tableData = json.data;
             _this.total = parseInt(json.total);
-            json.data.forEach((d, i) => {
-              isNew && (_this.page = 1);
-              if(parseInt(_this.page*_this.pageSize - _this.pageSize) <= i && i < parseInt(_this.page*_this.pageSize)){
-                _this.tableData.push(d);
-              }
-            })
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
