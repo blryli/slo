@@ -162,10 +162,11 @@ export default {
             this.logoImgList = [];
             this.datas = json.data;
             this.logoImgList.push({url: '/imgs/' + json.data.logo});
+            this.logoImg.imgs[0] = this.logoImgList;
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d})
             })
-            this.companyImgList = arr;
+            this.companyImg.imgs = this.companyImgList = arr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
