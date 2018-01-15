@@ -114,7 +114,7 @@ export default {
         environment_desc:'',
         case_desc:'',
         logo: '',
-        imgs: '',
+        imgs: [],
       },
       name:'img',
       dialogImageUrl: '',
@@ -158,15 +158,18 @@ export default {
       }
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
-            let arr = [];
+            let arr = [],
+            imgsArr = [];
             this.logoImgList = [];
             this.datas = json.data;
             this.logoImgList.push({url: '/imgs/' + json.data.logo});
-            this.logoImg.imgs[0] = this.logoImgList;
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d})
+              imgsArr.push(d);
             })
-            this.companyImg.imgs = this.companyImgList = arr;
+            this.logo = json.data.logo;
+            this.imgs = imgsArr;
+            this.companyImgList = arr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
@@ -194,7 +197,6 @@ export default {
               isNew && (_this.page = 1);
               if(_this.page*_this.pageSize - _this.pageSize <= i && i < _this.page*_this.pageSize){
                 _this.tableData.push(d);
-                console.log(_this.tableData)
               }
             })
           }else{
@@ -215,7 +217,7 @@ export default {
       }
       this.$fns.post('/api/admin/add-company',data,(json)=>{
           if(json.ask=='1'){
-            this.$message({message:json.message,type:'success',showClose:true});
+            this.$message({message:'操作成功！',type:'success',showClose:true});
             this.datas = {
               company_id: '',
               name:'',
