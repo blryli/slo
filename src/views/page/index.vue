@@ -158,7 +158,7 @@ export default {
       }
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
-            let arr = [],
+            let arr = [];
             this.logoImgList = [];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
@@ -206,7 +206,7 @@ export default {
             _this.total = parseInt(json.total);
             json.data.forEach((d, i) => {
               isNew && (_this.page = 1);
-              if(_this.page*_this.pageSize - _this.pageSize <= i && i < _this.page*_this.pageSize){
+              if(parseInt(_this.page*_this.pageSize - _this.pageSize) <= i && i < parseInt(_this.page*_this.pageSize)){
                 _this.tableData.push(d);
               }
             })
