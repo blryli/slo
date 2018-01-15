@@ -159,7 +159,7 @@ export default {
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
             let arr = [];
-            this.logoImgList = '';
+            this.logoImgList = [];
             this.datas = json.data;
             this.logoImgList.push({url: '/imgs/' + json.data.logo});
             json.data.imgs.forEach((d, i) => {
