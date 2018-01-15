@@ -178,7 +178,17 @@ export default {
       });
     },
     handleDelete(index, row) {
-      this.tableData.splice(index, 1);
+      var data = {
+        company_id: row.company_id
+      }
+      this.$fns.post('/api/admin/delete-company',data,(json)=>{
+        if(json.ask=='1'){
+          this.$message({message:'操作成功！',type:'success',showClose:true});
+          this.tableData.splice(index, 1);
+          }else{
+            this.$message({message:json.message,type:'error',showClose:true});
+          }
+      });
     },
     currentPage(page) {
       this.page = page;
