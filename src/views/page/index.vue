@@ -162,14 +162,18 @@ export default {
             imgsArr = [];
             this.logoImgList = [];
             this.datas = json.data;
-            this.logoImgList.push({url: '/imgs/' + json.data.logo});
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d})
               imgsArr.push(d);
             })
-            this.logo = json.data.logo;
-            this.imgs = imgsArr;
+            //展示图片
+            this.logoImgList.push({url: '/imgs/' + json.data.logo});
             this.companyImgList = arr;
+            //上传图片
+            this.logoImg.imgs[0] = json.data.logo;
+            this.companyImg.imgs = imgsArr;
+            console.log(this.logoImgList)
+            console.log(this.companyImgList)
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
