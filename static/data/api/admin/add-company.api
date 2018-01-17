@@ -3,7 +3,7 @@
  * @param
  */
 {
-	"company_id":1,
+	"company_id":1,//编辑时不能为空
 	"name":"公司名称",
 	"email":"公司邮箱",
 	"desc":"公司介绍(带有html标签)",

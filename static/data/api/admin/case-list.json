@@ -1,0 +1,71 @@
+
+{
+    "ask": 1,
+    "message": "success",
+    "total":25,
+    "data": [
+		{
+			"case_id":1,
+		    "company_name":"公司名称",
+		    "title": "案例标题",
+		    "author": "作者",
+		    "img_min":"案例主图",
+		    "sort":3,
+		    "is_ad":1
+		},
+		{
+			"case_id":2,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,
+			"is_ad":1
+		},
+		{
+			"case_id":2,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,
+			"is_ad":1
+		},
+		{
+			"case_id":3,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,
+			"is_ad":1
+		},
+		{
+			"case_id":4,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,
+			"is_ad":1
+		},
+		{
+			"case_id":5,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,
+			"is_ad":1
+		},
+		{
+			"case_id":6,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,
+			"is_ad":1
+		}
+    ]
+}

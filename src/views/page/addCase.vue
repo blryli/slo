@@ -20,7 +20,7 @@
       stripe
       style="width: 100%">
       <el-table-column
-        prop="name"
+        prop="company_name"
         label="公司名称"
         width="300">
       </el-table-column>
@@ -96,7 +96,7 @@
             <div class="p">
               <span class="span">案例图片：</span>
               <div class="upload-img">
-                <el-upload action="/api/img/upload" list-type="picture-card" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
+                <el-upload action="/api/img/upload" list-type="picture-card" :file-list="logoImgList" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
                 :on-preview="preview" :on-remove="remove" :on-success="success">
                   <i class="el-icon-plus"></i>
                 </el-upload>
@@ -168,6 +168,7 @@ export default {
   	
   },
   methods: {
+    //编辑
     handleEdit(index, row) {
       this.show = true;
       var data = {
@@ -177,24 +178,21 @@ export default {
           if(json.ask=='1'){
             let arr = [];
             let imgArr = [];
-            this.logoImgList = [];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d});
               imgArr.push('/imgs/' + d);
             })
             //展示图片
-            this.logoImgList.push({url: '/imgs/' + json.data.logo});
-            this.companyImgList = arr;
+            this.logoImgList = arr;
             //上传图片
-            this.logoImg.imgs = []; 
-            this.logoImg.imgs[0] = '/imgs/' +json.data.logo;
-            this.companyImg.imgs = imgArr;
+            this.logos.imgs = imgArr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
       });
     },
+    //删除
     handleDelete(index, row) {
       var data = {
         company_id: row.company_id
@@ -215,11 +213,12 @@ export default {
     getCompanyList(isNew) {
       var _this = this;
       var data = {
-        name: this.imputValue,
+        companyName: this.imputValue,
+        title: this.imputValue,
         pageSize: this.pageSize,
         page: this.page
       }
-      this.$fns.post('/api/admin/company-list',data,(json)=>{
+      this.$fns.post('/api/admin/case-list',data,(json)=>{
           if(json.ask=='1'){
             _this.tableData = json.data;
             _this.total = parseInt(json.total);

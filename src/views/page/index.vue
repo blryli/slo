@@ -58,6 +58,7 @@
         @current-change="currentPage">
       </el-pagination>
     </div>
+
     <div v-show="show">
       <div class="particulars-close close-fixed" @click="show = false"></div>
       <div class="end-bg"></div>
@@ -151,6 +152,7 @@ export default {
   },
   computed: {},
   methods: {
+    //编辑
     handleEdit(index, row) {
       this.show = true;
       var data = {
@@ -178,6 +180,7 @@ export default {
           }
       });
     },
+    //删除
     handleDelete(index, row) {
       var data = {
         company_id: row.company_id
