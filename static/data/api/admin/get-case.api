@@ -1,0 +1,25 @@
+//@desc 获取案例(用于编辑案例)
+/**
+ * @param
+ * companyId 公司id
+ */
+{
+    "ask": 1,
+    "message": "success",
+    "data":{
+    	"case_id":1,
+        "company_id":"公司id",
+        "title": "案例标题",
+        "author": "作者",
+        "unit": "业主单位",
+        "address": "项目地址",
+        "team": "设计师团队",
+        "scale": 0,//用地规模(平方米)
+        "design_date": "设计日期",
+        "photographer": "拍摄者",
+        "desc": "案例描述(带有html标签)",
+        "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
+        "sort":3,//排序值，越大越靠前
+        "is_ad":1//是否推广,0：否，1：是
+    }
+}

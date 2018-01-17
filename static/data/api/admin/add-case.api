@@ -1,8 +1,9 @@
-//@desc 添加案例
+//@desc 添加案例/编辑案例
 /**
  * @param
  */
 {
+	"case_id":"案例id",//编辑时不能为空
     "company_id":"公司id",
     "title": "案例标题",
     "author": "作者",

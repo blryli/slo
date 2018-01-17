@@ -1,7 +1,7 @@
 /**
- * 删除公司
+ * 删除案例
  * @param
- * companyId 公司id
+ * caseId 案例id
  */
 {
     "ask": 1,
