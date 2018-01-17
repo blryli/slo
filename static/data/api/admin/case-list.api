@@ -3,7 +3,7 @@
 *@param page N 页码(默认1)
 *@param pageSize N 每页条数(默认10)
 *@param title N 案例标题
-*@param name N 公司名称
+*@param companyName N 公司名称
 */
 {
     "ask": 1,
