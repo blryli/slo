@@ -21,20 +21,29 @@
       style="width: 100%">
       <el-table-column
         prop="company_name"
-        label="公司名称"
-        width="300">
+        label="公司名称">
       </el-table-column>
       <el-table-column
-        label="公司logo"
-        width="300">
+        prop="title"
+        label="标题">
+      </el-table-column>
+      <el-table-column
+        prop="author"
+        label="作者">
+      </el-table-column>
+      <el-table-column
+        label="公司logo">
         <template slot-scope="scope">
           <img :src="'/imgs/'+scope.row.logo" alt="logo">
         </template>
       </el-table-column>
       <el-table-column
-        prop="email"
-        label="公司邮箱"
-        width="300">
+        prop="sort"
+        label="排序">
+      </el-table-column>
+      <el-table-column
+        prop="is_ad"
+        label="是否">
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
@@ -77,6 +86,18 @@
           <p><span class="span">标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
           <p><span class="span">作者：</span><el-input v-model="datas.author" placeholder=""></el-input></p>
           <p><span class="span">业主单位：</span><el-input v-model="datas.unit" placeholder=""></el-input></p>
+          <p><span class="span">排序：</span><el-input type="number" v-model="datas.sort" placeholder=""></el-input></p>
+          <p>
+            <span class="span">是否推广：</span>
+            <el-select v-model="datas.is_ad" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </p>
         </el-col>
         <el-col :span="10">
           <p><span class="span">项目地址：</span><el-input v-model="datas.address"></el-input></p>
@@ -118,6 +139,7 @@ import { VueEditor } from 'vue2-editor'
 export default {
   data() {
     return {
+      isNew: true,
       show: false,
       imputValue: '',
       page: 1,
@@ -136,6 +158,13 @@ export default {
         "photographer":"",
         "desc":""
       },
+      options: [{
+        value: '1',
+        label: '1(是)'
+      }, {
+        value: '0',
+        label: '0(否)'
+      }],
       dialogImageUrl: '',
       dialogVisible: false,
       name:'img',
@@ -174,7 +203,7 @@ export default {
       var data = {
         companyId: row.company_id
       }
-      this.$fns.post('/api/admin/get-company',data,(json)=>{
+      this.$fns.post('/api/admin/get-case',data,(json)=>{
           if(json.ask=='1'){
             let arr = [];
             let imgArr = [];
@@ -197,7 +226,7 @@ export default {
       var data = {
         company_id: row.company_id
       }
-      this.$fns.post('/api/admin/delete-company',data,(json)=>{
+      this.$fns.post('/api/admin/delete-case',data,(json)=>{
         if(json.ask=='1'){
           this.$message({message:'操作成功！',type:'success',showClose:true});
           this.tableData.splice(index, 1);
@@ -239,6 +268,8 @@ export default {
               design_date: this.datas.design_date,
               photographer: this.datas.photographer,
               desc: this.datas.desc,
+              sort: this.datas.sort,
+              is_ad: this.datas.is_ad,
               imgs: this.logos.imgs
       }
       this.$fns.post('/api/admin/add-case',data,(json)=>{
