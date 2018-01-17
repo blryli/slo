@@ -1,0 +1,32 @@
+/**
+*@desc 案例列表
+*@param page N 页码(默认1)
+*@param pageSize N 每页条数(默认10)
+*@param title N 案例标题
+*@param name N 公司名称
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "total":25,
+    "data": [
+		{
+			"case_id":1,
+		    "company_name":"公司名称",
+		    "title": "案例标题",
+		    "author": "作者",
+		    "img_min":"案例主图",
+		    "sort":3,//排序值，越大越靠前
+		    "is_ad":1//是否推广,0：否，1：
+		},
+		{
+			"case_id":2,
+			"company_name":"公司名称",
+			"title": "案例标题",
+			"author": "作者",
+			"img_min":"案例主图",
+			"sort":3,//排序值，越大越靠前
+			"is_ad":1//是否推广,0：否，1：
+		}
+    ]
+}
