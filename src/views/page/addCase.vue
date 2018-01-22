@@ -37,7 +37,7 @@
       <el-table-column
         label="公司logo">
         <template slot-scope="scope">
-          <img :src="'/imgs/'+scope.row.logo" alt="logo">
+          <img :src="'/imgs/'+scope.row.img_min" alt="logo">
         </template>
       </el-table-column>
       <el-table-column
@@ -203,7 +203,6 @@ export default {
   methods: {
     //编辑
     handleEdit(index, row) {
-      console.log(row)
       this.show = true;
       var data = {
         companyId: row.company_name
@@ -255,7 +254,6 @@ export default {
       this.$fns.post('/api/admin/case-list',data,(json)=>{
           if(json.ask=='1'){
             _this.tableData = json.data;
-            console.log(_this.tableData)
             _this.total = parseInt(json.total);
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
