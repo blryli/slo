@@ -77,7 +77,7 @@
       <el-row class="end-box">
         <el-col :span="10">
           <p><span class="span">所属公司：</span>
-            <el-select v-model="datas.name" clearable filterable placeholder="请选择">
+            <el-select v-model="datas.company_id" clearable filterable placeholder="请选择">
                 <el-option
                   v-for="item in names"
                   :key="item.company_id"
