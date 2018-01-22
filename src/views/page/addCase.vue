@@ -1,7 +1,7 @@
 <template>
   <div class="end">
     <el-row :gutter="10">
-      <el-col :span="8">
+      <el-col :span="12">
         <el-form :inline="true" class="demo-form-inline">
           <el-form-item>
           <el-input placeholder="公司名称" v-model="imputValue" clearable></el-input>
@@ -9,10 +9,8 @@
           <el-form-item>
           <el-input placeholder="标题" v-model="imputTitleValue" clearable></el-input>
           </el-form-item>
+          <el-button type="primary" @click.native="getCompanyList(isNew)">搜索</el-button>
         </el-form>
-      </el-col>
-      <el-col :span="4">
-        <el-button type="primary" @click.native="getCompanyList(isNew)">搜索</el-button>
       </el-col>
       <el-col :span="4" :offset="8">
         <el-button type="success" @click.native="show = true">新建</el-button>
@@ -151,7 +149,7 @@ export default {
       total: 1,
       tableData: [],
       datas: {
-        "name":"",
+        "company_id":"",
         "case_id":"",
         "title":"",
         "author":"",
@@ -264,7 +262,7 @@ export default {
 	  submit() {
       var data = {
               case_id: this.datas.case_id,
-              company_id: this.datas.name,
+              company_id: this.datas.company_id,
               title: this.datas.title,
               author: this.datas.author,
               unit: this.datas.unit,
@@ -282,7 +280,7 @@ export default {
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
             this.datas = {
-              "name":"",
+              "company_id":"",
               "case_id":"",
               "title":"",
               "author":"",
