@@ -205,7 +205,7 @@ export default {
     handleEdit(index, row) {
       this.show = true;
       var data = {
-        companyId: row.company_name
+        caseId: row.case_id
       }
       this.$fns.post('/api/admin/get-case',data,(json)=>{
           if(json.ask=='1'){
