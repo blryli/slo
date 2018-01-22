@@ -152,6 +152,7 @@ export default {
       tableData: [],
       datas: {
         "name":"",
+        "case_id":"",
         "title":"",
         "author":"",
         "unit":"",
@@ -262,6 +263,7 @@ export default {
     },
 	  submit() {
       var data = {
+              case_id: this.datas.case_id,
               company_id: this.datas.name,
               title: this.datas.title,
               author: this.datas.author,
@@ -281,6 +283,7 @@ export default {
             this.$message({message:json.message,type:'success',showClose:true});
             this.datas = {
               "name":"",
+              "case_id":"",
               "title":"",
               "author":"",
               "unit":"",
