@@ -295,6 +295,9 @@ export default {
 </script>
 
 <style lang="scss">
+.v-modal{
+  z-index: 90 !important;
+}
 .cell img{
   width: 50px;
   height: 50px;

@@ -2,11 +2,14 @@
   <div class="end">
     <el-row :gutter="10">
       <el-col :span="8">
-        <el-input
-          placeholder="请输入内容"
-          v-model="imputValue"
-          clearable>
-        </el-input>
+        <el-form :inline="true" class="demo-form-inline">
+          <el-form-item>
+          <el-input placeholder="公司名称" v-model="imputValue" clearable></el-input>
+          </el-form-item>
+          <el-form-item>
+          <el-input placeholder="标题" v-model="imputTitleValue" clearable></el-input>
+          </el-form-item>
+        </el-form>
       </el-col>
       <el-col :span="4">
         <el-button type="primary" @click.native="getCompanyList(isNew)">搜索</el-button>
@@ -21,7 +24,7 @@
       style="width: 100%">
       <el-table-column
         prop="company_name"
-        label="公司名称">
+        label="公司名称" width="120">
       </el-table-column>
       <el-table-column
         prop="title"
@@ -142,6 +145,7 @@ export default {
       isNew: true,
       show: false,
       imputValue: '',
+      imputTitleValue: '',
       page: 1,
       pageSize: 5,
       total: 1,
@@ -199,9 +203,10 @@ export default {
   methods: {
     //编辑
     handleEdit(index, row) {
+      console.log(row)
       this.show = true;
       var data = {
-        companyId: row.company_id
+        companyId: row.company_name
       }
       this.$fns.post('/api/admin/get-case',data,(json)=>{
           if(json.ask=='1'){
@@ -224,7 +229,7 @@ export default {
     //删除
     handleDelete(index, row) {
       var data = {
-        company_id: row.company_id
+        caseId: row.case_id
       }
       this.$fns.post('/api/admin/delete-case',data,(json)=>{
         if(json.ask=='1'){
@@ -243,13 +248,14 @@ export default {
       var _this = this;
       var data = {
         companyName: this.imputValue,
-        title: this.imputValue,
+        title: this.imputTitleValue,
         pageSize: this.pageSize,
         page: this.page
       }
       this.$fns.post('/api/admin/case-list',data,(json)=>{
           if(json.ask=='1'){
             _this.tableData = json.data;
+            console.log(_this.tableData)
             _this.total = parseInt(json.total);
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
@@ -340,6 +346,9 @@ export default {
 </script>
 
 <style lang="scss">
+.v-modal{
+  z-index: 90 !important;
+}
 //关闭按钮
 .particulars-close{
     position: absolute;
@@ -377,7 +386,7 @@ export default {
 .end-box{
   overflow: scroll;
   padding: 20px;
-  position: fixed;
+  position: fixed !important;
   top: 10%;
   left: 5%;
   z-index: 100;
