@@ -33,7 +33,7 @@
         label="作者">
       </el-table-column>
       <el-table-column
-        label="公司logo">
+        label="案例主图">
         <template slot-scope="scope">
           <img :src="'/imgs/'+scope.row.img_min" alt="logo">
         </template>
@@ -107,6 +107,7 @@
           <p><span class="span">设计日期：</span>
             <el-date-picker
               v-model="datas.design_date"
+              format="yyyy-MM-dd"
               type="date"
               placeholder="选择日期">
             </el-date-picker>
@@ -319,27 +320,33 @@ export default {
           }
       });
     },
-     refreshImgs(fileList){
-        var imgs=[];
-        if(fileList.length){
-          fileList.forEach((item,k)=>{
-            if(item.response.ask=='1'){
-              item.response.filename && imgs.push(item.response.filename);
-            }
-          });
-        }
-        return imgs;
-      },
-      success(json, file, fileList){
-        this.logos.imgs = this.refreshImgs(fileList);
-      },
-      remove(file, fileList){
-        this.logos.imgs = this.refreshImgs(fileList);
-      },
-      preview(file){
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
+    //更新图片数组
+    refreshImgs(fileList){
+      var imgs=[];
+      if(fileList.length){
+        fileList.forEach((item,k)=>{
+          if(item.hasOwnProperty('response')){
+            item.response.ask=='1' && item.response.filename && imgs.push(item.response.filename);
+          }else if(item.hasOwnProperty('url')){
+            imgs.push(item.url);
+          }
+        });
       }
+      return imgs;
+    },
+    //logo成功
+    success(json, file, fileList){
+      this.logos.imgs = this.refreshImgs(fileList);
+    },
+    //logo移除
+    remove(file, fileList){
+      this.logos.imgs = this.refreshImgs(fileList);
+    },
+    //查看图片
+    preview(file){
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    }
   }
 }
 </script>
