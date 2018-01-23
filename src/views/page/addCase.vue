@@ -107,7 +107,7 @@
           <p><span class="span">设计日期：</span>
             <el-date-picker
               v-model="datas.design_date"
-              format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd"
               type="date"
               placeholder="选择日期">
             </el-date-picker>
