@@ -1,0 +1,30 @@
+/**
+*@desc 招聘列表
+*@param page N 页码(默认1)
+*@param pageSize N 每页条数(默认10)
+*@param companyId N 公司id
+*@param title N 招聘标题
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "total":25,
+    "data": [
+        {
+        	"recruitment_id":1,
+        	"company_id":1,
+        	"company_name":"公司名称",
+            "title":"标题",
+            "position":"职位",
+            "desc":"招聘描述(带有html标签)"
+        },
+        {
+        	"recruitment_id":2,
+        	"company_id":2,
+        	"company_name":"公司名称",
+        	"title":"标题",
+        	"position":"职位",
+        	"desc":"招聘描述(带有html标签)"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+/**
+ * 删除招聘
+ * @param
+ * recruitmentId 招聘id
+ */
+{
+    "ask": 1,
+    "message": "success"
+}
