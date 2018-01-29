@@ -1,8 +1,9 @@
-//@desc 发布招聘
+//@desc 发布招聘/编辑招聘
 /**
  * @param
  */
 {
+	"recruitment_id":1,//编辑时不能为空
 	"company_id":"公司id",
 	"title":"标题",
 	"position":"职位",
