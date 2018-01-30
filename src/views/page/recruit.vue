@@ -124,7 +124,7 @@ export default {
     handleEdit(index, row) {
       this.show = true;
       var data = {
-        recruitment_id: row.recruitment_id
+        recruitmentId: row.recruitment_id
       }
       this.$fns.post('/api/admin/get-recruitment',data,(json)=>{
           if(json.ask=='1'){
@@ -137,7 +137,7 @@ export default {
     //删除
     handleDelete(index, row) {
       var data = {
-        recruitment_id: row.recruitment_id
+        recruitmentId: row.recruitment_id
       }
       this.$fns.post('/api/admin/delete-recruitment',data,(json)=>{
         if(json.ask=='1'){
@@ -156,7 +156,7 @@ export default {
       var _this = this;
       var data = {
         companyId: this.imputValue,
-        recruitment_id: this.imputTitleValue,
+        title: this.imputTitleValue,
         pageSize: this.pageSize,
         page: this.page
       }
@@ -171,7 +171,7 @@ export default {
     },
     submit() {
       var data = {
-              company_id: this.datas.name,
+              company_id: this.datas.company_id,
               title: this.datas.title,
               position: this.datas.position,
               desc: this.datas.desc
