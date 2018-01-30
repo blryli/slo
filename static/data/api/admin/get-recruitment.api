@@ -1,0 +1,16 @@
+//@desc 获取招聘(用于编辑招聘)
+/**
+ * @param
+ * recruitmentId 招聘id
+ */
+{
+    "ask": 1,
+    "message": "success",
+    "data":{
+    	"recruitment_id":1,//编辑时不能为空
+    	"company_id":"公司id",
+    	"title":"标题",
+    	"position":"职位",
+    	"desc":"招聘描述(带有html标签)"
+    }
+}
