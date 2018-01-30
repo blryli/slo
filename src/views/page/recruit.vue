@@ -66,7 +66,7 @@
               <el-option
                 v-for="item in names"
                 :key="item.company_id"
-                :label="item.company_name"
+                :label="item.name"
                 :value="item.company_id">
               </el-option>
             </el-select>
@@ -126,7 +126,7 @@ export default {
       var data = {
         recruitment_id: row.recruitment_id
       }
-      this.$fns.post('/api/admin/get-company',data,(json)=>{
+      this.$fns.post('/api/admin/get-recruitment',data,(json)=>{
           if(json.ask=='1'){
             this.datas = json.data;
           }else{
@@ -156,7 +156,7 @@ export default {
       var _this = this;
       var data = {
         companyId: this.imputValue,
-        imputTitleValue: this.recruitment_id,
+        recruitment_id: this.imputTitleValue,
         pageSize: this.pageSize,
         page: this.page
       }
