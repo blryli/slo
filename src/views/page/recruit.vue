@@ -155,7 +155,7 @@ export default {
     getCompanyList(isNew) {
       var _this = this;
       var data = {
-        companyId: this.imputValue,
+        companyName: this.imputValue,
         title: this.imputTitleValue,
         pageSize: this.pageSize,
         page: this.page
