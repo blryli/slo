@@ -33,14 +33,14 @@
       },
       getAttention() {
         var data = {
-            companyId:this.id,
+          companyId:this.id,
         }
         this.$fns.post('/api/user/edit-attention',data,(json)=>{
-            if(json.ask=='1'){
-              this.attentionArr.has_attention = !this.attentionArr.has_attention; 
+          if(json.ask=='1'){
+            this.attentionArr.has_attention = !this.attentionArr.has_attention; 
               this.$message({message:'操作成功！',type:'success',showClose:true});
             }else{
-              this.$message({message:json.message,type:'error',showClose:true});
+              this.$router.push({path: '/login'});
             }
         });
       },

@@ -79,7 +79,8 @@ import {mapGetters} from 'Vuex'
               this.data.has_attention =! this.data.has_attention;
               this.$message({message:json.message,type:'success',showClose:true});
             }else{
-              this.$message({message:json.message,type:'error',showClose:true});
+              // this.$message({message:json.message,type:'error',showClose:true});
+              this.$router.push({path: '/login'});
             }
         });
       },
