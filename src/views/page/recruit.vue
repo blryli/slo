@@ -94,7 +94,7 @@ export default {
       total: 1,
       tableData: [],
       datas: {
-        "recruitment_id":1,
+        "recruitment_id":"",
         "company_id":"",
         "title":"",
         "position":"",
@@ -171,6 +171,7 @@ export default {
     },
     submit() {
       var data = {
+    		      recruitment_id:this.datas.recruitment_id,
               company_id: this.datas.company_id,
               title: this.datas.title,
               position: this.datas.position,
@@ -180,7 +181,8 @@ export default {
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
             this.datas = {
-              name:'',
+              recruitment_id:'',
+              company_id:'',
               title:'',
               position:'',
               desc:''
