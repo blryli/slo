@@ -11,6 +11,7 @@
 		"company_info":{
 			"company_id":1,
 	    	"name":"公司名称",
+	    	"email":"公司邮箱",
 	    	"logo":"公司logo图片地址",
 	    	"desc":"公司介绍(带有html标签)",
 	    	"environment_desc":"公司环境描述(带有html标签)",
