@@ -18,6 +18,11 @@
                             <p class="works-text" v-html="text.desc"></p>
                         </div>
                     </li>
+                    <li class="hr hr-m-20" v-if="datas.company_info.email"></li>
+                    <li class="text-center" v-if="datas.company_info.email">对以上职位感兴趣者，请将你的个人作品集、简历和薪资要求发送到</li>
+                    <li class="text-center" v-if="datas.company_info.email">
+                        <p class="email-through through"><strong>{{datas.company_info.email}}</strong><span></span></p>
+                    </li>
                     <li class="hr hr-m-20" v-if="datas.company_info.desc"></li>
                     <li class="company-js" v-if="datas.company_info.desc">
                         <h3 class="company-title">公司介绍<span></span></h3>
@@ -35,11 +40,6 @@
                         <p v-html="datas.company_info.case_desc"></p>
                         <p v-for="(item, index) in datas.case_imgs" class="m-t-20" :key="index"><img :src="item" class="img-responsive img"></p>
                         <p class="text-center"><button type="button" @click="toWorksPage" class="btn btn-FEE300">更多公司作品</button></p>
-                    </li>
-                    <li class="hr hr-m-20" v-if="datas.company_info.email"></li>
-                    <li class="text-center" v-if="datas.company_info.email">对以上职位感兴趣者，请将你的个人作品集、简历和薪资要求发送到</li>
-                    <li class="text-center" v-if="datas.company_info.email">
-                        <p class="email-through through"><strong>{{datas.company_info.email}}</strong><span></span></p>
                     </li>
                   </ul>
                 </div>
@@ -80,7 +80,8 @@ import attention from '@/components/core/attention'
           }
           this.$fns.post('/api/recruitment/get-recruitments',data,(json)=>{
               if(json.ask=='1'){
-                  this.datas = json.data
+                  this.datas = json.data;
+                  console.log(this.datas.company_info)
               }else{
                 this.$message({message:json.message,type:'error',showClose:true});
               }

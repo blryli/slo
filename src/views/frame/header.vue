@@ -37,6 +37,10 @@ export default {
           id: 3,
           name: '发布招聘',
           url: '/admin/recruit'
+        },{
+          id: 4,
+          name: '数据统计',
+          url: '/admin/info'
         }]
       }
     }
