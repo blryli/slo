@@ -8,9 +8,6 @@
           <el-button type="primary" @click.native="getCompanyList(isNew)">搜索</el-button>
         </el-form>
       </el-col>
-      <el-col :span="4" :offset="4">
-        <el-button type="success" @click.native="show = true">新建</el-button>
-      </el-col>
     </el-row>
     <el-table
       :data="tableData"
@@ -53,26 +50,6 @@
         @current-change="currentPage">
       </el-pagination>
     </div>
-    <div v-show="show">
-      <div class="particulars-close close-fixed" @click="show = false"></div>
-      <div class="end-bg"></div>
-      <div class="end-box">
-        <p><span class="span">公司名称：</span>
-          <el-select v-model="datas.company_id" clearable filterable placeholder="请选择公司">
-              <el-option
-                v-for="item in names"
-                :key="item.company_id"
-                :label="item.name"
-                :value="item.company_id">
-              </el-option>
-            </el-select>
-        </p>
-        <p><span class="span">标题：</span><el-input v-model="datas.title" placeholder=""></el-input></p>
-        <p><span class="span">职位：</span><el-input v-model="datas.position"></el-input></p>
-        <p><span class="span">招聘描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
-        <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -82,20 +59,12 @@ export default {
   data() {
     return {
       isNew: true,
-      show: false,
       imputValue: '',
       imputTitleValue: '',
       page: 1,
       pageSize: 5,
       total: 1,
       tableData: [],
-      datas: {
-        "recruitment_id":"",
-        "company_id":"",
-        "title":"",
-        "position":"",
-        "desc":""
-      },
       names: [],
       customToolbar: [
         ['bold', 'italic', 'underline'],
@@ -144,10 +113,12 @@ export default {
           }
       });
     },
+    //切换页面
     currentPage(page) {
       this.page = page;
       this.getCompanyList();
     },
+    //搜索
     getCompanyList(isNew) {
       var _this = this;
       var data = {
@@ -165,40 +136,7 @@ export default {
           }
       });
     },
-    submit() {
-      var data = {
-    		      recruitment_id:this.datas.recruitment_id,
-              company_id: this.datas.company_id,
-              title: this.datas.title,
-              position: this.datas.position,
-              desc: this.datas.desc
-      }
-      this.$fns.post('/api/admin/add-recruitment',data,(json)=>{
-          if(json.ask=='1'){
-            this.$message({message:json.message,type:'success',showClose:true});
-            this.datas = {
-              recruitment_id:'',
-              company_id:'',
-              title:'',
-              position:'',
-              desc:''
-            }
-          }else{
-            var msgHtml = '';
-            if(json.errors.length){
-              json.errors.forEach((msg,k)=>{
-                msgHtml += '<p>' + msg + '</p>';
-              });
-            }
-            this.$message({
-              type:'error',
-              showClose:true,
-              dangerouslyUseHTMLString: true,
-              message: msgHtml ? msgHtml : 'Returns unknown error'
-            });
-          }
-      });
-    },
+    //获取公司信息
     getCompanys(){
       this.$fns.post('/api/company/get-companys',{},(json)=>{
           if(json.ask=='1'){

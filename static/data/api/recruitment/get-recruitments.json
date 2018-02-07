@@ -5,7 +5,8 @@
       "title_jion":"合成的标题(控制显示长度)",
   		"company_info":{
   			"company_id":1,
-	    	"name":"公司名称",
+			"name":"公司名称",
+			"email":"公司邮箱",
 	    	"logo":"static/img/xiangqing.png",
 	    	"desc":"公司介绍(带有html标签)",
 	    	"environment_desc":"公司环境描述(带有html标签)",
