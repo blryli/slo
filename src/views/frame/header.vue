@@ -46,7 +46,7 @@ export default {
     }
   },
   created() {
-    // this.getLogin();
+    this.getLogin();
   },
   data() {
   	return {

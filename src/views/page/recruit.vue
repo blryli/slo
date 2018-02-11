@@ -13,7 +13,7 @@
         </el-form>
       </el-col>
       <el-col :span="4" :offset="8">
-        <el-button type="success" @click.native="show = true">新建</el-button>
+        <el-button type="success" @click.native="create">新建</el-button>
       </el-col>
     </el-row>
     <el-table
@@ -94,11 +94,11 @@ export default {
       total: 1,
       tableData: [],
       datas: {
-        "recruitment_id":"",
-        "company_id":"",
-        "title":"",
-        "position":"",
-        "desc":""
+        recruitment_id:'',
+        company_id:'',
+        title:'',
+        position:'',
+        desc:''
       },
       names: [],
       customToolbar: [
@@ -120,6 +120,15 @@ export default {
     this.getCompanys();
   },
   methods: {
+    //创建
+    create(){
+      this.datas.recruitment_id='';
+      this.datas.company_id='';
+      this.datas.title='';
+      this.datas.position='';
+      this.datas.desc='';
+      this.show = true;
+    },
     //编辑
     handleEdit(index, row) {
       this.show = true;
@@ -180,13 +189,11 @@ export default {
       this.$fns.post('/api/admin/add-recruitment',data,(json)=>{
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
-            this.datas = {
-              recruitment_id:'',
-              company_id:'',
-              title:'',
-              position:'',
-              desc:''
-            }
+            this.datas.recruitment_id='';
+            this.datas.company_id='';
+            this.datas.title='';
+            this.datas.position='';
+            this.datas.desc='';
           }else{
             var msgHtml = '';
             if(json.errors.length){
