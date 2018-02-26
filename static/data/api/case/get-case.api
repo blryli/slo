@@ -19,6 +19,7 @@
         "scale": 0,//用地规模(平方米)
         "design_date": "设计日期",
         "photographer": "拍摄者",
+        "remarks": "备注备注",
         "has_collect":0,//是否收藏,0:否,1:是
         "company_info":{
             "company_id":1,
