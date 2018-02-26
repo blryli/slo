@@ -113,6 +113,7 @@
             </el-date-picker>
           </p>
           <p><span class="span">拍摄者：</span><el-input v-model="datas.photographer"></el-input></p>
+          <p><span class="span">备注：</span><el-input v-model="datas.remarks"></el-input></p>
         </el-col>
         <el-col :span="24">
           <p><span class="span">案例描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
@@ -213,6 +214,7 @@ export default {
       this.datas.scale='';
       this.datas.design_date='';
       this.datas.photographer='';
+      this.datas.remarks='';
       this.datas.desc='';
       this.logos.imgs = [];
       this.$refs.logos.clearFiles();
@@ -289,6 +291,7 @@ export default {
               scale: this.datas.scale,
               design_date: this.datas.design_date,
               photographer: this.datas.photographer,
+              remarks: this.datas.remarks,
               desc: this.datas.desc,
               sort: this.datas.sort,
               is_ad: this.datas.is_ad,
@@ -307,6 +310,7 @@ export default {
             this.datas.scale='';
             this.datas.design_date='';
             this.datas.photographer='';
+            this.datas.remarks='';
             this.datas.desc='';
             this.logos.imgs = [];
             this.$refs.logos.clearFiles();
@@ -433,9 +437,6 @@ export default {
     .span{
       width: 100px;
       display: inline-block;
-    }
-    .span{
-      vertical-align: top;
     }
   }
   ol li:before {  
