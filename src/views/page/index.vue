@@ -12,7 +12,7 @@
         <el-button type="primary" @click.native="getCompanyList(isNew)">搜索</el-button>
       </el-col>
       <el-col :span="4" :offset="8">
-        <el-button type="success" @click.native="show = true">新建</el-button>
+        <el-button type="success" @click.native="create">新建</el-button>
       </el-col>
     </el-row>
     <el-table
@@ -77,6 +77,17 @@
             </el-upload>
           </div>
         </div>
+
+        <div class="p">
+          <span class="span">公司水印：</span>
+          <div class="upload-img">
+            <el-upload action="/api/img/upload" list-type="picture-card" :file-list="waterMarkImgList" :name="name" ref="waterMarkImg" :limit="waterMarkImg.limit"  :multiple="waterMarkImg.multiple"
+            :on-preview="preview" :on-remove="removeWaterMark" :on-success="successWaterMark">
+              <i class="el-icon-plus"></i>
+            </el-upload>
+          </div>
+        </div>
+
         <div class="p">
           <span class="span">公司图片：</span>
           <div class="upload-img">
@@ -115,14 +126,21 @@ export default {
         environment_desc:'',
         case_desc:'',
         logo: '',
+        water_mark:'',
         imgs: [],
       },
       name:'img',
       dialogImageUrl: '',
       dialogVisible: false,
       logoImgList: [],
+      waterMarkImgList: [],
       companyImgList: [],
       logoImg:{
+        limit:1,
+        multiple:false,
+        imgs:[]
+      },
+      waterMarkImg:{
         limit:1,
         multiple:false,
         imgs:[]
@@ -152,6 +170,24 @@ export default {
   },
   computed: {},
   methods: {
+    //创建
+    create(){
+      this.datas.company_id = '';
+      this.datas.name = '';
+      this.datas.email = '';
+      this.datas.desc = '';
+      this.datas.environment_desc = '';
+      this.datas.case_desc = '';
+      this.datas.logo = '';
+      this.datas.water_mark = '';
+      this.datas.imgs = [];
+      this.logoImg.imgs = [];
+      this.companyImg.imgs = [];
+      this.$refs.companyImg.clearFiles();
+      this.$refs.logoImg.clearFiles();   
+      this.$refs.waterMarkImg.clearFiles();
+      this.show = true;
+    },
     //编辑
     handleEdit(index, row) {
       this.show = true;
@@ -163,17 +199,21 @@ export default {
             let arr = [];
             let imgArr = [];
             this.logoImgList = [];
+            this.waterMarkImgList=[];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d});
               imgArr.push('/imgs/' + d);
             })
             //展示图片
-            this.logoImgList.push({url: '/imgs/' + json.data.logo});
+            json.data.logo && this.logoImgList.push({url: '/imgs/' + json.data.logo});
+            json.data.water_mark && this.waterMarkImgList.push({url: '/imgs/' + json.data.water_mark});
             this.companyImgList = arr;
             //上传图片
             this.logoImg.imgs = []; 
-            this.logoImg.imgs[0] = '/imgs/' +json.data.logo;
+            json.data.logo && (this.logoImg.imgs[0] = '/imgs/' +json.data.logo);
+            this.waterMarkImg.imgs = []; 
+            json.data.water_mark && (this.waterMarkImg.imgs[0] = '/imgs/' +json.data.water_mark);
             this.companyImg.imgs = imgArr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
@@ -223,22 +263,26 @@ export default {
         environment_desc: this.datas.environment_desc,
         case_desc: this.datas.case_desc,
         logo: this.logoImg.imgs.length?this.logoImg.imgs[0]:'',
+        water_mark:this.waterMarkImg.imgs.length?this.waterMarkImg.imgs[0]:'',
         imgs: this.companyImg.imgs
       }
       this.$fns.post('/api/admin/add-company',data,(json)=>{
           if(json.ask=='1'){
             this.$message({message:'操作成功！',type:'success',showClose:true});
-            this.datas = {
-              company_id: '',
-              name:'',
-              email:'',
-              desc:'',
-              environment_desc:'',
-              case_desc:''
-            }
-            this.logoImg.imgs = this.companyImg.imgs = [];
+            this.datas.company_id = '';
+            this.datas.name = '';
+            this.datas.email = '';
+            this.datas.desc = '';
+            this.datas.environment_desc = '';
+            this.datas.case_desc = '';
+            this.datas.logo = '';
+            this.datas.water_mark = '';
+            this.datas.imgs = [];
+            this.logoImg.imgs = [];
+            this.companyImg.imgs = [];
             this.$refs.companyImg.clearFiles();
-            this.$refs.logoImg.clearFiles();
+            this.$refs.logoImg.clearFiles(); 
+            this.$refs.waterMarkImg.clearFiles();
           }else{
             var msgHtml = '';
             if(json.errors.length){
@@ -281,6 +325,14 @@ export default {
     //logo移除
     removeLogo(file, fileList){
       this.logoImg.imgs = this.refreshImgs(fileList);
+    },
+    //水印成功
+    successWaterMark(json, file, fileList){
+      this.waterMarkImg.imgs = this.refreshImgs(fileList);
+    },
+    //水印移除
+    removeWaterMark(file, fileList){
+      this.waterMarkImg.imgs = this.refreshImgs(fileList);
     },
     //company成功
     successCompany(json, file, fileList){

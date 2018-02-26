@@ -13,7 +13,7 @@
         </el-form>
       </el-col>
       <el-col :span="4" :offset="8">
-        <el-button type="success" @click.native="show = true">新建</el-button>
+        <el-button type="success" @click.native="create">新建</el-button>
       </el-col>
     </el-row>
     <el-table
@@ -150,17 +150,17 @@ export default {
       total: 1,
       tableData: [],
       datas: {
-        "company_id":"",
-        "case_id":"",
-        "title":"",
-        "author":"",
-        "unit":"",
-        "address":"",
-        "team":"",
-        "scale":"",
-        "design_date":"",
-        "photographer":"",
-        "desc":""
+        company_id:'',
+        case_id:'',
+        title:'',
+        author:'',
+        unit:'',
+        address:'',
+        team:'',
+        scale:'',
+        design_date:'',
+        photographer:'',
+        desc:''
       },
       options: [{
         value: '1',
@@ -201,6 +201,23 @@ export default {
   	
   },
   methods: {
+    //创建
+    create(){
+      this.datas.company_id='';
+      this.datas.case_id='';
+      this.datas.title='';
+      this.datas.author='';
+      this.datas.unit='';
+      this.datas.address='';
+      this.datas.team='';
+      this.datas.scale='';
+      this.datas.design_date='';
+      this.datas.photographer='';
+      this.datas.desc='';
+      this.logos.imgs = [];
+      this.$refs.logos.clearFiles();
+      this.show = true;
+    },
     //编辑
     handleEdit(index, row) {
       this.show = true;
@@ -280,19 +297,17 @@ export default {
       this.$fns.post('/api/admin/add-case',data,(json)=>{
           if(json.ask=='1'){
             this.$message({message:json.message,type:'success',showClose:true});
-            this.datas = {
-              "company_id":"",
-              "case_id":"",
-              "title":"",
-              "author":"",
-              "unit":"",
-              "address":"",
-              "team":"",
-              "scale":"",
-              "design_date":"",
-              "photographer":"",
-              "desc":""
-            }
+            this.datas.company_id='';
+            this.datas.case_id='';
+            this.datas.title='';
+            this.datas.author='';
+            this.datas.unit='';
+            this.datas.address='';
+            this.datas.team='';
+            this.datas.scale='';
+            this.datas.design_date='';
+            this.datas.photographer='';
+            this.datas.desc='';
             this.logos.imgs = [];
             this.$refs.logos.clearFiles();
           }else{
