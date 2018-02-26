@@ -39,7 +39,7 @@
                     </li> -->
                   </ul>
                 </div>
-                <div class="col-sm-3 fixed-y" ref="fixedY" style="top:0;">
+                <div class="col-sm-3 fixed-y" id="fixedY" style="top:0;">
                   <ul class="bg-fff">
                     <attention :attention-arr="particularsArr.company_info" :id="particularsArr.company_info.company_id"></attention>
                     <li class="al-btn text-center"><router-link :to="{ path: '/worksPage', query: {id:particularsArr.company_info.company_id}}" class="btn btn-default">更多作品</router-link></li>
@@ -105,15 +105,17 @@ import {mapGetters} from 'Vuex'
       'cutId'
     ]),
     mounted: function() {
+        var _this = this;
         this.$nextTick(function() {
-            window.addEventListener('scroll', ()=> {
-                var scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-                if(this.$route.path == '/particulars'){
+            $(window).on('scroll', ()=> {
+                var scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
+                var node = document.getElementById('fixedY');
+                if(_this.$route.path == '/particulars'){
                     if(scrollTop > 56) {
                         let top = scrollTop - 56;
-                        this.$refs.fixedY.style.top = top + 'px';
+                        node.style.top = top + 'px';
                     }else{
-                        this.$refs.fixedY.style.top = '0px';
+                        node.style.top = '0px';
                     }
                 }
             })
