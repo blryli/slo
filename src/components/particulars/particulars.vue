@@ -22,6 +22,7 @@
                     <li class="unit" v-if="particularsArr.scale"><strong>用地规模(㎡)</strong>：{{particularsArr.scale}}</li>
                     <li class="unit" v-if="particularsArr.design_date"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
                     <li class="unit" v-if="particularsArr.photographer"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
+                    <li class="unit" v-if="particularsArr.remarks" style="color: #888;"><strong>注</strong>：{{particularsArr.remarks}}</li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">
                         <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="getCollect"></a>
@@ -55,7 +56,7 @@
     		<div class="row m-b-20">
                 <div class="col-sm-9">
                     <ul class="bg-fff lick"  style="padding-bottom: 0;">
-                        <li class="title">可编辑选择推送内容</li>
+                        <li class="title">你可能还喜欢</li>
                         <li class="hr hr-m-10"></li>
                         <case-list :case-arr="particularsArr.recommend" :title-size="14" :row-top="28" :show-text="false"></case-list>
                     </ul>
@@ -128,7 +129,7 @@ import {mapGetters} from 'Vuex'
                 this.particularsArr.has_collect = !this.particularsArr.has_collect;
                 this.$message({message:json.message,type:'success',showClose:true});
               }else{
-                this.$message({message:json.message,type:'error',showClose:true});
+                this.$router.push({path: '/login'});
               }
           });
         },

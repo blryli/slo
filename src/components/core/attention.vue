@@ -62,6 +62,8 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
+        -webkit-box-align:center; 
+        -webkit-box-pack:center;
         overflow: hidden;
         position: relative;
         line-height: 30px;

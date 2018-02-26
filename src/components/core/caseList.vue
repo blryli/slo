@@ -6,7 +6,8 @@
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr" :key="index">
       <ul class="slo-case o-h">
         <router-link class="img router" @click.native="updateCutId" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><img :src="item.img_min"></router-link>
-        <router-link class="title router" @click.native="updateCutId" :style="{ 'font-size': titleSize + 'px' }" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
+        <router-link class="title router" @click.native="updateCutId" :style="{ 'font-size': titleSize + 'px' }" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li">
+          <strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
         <li class="text" v-if="showText">{{item.author}}</li>
       </ul>
     </li>
@@ -132,6 +133,15 @@ ul{
   min-height: 50px;
   max-width: 238px;
   color: #191919;
+  strong{
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    -webkit-box-align:center; 
+    -webkit-box-pack:center;
+    overflow: hidden;
+  }
 }
 .text{
   font-size: 14px;
