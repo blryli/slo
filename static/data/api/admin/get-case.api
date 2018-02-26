@@ -17,6 +17,7 @@
         "scale": 0,//用地规模(平方米)
         "design_date": "设计日期",
         "photographer": "拍摄者",
+        "remarks": "备注",
         "desc": "案例描述(带有html标签)",
         "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
         "sort":3,//排序值，越大越靠前

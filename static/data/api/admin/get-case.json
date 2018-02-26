@@ -13,6 +13,7 @@
         "scale": 0,
         "design_date": "2018-01-17",
         "photographer": "拍摄者",
+        "remarks": "备注",
         "desc": "案例描述(带有html标签)",
         "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
         "sort":3,
