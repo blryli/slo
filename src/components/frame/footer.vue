@@ -3,18 +3,19 @@
     <div class="footer">
       <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-3 logo">
+        <div class="col-xs-12 col-sm-6 logo">
           <router-link to="/" @click.native="backTop"><img src="static/img/logo2.png"></router-link>
         </div>
-        <div class="col-xs-12 col-sm-7 text">
-          <ul class="row">
-            <li class="col-xs-12 about"><a href="#">关于我们</a></li>
-            <li class="col-xs-12"><a href="#">LAFOLIO 设计网 Copayright @ 2017 ofo inc. 保留所有权利。京公网安备 11010802022978号</a></li>
+        <div class="col-xs-12 col-sm-6 text">
+          <ul>
+            <li class="about">关于Lafo叔叔：景观从业者，对好案例有偏执的收藏癖</li>
+            <li class="about">联系Lafo叔叔：微信Lafo-uncle</li>
+            <li class="about"><small>la-folio.com | Copayright @ 2017 ofo inc. 保留所有权利。京公网安备</small> 11010802022978号</li>
           </ul>
         </div>
-        <div class="col-xs-12 col-sm-2">
+        <!-- <div class="col-xs-12 col-sm-2">
           <div class="ewm"><img src="static/img/ewm_small.png" alt="微信"></div>
-        </div>
+        </div> -->
       </div>
       </div>
       </div>
@@ -43,28 +44,30 @@ export default {
     padding: 0;
   }
   .logo{
-    margin-top: 30px;
+    margin-top: 44px;
     img{
       cursor: pointer;
       display: block;
-      margin: 0 auto;
     }
   }
   .text{
-    padding: 20px 40px;
-    text-align: center;
+    padding: 20px 0;
     .about{
-      a{
-        font-size: 18px;
-        opacity: 1;
+      font-size: 14px;
+      opacity: .8;
+      small{
+        font-size: 10px;
       }
     }
     ul{
       margin-bottom: 0;
+      display: inline-block;
+      float: right;
+      margin-right: 15px;
     }
     li{
       &+li{
-        margin-top: 13px;
+        margin-top: 10px;
       }
       a{
         font-size: 13px;

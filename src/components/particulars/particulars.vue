@@ -23,11 +23,6 @@
                     <li class="unit" v-if="particularsArr.design_date"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
                     <li class="unit" v-if="particularsArr.photographer"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="unit" v-if="particularsArr.remarks" style="color: #888;"><strong>注</strong>：{{particularsArr.remarks}}</li>
-                    <li class="hr hr-m-20"></li>
-                    <li class="text-center">
-                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="getCollect"></a>
-                        <p><span v-show="particularsArr.has_collect == true">取消</span>收藏</p>
-                    </li>
                     <!-- <li class="hr hr-m-20" style="margin-bottom:15px;"></li>
                     <li class="text-center particulars-sharing">
                         <button type="button" class="btn btn-default" @click="alrtSharingShow = true"><i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;分享</button>
@@ -47,6 +42,11 @@
                     <li class="">
                         <p class="text-line-3" v-html="particularsArr.company_info.desc"></p>
                         <p><router-link :to="{ path: '/worksPage', query: {id:particularsArr.company_info.company_id}}" class="more">查看更多</router-link></p>
+                    </li>
+                    <li class="hr hr-m-20"></li>
+                    <li class="text-center">
+                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="getCollect"></a>
+                        <p><span v-show="particularsArr.has_collect == true">取消</span>收藏</p>
                     </li>
                   </ul>
                 </div>
@@ -234,8 +234,8 @@ p{
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #bbb;
-    opacity: .9;
+    background-color: #222;
+    opacity: .7;
     z-index: 1800;
 }
 .fa{
