@@ -26,6 +26,8 @@ import {mapGetters} from 'Vuex'
       caseList
     },
     created(){
+      //流量统计
+      this.$fns.visitsStatistics('fc');
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.name = this.$route.query.name;
       this.src = this.$route.query.src;
