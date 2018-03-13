@@ -39,6 +39,8 @@ import {mapGetters} from 'Vuex'
       caseList, Recruit, attention
     },
     created(){
+      //流量统计
+      this.$fns.visitsStatistics('wk');
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       this.getWorks();
     },

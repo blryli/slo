@@ -78,6 +78,8 @@ import attention from '@/components/core/attention'
                   companyId: this.$route.query.id,
                   recruitmentId: this.$route.query.recruitmentId
           }
+          //流量统计
+          this.$fns.visitsStatistics('rec',this.$route.query.id);
           this.$fns.post('/api/recruitment/get-recruitments',data,(json)=>{
               if(json.ask=='1'){
                   this.datas = json.data;

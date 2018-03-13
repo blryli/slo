@@ -88,6 +88,8 @@ import {mapGetters} from 'Vuex'
         var data = {
             companyId: this.$route.query.id
         }
+        //流量统计
+        this.$fns.visitsStatistics('cc',this.$route.query.id);
         this.$fns.post('/api/company/get-company-info',data,(json)=>{
           if(json.ask=='1'){
             this.data = json.data
