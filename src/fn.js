@@ -24,6 +24,21 @@ const fn = {
 				}
 			});
 		},
+		visitsStatistics:function(page_code,sub_code){
+			if(!page_code){
+				console.error('visits statistics error:page_code empty');
+				return false;
+			}
+			let url = '/api/user/visits-statistics';
+			let data = {page_code:page_code,sub_code:sub_code};
+			this.post(url,data,(json)=>{
+				if(json.ask){
+					console.log('page:' + page_code + ',visits statistics success!');
+				}else{
+					console.log('page:' + page_code + ',visits statistics error:'+json.message);
+				}
+			});
+		},
 		//返回是否为json
 		isJson:function(obj) {
 		    return typeof obj == "object" && Object.prototype.toString.call(obj).toLowerCase() == "[object object]" && !obj.length;
