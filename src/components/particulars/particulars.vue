@@ -142,6 +142,8 @@ import {mapGetters} from 'Vuex'
           var data = {
             case_id: this.id
           }
+          //流量统计
+          this.$fns.visitsStatistics('cs',this.id);
           this.$fns.post('/api/case/get-case',data,(json)=>{
               if(json.ask=='1'){
                 this.particularsArr = json.data;
