@@ -5,9 +5,9 @@
     </li>
     <li class="col-xs-6 col-sm-4" :class="{'col-md-3': colFour}" style="padding: 0" v-for="(item, index) in caseArr" :key="index">
       <ul class="slo-case o-h">
-        <router-link class="img router" @click.native="updateCutId" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li"><img :src="item.img_min"></router-link>
-        <router-link class="title router" @click.native="updateCutId" :style="{ 'font-size': titleSize + 'px' }" :to="{path: pathUrl,query: {id: item.case_id,index:index}}" tag="li">
-          <strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></router-link>
+        <div class="img router" @click="updateCutId(item, index)"><img :src="item.img_min"></div>
+        <div class="title router" @click="updateCutId(item, index)" :style="{ 'font-size': titleSize + 'px' }">
+          <strong>{{item.title}}</strong><span></span><span :style="{ top: rowTop + 'px' }" v-if="textLength(item.title)"></span></div>
         <li class="text" v-if="showText">{{item.author}}</li>
       </ul>
     </li>
@@ -63,11 +63,20 @@ export default {
       ])
     },
     methods:{
-      updateCutId() {
-        let arr = []
+      updateCutId(item, index) {
+        let arr = [],
+          self = this;
         this.caseArr.forEach((d, i) => {
-          arr.push(d.case_id)
-        }),
+          arr.push(d.case_id);
+        })
+        const {href} = this.$router.resolve({
+          path: self.pathUrl,
+          query: {
+            id: item.case_id,
+            index:index
+          }
+        })
+        window.open(href, '_blank')
         this.$store.commit('updateCutId', arr)
       },
       textLength(text) {
