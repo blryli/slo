@@ -369,15 +369,6 @@ export default {
   z-index: 2;
 }
 .end-box{
-  overflow: scroll;
-  padding: 20px;
-  position: fixed;
-  top: 10%;
-  left: 5%;
-  z-index: 100;
-  width: 90%;
-  height: 80%;
-  background-color: #fff;
   input[type=file] {
       display: none !important;
   }

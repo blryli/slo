@@ -15,7 +15,13 @@
         "photographer": "拍摄者",
         "remarks": "备注",
         "desc": "案例描述(带有html标签)",
-        "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
+        "imgs": [{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        },{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        }],
         "sort":3,
         "is_ad":1
     }

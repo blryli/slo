@@ -31,6 +31,10 @@ Vue.directive('scroll', {
     })
   }
 })
+Vue.component('show-editor', {
+  props: ['id', 'text'],
+  template: '<p :id="id">{{text}}</p>'
+})
 
 Vue.use(infiniteScroll)
 Vue.use(Vuelidate)

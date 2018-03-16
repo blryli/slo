@@ -69,9 +69,7 @@
       </el-pagination>
     </div>
 
-    <div v-show="show">
-      <div class="particulars-close close-fixed" @click="show = false"></div>
-      <div class="end-bg"></div>
+    <el-dialog title="新建案例" :visible.sync="outerVisible" :close-on-click-modal="false" width="80%" top="5vh" @close="closeCase">
       <el-row class="end-box">
         <el-col :span="10">
           <p><span class="span">所属公司：</span>
@@ -116,32 +114,55 @@
           <p><span class="span">备注：</span><el-input v-model="datas.remarks"></el-input></p>
         </el-col>
         <el-col :span="24">
-          <p><span class="span">案例描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
-            <div class="p">
-              <span class="span">案例图片：</span>
-              <div class="upload-img">
-                <el-upload action="/api/img/upload" list-type="picture-card" :file-list="logoImgList" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
-                :on-preview="preview" :on-remove="remove" :on-success="success">
-                  <i class="el-icon-plus"></i>
-                </el-upload>
-                <el-dialog :visible.sync="dialogVisible" size="tiny">
-                  <img width="100%" :src="dialogImageUrl" alt>
-                </el-dialog>
+          <p><span class="span">案例描述：</span><vue-editor id="id2" :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
+          
+          <div class="p">
+            <span class="span">案例图片：</span>
+            <div class="upload-img">
+              <el-upload class="add-img" action="/api/img/upload" list-type="picture-card" :file-list="logos.imgs" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
+              :on-preview="preview" :on-remove="remove" :on-success="success">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+              <div class="add-text">
+                <component :is="comment" @diolog-arr="getDiologArr" :index="index" :text="item.text" v-for="(item, index) in logos.imgs" :key="index"></component>
               </div>
             </div>
-          </p>
-          <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
+            
+          </div>
+          <el-dialog :visible.sync="dialogVisible" size="tiny" append-to-body>
+            <img width="100%" :src="dialogImageUrl" alt>
+          </el-dialog>
+
+          <el-dialog title="编辑文字" :visible.sync="dialogFormVisible" append-to-body>
+            <vue-editor id="id1" :editorToolbar="customToolbar" v-model="editorContent"></vue-editor>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button type="primary" @click="submitText">确 定</el-button>
+            </div>
+          </el-dialog>
+
         </el-col>
       </el-row>
-    </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="outerVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submit">提 交</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { VueEditor } from 'vue2-editor'
+import textEditor from '@/views/page/text-editor'
+
 export default {
   data() {
     return {
+      comment: 'text-editor',
+      editorContent: '',
+      dialogFormVisible: false,
+      outerVisible: false,
+      textIndex: 0,
       isNew: true,
       show: false,
       imputValue: '',
@@ -193,7 +214,7 @@ export default {
     }
   },
   components: {
-  	VueEditor
+  	VueEditor, textEditor
   },
   created() {
     this.getCompanys();
@@ -202,8 +223,29 @@ export default {
   	
   },
   methods: {
+    closeCase() {
+      this.logos.imgs = [];
+      this.editorContent = '';
+    },
+    //保存文本
+    submitText() {
+      let bcText = this.editorContent;
+      this.logos.imgs[this.textIndex].text = bcText;
+      bcText = '';
+      this.dialogFormVisible = false
+    },
+    //点击按钮获取当前索引
+    getDiologArr(arr) {
+      console.log(arr)
+      this.dialogFormVisible = true;
+      this.textIndex = arr[0];
+      this.editorContent = arr[1];
+    },
     //创建
     create(){
+      let self = this;
+      this.outerVisible = true;
+      this.editorContent = '';
       this.datas.company_id='';
       this.datas.case_id='';
       this.datas.title='';
@@ -217,28 +259,29 @@ export default {
       this.datas.remarks='';
       this.datas.desc='';
       this.logos.imgs = [];
-      this.$refs.logos.clearFiles();
-      this.show = true;
+      setTimeout(function() {
+        self.$refs.logos.clearFiles();
+      }, 100)
     },
     //编辑
     handleEdit(index, row) {
-      this.show = true;
+      this.outerVisible = true;
       var data = {
         caseId: row.case_id
       }
       this.$fns.post('/api/admin/get-case',data,(json)=>{
           if(json.ask=='1'){
             let arr = [];
-            let imgArr = [];
+            // let imgArr = [];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
-              arr.push({url: '/imgs/' + d});
-              imgArr.push('/imgs/' + d);
+              arr.push({url: '/imgs/' + d.url, text: d.text});
+              // imgArr.push('/imgs/' + d.url);
             })
             //展示图片
-            this.logoImgList = arr;
+            // this.logoImgList = arr;
             //上传图片
-            this.logos.imgs = imgArr;
+            this.logos.imgs = arr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
@@ -299,6 +342,7 @@ export default {
       }
       this.$fns.post('/api/admin/add-case',data,(json)=>{
           if(json.ask=='1'){
+            this.outerVisible = false;
             this.$message({message:json.message,type:'success',showClose:true});
             this.datas.company_id='';
             this.datas.case_id='';
@@ -345,9 +389,9 @@ export default {
       if(fileList.length){
         fileList.forEach((item,k)=>{
           if(item.hasOwnProperty('response')){
-            item.response.ask=='1' && item.response.filename && imgs.push(item.response.filename);
+            item.response.ask=='1' && item.response.filename && imgs.push({url: item.response.filename, text: ''});
           }else if(item.hasOwnProperty('url')){
-            imgs.push(item.url);
+            imgs.push({url: item.url, text: ''});
           }
         });
       }
@@ -370,25 +414,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.end{
+  position: relative;
+}
 .v-modal{
   z-index: 90 !important;
-}
-//关闭按钮
-.particulars-close{
-    position: absolute;
-    right: 15px;
-    top: -36px;
-    width: 30px;
-    height: 30px;
-    z-index: 100;
-    color: #fff;
-    font-weight: normal;
-    cursor: pointer;
-    background: url(/static/img/ic_close.png) no-repeat center center;
-    &:hover{
-        background: url(/static/img/ic_close_2.png) no-repeat center center;
-    }
 }
 .cell img{
   width: 50px;
@@ -398,31 +429,23 @@ export default {
   text-align: right;
   margin-top: 20px;
 }
-.end-bg{
-  background-color: #000;
-  opacity: .5;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-}
 .end-box{
-  overflow: scroll;
-  padding: 20px;
-  position: fixed !important;
-  top: 10%;
-  left: 5%;
-  z-index: 100;
-  width: 90%;
-  height: 80%;
-  background-color: #fff;
-  input[type=file] {
-      display: none !important;
-  }
   .upload-img{
+    position: relative;
     display: inline-block;
+    .add-img{
+      width: 148px;
+      float: left;
+    }
+    .add-text{
+      margin-left: 160px;
+      .button{
+        float: left;
+      }
+      .text{
+        max-width: 1000px;
+      }
+    }
   }
   .el-input{
     width: 300px;

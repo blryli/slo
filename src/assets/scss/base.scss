@@ -186,7 +186,19 @@ table.table{
   overflow: hidden;
   height: 40px;
  }
- 
+ //富文本里面的p
+ .edito-box{
+   .text{
+     p{
+       margin-bottom: 0;
+     }
+   }
+ }
+ .end-box{
+  input[type=file] {
+      display: none;
+  }
+}
  @media (min-width: 768px) { 
     .el-carousel{
 	  .el-carousel__container{
