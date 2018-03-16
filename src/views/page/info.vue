@@ -150,7 +150,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-modal{
   z-index: 90 !important;
 }

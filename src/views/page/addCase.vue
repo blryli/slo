@@ -279,7 +279,7 @@ export default {
               // imgArr.push('/imgs/' + d.url);
             })
             //展示图片
-            // this.logoImgList = arr;
+            // this.logoImgList = imgArr;
             //上传图片
             this.logos.imgs = arr;
           }else{
