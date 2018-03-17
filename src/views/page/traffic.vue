@@ -12,34 +12,14 @@
         </el-form>
       </el-col>
     </el-row>
-    <el-table
-      :data="tableData"
-      stripe
-      style="width: 100%">
-      <el-table-column
-        prop="time"
-        label="日期"
-        width="300">
-      </el-table-column>
-      <el-table-column
-        prop="title"
-        label="列头"
-        width="300">
-      </el-table-column>
-      <el-table-column
-        prop="number"
-        label="数量"
-        width="300">
-      </el-table-column>
+    <el-table :data="tableData" stripe style="width: 100%">
+      <el-table-column prop="time" label="日期" width="300"></el-table-column>
+      <el-table-column prop="title" label="列头" width="300"></el-table-column>
+      <el-table-column prop="number" label="数量" width="300"> </el-table-column>
     </el-table>
     <div class="total">
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="total"
-        :page-size="pageSize"
-        :current-page="page"
-        @current-change="currentPage">
+      <el-pagination background layout="prev, pager, next" :total="total" :page-size="pageSize" :current-page="page"
+       @current-change="currentPage">
       </el-pagination>
     </div>
   </div>
