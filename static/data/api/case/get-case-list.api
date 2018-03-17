@@ -1,0 +1,22 @@
+/**
+*@desc 获取所有案例
+*@param keyWords N 搜索关键字(默认"")
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "data": [
+             {
+            	 "case_id":1,
+            	 "title":"案例标题1"
+             },
+             {
+            	 "case_id":2,
+            	 "title":"案例标题2"
+             },
+             {
+            	 "case_id":3,
+            	 "title":"案例标题3"
+             }
+      ]
+}

@@ -1,0 +1,24 @@
+/**
+*@desc 流量统计
+*@param date_range Y 时间范围
+*@param data_type Y 数据类型
+*@param page_code N 页面代码
+*@param sub_code N 页面子代码
+*/
+{
+    "ask": 1,
+    "message": "success",
+    "total":25,
+    "data": [
+        {
+        	"date":"2018-03-05",
+        	"title":"案例标题",
+            "qty":"15"
+        },
+        {
+            "date":"2018-03-06",
+            "title":"案例标题",
+            "qty":"54"
+        }
+    ]
+}
