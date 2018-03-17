@@ -59,9 +59,7 @@
       </el-pagination>
     </div>
 
-    <div v-show="show">
-      <div class="particulars-close close-fixed" @click="show = false"></div>
-      <div class="end-bg"></div>
+    <el-dialog title="新建案例" :visible.sync="outerVisible" :close-on-click-modal="false" width="80%" top="5vh" @close="closeCase">
       <div class="end-box">
         <p><span class="span">公司名称：</span><el-input v-model="datas.name" placeholder="请输入公司名称"></el-input></p>
         <p><span class="span">公司邮箱：</span><el-input v-model="datas.email" placeholder="请输入公司邮箱"></el-input></p>
@@ -91,28 +89,47 @@
         <div class="p">
           <span class="span">公司图片：</span>
           <div class="upload-img">
-            <el-upload action="/api/img/upload" list-type="picture-card" :file-list="companyImgList" :name="name" ref="companyImg" :limit="companyImg.limit"  :multiple="companyImg.multiple"
-            :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
+            <el-upload class="add-img" action="/api/img/upload" list-type="picture-card" :file-list="companyImg.imgs" :name="name" ref="companyImg" :limit="companyImg.limit"  :multiple="companyImg.multiple"
+              :on-preview="preview" :on-remove="removeCompany" :on-success="successCompany">
               <i class="el-icon-plus"></i>
             </el-upload>
+            <div class="add-text">
+              <component :is="comment" @diolog-arr="getDiologArr" :index="index" :text="item.text" v-for="(item, index) in companyImg.imgs" :key="index"></component>
+            </div>
           </div>
         </div>
-        <el-dialog :visible.sync="dialogVisible" size="tiny">
+        <el-dialog :visible.sync="dialogVisible" size="tiny" append-to-body>
           <img width="100%" :src="dialogImageUrl">
         </el-dialog>
-        <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
+
+        <el-dialog title="编辑文字" :visible.sync="dialogFormVisible" append-to-body>
+          <vue-editor id="id1" :editorToolbar="customToolbar" v-model="editorContent"></vue-editor>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="submitText">确 定</el-button>
+          </div>
+        </el-dialog>
       </div>
-    </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="outerVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submit">提 交</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { VueEditor } from 'vue2-editor'
+import textEditor from './text-editor'
 export default {
   data() {
     return {
+      comment: 'text-editor',
+      outerVisible: false,
+      dialogFormVisible: false,
+      textIndex: 0,
+      editorContent: '',
       isNew: true,
-      show: false,
       imputValue: '',
       page: 1,
       pageSize: 5,
@@ -163,15 +180,36 @@ export default {
     }
   },
   components: {
-  	VueEditor
+  	VueEditor, textEditor
   },
   mounted: function() {
     this.$nextTick(function() {})
   },
   computed: {},
   methods: {
+    closeCase() {
+      this.datas.imgs = [];
+      this.logoImg.imgs = [];
+      this.companyImg.imgs = [];
+      this.editorContent = '';
+    },
+    //保存文本
+    submitText() {
+      let bcText = this.editorContent;
+      this.companyImg.imgs[this.textIndex].text = bcText;
+      bcText = '';
+      this.dialogFormVisible = false
+    },
+    //点击按钮获取当前索引
+    getDiologArr(arr) {
+      console.log(arr)
+      this.dialogFormVisible = true;
+      this.textIndex = arr[0];
+      this.editorContent = arr[1];
+    },
     //创建
     create(){
+      this.outerVisible = true;
       this.datas.company_id = '';
       this.datas.name = '';
       this.datas.email = '';
@@ -183,14 +221,15 @@ export default {
       this.datas.imgs = [];
       this.logoImg.imgs = [];
       this.companyImg.imgs = [];
-      this.$refs.companyImg.clearFiles();
-      this.$refs.logoImg.clearFiles();   
-      this.$refs.waterMarkImg.clearFiles();
-      this.show = true;
+      setTimeout(function() {
+        this.$refs.companyImg.clearFiles();
+        this.$refs.logoImg.clearFiles();   
+        this.$refs.waterMarkImg.clearFiles();
+      }, 100)
     },
     //编辑
     handleEdit(index, row) {
-      this.show = true;
+      this.outerVisible = true;
       var data = {
         companyId: row.company_id
       }
@@ -202,19 +241,19 @@ export default {
             this.waterMarkImgList=[];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
-              arr.push({url: '/imgs/' + d});
-              imgArr.push('/imgs/' + d);
+              arr.push({url: '/imgs/' + d.url, text: d.text});
+              // imgArr.push('/imgs/' + d);
             })
             //展示图片
             json.data.logo && this.logoImgList.push({url: '/imgs/' + json.data.logo});
             json.data.water_mark && this.waterMarkImgList.push({url: '/imgs/' + json.data.water_mark});
-            this.companyImgList = arr;
+            // this.companyImgList = arr;
             //上传图片
             this.logoImg.imgs = []; 
             json.data.logo && (this.logoImg.imgs[0] = '/imgs/' +json.data.logo);
             this.waterMarkImg.imgs = []; 
             json.data.water_mark && (this.waterMarkImg.imgs[0] = '/imgs/' +json.data.water_mark);
-            this.companyImg.imgs = imgArr;
+            this.companyImg.imgs = arr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
@@ -310,9 +349,9 @@ export default {
       if(fileList.length){
         fileList.forEach((item,k)=>{
           if(item.hasOwnProperty('response')){
-            item.response.ask=='1' && item.response.filename && imgs.push(item.response.filename);
+            item.response.ask=='1' && item.response.filename && imgs.push({url: item.response.filename, text: ''});
           }else if(item.hasOwnProperty('url')){
-            imgs.push(item.url);
+            imgs.push({url: item.url, text: ''});
           }
         });
       }
@@ -358,22 +397,26 @@ export default {
   text-align: right;
   margin-top: 20px;
 }
-.end-bg{
-  background-color: #000;
-  opacity: .5;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-}
 .end-box{
   input[type=file] {
       display: none !important;
   }
   .upload-img{
+    position: relative;
     display: inline-block;
+    .add-img{
+      width: 148px;
+      float: left;
+    }
+    .add-text{
+      margin-left: 160px;
+      .button{
+        float: left;
+      }
+      .text{
+        max-width: 1000px;
+      }
+    }
   }
   .el-input{
     width: 300px;
@@ -401,21 +444,5 @@ export default {
     padding-left: 20px;
    }
    ol{list-style-type: decimal }
-}
-//关闭按钮
-.particulars-close{
-    position: absolute;
-    right: 15px;
-    top: -36px;
-    width: 30px;
-    height: 30px;
-    z-index: 100;
-    color: #fff;
-    font-weight: normal;
-    cursor: pointer;
-    background: url(/static/img/ic_close.png) no-repeat center center;
-    &:hover{
-        background: url(/static/img/ic_close_2.png) no-repeat center center;
-    }
 }
 </style>

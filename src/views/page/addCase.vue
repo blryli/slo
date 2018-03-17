@@ -153,7 +153,7 @@
 
 <script>
 import { VueEditor } from 'vue2-editor'
-import textEditor from '@/views/page/text-editor'
+import textEditor from './text-editor'
 
 export default {
   data() {
@@ -164,7 +164,6 @@ export default {
       outerVisible: false,
       textIndex: 0,
       isNew: true,
-      show: false,
       imputValue: '',
       imputTitleValue: '',
       page: 1,

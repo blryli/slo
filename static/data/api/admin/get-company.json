@@ -10,6 +10,12 @@
     	"environment_desc":"公司环境描述(带有html标签)aaaaaa",
     	"case_desc":"公司作品描述(带有html标签)",
     	"logo":"static/img/img.png",
-    	"imgs":["static/img/xiangqing.png","static/img/xiangqing.png","static/img/xiangqing.png","static/img/xiangqing.png"]
+    	"imgs":[{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        },{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        }]
     }
 }

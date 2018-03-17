@@ -57,9 +57,7 @@
         @current-change="currentPage">
       </el-pagination>
     </div>
-    <div v-show="show">
-      <div class="particulars-close close-fixed" @click="show = false"></div>
-      <div class="end-bg"></div>
+    <el-dialog title="新建案例" :visible.sync="outerVisible" :close-on-click-modal="false" width="80%" top="5vh" @close="closeCase">
       <div class="end-box">
         <p><span class="span">公司名称：</span>
           <el-select v-model="datas.company_id" clearable filterable placeholder="请选择公司">
@@ -76,7 +74,7 @@
         <p><span class="span">招聘描述：</span><vue-editor :editorToolbar="customToolbar" v-model="datas.desc"></vue-editor></p>
         <p style="margin-top: 30px;"><span></span><el-button type="primary" @click="submit">提交</el-button></p>
       </div>
-    </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -86,7 +84,7 @@ export default {
   data() {
     return {
       isNew: true,
-      show: false,
+      outerVisible: false,
       imputValue: '',
       imputTitleValue: '',
       page: 1,
@@ -122,16 +120,16 @@ export default {
   methods: {
     //创建
     create(){
+      this.outerVisible = true;
       this.datas.recruitment_id='';
       this.datas.company_id='';
       this.datas.title='';
       this.datas.position='';
       this.datas.desc='';
-      this.show = true;
     },
     //编辑
     handleEdit(index, row) {
-      this.show = true;
+      this.outerVisible = true;
       var data = {
         recruitmentId: row.recruitment_id
       }
@@ -223,7 +221,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-modal{
   z-index: 90 !important;
 }
@@ -231,46 +229,11 @@ export default {
   width: 50px;
   height: 50px;
 }
-//关闭按钮
-.particulars-close{
-    position: absolute;
-    right: 15px;
-    top: -36px;
-    width: 30px;
-    height: 30px;
-    z-index: 100;
-    color: #fff;
-    font-weight: normal;
-    cursor: pointer;
-    background: url(/static/img/ic_close.png) no-repeat center center;
-    &:hover{
-        background: url(/static/img/ic_close_2.png) no-repeat center center;
-    }
-}
 .total{
   text-align: right;
   margin-top: 20px;
 }
-.end-bg{
-  background-color: #000;
-  opacity: .5;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-}
 .end-box{
-  overflow: scroll;
-  padding: 20px;
-  position: fixed !important;
-  top: 10%;
-  left: 5%;
-  z-index: 100;
-  width: 90%;
-  height: 80%;
-  background-color: #fff;
   input[type=file] {
       display: none !important;
   }

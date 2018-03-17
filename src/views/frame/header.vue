@@ -41,6 +41,10 @@ export default {
           id: 4,
           name: '数据统计',
           url: '/admin/info'
+        },{
+          id: 4,
+          name: '流量统计',
+          url: '/admin/traffic'
         }]
       }
     }
