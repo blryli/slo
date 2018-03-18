@@ -4,16 +4,16 @@
       <el-col :span="16">
         <el-form :inline="true" class="demo-form-inline">
           <el-form-item label="时间段" label-width="80px">
-            <el-date-picker value-format="yyyy-MM-dd" size="small" v-model="imputValue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
+            <el-date-picker value-format="yyyy-MM-dd" size="small" :clearable='false' v-model="imputValue" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
           </el-form-item><br/>
           <el-form-item label="类型" label-width="80px">
-            <el-select size="small" v-model="yiValue" placeholder="请选择">
+            <el-select size="small" filterable v-model="yiValue" placeholder="请选择">
               <el-option v-for="item in yi" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
-            <el-select :disabled="showEr" size="small" v-model="erValue" placeholder="请选择">
+            <el-select filterable :disabled="showEr" size="small" v-model="erValue" placeholder="请选择">
               <el-option v-for="item in er" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
-            <el-select :disabled="showSan" size="small" v-model="sanValue" placeholder="请选择">
+            <el-select filterable clearable :disabled="showSan" size="small" v-model="sanValue" placeholder="请选择">
               <el-option v-show="sanIsCacs" v-for="item in san" :key="item.case_id" :label="item.title" :value="item.case_id"></el-option>
               <el-option v-show="!sanIsCacs" v-for="item in san" :key="item.company_id" :label="item.name" :value="item.company_id"></el-option>
             </el-select>
@@ -24,7 +24,7 @@
     </el-row>
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column prop="date" label="日期" width="300"></el-table-column>
-      <el-table-column v-if="lietouShow" prop="title" label="列头" width="300"></el-table-column>
+      <el-table-column v-if="lietouShow" prop="title" :label="lietou" width="300"></el-table-column>
       <el-table-column prop="qty" label="数量" width="300"> </el-table-column>
     </el-table>
     <div class="total">
@@ -44,6 +44,7 @@ export default {
       yiValue: '',
       erValue: '',
       sanValue: '',
+      lietou: '列头',
       yi: [{
           value: 'lg',
           label: '登录量',
@@ -96,9 +97,23 @@ export default {
     this.getCompanys();
     this.getcase();
   },
+  watch: {
+    yiValue() {
+      this.yi.forEach((d, i) => {
+        this.yiValue == d.value && (this.lietou = d.label);
+      });
+    },
+    erValue() {
+      this.er.forEach((d, i) => {
+        this.erValue == d.value && (this.lietou = d.label);
+      });
+    },
+  },
   computed: {
     showEr() {
       let value = this.yiValue == 'pv' || this.yiValue == 'uv' ? false : true;
+       this.erValue = value ? '' : this.erValue;
+       this.sanValue = value ? '' : this.sanValue;
       return value;
     },
     showSan() {
