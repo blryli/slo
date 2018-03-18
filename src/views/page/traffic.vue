@@ -41,8 +41,8 @@ export default {
   data() {
     return {
       isNew: true,
-      yiValue: '',
-      erValue: '',
+      yiValue: 'lg',
+      erValue: 'fc',
       sanValue: '',
       lietou: '列头',
       yi: [{
