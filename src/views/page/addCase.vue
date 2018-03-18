@@ -119,7 +119,7 @@
           <div class="p">
             <span class="span">案例图片：</span>
             <div class="upload-img">
-              <el-upload class="add-img" action="/api/img/upload" list-type="picture-card" :file-list="logos.imgs" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
+              <el-upload class="add-img" action="/api/img/upload" list-type="picture-card" :file-list="logoImgList" :name="name" ref="logos" :limit="logos.limit"  :multiple="logos.multiple"
               :on-preview="preview" :on-remove="remove" :on-success="success">
                 <i class="el-icon-plus"></i>
               </el-upload>
@@ -271,14 +271,14 @@ export default {
       this.$fns.post('/api/admin/get-case',data,(json)=>{
           if(json.ask=='1'){
             let arr = [];
-            // let imgArr = [];
+            let imgArr = [];
             this.datas = json.data;
             json.data.imgs.forEach((d, i) => {
               arr.push({url: '/imgs/' + d.url, text: d.text});
-              // imgArr.push('/imgs/' + d.url);
+              imgArr.push('/imgs/' + d.url);
             })
             //展示图片
-            // this.logoImgList = imgArr;
+            this.logoImgList = imgArr;
             //上传图片
             this.logos.imgs = arr;
           }else{
