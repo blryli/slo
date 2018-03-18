@@ -16,7 +16,7 @@
                     <li class="text-ms" v-if="particularsArr.desc" v-html="particularsArr.desc"></li>
                     <li class="img-ms" v-if="particularsArr.imgs">
                         <p v-for="(item, index) in particularsArr.imgs" :key="index">
-                            <span class="m-b-10" style="display: block" v-if="item.text">{{item.text}}</span>
+                            <span class="m-b-10" style="display: block" v-if="item.text" v-html="item.text"></span>
                             <img :src="item.url" class="img-responsive img">
                         </p>
                     </li>
