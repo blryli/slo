@@ -101,11 +101,16 @@ export default {
     yiValue() {
       this.yi.forEach((d, i) => {
         this.yiValue == d.value && (this.lietou = d.label);
+        this.yiValue == 'cl' && (this.lietou = '案例标题');
+        this.yiValue == 'at' && (this.lietou = '公司名称');
       });
     },
     erValue() {
       this.er.forEach((d, i) => {
         this.erValue == d.value && (this.lietou = d.label);
+        this.erValue == 'cs' && (this.lietou = '案例标题');
+        this.erValue == 'cc' && (this.lietou = '公司名称');
+        this.erValue == 'rec' && (this.lietou = '公司名称');
       });
     },
   },

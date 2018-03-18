@@ -14,7 +14,12 @@
                     <li class="text" v-if="particularsArr.add_date">时间：{{particularsArr.add_date}}</li>
                     <li class="hr"></li>
                     <li class="text-ms" v-if="particularsArr.desc" v-html="particularsArr.desc"></li>
-                    <li class="img-ms" v-if="particularsArr.imgs"><p v-for="(item, index) in particularsArr.imgs" :key="index"><img :src="item" class="img-responsive img"></p></li>
+                    <li class="img-ms" v-if="particularsArr.imgs">
+                        <p v-for="(item, index) in particularsArr.imgs" :key="index">
+                            <span class="m-b-10" style="display: block" v-if="item.text">{{item.text}}</span>
+                            <img :src="item.url" class="img-responsive img">
+                        </p>
+                    </li>
                     <li class="hr"></li>
                     <li class="unit" v-if="particularsArr.unit"><strong>业务单位</strong>：{{particularsArr.unit}}</li>
                     <li class="unit" v-if="particularsArr.address"><strong>项目地址</strong>：{{particularsArr.address}}</li>

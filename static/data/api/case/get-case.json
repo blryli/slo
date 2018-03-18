@@ -8,7 +8,13 @@
         "author": "作者",
         "add_date": "添加日期",
         "desc": "案例描述(带有html标签)",
-        "imgs": ["static/img/xiangqing.png","static/img/xiangqing.png"],
+        "imgs": [{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        },{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        }],
         "unit": "业主单位",
         "address": "项目地址",
         "team": "设计师团队",
