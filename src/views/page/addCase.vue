@@ -388,9 +388,9 @@ export default {
       if(fileList.length){
         fileList.forEach((item,k)=>{
           if(item.hasOwnProperty('response')){
-            item.response.ask=='1' && item.response.filename && imgs.push({'/imgs/'+url: item.response.filename, text: ''});
+            item.response.ask=='1' && item.response.filename && imgs.push({url: '/imgs/' +  item.response.filename, text: ''});
           }else if(item.hasOwnProperty('url')){
-            imgs.push({url: item.url, text: ''});
+            imgs.push({url: '/imgs/' +  item.url, text: ''});
           }
         });
       }
