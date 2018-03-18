@@ -390,7 +390,17 @@ export default {
           if(item.hasOwnProperty('response')){
             item.response.ask=='1' && item.response.filename && imgs.push({url: '/imgs/' +  item.response.filename, text: ''});
           }else if(item.hasOwnProperty('url')){
-            imgs.push({url: '/imgs/' +  item.url, text: ''});
+              let text = '';
+              if(this.logos.imgs.length){
+                this.logos.imgs.every((vv,k)=>{
+                  if(vv.url==item.url){
+                    text = vv.text;
+                    return false;
+                  }
+                  return true;
+                })
+              }
+              imgs.push({url: item.url, text: text});
           }
         });
       }
