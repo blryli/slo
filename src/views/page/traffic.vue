@@ -118,6 +118,7 @@ export default {
     },
     showSan() {
       let value = this.erValue == 'cs' || this.erValue == 'rec' || this.erValue == 'cc' ? false : true;
+      this.sanValue = '';
       return value;
     },
     sanIsCacs() {
