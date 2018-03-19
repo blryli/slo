@@ -10,11 +10,23 @@
 	    	"logo":"static/img/xiangqing.png",
 	    	"desc":"公司介绍(带有html标签)",
 	    	"environment_desc":"公司环境描述(带有html标签)",
-	    	"imgs":["static/img/xiangqing.png"],
+	    	"imgs":[{
+				"url": "static/img/xiangqing.png", 
+				"text": "图片描述"
+			},{
+				"url": "static/img/xiangqing.png", 
+				"text": "图片描述"
+			}],
 	    	"case_desc":"公司作品描述(带有html标签)",
 	    	"has_attention":0
   		},
-  		"case_imgs":["static/img/xiangqing.png","static/img/xiangqing.png","static/img/xiangqing.png"],
+  		"case_imgs":[{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        },{
+            "url": "static/img/xiangqing.png", 
+            "text": "图片描述"
+        }],
   		"recruitment_info":[
   			{
 			    "title":"标题",

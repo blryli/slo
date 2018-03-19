@@ -32,13 +32,21 @@
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司环境<span></span></h3>
                         <p v-html="datas.company_info.environment_desc"></p>
-                        <p v-for="(item, index) in datas.company_info.imgs" :key="index"><img :src="item" class="img-responsive img"></p>
+                        <!-- <p v-for="(item, index) in datas.company_info.imgs" :key="index"><img :src="item" class="img-responsive img"></p> -->
+                        <p v-for="(item, index) in datas.company_info.imgs" :key="index">
+                            <span class="m-b-10" style="display: block" v-if="item.text" v-html="item.text"></span>
+                            <img :src="item.url" class="img-responsive img">
+                        </p>
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="company-js img-ms">
                         <h3 class="company-title">公司作品<span></span></h3>
                         <p v-html="datas.company_info.case_desc"></p>
-                        <p v-for="(item, index) in datas.case_imgs" class="m-t-20" :key="index"><img :src="item" class="img-responsive img"></p>
+                        <!-- <p v-for="(item, index) in datas.case_imgs" class="m-t-20" :key="index"><img :src="item" class="img-responsive img"></p> -->
+                        <p v-for="(item, index) in datas.case_imgs" :key="index">
+                            <span class="m-b-10" style="display: block" v-if="item.text" v-html="item.text"></span>
+                            <img :src="item.url" class="img-responsive img">
+                        </p>
                         <p class="text-center"><button type="button" @click="toWorksPage" class="btn btn-FEE300">更多公司作品</button></p>
                     </li>
                   </ul>

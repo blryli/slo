@@ -4,8 +4,8 @@
         <div class="particulars" v-if="particularsArr != ''">
           <div class="container m-t-20">
             <!-- <div class="particulars-close close-fixed" @click="goBack"></div> -->
-            <div class="particulars-prev" v-show="prevShow" @click="prev"></div>
-            <div class="particulars-next" v-show="nextShow" @click="next"></div>
+            <!-- <div class="particulars-prev" v-show="prevShow" @click="prev"></div> -->
+            <!-- <div class="particulars-next" v-show="nextShow" @click="next"></div> -->
             <div class="particulars-bg" v-show="alrtSharingShow == true"></div>
             <div class="row">
                 <div class="col-sm-9"> 
