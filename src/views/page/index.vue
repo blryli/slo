@@ -202,7 +202,6 @@ export default {
     },
     //点击按钮获取当前索引
     getDiologArr(arr) {
-      console.log(arr)
       this.dialogFormVisible = true;
       this.textIndex = arr[0];
       this.editorContent = arr[1];
@@ -235,25 +234,26 @@ export default {
       }
       this.$fns.post('/api/admin/get-company',data,(json)=>{
           if(json.ask=='1'){
-            let arr = [];
-            let imgArr = [];
-            this.logoImgList = [];
-            this.waterMarkImgList=[];
             this.datas = json.data;
-            json.data.imgs.forEach((d, i) => {
-              arr.push({url: '/imgs/' + d.url, text: d.text});
-              // imgArr.push('/imgs/' + d);
-            })
-            //展示图片
+            //logo图片
+            this.logoImgList = [];
             json.data.logo && this.logoImgList.push({url: '/imgs/' + json.data.logo});
-            json.data.water_mark && this.waterMarkImgList.push({url: '/imgs/' + json.data.water_mark});
-            // this.companyImgList = arr;
-            //上传图片
             this.logoImg.imgs = []; 
             json.data.logo && (this.logoImg.imgs[0] = '/imgs/' +json.data.logo);
+            //水印图片
+            this.waterMarkImgList=[];
+            json.data.water_mark && this.waterMarkImgList.push({url: '/imgs/' + json.data.water_mark});
             this.waterMarkImg.imgs = []; 
             json.data.water_mark && (this.waterMarkImg.imgs[0] = '/imgs/' +json.data.water_mark);
-            this.companyImg.imgs = arr;
+            //公司图片
+            this.companyImgList = [];
+            this.companyImg.imgs = []; 
+            let imgArr = [];
+            json.data.imgs.forEach((d, i) => {
+              imgArr.push({url: '/imgs/' + d.url, text: d.text});
+            })
+            this.companyImg.imgs = imgArr;
+            this.companyImgList = imgArr;
           }else{
             this.$message({message:json.message,type:'error',showClose:true});
           }
@@ -349,9 +349,33 @@ export default {
       if(fileList.length){
         fileList.forEach((item,k)=>{
           if(item.hasOwnProperty('response')){
-            item.response.ask=='1' && item.response.filename && imgs.push({url: item.response.filename, text: ''});
+            item.response.ask=='1' && item.response.filename && imgs.push(item.response.filename);
           }else if(item.hasOwnProperty('url')){
-            imgs.push({url: item.url, text: ''});
+            imgs.push(item.url);
+          }
+        });
+      }
+      return imgs;
+    },
+    //更新图片数组
+    refreshCompanyImgs(fileList){
+      var imgs=[];
+      if(fileList.length){
+        fileList.forEach((item,k)=>{
+          if(item.hasOwnProperty('response')){
+            item.response.ask=='1' && item.response.filename && imgs.push({url: '/imgs/'+item.response.filename, text: ''});
+          }else if(item.hasOwnProperty('url')){
+              let text = '';
+              if(this.companyImg.imgs.length){
+                this.companyImg.imgs.every((vv,k)=>{
+                  if(vv.url==item.url){
+                    text = vv.text;
+                    return false;
+                  }
+                  return true;
+                })
+              }
+              imgs.push({url: item.url, text: text});
           }
         });
       }
@@ -375,11 +399,11 @@ export default {
     },
     //company成功
     successCompany(json, file, fileList){
-      this.companyImg.imgs = this.refreshImgs(fileList);
+      this.companyImg.imgs = this.refreshCompanyImgs(fileList);
     },
     //company移除
     removeCompany(file, fileList){
-      this.companyImg.imgs = this.refreshImgs(fileList);
+      this.companyImg.imgs = this.refreshCompanyImgs(fileList);
     }
   }
 }
