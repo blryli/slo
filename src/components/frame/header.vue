@@ -40,7 +40,7 @@
                       <img :src="userImg" alt="我的头像">
                       <div class="p-yellow"></div>
                       <ul class="dropdown-menu dropdown-menu-right user-info">
-                        <li class="user-text"><router-link :to="{path: '/myCenter'}">{{myName}}</router-link></li>
+                        <li class="user-text"><router-link :to="{path: '/myCenter', query: {active:1}}">{{myName}}</router-link></li>
                         <li role="separator" class="divider"></li>
                         <li class="user-text"><router-link :to="{path: '/myCenter', query: {active:1}}">我的收藏</router-link></li>
                         <li class="user-text"><router-link :to="{path: '/myCenter', query: {active:2}}">我的关注</router-link></li>

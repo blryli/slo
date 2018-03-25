@@ -47,7 +47,7 @@
         </router-link>
       </div>
     </div>
-    <el-dialog :visible.sync="dialogVisible" size="tiny">
+    <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl">
     </el-dialog>
   </div>
@@ -105,6 +105,9 @@ import {mapGetters} from 'Vuex'
       }
     },
     watch: {
+      $route() {
+        this.active = this.$route.query.active
+      },
       count() {
             var data = {
                 page:1,

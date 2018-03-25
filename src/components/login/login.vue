@@ -6,7 +6,7 @@
 			<div class="particulars-prev" @click="prev"></div>
 			<div class="logo">
 			  	<router-link to="/"><img src="static/img/logo1.png"></router-link>
-			  	<p>登陆LAFOLIO，发现更多精彩内容 !</p>
+			  	<p>登录LAFOLIO，发现更多精彩内容 !</p>
 			</div>
 			<div class="login-content">
 				<div class="login-header">
