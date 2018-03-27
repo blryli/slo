@@ -50,8 +50,8 @@
                     </li>
                     <li class="hr hr-m-20"></li>
                     <li class="text-center">
-                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == true }" @click="getCollect"></a>
-                        <p><span v-show="particularsArr.has_collect == true">取消</span>收藏</p>
+                        <a href="javascript:;" class="shouc" :class="{ active: particularsArr.has_collect == '1' }" @click="getCollect"></a>
+                        <p><span v-show="particularsArr.has_collect == '1' ">取消</span>收藏</p>
                     </li>
                   </ul>
                 </div>
@@ -133,7 +133,7 @@ import {mapGetters} from 'Vuex'
           }
           this.$fns.post('/api/user/edit-collect',data,(json)=>{
               if(json.ask=='1'){
-                this.particularsArr.has_collect = !this.particularsArr.has_collect;
+                this.particularsArr.has_collect = this.particularsArr.has_collect=='1' ? '0' : '1';
                 this.$message({message:json.message,type:'success',showClose:true});
               }else{
                 this.$router.push({path: '/login'});
