@@ -196,7 +196,7 @@ export default {
       // logoImgList: [],
       logos: {
         limit:50,
-        multiple:true,
+        multiple:false,
         imgs:[],
       },
       names: [],

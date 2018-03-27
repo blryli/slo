@@ -164,7 +164,7 @@ export default {
       },
       companyImg:{
         limit:50,
-        multiple:true,
+        multiple:false,
         imgs:[]
       },
       customToolbar: [
