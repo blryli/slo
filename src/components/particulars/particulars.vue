@@ -84,8 +84,8 @@ import {mapGetters} from 'Vuex'
         id: '',
         index:0,
         idslen:0,
-        prevShow: true,
-        nextShow: true,
+        prevShow: false,
+        nextShow: false,
         iscollect: ''
       }
   	},
@@ -101,10 +101,10 @@ import {mapGetters} from 'Vuex'
         this.getCase();
     },
     watch:{
-        index:function(){
-            this.prevShow = this.index!=0;
-            this.nextShow = this.index!=(this.cutId.length-1);
-        }
+        // index:function(){
+        //     this.prevShow = this.index!=0;
+        //     this.nextShow = this.index!=(this.cutId.length-1);
+        // }
     },
     computed: mapGetters([
       'cutId'
