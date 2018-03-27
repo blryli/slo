@@ -1,6 +1,6 @@
 <template>
   <ul class="nav navbar-nav nav-pills topnav">
-    <li v-for="(menu, index) in topMenu">
+    <li v-for="(menu, index) in topMenu" :key="index">
       <!-- <a v-if="menu.url == undefined">
         <span class="menu-text">{{menu.menu_name}}</span>
         <b class="caret" v-if="menu.url==undefined"></b>

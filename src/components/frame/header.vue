@@ -69,14 +69,27 @@ export default {
       userName : '',
       userImg: '',
       nickname: '',
-      menuJson: []
+      menuJson: [
+        {
+            "id": "index",
+            "active": true,
+            "menu_name": "精选案例",
+            "url": "/"
+        },
+        {
+            "id": "works",
+            "active": false,
+            "menu_name": "公司集",
+            "url": "/works"
+        }
+      ]
     }
   },
   components: {
     TopMenu
   },
   created: function () {
-    this.getTopMenu();
+    // this.getTopMenu();
     this.getUserInfo();
     this.ylqbb();
   },
@@ -115,15 +128,15 @@ export default {
           }
       });
     },
-    getTopMenu() {
-  	  this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
-  		  if(json.ask=='1'){
-  			  this.menuJson = json.data
-  		  }else{
-  			  console.error(json.message)
-  		  }
-  	  });    	
-    },
+    // getTopMenu() {
+  	//   this.$fns.post('/api/menu/get-top-menus',{},(json)=>{
+  	// 	  if(json.ask=='1'){
+  	// 		  this.menuJson = json.data
+  	// 	  }else{
+  	// 		  console.error(json.message)
+  	// 	  }
+  	//   });    	
+    // },
     closeNav() {
       this.showNav = false
       this.$emit('showNav-to', this.showNav)

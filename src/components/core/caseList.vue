@@ -139,7 +139,7 @@ ul{
 .title{
   font-weight: bold;
   margin-top: 12px;
-  min-height: 50px;
+  height: 50px;
   max-width: 238px;
   color: #191919;
   strong{
