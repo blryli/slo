@@ -220,7 +220,7 @@ export default {
       this.datas.imgs = [];
       this.logoImg.imgs = [];
       this.companyImg.imgs = [];
-      setTimeout(function() {
+      setTimeout(()=>{
         this.$refs.companyImg.clearFiles();
         this.$refs.logoImg.clearFiles();   
         this.$refs.waterMarkImg.clearFiles();

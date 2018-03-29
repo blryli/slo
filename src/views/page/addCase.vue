@@ -258,7 +258,7 @@ export default {
       this.datas.remarks='';
       this.datas.desc='';
       this.logos.imgs = [];
-      setTimeout(function() {
+      setTimeout(()=>{
         self.$refs.logos.clearFiles();
       }, 100)
     },
@@ -388,7 +388,7 @@ export default {
       if(fileList.length){
         fileList.forEach((item,k)=>{
           if(item.hasOwnProperty('response')){
-            item.response.ask=='1' && item.response.filename && imgs.push({url: item.response.filename, text: ''});
+            item.response.ask=='1' && item.response.filename && imgs.push({url: '/imgs/'+item.response.filename, text: ''});
           }else if(item.hasOwnProperty('url')){
               let text = '';
               if(this.logos.imgs.length){
