@@ -106,8 +106,10 @@
             <el-date-picker
               v-model="datas.design_date"
               value-format="yyyy-MM-dd"
-              type="date"
-              placeholder="选择日期">
+              type="datetimerange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期">
             </el-date-picker>
           </p>
           <p><span class="span">拍摄者：</span><el-input v-model="datas.photographer"></el-input></p>
@@ -127,7 +129,6 @@
                 <component :is="comment" @diolog-arr="getDiologArr" :index="index" :text="item.text" v-for="(item, index) in logos.imgs" :key="index"></component>
               </div>
             </div>
-            
           </div>
           <el-dialog :visible.sync="dialogVisible" size="tiny" append-to-body>
             <img width="100%" :src="dialogImageUrl" alt>
@@ -179,7 +180,7 @@ export default {
         address:'',
         team:'',
         scale:'',
-        design_date:'',
+        design_date:[],
         photographer:'',
         desc:''
       },
@@ -253,7 +254,7 @@ export default {
       this.datas.address='';
       this.datas.team='';
       this.datas.scale='';
-      this.datas.design_date='';
+      this.datas.design_date=[];
       this.datas.photographer='';
       this.datas.remarks='';
       this.datas.desc='';
@@ -351,7 +352,7 @@ export default {
             this.datas.address='';
             this.datas.team='';
             this.datas.scale='';
-            this.datas.design_date='';
+            this.datas.design_date=[];
             this.datas.photographer='';
             this.datas.remarks='';
             this.datas.desc='';
