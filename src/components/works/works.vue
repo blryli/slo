@@ -49,6 +49,7 @@ import {mapGetters} from 'Vuex'
     ]),
     watch: {
       count() {
+            this.hasMore=true;
             var data = {
                 page:1,
                 pageSize:this.pageSize,
