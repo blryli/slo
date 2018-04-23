@@ -25,7 +25,7 @@
                     <li class="unit" v-if="particularsArr.address"><strong>项目地址</strong>：{{particularsArr.address}}</li>
                     <li class="unit" v-if="particularsArr.team"><strong>设计团队</strong>：{{particularsArr.team}}</li>
                     <li class="unit" v-if="particularsArr.scale"><strong>用地规模(㎡)</strong>：{{particularsArr.scale}}</li>
-                    <li class="unit" v-if="particularsArr.design_date"><strong>设计时间</strong>：{{particularsArr.design_date}}</li>
+                    <li class="unit" v-if="particularsArr.design_date"><strong>设计时间</strong>：{{particularsArr.design_date[0]}}至{{particularsArr.design_date[1]}}</li>
                     <li class="unit" v-if="particularsArr.photographer"><strong>拍摄者</strong>：{{particularsArr.photographer}}</li>
                     <li class="unit" v-if="particularsArr.remarks" style="color: #888;"><strong>注</strong>：{{particularsArr.remarks}}</li>
                     <!-- <li class="hr hr-m-20" style="margin-bottom:15px;"></li>

@@ -71,7 +71,7 @@
 
     <el-dialog title="新建案例" :visible.sync="outerVisible" :close-on-click-modal="false" width="80%" top="5vh" @close="closeCase">
       <el-row class="end-box">
-        <el-col :span="10">
+        <el-col :span="12">
           <p><span class="span">所属公司：</span>
             <el-select v-model="datas.company_id" clearable filterable placeholder="请选择">
                 <el-option
@@ -98,7 +98,7 @@
             </el-select>
           </p>
         </el-col>
-        <el-col :span="10">
+        <el-col :span="12">
           <p><span class="span">项目地址：</span><el-input v-model="datas.address"></el-input></p>
           <p><span class="span">设计师团队：</span><el-input v-model="datas.team"></el-input></p>
           <p><span class="span">用地规模(m²)：</span><el-input v-model="datas.scale"></el-input></p>
@@ -106,7 +106,7 @@
             <el-date-picker
               v-model="datas.design_date"
               value-format="yyyy-MM-dd"
-              type="datetimerange"
+              type="daterange"
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期">
