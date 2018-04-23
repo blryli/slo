@@ -199,12 +199,22 @@ table.table{
       display: none;
   }
 }
+.particulars{
+  .container{
+    margin: 0 -15px;
+  }
+}
  @media (min-width: 768px) { 
-    .el-carousel{
+  .el-carousel{
 	  .el-carousel__container{
 	    height: 369px;
-	  }
+    }
 	}
+  .particulars{
+    .container{
+      margin: 0 auto;
+    }
+  }
 }
  @media (min-width: 992px) {
  	.el-carousel{

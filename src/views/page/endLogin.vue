@@ -1,7 +1,7 @@
 <template>
     <div class="end-lgin">
       <p class="title"><strong>后台登陆</strong></p>
-      <div class="erroInfo" v-show="show1 != ''">{{msg}}</div>
+      <div class="erroInfo" v-show="show1 != ''">{{show1}}</div>
       <p><el-input v-model="name" placeholder="账号" @keyup.enter.native="isLogin()&&submit()"></el-input></p>
       <p><el-input v-model="pass" type="password" placeholder="密码" @keyup.enter.native="isLogin()&&submit()"></el-input></p>
       <p><el-button type="deflaut" style="width: 100%;" :class="{'el-button--primary':isLogin()}" @click="submit">提交</el-button></p>

@@ -11,7 +11,7 @@
                 <div class="col-sm-9"> 
                   <ul class="bg-fff">
                     <li class="title" v-if="particularsArr.title">{{particularsArr.title}}</li>
-                    <li class="text" v-if="particularsArr.add_date">时间：{{particularsArr.add_date}}</li>
+                    <!-- <li class="text" v-if="particularsArr.add_date">时间：{{particularsArr.add_date}}</li> -->
                     <li class="hr"></li>
                     <li class="text-ms" v-if="particularsArr.desc" v-html="particularsArr.desc"></li>
                     <li class="img-ms" v-if="particularsArr.imgs">
@@ -54,18 +54,21 @@
                         <p><span v-show="particularsArr.has_collect == true">取消</span>收藏</p>
                     </li>
                   </ul>
+                  <router-link to="/" class="back-index">
+                    查看所有案例
+                  </router-link>
                 </div>
             </div>
           </div>
           <div class="container" style="padding-bottom: 8px;">
     		<div class="row m-b-20">
-                <div class="col-sm-9">
-                    <ul class="bg-fff lick"  style="padding-bottom: 0;">
-                        <li class="title">你可能还喜欢</li>
-                        <li class="hr hr-m-10"></li>
-                        <case-list :case-arr="particularsArr.recommend" :title-size="14" :row-top="28" :show-text="false"></case-list>
-                    </ul>
-                </div>
+          <div class="col-sm-9">
+              <ul class="bg-fff lick"  style="padding-bottom: 0;">
+                  <li class="title">你可能还喜欢</li>
+                  <li class="hr hr-m-10"></li>
+                  <case-list :case-arr="particularsArr.recommend" :title-size="14" :row-top="28" :show-text="false"></case-list>
+              </ul>
+          </div>
     		</div>
 	  </div>
       </div>
@@ -79,7 +82,7 @@ import {mapGetters} from 'Vuex'
   export default {
     data () {
       return {
-        particularsArr: '',
+        particularsArr: {},
         alrtSharingShow: false,
         id: '',
         index:0,
@@ -112,6 +115,7 @@ import {mapGetters} from 'Vuex'
     mounted: function() {
         var _this = this;
         this.$nextTick(function() {
+          if($(document).width() < 768) return;
             $(window).on('scroll', ()=> {
                 var scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
                 var node = document.getElementById('fixedY');
@@ -133,7 +137,8 @@ import {mapGetters} from 'Vuex'
           }
           this.$fns.post('/api/user/edit-collect',data,(json)=>{
               if(json.ask=='1'){
-                this.particularsArr.has_collect = !this.particularsArr.has_collect;
+                  console.log(!this.particularsArr.has_collect)
+                this.particularsArr.has_collect = !!!this.particularsArr.has_collect;
                 this.$message({message:json.message,type:'success',showClose:true});
               }else{
                 this.$router.push({path: '/login'});
@@ -357,10 +362,25 @@ p{
 
 //y固定定位
 .fixed-y{
-    position: absolute;
-    right: 0;
+    position: relative;
+}
+.back-index{
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px 0;
+  color: #333;
+  background-color: #FEE300;
+  &:hover{
+    text-decoration: none;
+  }
 }
  @media (min-width: 768px) {
+   .fixed-y{
+        position: absolute;
+        right: 0;
+    }
     // .particulars-prev, .particulars-next{
     //     top: 200px;
     // }
