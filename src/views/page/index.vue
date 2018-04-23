@@ -163,7 +163,7 @@ export default {
         imgs:[]
       },
       companyImg:{
-        limit:50,
+        limit:200,
         multiple:false,
         imgs:[]
       },

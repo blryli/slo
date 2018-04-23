@@ -195,7 +195,7 @@ export default {
       name:'img',
       // logoImgList: [],
       logos: {
-        limit:50,
+        limit:200,
         multiple:false,
         imgs:[],
       },
