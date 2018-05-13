@@ -245,8 +245,8 @@ p{
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #222;
-    opacity: .7;
+    background-color: #000;
+    opacity: .75;
     z-index: 1800;
 }
 .fa{
