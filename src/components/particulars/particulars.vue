@@ -54,9 +54,7 @@
                         <p><span v-show="particularsArr.has_collect == '1' ">取消</span>收藏</p>
                     </li>
                   </ul>
-                  <router-link to="/" class="back-index">
-                    查看所有案例
-                  </router-link>
+                  <router-link to="/" class="back-index">返回首页</router-link>
                 </div>
             </div>
           </div>
@@ -311,11 +309,12 @@ p{
 .shouc{
     position: relative;
     border: 0;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-bottom: 3px;
     display: inline-block;
     background: url(/static/img/ic_collect.png) no-repeat center center;
+    background-size: 60px 60px;
     &.active{
         background: url(/static/img/ic_collect2.png) no-repeat center center;
     }
